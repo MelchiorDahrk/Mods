@@ -37,6 +37,8 @@ local function onLightChanged(e)
         return
     elseif e.reference ~= tes3.player then
         return
+    elseif e.item.time <= 0 then
+        return
     end
     lightTimer:reset()
     if e.eventType == "unequipped" then

@@ -14,4 +14,5 @@ Greatness7 did all of the coding. I (MD) suggested the idea and helped with test
 
 
 Changelog
+1.0.1 - Fixed bug with -1 duration light sources
 1.0.0 - Initial release
