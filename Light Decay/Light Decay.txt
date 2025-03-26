@@ -1,0 +1,17 @@
+Light Decay
+by Greatness7 & Melchior Dahrk
+
+Description
+This mod provides a subtle, immersive, and useful visual signal for when a light source in the player's hand is about to run out: the radius of the light will begin to diminish and eventually go out when the light extinguishes.
+
+
+Requirements
+MWSE
+
+
+Credits
+Greatness7 did all of the coding. I (MD) suggested the idea and helped with testing and feedback.
+
+
+Changelog
+1.0.0 - Initial release
