@@ -1,0 +1,17 @@
+[package]
+name = "Dura Gra-Bol's House Reclaimed"
+description = "This mod started as a simple house mod and expanded into an entire smuggling faction - while still allowing you to choose the high road and be rewarded for killing Dura as instructed. Get to work with Larrius Varro again as he sticks his nose into more of Vvardenfell's dirty business. Or choose the profitable path of a smuggler and climb the ranks."
+homepage = "https://www.nexusmods.com/morrowind/mods/46772"
+authors = [
+	"Melchior Dahrk",
+]
+version = "2.5"
+
+[dependencies]
+assets = [ 
+	"Dura Gra-Bol's House Reclaimed.ESP",
+]
+
+[dependencies.mods."OAAB_Data"]
+version = ">=2.2.2"
+url = "https://www.nexusmods.com/morrowind/mods/49042"

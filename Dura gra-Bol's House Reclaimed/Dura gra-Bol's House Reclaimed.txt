@@ -1,0 +1,68 @@
+Dura gra-Bol's House Reclaimed
+Made for the Morrowind May Modathon Month 2019
+by Melchior Dahrk
+
+
+Description
+This mod started as a simple house mod and expanded into an entire smuggling faction questline - while still allowing you to choose the high road and be rewarded for killing Dura as instructed. Get to work with Larrius Varro again as he sticks his nose into more of Vvardenfell's dirty business. Or choose the profitable path of a smuggler and climb the ranks from a meager Amateur to the Boss. Earn dirty money. Or kill those dirty money-makers. Rent a house from the biggest druglord on Vvardenfell. Or legally purchase your new home and wipe the slate clean.
+
+
+Features
+--- Adds a non-faction method of starting the Dura gra-Bol bounty quest: talk to Larrius Varro after completing his Bloodbath quest. He’ll give a larger bounty (Fighters Guild takes a percentage) but no faction reputation
+--- Adds option to spare Dura gra-Bol if you accept her deal
+--- If you decide to kill Dura gra-Bol, you can purchase her house. It’ll be renamed so you can wipe that criminal’s name from your memory and your items won’t be marked as stolen from the containers any longer. You’ll also get a few extras in the house if you go this route like a “Realistic Repair”-ready anvil in your armory along with some housewarming gifts (mostly booze because, let’s be honest, what else would you really want?).
+--- Dura offers the player a business proposition to cover up her smuggling operations. Become the formal Head of Operations for a local smuggling gang and collect your weekly cut (assuming some corrupt official doesn’t need to be paid off).
+--- Rise in the ranks of a new smuggling faction. From an amatuer to a smuggling boss.
+--- Complete illicit quests for Dura to earn bonuses. Earn a larger weekly cut of the profits by completing quests and climbing the criminal ladder.
+--- Have the lease to Dura’s house transferred into your name and assume residency.
+--- The layout and features of Dura’s house has been overhauled. Still not extravagant, but matches the exterior better and adds a basement for additional storage.
+--- Clear the smugglers out of the sinkhole below your new home and maybe find some hidden secrets in your new cave. See if you can find the rat hole!
+--- Customers in Balmora want more than just skooma and moon sugar; find some unique cursed items among the contraband. Including one which will take you somewhere unexpected...
+--- Adds the sleepy fishing village of Bo-muul to a new island in the Bitter Coast which is more than it appears.
+--- Depending on which side you take, either work with the smugglers living in Bo-muul or cleanse it entirely with another Bloodbath sponsored by Larrius Varro.
+--- Get involved with political intrigue as the corruption of Hlaalu officials come into the light.
+--- Acquire a magical belt which was unobtainable in the original game if you choose the right path.
+--- Discover that Larrius Varro is a member of the religious Talos Cult. If you side with Dura, use that information against him!
+--- Explore a new area of Arkngthand teeming with new types of Centurions standing between you and those profitable dwemer artifacts!
+--- Fixes the dialogue entries which refer to Dura gra-Bol as a “he” (perhaps those commoners can be excused, it’s a common mistake with orcs)
+--- Lightweight, 100% vanilla mod.
+
+
+Getting started
+To start the new questline, either get to the Fighters Guild stage with Eydis Fire-Eye where you're sent to kill Dura gra-Bol, or complete Larrius Varro's Bloodbath quest to get the bounty quest from him and then talk to Dura before you gut her. If you decide to side with Dura, just keep following that questline. If you decide to kill Dura after all, talk to Larrius Varro to get some more work.
+
+
+Installation
+00 Core --- Required files
+01 MWSE Add-Ons --- Includes the SSQN interop and metadata.toml file
+02 Patch - Balmora Waterworks --- Mutually exclusive patches for Balmora mods
+02 Patch - Beautiful Cities of Morrowind --- Mutually exclusive patches for Balmora mods
+02 Patch - Dallara Balmora --- Mutually exclusive patches for Balmora mods
+
+
+Credits
+Aleister - Name Generator
+Greatness7 - Scripting help
+RandomPal - Patch help
+
+
+Changelog
+1.0 - Initial release
+1.1 - Fixed dialogue filtering for completion for forged note quest.
+1.2 - Connected trap doors in Gentlespire Manor. Gave Camonna Tong members in the Balmora Council Club responses about Larrius Varro after the forged note quest.
+1.3 - You can no longer accept the quest to investigate Bo-muul from both Dura and Larrius. Fixed typo in journal entry.
+1.4 - Fixed dialogue filtering when asking Dura about Larrius Varro.
+1.5 - Fixed dialogue filtering when asking Larrius Varro about Dura.
+1.6 - Cleaned dialogue
+1.7 - Fixed script issue
+1.8 - Removed edit to the vanilla FG bounty journal entry
+1.9 - Fixed triple greeting from Guard Captain in Bo-muul
+1.10 - Minor script and typo fix
+1.11 - Changed some dialogue to have Varro more reliably give you his Dura bounty quest
+1.12 - Fixed dialogue filter for Larrius Varro's Bo-muul quest
+2.0 - Added OAAB_Data dependency to add more detail to Bo-muul and the Sinkhole Passage. Added more greetings to Larrius Varro so he doesn't say he has "no work" for you when he does. Made it so Nileno Dorvayn still gives the player a spare key if they lease the house rather than purchase. Gives ownership to the hiding place container in Bo-muul so the owner will attack if you take the package from it. Lowered disposition of smugglers on Bo-muul (they may attack on sight now depending on the player's personality). The campfire in Bo-muul will die out if the smugglers are dead now. Fixed some placement issues in Bo-muul.
+2.1 - Removed non-OAAB option (no longer supported). Made it so if you turn in the bounty to Larrius, you won't get a journal entry about Eydis Fire-Eye if you didn't already start the quest with her. Made it so if you turn in the bounty to Eydis Fire-Eye, Larrius Varro's quest will close out if you started it. Fixed some typos reported by praisejebus732 (thanks!). Cleaned dialogue references.
+2.2 - Fixed Nileno Dorvayn giving the wrong key when you lease Dura's house. Improved introductory dialogue for Dura's first quest.
+2.3 - Updated exterior doors for ease of compatibility patching. Fixed some dialogue filtering issues for Elements of Surprise quest. Replaced powered coherer model and texture. Improved fire spout placement in the Elements of Derivation. Added SSQN interop support. Added journal entry for finding the package in Bo-muul. Made Gemellus run away if you confront him at a certain point in the questline. Made Dura give you a levitation potion before the Elements of Surprise quest. Added compatibility patches for Balmora Underworks, Dallara Balmora, and BCoM. Added fomod.
+2.4 - Added patch for BCoM WaterWorks
+2.5 - Fixed patches so that they move doormarkers properly.
