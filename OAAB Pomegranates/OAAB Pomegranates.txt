@@ -1,0 +1,22 @@
+OAAB Pomegranates
+
+Inspired by their mention of growing in the badlands of Morrowind in Sermon 12 in association with the "Pomegranate Banquet", a regional variety of pomegranates can now be found growing atop Mount Assarnibibi. Although the blight has severely diminished the number of healthy trees in the Molag Amur region, further increasing the rarity of the fruit, these few trees have found shelter atop the holy mountain.
+
+The mod also includes a brief quest to give some exposition to the introduction of pomegranates to the game. Look for a Velothi merchant at the Molag Mar silt strider port and hear his request.
+
+The tree itself has been "Morrowind-ified" rather than sticking to the real world example by crossing it with a desert rose to give it a more rugged appearance given the location where it is native.
+
+
+Installation:
+If you use "We will go to mount Assarnibibi" aka WWGTMA, install the optional plugin which will replace the regular file. This will remove my landscape edits in that cell.
+
+
+Credits:
+revenorror who contributed the pomegranate model to OAAB_Data
+Textures.com for the moss textures
+Tamriel_Data for the base model used for the moss
+
+
+Changelog:
+1.0 - initial release
+1.1 - added "pomegranates" topic, you can now sell pomegranates to the food merchant after completing his quest, update to OAAB_Data 1.14.2 to be able to brew pomegranate tea in Ashfall and get new generic pomegranates topics from alchemists and publicans, added patch for "We will go to mount Assarnibibi" aka WWGTMA
