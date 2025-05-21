@@ -18,5 +18,17 @@ Tamriel_Data for the base model used for the moss
 
 
 Changelog:
-1.0 - initial release
-1.1 - added "pomegranates" topic, you can now sell pomegranates to the food merchant after completing his quest, update to OAAB_Data 1.14.2 to be able to brew pomegranate tea in Ashfall and get new generic pomegranates topics from alchemists and publicans, added patch for "We will go to mount Assarnibibi" aka WWGTMA
+1.2
+* Removed duplicate finish flag from quest journal
+* Salk now actually takes the scroll from the player
+* Fixed floating rock near Maesa-Shammus Egg Mine
+* Added vanilla resolution texture option
+* Added SSQN support
+* Added fomod
+1.1
+* Added "pomegranates" topic
+* You can now sell pomegranates to the food merchant after completing his quest
+* Update to OAAB_Data 1.14.2 to be able to brew pomegranate tea in Ashfall and get new generic pomegranates topics from alchemists and publicans
+* Added patch for "We will go to mount Assarnibibi" aka WWGTMA
+1.0
+* Initial release
