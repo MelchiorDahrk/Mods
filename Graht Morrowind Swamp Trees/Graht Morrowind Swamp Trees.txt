@@ -79,3 +79,4 @@ v3.0.1 - Fixed fomod. Added patch for The Sable Dragon.
 v4.0.0 - Converted to ESM added "mdBC_Active" global (check for value == 1) for easier patching. Fixed collision on Shaht trees. Added new ladder sound effect. Renamed Nevena's Twin Lamps patch plugin name to be recognized by RoHT. Fixed badly placed objects in Sundered Scar addon.
 v4.0.1 - Fixed fomod. Reverted naming of the Nevena's Twin Lamps patch plugin.
 v4.0.2 - Fixed fomod for vanilla tree option.
+v4.0.3 - Updated fomod images.
