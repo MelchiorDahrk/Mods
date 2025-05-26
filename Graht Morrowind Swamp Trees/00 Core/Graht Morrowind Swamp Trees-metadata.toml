@@ -1,0 +1,12 @@
+[package]
+name = "Graht Morrowind Swamp Trees"
+version = "4.0.2"
+description = "Adds enormous trees to the Bitter Coast region to provide a dense canopy overheard and large roots jutting out of the ground below."
+homepage = "https://www.nexusmods.com/morrowind/mods/49771"
+authors = [
+	"Melchior Dahrk",
+]
+
+[dependencies.mods."OAAB_Data"]
+version = ">=2.1.8"
+url = "https://www.nexusmods.com/morrowind/mods/49042"

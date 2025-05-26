@@ -1,0 +1,81 @@
+Graht Morrowind Swamp Trees (GMST)
+by Melchior Dahrk
+
+Description
+==================================
+This mod adds enormous trees to the Bitter Coast region to provide a dense canopy overheard and large roots jutting out of the ground below. This mod is mostly eye candy in nature. I don't consider this a "realistic" take on what the Bitter Coast should look like. I've tried my best to optimize the tree meshes (fully split up collision meshes), but they are big and have a ton of leaf planes each, so don't expect this to increase your FPS.
+
+I recommend using this with Vality's Bitter Coast mod (http://mw.modhistory.com/download-56-11539) to enhance the tree density. Even if you don't use Vality's trees, you can install something like Vurt's Bitter Coast after Vality's and you'll end up with a denser swamp if you use the plugin in Vality's mod.
+
+
+Installation
+==================================
+00 Core - required files
+01 Matching Vanilla Trees --- Modifies vanilla trees to match the leaves and textures of the new Graht trees.
+01 Matching Vanilla Trees - Ashfall --- Install this instead if you use Ashfall.
+02 Vality BC Patch --- Updates Vality's ESP to not place so many trees around the Seyda Neen lighthouse. Use this plugin instead of Vality's original.
+03 Cawumaloe Manor --- is a patch for the old Cawumaloe Manor house mod which moves it high above the canopy of the new trees. Nice little place to view the leafy landscape (does not require the original mod)
+04 Tamriel Rebuilt Sundered Scar Region --- adds the large trees to the TR Sunder Scar Region
+05 Nevena's Twin Lamps Patch --- is based on l1lartur0's fixed version and moves the Seyda Neen Slave Hunter base so it's not in a tree. Use this ESP INSTEAD of "Nevena's Twin Lamps & Slave Hunters_Edited.esp". Requires assets from the original mod. DO NOT USE BOTH.
+06 OAAB Saplings --- patch to make the OAAB saplings use the textures from this mod for visual consistency
+07 Platforms and Walkways --- Adds platforms and walkways to the upper boughs of the graht trees (incompatible with Shaht Trees)
+07 Shaht Trees --- Use this if you are not a fan of verticality (incompatible with Platforms and Walkways)
+08 HD Textures --- Provides 4x vanilla resolution textures
+09 The Sable Dragon Patch (Plugin Replacer) --- Plugin replacer for The Sable Dragon which moves it for compatibility with both this mod and Hla Odai.
+
+If using the "GMST Vality's Bitter Coast Addon.esp", it should load before other Bitter Coast mods since it does make landscape edits (adding vertex colors).
+
+
+Compatibility
+==================================
+Known incompatibilities:
+
+Amazing Balmora Expansion
+Nerevars House Mod
+
+
+Permissions
+==================================
+You are free to:
+Adapt - remix, transform, and build upon the material
+
+Under the following terms:
+Attribution - You must give appropriate credit.
+Non-Commercial - You may not use the material for commercial purposes (i.e. no payment of monetary compensation as a condition for the download).
+
+If author(s) is/are not able to be contacted through a reasonable effort,
+Then you are free to copy and redistribute the material for use in The Elder Scrolls III: Morrowind
+
+
+Credits
+==================================
+XeroFoxx for the leaves texture
+Textures.com for the bark texture base
+TreeIt used to generate the tree trunk
+Greatness7 for the blender NIF plugin
+Static for the Haldenshore compatibility
+
+
+Changelog
+==================================
+v1.0.0 - Initial release
+v1.1.0 - Repackaged mod
+v1.2.0 - Improved the UV of the tree trunk/branches to have more consistent texel density
+v2.0.0 - The Graht Swamp Trees now have static leaves (way less draw calls than before for better performance and render better in Distant Land). Broke up collision meshes on the vanilla trees and large rope bridges to improve performance. Added giant tree stumps and logs. Modified the root connection at the base of the trees to look more natural. Added trees to the area near Seyda Neen. Includes a patched version of Vality's Bitter Coast which clears the area around the Seyda Neen lighthouse and other problematic placements. Docked the patched Cawumaloe Manor at the treetop walkways. Reduced clipping and improved traversability of rope bridge walkways. Edited the leaves textures to behave better with Distant Land. Added an optional mod to add the new trees to the Sunder Scar Region on the TR mainland. Added patch for Xen-Arien's Manor.
+v2.1.0 - Added patch for Nevena's Twin Lamps
+v2.2.0 - Performance improvement during rainy weather if you use the MCP Rain/snow collision patch and noticed FPS drops.
+v2.3.0 - Made flora_bc_tree_01-02 meshes match vanilla dimensions if using the "Matching Vanilla Trees" module for less clipping issues. This update made the patch for Xen-Arien's Manor no longer necessary, so it has been removed.
+v2.4.0 - Fixed some floating mushrooms near Seyda Neen with the "GMST Vality's Bitter Coast Addon.esp" plugin. Removed a floating moss on the giant stump near Seyda neen.
+v2.5.0 - Added Ashfall trees patch. Added OAAB Saplings patch. Added fomod.
+v2.6.0 - Moved a tree for Haldenshore compatibility. Fixed fomod.
+v2.7.0 - Adjusted placement for compatibility with Hla Odai and Shipyards of Vvardenfell.
+v2.8.0 - Adjusted placement in Vality BC Addon to improve compatibility with Hla Odai and Shipyards of Vvardenfell.
+v2.9.0 - Added MetaData. Fixed some object placements. Moved some trees for compatibility with Haldenshore and Grahtwood Roost.
+v2.9.1 - Moved tree for compatibility with The Plague Doctor.
+v2.10.0 - Optimized large meshes for raycasting calculations in MWSE (compatible with but unused by OpenMW)
+v2.10.1 - Moved two trees for compatibility with Dura gra-Bol and Shipyards. Fixed flags on optimized meshes so they can be selected in CS.
+v3.0.0 - Platforms have been separated into optional plugin. Added short version of the graht trees as an option. Added HD texture option. Tweaks for compatibility with Grahtwood Roost.
+v3.0.1 - Fixed fomod. Added patch for The Sable Dragon.
+v4.0.0 - Converted to ESM added "mdBC_Active" global (check for value == 1) for easier patching. Fixed collision on Shaht trees. Added new ladder sound effect. Renamed Nevena's Twin Lamps patch plugin name to be recognized by RoHT. Fixed badly placed objects in Sundered Scar addon.
+v4.0.1 - Fixed fomod. Reverted naming of the Nevena's Twin Lamps patch plugin.
+v4.0.2 - Fixed fomod for vanilla tree option.
