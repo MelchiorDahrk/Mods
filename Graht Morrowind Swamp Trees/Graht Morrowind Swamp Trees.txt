@@ -22,6 +22,7 @@ Installation
 07 Shaht Trees --- Use this if you are not a fan of verticality (incompatible with Platforms and Walkways)
 08 HD Textures --- Provides 4x vanilla resolution textures
 09 The Sable Dragon Patch (Plugin Replacer) --- Plugin replacer for The Sable Dragon which moves it for compatibility with both this mod and Hla Odai.
+10 Odai Lifeblood of Balmora --- Compatibility patch for Odai Lifeblood of Balmora. Still works with the Platforms plugin.
 
 If using the "GMST Vality's Bitter Coast Addon.esp", it should load before other Bitter Coast mods since it does make landscape edits (adding vertex colors).
 
@@ -80,3 +81,4 @@ v4.0.0 - Converted to ESM added "mdBC_Active" global (check for value == 1) for 
 v4.0.1 - Fixed fomod. Reverted naming of the Nevena's Twin Lamps patch plugin.
 v4.0.2 - Fixed fomod for vanilla tree option.
 v4.0.3 - Updated fomod images. Fixed bugged rocks in Odai river.
+v4.1.0 - Added compatibility patch for Odai Lifeblood of Balmora (OLOB)
