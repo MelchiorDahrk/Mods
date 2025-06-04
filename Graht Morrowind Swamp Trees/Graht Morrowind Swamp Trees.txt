@@ -81,4 +81,4 @@ v4.0.0 - Converted to ESM added "mdBC_Active" global (check for value == 1) for 
 v4.0.1 - Fixed fomod. Reverted naming of the Nevena's Twin Lamps patch plugin.
 v4.0.2 - Fixed fomod for vanilla tree option.
 v4.0.3 - Updated fomod images. Fixed bugged rocks in Odai river.
-v4.1.0 - Added compatibility patch for Odai Lifeblood of Balmora (OLOB)
+v4.1.0 - Added compatibility patch for Odai Lifeblood of Balmora (OLOB). Cleaned and updated the TR Sundered Scar patch to replace the "Ildrim" cell name with "Darvonis".
