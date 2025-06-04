@@ -1,0 +1,102 @@
+The Search for the White Wave
+by Melchior Dahrk
+for the 2023 Winter ModJam
+
+Themes: Dangers of Vvardenfell - Sea of Ghosts - Birds of a Feather Flock Together
+
+A scientific expedition headed into the Sea of Ghosts has failed to report on their progress. An investigator from the Imperial Navy has been dispatched to locate the White Wave and is looking for a hand. Join his crew to unravel what happened to the White Wave in the frozen northern waters...
+
+Playing the plugin:
+Talk to Devos Artarian at the Dagon Fel docks.
+
+
+Features:
+Explore a frozen iceberg zone in the Sea of Ghosts
+Unravel the mystery of the White Wave
+Voiced lines from the new characters
+Earn a unique keepsake at the end of the quest
+
+
+Compatibility
+Temporarily adds a ship to Dagon Fel but it is removed when the quest starts. May conflict with any mods which move the Dagon Fel docks location.
+
+Note that the galleon and cutter sets included in this mod are free to use but will be properly included in the next OAAB_Data update with additional fixes. This mod will be updated at that time to no longer include those assets.
+
+This mod has been playtested in both the vanilla (MGE XE, MWSE, MCP) and OpenMW engines.
+
+
+Installation:
+00 Core - the base files
+01 MWSE Add-Ons - includes several things:
+	interop to add tooltips to a couple items from this mod
+	interop for SSQN
+	override file to make the ship at Dagon Fel not affect distant land
+02 HD Textures
+
+
+Credits:
+Greatness7 for troubleshooting support
+tewlwolow for troubleshooting support
+Tamriel_Data for the ice peaks
+
+
+Permissions
+You are free to:
+Adapt - remix, transform, and build upon the material
+
+Under the following terms:
+Attribution - You must give appropriate credit.
+Non-Commercial - You may not use the material for commercial purposes (i.e. no payment of monetary compensation as a condition for the download).
+
+If author(s) is/are not able to be contacted through a reasonable effort,
+Then you are free to copy and redistribute the material for use in The Elder Scrolls III: Morrowind
+
+
+Changelog:
+1.0 - Initial release
+1.1 - Added HD texture override option (default are SD textures)
+1.2 - Fixed rope placement issue on Silver Lark. Moved rowboat position in Dagon Fel. Tweaked lighting in the White Wave. Edited loot on the White Wave.
+1.3 - Removed galleon assets which are now included in OAAB_Data. Nerfed ice wraiths. Made the Captain's Key easier to find. Cleaned dirty edits. Made it so the ravens in the icy cave are animated. Added SSQN support. Added fomod.
+
+
+
+
+
+
+
+
+
+The ways this mod meets the themes is [SPOILER] territory. So read on at your own discretion:
+
+
+
+
+
+SPOILERS
+SPOILERS
+SPOILERS
+SPOILERS
+SPOILERS
+SPOILERS
+
+
+
+
+
+
+
+
+SPOILERS
+SPOILERS
+SPOILERS
+SPOILERS
+SPOILERS
+SPOILERS
+
+
+
+
+
+Dangers of Vvardenfell - the 6th House
+Sea of Ghosts - the White Wave is lost in the Sea of Ghosts
+Birds of a Feather Flock Together - ravens can be found during the mod, they congregate at the end
