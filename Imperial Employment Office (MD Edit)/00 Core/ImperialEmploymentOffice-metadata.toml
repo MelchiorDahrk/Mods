@@ -1,0 +1,18 @@
+[package]
+name = "Imperial Employment Office (MD Edit)"
+description = "Adds a new faction to the game which is focused on non-combat oddjobs and errands for the player."
+homepage = "https://www.nexusmods.com/morrowind/mods/53845"
+authors = [
+	"Tabris",
+	"Melchior Dahrk",
+]
+version = "4.0.1"
+
+[dependencies]
+assets = [ 
+	"Imperial Employment Office (MD edits).esp",
+]
+
+[dependencies.mods."OAAB_Data"]
+version = ">=2.2.2"
+url = "https://www.nexusmods.com/morrowind/mods/49042"

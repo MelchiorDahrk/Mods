@@ -1,0 +1,157 @@
+====================================
+Imperial Employment Office (MD Edit)
+====================================
+created by Tabris
+edited 	by Melchior Dahrk
+
+Version 4.0.1
+
+
+Mod Description
+====================================
+This mod creates a new, joinable faction in Morrowind - the Imperial Employment Office (IEO). There are a lot of commoners in Vvardenfell who aren't strong fighters or skilled mages. The IEO is there to give them jobs as well. This mod is mostly aimed towards role-players as the jobs are usually quite straight-forward and not too challenging (with one optional exception which does involve some combat).
+
+The IEO can be found in "Vivec, Foreign Quarter Lower Waistworks", and gives you day-to-day jobs with payments. As you progress through the faction, you will get jobs that requires more skills and trust. Ultimately, you can become the leader of the Office and get a weekly payment. As the head honcho, you'll also be able to improve your income and the services of the office by approving jobs for your new underlings.
+
+
+Background from MD
+====================================
+I was busily installing mods, when I got distracted by one in particular: Imperial Employment Office. This mod caught my eye. It seemed like a cool concept but I wanted to check out how well it was implemented. At the very outset, the one cell added by the mod was pretty bad with bright lighting and floaters everywhere. After closer inspection I found numerous things which should be fixed (the mod needed a thorough proofreading) and several which were driven by personal preference. I then proceeded to stay up until 3AM making various changes to the mod itself... so here I am.
+
+You can find the original mod here: https://www.nexusmods.com/morrowind/mods/27246/?
+
+The bottom line is that the concept behind this mod is a cool one and so I wanted to bring it up to date with today's standards and clean up old issues.
+
+I hope you enjoy!
+
+
+Comments on 3.0.0+ releases
+====================================
+My edits to IEO were previously hosted on my Dahrk Mods page. However, the 3.0.0 update is a massive overhaul of the mod. Touching every single quest. Expanding the questline. Adding brand new assets. Utilizing OAAB_Data assets where sensible. Along with tons of fixes and improvements all around.
+
+With that said, it seemed like a good time to give the mod its own dedicated page so that it'd have better visibility and be easier to track issues and suggestions.
+
+
+Compatibility
+====================================
+For BCoM users, make sure that you enable the patch for this mod which is included in BCoM to make sure that the office is accessible. Otherwise, the two mods should be compatible (see comment below about the included Seyda Neen Lighthouse patch).
+
+
+Installation
+====================================
+Use the included fomod if you use a mod installer like MO2. The archive is also set up in a BAIN compatible format for use with Wrye Mash. For manual installation, you'll need to choose the options you want from each folder.
+
+The Seyda Neen Lighthouse Patch is for use with mods that expand the footprint of the light house such as BCoM, RandomPal's Seyda Neen, Lucevar's Seyda Neen, and N'wahs and Mushrooms Seyda Neen.
+
+
+Credits
+====================================
+Tabris - for the original concept and execution of this mod
+Bethesda - for the spark of inspiration which led to the creation of this wonderful game
+Melchior Dahrk - for cleaning up everything
+RaveBlack - for error reporting, thank you!
+Lucevar - for error reporting and extensive feedback, thank you!
+RandomPal - for finding a common location to move the dagger and mysterious figure for compatibility
+CaeljinX - for the idea to let the player retire from the IEO
+
+
+Changelog
+====================================
+
+Version 1.95.00b
+- Fixed floating/bleeding objects (including most NPCs added by the mod)
+- Redecorated IEO headquarters
+- Proofread dialogue/journal entries
+- Fixed broken dialogue responses and proofread (I might have missed some dialogue results, so people should   pay attention to mod-breaking bugs when I release)
+- Fixed various NPC naming inconsistencies
+- Replaced nearly all instances of IEO with Imperial Employment Office (I just have a thing against abbreviations in Morrowind, in most cases)
+- Minor dialogue and journal tweaks for greater clarity (a preferential change, rather than a correction - done for continuity and helpfulness)
+- Removed Pierre Voisins from Piernette's Farmhouse (it seemed strange with him in there... since I considered him more of a hired hand than a consort. He now stands outside, milling about)
+- Changed Aniwen into a Dark Elf named Vulyn (and updated her dialogue accordingly) since she's in a temple robe at a Dunmer temple... (Altmer just don't worship ALMSIVI, face the facts of reality) 
+- Removed Augustus' armor (the primary quest giver) - he's a government worker, not a soldier
+- Disabled Balerius initially so that he won't be distracting during CharGen (also replaced his Ashlander shirt with something more appropriate)
+- Replaced the chest of drawers in the office which was filled with glass armor
+- Changed the Chiefs of Information from Guards to Agent classes (just cause...)
+- Deleted a merchant which appears in a seemingly random location after achieving the highest rank in the IEO. He had a chest full of powerful items including daedric and glass... and seemed like more of a cheat than a feature
+- Decreased the excessive loot in the Prefect's chest - replaced it with a more personal gift from the old Prefect
+- Replaced the daedric dagger on Magnus with something less, expensive
+- Significantly decreased your weekly payment after becoming Prefect (1500 -> 150)
+- Moved the Dagger of Fall from the new stump (likely to induce conflicts in Seyda Neen) to be hidden in the open
+- Assigned ownership to everything in the IEO office (you get access to stuff once you're the Prefect)
+- Cleaned dirty and unused references
+- Added a couple random greetings to people in the IEO office
+- Balanced lighting in the IEO office to match other interiors in Vivec
+- Gave many of the NPCs weapons, when appropriate, and messed with their inventories a bit
+- Added a special effect to a certain cursed chest
+
+Version 1.96.00b
+- Fixed misplaced doormarker
+- Replaced the mismatched entry hallway piece in the waistworks
+- Removed several cells which were needlessly edited
+- Removed many dirty references in several cells
+- Fixed additional spelling and grammatical errors throughout mod
+
+Version 2.0
+- Minor mod cleaning with tes3cmd
+- Reduced file size
+
+Version 2.1
+- Fixed Dagger of Fall quest not allowing you to return the dagger for a quest reward
+- Fixed the Spread the Word quest which immediately rewarded the player even though they did not complete the quest
+- Cleaned dialogue
+
+Version 2.2
+- Properly added the "information leaflet" topic
+- Renamed quests to include the faction name for journal sorting purposes
+- Cleaned dialogue
+- Cleaned mod with tes3cmd
+- Updated usage
+
+Version 3.0.0
+- Overhauled the office interior and added a room for the Prefect
+- Added Skyrim Style Quest Notification interop for MWSE players
+- Added fomod
+- Added HD texture option
+- Gave the Dagger of Fall a custom model and option to keep it
+- Retextured the banner with a new office logo
+- Added stamped papers asset with the new logo
+- Tweaked many quests to use/reference vanilla NPCs rather than making new ones
+- Fixed cursed chest quest
+- Removed glass dagger from Augustus
+- De-cluttered post-quest topics
+- Fixed filtering, dialogue bugs, typos, grammar, and wording
+- Fixed some scripting issues including the weekly payments
+- Gave the Chiefs of Information more character
+- Gave people in the office more custom dialogue
+- Made all quests close properly in the journal
+- Added a small bookshelf to Moonmoth Legion Fort for the relevant quest
+- Added post-Prefect quests to the NPCs in the office
+
+Version 3.0.1
+- BCoM compatibility
+
+Version 3.0.2
+- Fixed OpenMW dialogue issue
+
+Version 4.0.0
+- Added option to retire from the IEO after serving as Prefect for 10 or more weeks
+- Added a monetary retirement package and unique memento for retiring
+- Moved Magnus the Short to be more compatible with BCoM
+- Fixed incorrect names referenced in journal entries
+- Fixed the Mysterious Breton appearing in Dagon Fel before his time
+
+Version 4.0.1
+- Added a patch to move the dagger and mysterious figure for mods which expand the area around the Seyda Neen lighthouse
+
+
+Usage
+====================================
+You are free to:
+Adapt - remix, transform, and build upon the material
+
+Under the following terms:
+Attribution - You must give appropriate credit.
+Non-Commercial - You may not use the material for commercial purposes (i.e. no payment of monetary compensation as a condition for the download).
+
+If author(s) is/are not able to be contacted through a reasonable effort,
+Then you are free to copy and redistribute the material in its entirety for use in The Elder Scrolls III: Morrowind
