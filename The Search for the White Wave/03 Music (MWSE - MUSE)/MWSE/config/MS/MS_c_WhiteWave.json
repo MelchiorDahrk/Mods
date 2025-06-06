@@ -1,0 +1,15 @@
+{
+    "folder" : "TheSearchForTheWhiteWave",
+    "queued" : false,
+	"priority" : 5,
+    "cellNamePart":
+    [
+        "Sea of Ghosts, Icy Cave",
+        "Sea of Ghosts, The White Wave",
+        "White Wave, Cabin",
+        "White Wave, Hold",
+    ],
+    "cellNameExclude":
+    [
+    ]
+}

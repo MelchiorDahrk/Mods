@@ -33,6 +33,8 @@ Installation:
 	override file to make the ship at Dagon Fel not affect distant land
 01 OpenMW Addons - SSQN support
 02 HD Textures
+03 Music (MWSE - MUSE) - Requires MUSE
+03 Music (OpenMW - S3maphore) - Requires S3maphore
 
 
 Credits:
@@ -58,7 +60,7 @@ Changelog:
 1.1 - Added HD texture override option (default are SD textures)
 1.2 - Fixed rope placement issue on Silver Lark. Moved rowboat position in Dagon Fel. Tweaked lighting in the White Wave. Edited loot on the White Wave.
 1.3 - Removed galleon assets which are now included in OAAB_Data. Nerfed ice wraiths. Made the Captain's Key easier to find. Cleaned dirty edits. Made it so the ravens in the icy cave are animated. Added SSQN support. Added fomod.
-1.4 - Slightly moved Devos and his rowboat in Dagon Fel for compatibility with Sheogorad - Groves of the North. Added OpenMW SSQN support.
+1.4 - Slightly moved Devos and his rowboat in Dagon Fel for compatibility with Sheogorad - Groves of the North. Added OpenMW SSQN support. Added more weather types to the Sea of Ghosts region. Added custom music for the new cells (support for both OpenMW and MWSE). Added lots more sound emitters to cells to improve ambiance. Cleaned plugin.
 
 
 
