@@ -145,6 +145,7 @@ Version 4.0.1
 
 Version 4.0.2
 - Fixed dialogue loop with J'dari "employment"
+- Fixed lighthouse patch not working properly in the vanilla engine
 
 
 Usage
