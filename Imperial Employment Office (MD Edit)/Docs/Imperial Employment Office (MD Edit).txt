@@ -148,6 +148,9 @@ Version 4.0.2
 - Fixed lighthouse patch not moving the dagger in the vanilla engine
 - Added OpenMW SSQN support
 
+Version 4.0.3
+- Fixed fomod
+
 
 Usage
 ====================================
