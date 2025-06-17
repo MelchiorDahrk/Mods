@@ -151,6 +151,8 @@ Version 4.0.2
 Version 4.0.3
 - Fixed fomod
 
+Version 4.0.4
+- Fixed fomod again :)
 
 Usage
 ====================================
