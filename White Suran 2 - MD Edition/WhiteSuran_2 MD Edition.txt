@@ -1,0 +1,92 @@
+==========================
+White Suran 2 - MD Edition
+==========================
+by Melchior Dahrk & basswalker
+v3.4
+
+
+=======================
+Description
+=======================
+Suran is the "Pearl of the Ascadian Isles," the "Lady of the Nabia." So it just makes sense that Suran should feature glistening whitewashed walls. That's what this mod does.
+
+Replaces exterior and interior architecture in Suran with new textures
+Includes atlased meshes to improve performance
+Fixes some object placement to avoid reverting fixes in Patch for Purists
+Homogenizes texture resolution for smoother graphical experience
+Provides matching ground texture
+Compatible with Glow in the Dahrk
+Patch for Vurt's Ascadian Isles II
+Patch for Suran Underworld
+Patch for City of Balmora
+
+
+=======================
+Installation
+=======================
+
+Mod comes with a fomod installer for Mod Organizer 2 users. Mod archive is BAIN compatible - see folder explanations below if you are installing with Wrye Mash. For a manual installation, simply copy the files you want into your Data Files folder.
+
+Wrye Mash
+Installation
+==============
+
+---00 Core
+Required files
+
+---01 City of Balmora Patch
+This patch was created by StaticNation for Praedator & EnvyDeveloper's City of Balmora - Hlaalu Expansion mod which greatly expands Suran. If you use CoB, activate City of Balmora.ESP to make all of the new buildings and their interiors use the unique textures added by this mod (requires the original CoB to be installed! https://www.nexusmods.com/morrowind/mods/45324). DO NOT ACTIVATE "City of Balmora.ESP" AND "WhiteSuran2_MD_Edition.esp" TOGETHER.
+Note: this is a patch for version 1.12
+
+---01 Temple Master Patch
+This patches the plugin to remove the changes to the temple interior. You will need to use the patch included with Temple Master as well to use the two mods together.
+
+---02 Patch for Vurt's Trees
+If you have Vurt's Ascadian Isles II installed, consider using WhiteSuran2_patch_vurt.esp to alleviate some bleeding present otherwise (requires WhiteSuran2_MD_edition.esp)
+
+---03 Suran Underworld 3 Patch
+If you use Suran Underworld 3, activate WhiteSuran2_Suran Underworld Addon.esp to make the abandoned house and other interior edits in Suran use the unique textures added by this mod (requires WhiteSuran2_MD_edition.esp and Suran_Underworld_v3.ESP)
+
+---04 Glow in the Dahrk
+If you use Glow in the Dahrk, this patch will make the windows and temple windows turn on and off properly.
+
+
+
+=======================
+Credits
+=======================
+@ Skydye and Headless Wonder - Vibrant Morrowind 4.0 textures (http://mw.modhistory.com/download-56-7332)
+@ Basswalker - for originally making White Suran 2, on which this edition is heavily based.
+@ Reizeron - for creating the White Suran Ground Textures add on
+@ Remiros - for making the atlased Hlaalu meshes and for Intelligent Textures
+@ StaticNation - for making the City of Balmora patch
+@ Sigourn - for forwarding the PfP fixes
+@ Lucevar - for fixing the tiles missed in the Tradehouse
+@ Bethesda - for the spark of inspiration which led to the creation of this wonderful game
+@ Melchior Dahrk - I just did everything else
+
+
+=======================
+Usage
+=======================
+Please acquire proper permissions before reuploading, repackaging, or altering this mod.
+
+
+=======================
+Changelog
+=======================
+v1.0 - Initial release
+v1.1 - Added Suran Underworld addon
+v1.2 - Fixed unreplaced pillar (thanks Feastsun) and added a patch/fix for Slartibartfast's Poorly Placed Object Fix 1.2
+v1.3 - Added "White Suran Ground Textures" as an optional file; addon by Reizeron. Repackaged archive.
+v1.4 - Added patches for Windows and Windoors Glow
+v2.0 - Atlased the exterior meshes for performance improvements. Fixed bw_hlaalu_canal_01.nif which sometimes caused Distant Land generation to crash. Reordered archive to work better with Mash Installers.
+v2.1 - Added patch for Glow in the Dahrk, added patch for City of Balmora by StaticNation, added patch for Arkitektora White Suran
+v2.2 - Fixed UV and normals on walls and canals (thanks to Lady Phoenix Fire Rose for some UV fixes)
+v2.3 - Fixed the Suran Underworld patch
+v2.4 - Cleaned mod with tes3cmd
+v3.0 - Included 3 position fixes from Patch for Purists. Updated Glow in the Dahrk patch. Updated temple and road marker to match. Merged ground texture patch. Windows/Windoors Glow patches no longer supported. Arkitektora patch no longer supported (install that mod after this). Updated Suran Underworld patch to include interior edits to Temple and Guard Tower. Added fomod installer.
+v3.1 - Added patch for Temple Master. Added CSO support. Updated fomod.
+v3.2 - Replaced some vanilla tiles leftover in the Tradehouse.
+v3.3 - Revised fomod for better installation.
+v3.4 - Added vanilla texture resolution option. Fixed fomod some more.
