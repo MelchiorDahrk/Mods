@@ -2,7 +2,7 @@
 White Suran 2 - MD Edition
 ==========================
 by Melchior Dahrk & basswalker
-v3.4
+v4.0
 
 
 =======================
@@ -12,14 +12,9 @@ Suran is the "Pearl of the Ascadian Isles," the "Lady of the Nabia." So it just 
 
 Replaces exterior and interior architecture in Suran with new textures
 Includes atlased meshes to improve performance
-Fixes some object placement to avoid reverting fixes in Patch for Purists
 Homogenizes texture resolution for smoother graphical experience
 Provides matching ground texture
 Compatible with Glow in the Dahrk
-Patch for Vurt's Ascadian Isles II
-Patch for Suran Underworld
-Patch for City of Balmora
-
 
 =======================
 Installation
@@ -34,23 +29,14 @@ Installation
 ---00 Core
 Required files
 
----01 City of Balmora Patch
-This patch was created by StaticNation for Praedator & EnvyDeveloper's City of Balmora - Hlaalu Expansion mod which greatly expands Suran. If you use CoB, activate City of Balmora.ESP to make all of the new buildings and their interiors use the unique textures added by this mod (requires the original CoB to be installed! https://www.nexusmods.com/morrowind/mods/45324). DO NOT ACTIVATE "City of Balmora.ESP" AND "WhiteSuran2_MD_Edition.esp" TOGETHER.
-Note: this is a patch for version 1.12
+---01 Ground Textures
+Replaces the ground textures of Suran with white textures matching the rest of Suran. This is accomplished by editing the landscape so this will be incompatible with any mod which makes landscape edits to Suran.
 
----01 Temple Master Patch
-This patches the plugin to remove the changes to the temple interior. You will need to use the patch included with Temple Master as well to use the two mods together.
-
----02 Patch for Vurt's Trees
-If you have Vurt's Ascadian Isles II installed, consider using WhiteSuran2_patch_vurt.esp to alleviate some bleeding present otherwise (requires WhiteSuran2_MD_edition.esp)
-
----03 Suran Underworld 3 Patch
-If you use Suran Underworld 3, activate WhiteSuran2_Suran Underworld Addon.esp to make the abandoned house and other interior edits in Suran use the unique textures added by this mod (requires WhiteSuran2_MD_edition.esp and Suran_Underworld_v3.ESP)
-
----04 Glow in the Dahrk
+---02 Glow in the Dahrk
 If you use Glow in the Dahrk, this patch will make the windows and temple windows turn on and off properly.
 
-
+---03 HD Textures
+Increases the texture resolution to 4x vanilla.
 
 =======================
 Credits
@@ -59,9 +45,7 @@ Credits
 @ Basswalker - for originally making White Suran 2, on which this edition is heavily based.
 @ Reizeron - for creating the White Suran Ground Textures add on
 @ Remiros - for making the atlased Hlaalu meshes and for Intelligent Textures
-@ StaticNation - for making the City of Balmora patch
-@ Sigourn - for forwarding the PfP fixes
-@ Lucevar - for fixing the tiles missed in the Tradehouse
+@ S3ctor - For making the scripted OpenMW version
 @ Bethesda - for the spark of inspiration which led to the creation of this wonderful game
 @ Melchior Dahrk - I just did everything else
 
@@ -90,3 +74,4 @@ v3.1 - Added patch for Temple Master. Added CSO support. Updated fomod.
 v3.2 - Replaced some vanilla tiles leftover in the Tradehouse.
 v3.3 - Revised fomod for better installation.
 v3.4 - Added vanilla texture resolution option. Fixed fomod some more.
+v4.0 - Now uses an automatic replacement script made by S3ctor for OpenMW 0.49 so that patches are no longer required. MGE XE is not supported for versions 4.0+.
