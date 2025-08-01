@@ -1,0 +1,112 @@
+=============================
+ Temple Master
+=============================
+by Melchior Dahrk
+Version 1.4.3
+
+Part of the 2023 May Modathon
+Part of the Temple Modding Competition #ALMSIVI23
+
+
+=============================
+ Description
+=============================
+
+This mod lets the player take control of the Suran Temple once they advance enough in the Tribunal Temple faction. Through a series of quests (and with some choices to make along the way), you will get to improve the temple.
+
+
+=============================
+Features
+=============================
+
+Become Master of your own Temple
+Build a shrine in the temple and have it properly dedicated through a scripted scene
+Expand the temple with new rooms for yourself and the new NPCs who will join your temple
+Get your own humble room in the temple to stay at when you're in Suran
+Use your temple income to donate to 9 different charities and receive their favor in return
+Choose between multiple characters to appoint as the new monk and healer for your temple
+Build a hostel so pilgrims no longer have an excuse to stay at the House of Earthly Delights
+Interact with a familiar False Incarnate from the Temple questline and convince him to join your temple
+Solicit donations from all of the influential people of Suran if you possess the right skills
+Decide if you're willing to compromise your principles for more donations
+Forge a link between Suran and the Fields of Kummu to cement it as a pilgrimage destination
+Unearth a new Vivecian artifact and house it in your temple to attract more pilgrims
+Learn more about the family background of the temple priestess through a side quest
+Randomized pilgrims will visit your temple as you expand it
+Depending on your choices, discover two new books which your monk and healer may bring with them
+
+
+=============================
+ Playing the Plugin
+=============================
+
+To get started, you will need to be a Diviner in the Temple and then talk to someone about Advancement.
+
+
+=============================
+ Installation
+=============================
+
+WHITE SURAN
+If you are using White Suran 2 - MD Edition or BCoM's White Suran option, read below:
+
+White Suran 2 - MD Edition + Temple Master
+
+	1. Update to version 3.1 or later of WS2 and install `05 Temple Master Patch`
+	2. Install the files from the `01 White Suran 2 Patch` in this archive into your Data Files
+	3. `Temple Master.ESP` must load after `WhiteSuran2_MD_Edition.esp`
+
+BCoM's White Suran
+
+	1. Update to version 3.1 or later of WS2 and install the meshes from `05 Temple Master Patch` (the `WhiteSuran2_MD_Edition.esp` plugin is not required)
+	2. Install the BCoM White Suran patch.
+	3. `Temple Master.ESP` must load after BCoM.
+
+SURAN UNDERWORLD 3
+If you are using Suran Underworld 3 without BCoM, overwrite the original plugin with the `Suran_Underworld_v3.ESP` plugin included with this mod.
+
+If you are using BCoM + Suran Underworld 3, then do not install the patch included with this mod. Use the one bundled with BCoM.
+
+BELL TOWERS OF VVARDENFELL
+If you are using Suran Bell, then install either the White Suran 2 (WS2) or non-WS2 patch included with this mod.
+
+=============================
+ Incompatibilities
+=============================
+
+This mod adds a small outbuilding connected to the Temple. It will conflict with mods which use that spot.
+
+Conflicts with Morrowind Rebirth
+Conflicts with Bell Towers of Vvardenfell
+
+The first portion of this questline deals with the fact that there is no shrine in the Suran Temple and that Elynu is the only person at the shrine. Any mods which add a shrine or more NPCs to the building will at least be a soft conflict.
+
+Intervention Improved adds a non-optional shrine to the Suran Temple
+
+This mod incorporates the Patch for Purists fix to the Suran Temple exterior position (it floats in vanilla) so that the hostel addon is aligned properly. This is compatible with PfP and does not undo its fix.
+
+
+=============================
+ Credits
+=============================
+
+All the folks on Discord who helped provide ideas and feedback while I developed this mod.
+Darkelfguy for hosting Modathon
+Teirdalin for hosting the Temple Modding Competition
+Static and Randompal for help with the White Suran patch
+
+
+=============================
+ Changelog
+=============================
+
+1.0.0 - Initial release
+1.1.0 - Added patch for White Suran 2 - MD Edition
+1.1.1 - Made Elynu acknowledge the Hostel being completed if you talk to her about Improving the Temple. Fixed dialogue loop if you choose not to change charitable donations. Added metadata file for MWSE users.
+1.2.0 - Fixed bug where Tholer Saryoni would still advance you to Master even though you haven't completed the quest. Added alternate way to complete the Hostel quest if you killed Elvil Vidron.
+1.3.0 - Fixed White Suran 2 patch to include the interior and exterior windows of the Hostel. Added Suran Underworld 3 patch. Added Bell Towers of Vvardenfell patch. Fixed filtering on "my family" topic with Elynu. Made it so starting the quest with Tholer Saryoni is less buggy.
+1.3.1 - Updated Bell Towers patch so the doormarker from the Hostel is correctly positioned.
+1.4.0 - Added interop for Skyrim Style Quest Notifications (MWSE). Updated metadata and moved to optional MWSE folder. Added fomod installer.
+1.4.1 - Fixed script error.
+1.4.2 - Actually fixed the script error...
+1.4.3 - Fixed dependencies for the white suran 2 patch

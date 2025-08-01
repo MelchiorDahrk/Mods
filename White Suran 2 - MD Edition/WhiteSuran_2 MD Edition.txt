@@ -4,17 +4,22 @@ White Suran 2 - MD Edition
 by Melchior Dahrk & basswalker
 v4.0
 
-
 =======================
 Description
 =======================
 Suran is the "Pearl of the Ascadian Isles," the "Lady of the Nabia." So it just makes sense that Suran should feature glistening whitewashed walls. That's what this mod does.
 
-Replaces exterior and interior architecture in Suran with new textures
-Includes atlased meshes to improve performance
-Homogenizes texture resolution for smoother graphical experience
-Provides matching ground texture
-Compatible with Glow in the Dahrk
+As of version 4.0, this mod is OpenMW ONLY. This version includes an automated script which automatically replaces references in individual games. This technique does not currently work in MGE XE due to Distant Land constraints. MGE XE / vanilla users can install older versions, but patches will not be officially supported moving forward. The good news is that, for OpenMW players and modders, the days of needing to patch every single mod touching Suran are over!
+
+WARNING: Right now, version 4.0 of THIS MOD CANNOT BE SAFELY UNINSTALLED. There are plans to add an uninstall option in the future. Keep a backup of your save before installing this mod.
+
+Features:
+* Automatically replaces all supported meshes in Suran with new textures
+* Includes atlased meshes to improve performance
+* Homogenizes texture resolution for smoother graphical experience
+* Provides matching ground texture (optional)
+* Provides support for Glow in the Dahrk
+* HD textures (optional)
 
 =======================
 Installation
@@ -37,6 +42,15 @@ If you use Glow in the Dahrk, this patch will make the windows and temple window
 
 ---03 HD Textures
 Increases the texture resolution to 4x vanilla.
+
+=======================
+Compatibility
+=======================
+Version 4.0 and later is not compatible with MGE XE or vanilla.
+
+The optional ground texture addon is incompatible with any mods which alter the landscape of Suran.
+
+If you encounter a mesh which has not been replaced in a mod, let me know so that support can be added.
 
 =======================
 Credits

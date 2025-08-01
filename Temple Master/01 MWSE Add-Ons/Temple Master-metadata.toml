@@ -1,0 +1,20 @@
+[package]
+name = "Temple Master"
+version = "1.4.3"
+description = "Become master of your own Tribunal Temple. Advance to Diviner and talk to someone in the Temple about advancement."
+homepage = "https://www.nexusmods.com/morrowind/mods/52749"
+authors = [
+	"Melchior Dahrk",
+]
+
+[dependencies]
+assets = [
+    "Temple Master.ESP",
+    "Meshes\\mdtemp",
+	"Sound\\Vo\\mdtemp",
+    "Textures\\mdtemp",
+]
+
+[dependencies.mods."OAAB_Data"]
+version = ">=2.1.8"
+url = "https://www.nexusmods.com/morrowind/mods/49042"
