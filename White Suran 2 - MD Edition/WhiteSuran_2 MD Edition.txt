@@ -2,7 +2,7 @@
 White Suran 2 - MD Edition
 ==========================
 by Melchior Dahrk & basswalker
-v4.0
+v4.1
 
 =======================
 Description
@@ -89,3 +89,4 @@ v3.2 - Replaced some vanilla tiles leftover in the Tradehouse.
 v3.3 - Revised fomod for better installation.
 v3.4 - Added vanilla texture resolution option. Fixed fomod some more.
 v4.0 - Now uses an automatic replacement script made by S3ctor for OpenMW 0.49 so that patches are no longer required. MGE XE is not supported for versions 4.0+.
+v4.1 - Added requirement for Static Switching System (OpenMW)
