@@ -110,4 +110,4 @@ Static and Randompal for help with the White Suran patch
 1.4.1 - Fixed script error.
 1.4.2 - Actually fixed the script error...
 1.4.3 - Fixed dependencies for the white suran 2 patch
-1.5.0 - Updated for compatibility with White Suran 2 4.0 (patch no longer required - requires new save). Added SSQN support for OpenMW.
+1.5.0 - Updated for compatibility with White Suran 2 4.0 (patch no longer required - requires new save). Added SSQN support for OpenMW. Added HD texture option.

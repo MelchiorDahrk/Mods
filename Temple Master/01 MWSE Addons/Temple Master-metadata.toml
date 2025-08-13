@@ -1,6 +1,6 @@
 [package]
 name = "Temple Master"
-version = "1.4.3"
+version = "1.5.0"
 description = "Become master of your own Tribunal Temple. Advance to Diviner and talk to someone in the Temple about advancement."
 homepage = "https://www.nexusmods.com/morrowind/mods/52749"
 authors = [
