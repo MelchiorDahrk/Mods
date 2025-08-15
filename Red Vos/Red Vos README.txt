@@ -2,7 +2,7 @@
 Red Vos
 ========
 by Tyddyner and Melchior Dahrk
-v1.4b
+v2.0
 
 
 Description
@@ -56,3 +56,4 @@ v1.3c - Fixed the OAAB Grazelands patch again
 v1.3d - Last time?
 v1.4 - added interop file for Ashfall and OAAB Grazelands patch (makes well functional)
 v1.4b - removed broken OAAB Grazelands compatibility patch
+v2.0 - Added dependency on Static Switching System (OpenMW). Removed old Windoors Glow compatibility patch. Glow in the Dahrk compatibility is now integrated (no separate patch required). Added HD texture option.

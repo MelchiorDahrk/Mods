@@ -1,0 +1,57 @@
+log_name: "Red Vos"
+
+replace_names:
+  - 'vos'
+
+exterior_cells:
+  -
+    x: 11
+    y: 14
+
+replace_meshes:
+  'oaab/x/velWellFountain.nif': 'rvos/rv_WellFountain.nif'
+  'oaab/x/velBlockPost.nif': 'rvos/rv_BlockPost.nif'
+  'oaab/x/velBricksCurved.nif': 'rvos/rv_BricksCurved.nif'
+  'oaab/x/velBricksCurvedEdge.nif': 'rvos/rv_BricksCurvedEdge.nif'
+  'f/furn_de_forge_01.nif': 'rvos/rv_forge_01.nif'
+  'oaab/x/velFoundHouseTall01.nif': 'rvos/rv_FoundHouseTall01.nif'
+  'oaab/x/velFoundHouseTall02.nif': 'rvos/rv_FoundHouseTall02.nif'
+  'f/furn_ashpit_01.nif': 'rvos/rv_furn_ashpit_01.nif'
+  'oaab/x/velothi_house_ent.nif': 'rvos/rv_house_ent.nif'
+  'i/in_v_s_int_corner_01.nif': 'rvos/rv_in_rm_corner_01.nif'
+  'i/in_v_s_int_entrance_01.nif': 'rvos/rv_in_rm_entrance_01.nif'
+  'i/in_v_s_int_wall_01.nif': 'rvos/rv_in_rm_wall_01.nif'
+  'i/in_velothismall_corner_01.nif': 'rvos/rv_in_s_corner_01.nif'
+  'i/in_velothismall_dj_01.nif': 'rvos/rv_in_s_dj_01.nif'
+  'i/in_v_s_domeroom_01.nif': 'rvos/rv_in_s_domeroom_01.nif'
+  'i/in_velothismall_fresco_01.nif': 'rvos/rv_in_s_fresco_01.nif'
+  'i/in_velothismall_fresco_02.nif': 'rvos/rv_in_s_fresco_02.nif'
+  'i/in_velothismall_hall_04.nif':  'rvos/rv_in_s_hall_04.nif'
+  'i/in_velothismall_ramp_02.nif': 'rvos/rv_in_s_ramp_02.nif'
+  'i/in_velothismall_room_05.nif': 'rvos/rv_in_s_room_05.nif'
+  'i/in_velothi_s_stairsl_01.nif': 'rvos/rv_in_s_stairsl_01.nif'
+  'i/in_velothismall_wall_01.nif':  'rvos/rv_in_s_wall_01.nif'
+  'i/in_velothismall_wall_02.nif':  'rvos/rv_in_s_wall_02.nif'
+  'i/in_v_s_wall_column_01.nif': 'rvos/rv_in_s_wall_col_01.nif'
+  'i/in_v_s_wall_column_02.nif': 'rvos/rv_in_s_wall_col_02.nif'
+  'i/in_velothismall_room_01.nif': 'rvos/rv_in_velothi_room_01.nif'
+  'oaab/i/vivec_h_01.nif': 'rvos/rv_in_vivec_h_01.nif'
+  'oaab/x/v_overhang_01.nif': 'rvos/rv_overhang_01.nif'
+  'oaab/i/v_rubble_01.nif': 'rvos/rv_rubble_01.nif'
+  'oaab/x/v_stairs_01.nif': 'rvos/rv_stairs_01.nif'
+  'oaab/x/v_stairs_02.nif': 'rvos/rv_stairs_02.nif'
+  'oaab/x/v_stairs_03.nif': 'rvos/rv_stairs_03.nif'
+  'oaab/x/dr_v_tower_02b.nif': 'rvos/rv_tower_02b.nif'
+  'x/ex_v_foundation_01.nif': 'rvos/rv_v_foundation_01.nif'
+  'x/ex_v_foundation_02.nif': 'rvos/rv_v_foundation_02.nif'
+  'x/ex_v_foundation_03.nif': 'rvos/rv_v_foundation_03.nif'
+  'x/ex_velothi_temple_01.nif': 'rvos/rv_velothi_temple_01.nif'
+  'x/ex_velothi_temple_02.nif': 'rvos/rv_velothi_temple_02.nif'
+  'x/ex_velothi_window_01.nif': 'rvos/rv_velothi_window.nif'
+  'x/ex_vivec_b_wb_01.nif': 'rvos/rv_vivec_b_wb_01.nif'
+  'x/ex_vivec_h_01.nif': 'rvos/rv_vivec_h_01.nif'
+  'x/ex_vivec_h_03.nif': 'rvos/rv_vivec_h_03.nif'
+  'x/ex_vivec_h_06.nif': 'rvos/rv_vivec_h_06.nif'
+  'x/ex_vivec_h_08.nif': 'rvos/rv_vivec_h_08.nif'
+  'x/ex_vivec_h_09.nif': 'rvos/rv_vivec_h_09.nif'
+  'x/ex_vivec_w_e_01.nif': 'rvos/rv_vivec_w_e_01.nif'

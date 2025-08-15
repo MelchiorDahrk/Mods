@@ -1,10 +1,7 @@
-log_name: "MD's WHITE SURAN 2"
+log_name: "WHITE SURAN 2 - MD EDITION"
 
 replace_names:
   - 'suran'
-
-overrides:
-  - "Just don't use this for now."
 
 exterior_cells:
   -
@@ -19,9 +16,6 @@ exterior_cells:
   -
     x: 7
     y: -7
-
-ignore_meshes:
-  - x/ex_hlaalu_pole_01.nif
 
 replace_meshes:
   'i/in_hlaalu_ashpit_01.nif': 'bw/bw_hlaalu_ashpit_01.nif'
@@ -365,8 +359,8 @@ replace_meshes:
   'x/ex_velothi_entrance_02.nif': 'bw/bw_velothi_entrance_02.nif'
   'x/ex_velothi_window_01.nif': 'bw/bw_velothi_window_01.nif'
   'x/ex_velothi_striderport_01.nif': 'bw/bw_velothi_striderport_01.nif'
-  'x/ex_velothi_temple_01.nif': 'bw/bw_velothi_temple_01.nif'
-  'x/ex_velothi_temple_02.nif': 'bw/bw_velothi_temple_02.nif'
+  'x/ex_velothi_temple_01.nif': 'bw/bw_temple_01.nif'
+  'x/ex_velothi_temple_02.nif': 'bw/bw_temple_02.nif'
   'x/ex_velothi_tower_01.nif': 'bw/bw_velothi_tower_01.nif'
   'x/ex_velothi_tower_01_a.nif': 'bw/bw_velothi_tower_01_a.nif'
   'x/ex_velothi_triwin_01.nif': 'bw/bw_velothi_triwin_01.nif'

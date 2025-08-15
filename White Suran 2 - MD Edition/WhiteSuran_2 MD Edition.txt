@@ -2,16 +2,14 @@
 White Suran 2 - MD Edition
 ==========================
 by Melchior Dahrk & basswalker
-v4.1
+v4.2
 
 =======================
 Description
 =======================
 Suran is the "Pearl of the Ascadian Isles," the "Lady of the Nabia." So it just makes sense that Suran should feature glistening whitewashed walls. That's what this mod does.
 
-As of version 4.0, this mod is OpenMW ONLY. This version includes an automated script which automatically replaces references in individual games. This technique does not currently work in MGE XE due to Distant Land constraints. MGE XE / vanilla users can install older versions, but patches will not be officially supported moving forward. The good news is that, for OpenMW players and modders, the days of needing to patch every single mod touching Suran are over!
-
-WARNING: Right now, version 4.0 of THIS MOD CANNOT BE SAFELY UNINSTALLED. There are plans to add an uninstall option in the future. Keep a backup of your save before installing this mod.
+As of version 4.0+, this mod is OpenMW ONLY. This version is now dependent on Static Switching System which uses a script to automatically replace references in individual games. This technique does not currently work in MGE XE due to Distant Land constraints. MGE XE / vanilla users can install older versions, but patches will not be officially supported moving forward. The good news is that, for OpenMW players and modders, the days of needing to patch every single mod touching Suran are over!
 
 Features:
 * Automatically replaces all supported meshes in Suran with new textures
@@ -90,3 +88,4 @@ v3.3 - Revised fomod for better installation.
 v3.4 - Added vanilla texture resolution option. Fixed fomod some more.
 v4.0 - Now uses an automatic replacement script made by S3ctor for OpenMW 0.49 so that patches are no longer required. MGE XE is not supported for versions 4.0+.
 v4.1 - Added requirement for Static Switching System (OpenMW). Added GitD ray functionality to the Hlaalu Window.
+v4.2 - Updated for latest release of SSS.
