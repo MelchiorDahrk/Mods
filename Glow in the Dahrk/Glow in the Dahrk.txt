@@ -1,0 +1,151 @@
+=============================
+ Glow in the Dahrk
+=============================
+by Melchior Dahrk & NullCascade
+Version 3.2.2
+
+This is a modern, pluginless replacement of the old Windows Glow mods. Windows Glow (WG) suffered from every mod needing a patch to work with it. Glow in the Dahrk (GitD) handles this automatically through the meshes themselves with powerful Lua code by NullCascade which can switch the visible portion of NIFs on the fly. With this feature, any mod using the vanilla windows (or GitD-compatible meshes) will automatically switch to a glowing version at night in exteriors or during the day for interiors. In addition, WG forced players to use the textures it provided which didn't always match their texture replacer of choice. Glow in the Dahrk accomplishes a subtle glow on the windows without needing to replace the vanilla textures; so players can use vanilla or a texture replacer of their choice!
+
+Features:
+* Windows transition to glowing versions at night
+* Automatic compatibility with any mods using the meshes included with this mod (no patches required!)
+* Supports vanilla textures and texture replacers for windows (choose your own look!)
+* A more natural, muted glow at night rather than the bright, garish design of the old Windows Glow
+* Smooth pulsing light effect for all nighttime exterior windows
+* In-Game Mod Configuration Menu to tweak certain mod settings like sunrays, interior lighting, and transition staggering
+* Smooth transition from day to night appearance for interior windows
+* Optional, weather and time-of-day dependent interior sunlight
+* Optional sunrays for interior glow!
+* Optional plugin to add Telvanni dormers to Vvardenfell
+* Support for any static objects to be made to transition to nighttime versions
+* Pluginless and patch-free alternative to "Windows Glow"
+
+
+=============================
+ Installation
+=============================
+
+NOTE TO OPENMW USERS: At this time, OpenMW does not support the new toggling sunrays or interior light mesh features included in GitD versions 3.0.0 and later. GitD is still backwards compatible with OpenMW, but sunrays cannot be turned off (and are no longer included as an optional patch). It is currently recommended that OpenMW users continue using GitD version 2.11.2 or earlier.
+
+Required
+Files
+==============
+MGE XE 0.10.1 or later: https://www.nexusmods.com/morrowind/mods/41102
+MWSE 2.1 nightly (install 2nd): http://nullcascade.com/mwse/mwse-dev.zip
+
+
+Wrye Mash
+Installation
+==============
+Archive is set up to use Sub-Packages for Mash Installers:
+
+	00 Core - Note that the MWSE folder may need to be copied into your Data Files folder manually
+
+	Optional
+
+		01 Hi Res Window Texture Replacer
+		02 Nord Glass Windows - for those who prefer the original Windows Glow look
+		03 Telvanni Dormers - adds windows to all Vvardenfell Telvanni settlements (there are none in the vanilla game)
+		04 Raven Rock Glass Windows - for those who prefer the Windoors glow glass windows for Raven Rock
+		07 Telvanni Tower Interior Glow MGE XE - makes some interior pieces for the Telvanni towers glow during the day
+		07 Telvanni Tower Interior Glow OpenMW - same as above but visually optimized for OpenMW. Choose one.
+
+	Patches
+
+		05 Dark Molag Mar Patch - Install with or without sunrays, not both
+		06 Windoors Patch - use this ESP instead of the one included with Windoors	
+
+
+Unless you want Telvanni Dormers, the Raven Rock glass windows, or the Windoors Glow patch, there are no plugins to activate, you're ready to play!
+
+
+Manual
+Installation
+==============
+To install copy all files into the Data Files directory. No plugin to activate, you're ready to play!
+
+
+=============================
+ Compatibility
+=============================
+Window Glass Retextures:
+Due to the way GITD handles the glow texture overlay, some window retextures may result in a weird glow color. The best known case of this issue is if the tx_window_diamond_01.dds texture is too blue, the glow at night will appear greenish. The best way to circumvent this is to use the provided "Hi Res Window Texture Replacer" or experiment with what looks good in your game.
+
+Distant Lights:
+This mod must be installed AFTER Distant Lights. If you still want the Hlaalu, Redoran, and Velothi windows from DL to show up in Distant Land, then add "_dist" to the end of their file names.
+
+
+=============================
+ Credits
+=============================
+Greatness7 for the code used to accelerate the mesh creation and for uncovering the NiCollisionSwitch node
+Siberian Crab for the basic glow texture from which I designed the others
+Hrnchamd for quickly releasing a fix to MGE XE to let this mod work properly
+NullCascade again for not only making the code used by this mod, but also for continuing to develop MWSE into the Lua-based powerhouse it has become
+Morrowind Modding Discord for extensive playtesting and feedback as this mod was developed
+Wolli & Atrayonis for help on the optional Raven Rock glass windows patch
+Wenderer for fomod creation tool
+
+
+=============================
+ Permissions
+=============================
+The assets in this mod archive may be used freely in other TES3 mods as long as credit is given where it is due. You may not rehost this mod unless I and NullCascade have been unable to be reached for 3 months.
+
+
+=============================
+ Changelog
+=============================
+V1.0.0 - Initial Release
+V1.0.1 - Fixed texture filtering on MH meshes, fixed crash in interiors during the day with the Nord windows, replaced Lua code with non-debug version, added mip maps for hi-res textures
+V1.0.2 - Fixed texture filter on Skaal meshes, fixed MGE XE distant land generation errors, fixed interior glow for in_c_plain_r_cwin_tri_01, and fixed material settings on mournhold temple
+V1.0.3 - Fixed the MGE XE errors for real this time
+V1.0.4 - Fixed texture path issues on Mournhold interior window meshes
+V1.0.5 - Updated MWSE lua file name and location to be compatible with the latest nightly
+V1.1.0 - Added patch for TR meshes. Fixed "in_c_rich_r_swin_bay_01.nif" position. Fixed "ex_vivec_c_02.nif" not animating. Made the Mournhold and Imperial arrow slits dimmer.
+V2.0.0 - Adds optional interior sunrays. Interior window glow is now weather dependent! Adds Windoors patch (removes Windoors edits to windows - keeps shacks, ashlander tents, and door glows). Adds optional glass Nord windows (like the original Windows Glow). Adds optional plugin to add Telvanni dormers to Vvardenfell. Improves Telvanni dormer appearance.
+V2.0.1 - Fix for the Windoors patch. Pointed the optional glass nord windows to "tx_window_diamond_01".
+V2.0.2 - Reordered archive for easier Mash installation
+V2.0.3 - UV/texture fix for optional glass nord windows with interior sunrays
+V2.1.0 - Added optional ESP to add Telvanni windows to interiors of housepods (matching the exterior windows). Fixed Windoors patch.
+V2.2.0 - Cleaned up and fixed some minor bugs in the code. Added Mod Configuration Menu!
+V2.2.1 - Fixed collision on several common bay windows where you could get stuck on the sunray
+V2.3.0 - Added optional interior sunrays for the Tamriel Rebuilt patch. Added miscellaneous mods patch. Made ex_velothi_window_01.nif have sunrays.
+V2.4.0 - Added patch for Dark Molag Mar
+V2.4.1 - Fixed in_c_plain_r_cwin_tri_01.nif which was glowing at night indoors
+V2.4.2 - Made the "Stagger Exterior Transitions" Mod Config option save when you reload the game
+V2.4.3 - Made several interior window meshes work in exteriors if used there by mods
+V2.4.4 - Fixed Indoril interior window in exteriors
+V2.4.5 - Added missing ex_gg_03.nif mesh
+V2.5.0 - Changed to BAIN archive structure. Removed sunrays from in_c_plain_room_cwin_01 and in_c_plain_room_cwin_02 for the base version. Added in_nord_house_04.nif which was missed before. Fixed non-animated night windows for ex_nord_house_04.nif.
+V2.5.1 - Added interior support to ex_common_window_03.nif. Added tr_ex_velothi_temple03 to TR patch. Fixed collision on TR patch windows.
+V2.6.0 - Added optional glass Raven Rock windows
+V2.6.1 - Hotfix for Raven Rock windows (exterior meshes were bright and some of the Raven Rock interiors were missed in the plugin)
+V2.6.2 - Added interior effect to Imperial arrow slits
+V2.6.3 - Fixed exterior glow for Imperial arrow slits
+V2.7.0 - Revised code so that activators (e.g. Raven Rock buildings and Strongholds) will switch windows at night as well. Fixed bad UV on in_mh_window_01.nif. Fixed collision on interior Raven Rock meshes. Fixed some placement issues in the Raven Rock ESP.
+V2.7.1 - Added sunrays to the Redoran windows for the optional Interior Sunrays patch
+V2.8.0 - Fixed texture issue on sunrays. Updated the meshes with sunrays to use NiCollisionSwitch so that players can pick up items and activate objects through them. At the time of writing, NiCollisionSwitch is incompatible with OpenMW so it is recommended that you stick with version 2.7.1 for now if you use it.
+V2.8.1 - Patch for MGE XE Distant Land which does not currently recognize NiCollisionSwitch. No change to functionality in 2.8.0.
+V2.8.2 - Cleaned "GITD_WL_RR_Interiors.esp" for the optional Raven Rock Glass Windows addon.
+V2.8.3 - Changes "ex_vivec_h_16.nif" to fix an MWSE error.
+V2.9.0 - Overhaul of the RR module: added lit glass to Raven Rock windows at night, added support for the mine entrance, improved window UVs, combined more shapes to improve performance, improved collision, improved shading on chimneys (can't see roof through them now), removed some unused windows, fixed and combined material properties
+V2.9.1 - Matched the UV of the interior Raven Rock windows to the exterior. Adds new texture to the Raven Rock windows to match the new UV.
+V2.10.0 - Repackaged file. Added fomod installer for MO2 users. Still BAIN compatible (for Wrye Mash users). Misc Mods patch bundled into core files for ease of installation.
+V2.10.1 - Bug fix for fomod installer. Fixed a few meshes.
+V2.10.2 - Cleaned up Windoors Patch
+V2.10.3 - Added "none" option to Telvanni Dormers option in fomod installer
+V2.11.0 - Removed TR patch (Tamriel_Data includes GitD support natively as of TD8). Added Telvanni dormers to Tel Uvirith in optional ESP.
+V2.11.1 - Updated getGMST to findGMST in MWSE code
+V2.11.2 - Fixed dark molag mar patch in fomod installer
+V3.0.0 - Complete rewrite of the logic; the mod may now use slightly more memory, but does not perform any worse; tracking of references uses a much more modern approach. Interior window panes and sunrays will now subtly fade in and out as the exterior light grows more/less intense. Interior window panes and sunrays (if enabled) will be colored by the sky outside; this takes into account any weather outside; ash storms, for example, will color interior windows red. The useVariance (randomized exterior window lighting) config option is now disabled by default; existing users will continue to have it enabled. Interior lights are optionally available, making GitD-capable meshes into (often subtle) light sources; the radius of these lights can be configured by mesh-makers. Cell- and mesh-specific logic can now be configured; currently this just affects the Vivec plazas, but more support can be added for mods as user reports come in; this currently allows us to invert the hour calculations for interior/exterior windows. Sunrays can now be toggled with the MCM and do not need to be installed separately. Meshes optimized further.
+V3.0.1 - Updated code to log broken meshes rather than get hung up while updating objects (can fix issues where some windows update but others don't).
+V3.0.2 - Fixed fomod config file issues with new archive structure.
+V3.0.3 - Fixed material settings on the Palace of Vivec mesh which was making it super bright.
+V3.1.0 - Added optional Telvanni tower interior addon. Fixed non-glass Nordic windows which did not glow or blend properly. Improved error logging. Added more debug info when a mesh can't be parsed. Fixed some lua plugin warnings. Get texture materials earlier so they can be used for lit interior mapping; this fixes some mesh errors.
+V3.1.1 - Added Telvanni Council House support to optional Telvanni Tower Interior Glow addon.
+V3.1.2 - Fixed bad UV on Raven Rock meshes, fixed mesh error with Mournhold Temple interior mesh, added INT-DAY node to all exterior models to avoid errors if mods add them to interiors
+V3.1.3 - Fixed bad material settings on some meshes. Fixed clipping on `in_c_plain_r_cwin_bay_01.nif`.
+V3.2.0 - Added support for shacks (including support for OAAB_Data and Tamriel_Data). Added metadata.
+V3.2.1 - Fixed incorrect texture paths in OAAB shack meshes.
+V3.2.2 - Fixed incorrect texture paths on vanilla shack meshes.

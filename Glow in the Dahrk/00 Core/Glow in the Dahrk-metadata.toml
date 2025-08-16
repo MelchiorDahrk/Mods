@@ -1,0 +1,11 @@
+[package]
+name = "Glow in the Dahrk"
+description = "Windows transition to glowing versions at night."
+authors = [
+	"Melchior Dahrk",
+	"NullCascade",
+]
+version = "3.2.2"
+
+[dependencies.mwse]
+buildnumber = 3228

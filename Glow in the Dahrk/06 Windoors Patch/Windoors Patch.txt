@@ -1,0 +1,1 @@
+Use this ESP instead of the one which comes with the Windoors mod. This patch removes the Windoors edits which are already covered by this mod (all but shacks, ashlander yurts, and the glow under doors)

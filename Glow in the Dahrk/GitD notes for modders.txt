@@ -1,0 +1,40 @@
+Glow in the Dahrk
+Notes for Modders
+
+NIF Format:
+
+	NiSwitchNode		...	NightDaySwitch
+
+		Node 0		...	OFF (exterior, no glow, daytime)
+		Node 1		...	ON (exterior, glow, nighttime)
+		Node 2		...	INT-DAY (interior, glow, daytime)
+
+			RAYS	...	All sunrays must be under a single node to be toggled properly
+			Window	...	Rays must be the first node under INT-DAY. Anything can follow after.
+
+	NiNode			...	AttachLight (tells the code where to place the light source, if option is enabled)
+
+		NiPointLight	...	Settings can be changed here to affect the light's properties in game
+
+			Diffuse	...	Multiplies with sky color to modify the light through the window (can simulate colored or thick glass)
+			Scale	...	Sets light radius
+
+
+* OFF, ON, and INT-DAY should be NiNodes, not NiTriShapes. Even if your mesh only uses a single shape, put it underneath a NiNode.
+* Meshes are no longer split based on having rays and not. Rays are now controllable via the in-game MCM.
+* Legacy meshes are automatically converted to use the new system. Full backwards compatibility is available with GitD 2.x meshes.
+* Interior windows' OFF materials dictate how dark windows will appear at night. Darker settings than normal for Ambient and Diffuse are recommended. GitD meshes mostly use 0.3,0.3,0.3 by default. Lighter materials may be preferred for dark textures.
+* New meshes should not use vertex coloring on their windows or rays to allow GitD to color them.
+* New meshes should not use a glow map on their windows or rays either. Since the code controls the emissivity.
+* New meshes may store the radius of the new light source in the light's "scale" property.
+* INT-DAY fades into OFF for interiors. This means that if there are texture differences (like a dark texture), they will be noticeable when the mesh actually switches.
+* If you want the INT-DAY to fade into OFF properly and not just *switch*, then it is recommended that you use the same texture for both.
+
+
+Method for determining final interior window coloring and properties:
+- First, find the region sun color. This is calculated based on the time of day, current weather, and transitioning weather. This is the starting point for the color.
+- If this color is "darker" than the hardcoded 0.3,0.3,0.3 minimum value, it will be scaled up to the minimum brightness.
+- Calculate a "dimmer" value. This is a value between 0 and 1 for how bright it is outside, determined by time of day and a predetermined brightness for the weather type. For example, clear weather has a multiplier value of 1.0, foggy weather a value of 0.5, and overcast weather a value of 0.6, so a foggy day can only get a dimmer as high as 0.5. 
+- If there is an AttachLight light provided, multiply the color by that light's diffuse value.
+- Set the rays and light to this color value. Set the ray's alpha and light's dimmer to the dimmer value.
+- Finally set the material property on the windows. This sets the property's ambient, diffuse, and emissive value to the window color. The window color is the maximum of the window's "off" state and the calculated color. So "off" values of 1,1,1 will always be 1,1,1.

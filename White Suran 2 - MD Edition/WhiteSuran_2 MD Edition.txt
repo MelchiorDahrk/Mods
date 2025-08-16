@@ -88,4 +88,4 @@ v3.3 - Revised fomod for better installation.
 v3.4 - Added vanilla texture resolution option. Fixed fomod some more.
 v4.0 - Now uses an automatic replacement script made by S3ctor for OpenMW 0.49 so that patches are no longer required. MGE XE is not supported for versions 4.0+.
 v4.1 - Added requirement for Static Switching System (OpenMW). Added GitD ray functionality to the Hlaalu Window.
-v4.2 - Updated for latest release of SSS.
+v4.2 - Updated for latest release of SSS. Fixed typo for temple mesh in interop.

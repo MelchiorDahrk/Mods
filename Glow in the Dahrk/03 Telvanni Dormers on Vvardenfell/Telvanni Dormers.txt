@@ -1,0 +1,2 @@
+GITD_Telvanni_Dormers.ESP --- includes Uvirith's Grave
+GITD_Telvanni_Dormers_NoUvirith.ESP --- does not include Uvirith's Grave
