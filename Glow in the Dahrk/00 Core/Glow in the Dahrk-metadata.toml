@@ -5,7 +5,7 @@ authors = [
 	"Melchior Dahrk",
 	"NullCascade",
 ]
-version = "3.2.3"
+version = "3.2.4"
 
 [dependencies.mwse]
 buildnumber = 3228
