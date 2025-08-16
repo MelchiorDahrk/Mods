@@ -2,7 +2,7 @@
  Glow in the Dahrk
 =============================
 by Melchior Dahrk & NullCascade
-Version 3.2.2
+Version 3.2.3
 
 This is a modern, pluginless replacement of the old Windows Glow mods. Windows Glow (WG) suffered from every mod needing a patch to work with it. Glow in the Dahrk (GitD) handles this automatically through the meshes themselves with powerful Lua code by NullCascade which can switch the visible portion of NIFs on the fly. With this feature, any mod using the vanilla windows (or GitD-compatible meshes) will automatically switch to a glowing version at night in exteriors or during the day for interiors. In addition, WG forced players to use the textures it provided which didn't always match their texture replacer of choice. Glow in the Dahrk accomplishes a subtle glow on the windows without needing to replace the vanilla textures; so players can use vanilla or a texture replacer of their choice!
 
@@ -149,3 +149,4 @@ V3.1.3 - Fixed bad material settings on some meshes. Fixed clipping on `in_c_pla
 V3.2.0 - Added support for shacks (including support for OAAB_Data and Tamriel_Data). Added metadata.
 V3.2.1 - Fixed incorrect texture paths in OAAB shack meshes.
 V3.2.2 - Fixed incorrect texture paths on vanilla shack meshes.
+V3.2.3 - For Modders: fixed bug which made it impossible for interops to add profile definitions to cells that didn't already have one from another source. Updated fomod.
