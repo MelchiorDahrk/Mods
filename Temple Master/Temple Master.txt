@@ -2,7 +2,7 @@
  Temple Master
 =============================
 by Melchior Dahrk
-Version 1.5.0
+Version 1.6.0
 
 Part of the 2023 May Modathon
 Part of the Temple Modding Competition #ALMSIVI23
@@ -111,3 +111,4 @@ Static and Randompal for help with the White Suran patch
 1.4.2 - Actually fixed the script error...
 1.4.3 - Fixed dependencies for the white suran 2 patch
 1.5.0 - Updated for compatibility with White Suran 2 4.0 (patch no longer required - requires new save). Added SSQN support for OpenMW. Added HD texture option.
+1.6.0 - Fixed belltower patch having duplicate ID, fixed some typos, corrected fomod installation for some options, added more options to get donations for the temple shrine
