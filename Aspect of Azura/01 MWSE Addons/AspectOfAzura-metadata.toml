@@ -1,0 +1,17 @@
+[package]
+name = "Aspect of Azura"
+description = "Adds a Daedric helm bearing the aspect of Azura which you can acquire through a new quest which starts at the Holamayan Monastery near the Shrine of Azura. Explore the hidden depths below the shrine to become the Champion of Azura!"
+homepage = "https://www.nexusmods.com/morrowind/mods/51079"
+authors = [
+	"Melchior Dahrk",
+]
+version = "2.2"
+
+[dependencies]
+assets = [ 
+	"Aspect of Azura.ESP",
+]
+
+[dependencies.mods."OAAB_Data"]
+version = ">=2.5.1"
+url = "https://www.nexusmods.com/morrowind/mods/49042"

@@ -10,7 +10,26 @@ Blood: Ebony is formed from godsblood
 Faith: The Daedric Face of Revelation is a holy artifact
 
 Changelog
-1.0 - initial release
-1.1 - cleaned dialogue greetings, fixed script volume in barrier enchantment
-2.0 - moved helm to OAAB_Data
-2.1 - added "finished" flag to final journal entry. fixed Beraren's disable script.
+
+1.0
+Initial release
+
+1.1
+Cleaned dialogue greetings
+Fixed script volume in barrier enchantment
+
+2.0
+Moved helm to OAAB_Data
+
+2.1
+Added "finished" flag to final journal entry
+Fixed Beraren's disable script.
+
+2.2
+Fixed typos
+Fixed bug which could prevent quest progression if you already have Azura's Servant
+Tweaked the final fight to be tougher with scripted behavior
+Gave Tivam some extra dialogue
+Added MWSE tooltips and SSQN support
+Added OpenMW SSQN support
+Added fomod
