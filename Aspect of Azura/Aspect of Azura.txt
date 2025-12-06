@@ -1,0 +1,16 @@
+Aspect of Azura
+by Melchior Dahrk
+
+Part of the May Modathon Month
+Week 1 - Blood & Faith
+
+The Daedric Face of Revelation represents the aspect of the Daedra Lord Azura. It is a holy artifact and only a true Champion of Azura is worthy to wear it publicly. Prove your devotion to the Goddess of Dawn and Dusk by collecting artifacts associated with her. To begin your quest, travel to the Holamayan Monastery and speak with Tivam Sadri.
+
+Blood: Ebony is formed from godsblood
+Faith: The Daedric Face of Revelation is a holy artifact
+
+Changelog
+1.0 - initial release
+1.1 - cleaned dialogue greetings, fixed script volume in barrier enchantment
+2.0 - moved helm to OAAB_Data
+2.1 - added "finished" flag to final journal entry. fixed Beraren's disable script.
