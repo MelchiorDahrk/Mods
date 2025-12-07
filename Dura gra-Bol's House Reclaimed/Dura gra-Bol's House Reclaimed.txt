@@ -38,6 +38,7 @@ Installation
 02 Patch - Balmora Waterworks --- Mutually exclusive patches for Balmora mods
 02 Patch - Beautiful Cities of Morrowind --- Mutually exclusive patches for Balmora mods
 02 Patch - Dallara Balmora --- Mutually exclusive patches for Balmora mods
+03 Patch - Arkngthand 2.0 --- Tweaks new cell entrance for compatibility
 
 
 Credits
@@ -67,3 +68,4 @@ Changelog
 2.4 - Added patch for BCoM WaterWorks
 2.5 - Fixed patches so that they move doormarkers properly.
 2.6 - Clarified need to collect bounty before renewing lease in journal entry. Fixed bug where you could not retrieve the hidden package in Bo-muul if you choose the lawful route. Made smugglers in Bo-muul attack the player if they commit a crime in their presence (but won't report it). Fixed bug which made it so the guards would not appear if the Bo-muul cell had been loaded prior to the quest. Added patch for Arkngthand 2.0.
+2.7 - Fixed doormarker position in Dura's house. Made Larrius Varro die when he is "dealt with" for compatibility with the vanilla Morag Tong writ quest. Added OpenMW SSQN support.
