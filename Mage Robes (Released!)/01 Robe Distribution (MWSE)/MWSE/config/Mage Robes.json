@@ -1,0 +1,11 @@
+{
+  "modBlacklist": [
+  ],
+  "npcBlacklist": [
+    "ajira",
+	"galbedir",
+	"trebonius artorius",
+	"Antlas Salobar Dead",
+	"listien bierles",
+  ]
+}

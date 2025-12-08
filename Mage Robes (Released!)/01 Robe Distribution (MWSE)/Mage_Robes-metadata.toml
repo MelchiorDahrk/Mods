@@ -1,0 +1,18 @@
+[package]
+name = "Mage Robes"
+description = "Many Mages Guild members will now wear the new robes and the player can acquire the robes through quests and purchase."
+homepage = "https://www.nexusmods.com/morrowind/mods/45739"
+authors = [
+	"Melchior Dahrk",
+]
+version = "2.4.1"
+
+[dependencies.mwse]
+buildnumber = 3204
+
+[dependencies.mge-xe]
+version = ">=0.15.0"
+
+[dependencies.mods."OAAB_Data"]
+version = ">=2.1.8"
+url = "https://www.nexusmods.com/morrowind/mods/49042"
