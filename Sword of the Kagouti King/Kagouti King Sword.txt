@@ -1,6 +1,5 @@
 Sword of the Kagouti King
 by Melchior Dahrk & Rubberman
-Version 1.1
 
 Help reforge the long lost sword of the legendary Kagouti King. This figure of myth wielded an extraordinary blade moulded in the likeness of his namesake. And you will be the next bearer of the sword after you help an attention hungry weaponsmith achieve his dream of reforging it.
 
@@ -8,22 +7,20 @@ The mod includes a sheath for the weapon if you use Weapon Sheathing and a small
 
 
 Requirements:
-MGE XE 0.10.1 or later: https://www.nexusmods.com/morrowind/mods/41102
-MWSE 2.1 nightly (install 2nd): http://nullcascade.com/mwse/mwse-dev.zip
 Tamriel Rebuilt: https://www.nexusmods.com/morrowind/mods/42145
 Tamriel Data: https://www.nexusmods.com/morrowind/mods/44537
 
 
 Playing the plugin:
 To start the quest, listen to the Latest Rumors in Mournhold.
-If you have TR_Preview and TR_Travels_(Preview_and_Mainland) activated, then you can walk from Mournhold to Dun Akafell to complete the quest. Otherwise, you can use the new guide NPC I added to Plaza Brindisi Dorom.
 
 
 Credits:
-Greatness7, Merlord, and Petethegoat for coding help
+Greatness7, Merlord, and Petethegoat for coding help (even though the mwse portion of the mod has now been removed)
 Lord Berandas for the base of the sheath
 
 
 Changelog:
 1.0 - Initial release
 1.1 - Fixed some typos. Improved placement of mould. Cleaned plugin.
+2.0 - Clarified some dialogue. Remodeled the stalhrim shavings. Fixed dialogue filter which could give anyone the "weapon of legend" topic. Fixed dialogue filtering on a "stalhrim" topic to be for Yagak instead of the guide. Added some more dialogue steps while Yagak is reforging the sword to deal with possible dialogue loops. Stalhrim shavings are now distributed into the game rather than requiring a chisel (removes MWSE requirement)
