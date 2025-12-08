@@ -5,7 +5,7 @@ homepage = "https://www.nexusmods.com/morrowind/mods/45739"
 authors = [
 	"Melchior Dahrk",
 ]
-version = "2.4.1"
+version = "2.4.2"
 
 [dependencies.mwse]
 buildnumber = 3204

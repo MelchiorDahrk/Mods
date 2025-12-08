@@ -2,7 +2,7 @@
  Mage Robes
 =============================
 by Melchior Dahrk
-Version 2.4.1
+Version 2.4.2
 
 These robes were originally made for my Lyithdonea project, but I decided to release them as a standalone mod for Modathon 2018. The concept behind the mod is to provide both an immersive experience by giving a uniform to mages guild members as well as to improve gameplay by providing a useful alternative to armor for mages; such as is offered in Skyrim. Many Mages Guild members will now wear the new robes. 
 
@@ -151,6 +151,7 @@ V2.2.2 - Fixed fomod installer.
 V2.3.0 - Replaced the Scroll of Return with a 2-way amulet on Lillorne. Fixed some grammatical issues in dialogue. Changed ground mesh for Gorluck's offhand pick so that it shows up on his back properly with Weapon Sheathing. Made Trebonius give you a reward for getting his robes. Added female version of Arch-Mage robes. Added "Antlas Salobar" from Magical Missions to the MWSE blacklist. Added HD texture option.
 V2.4.0 - Added 1st person mesh for female arch-mage robe. Added Listien Bierles to the MWSE blacklist. Updated Gorluck's dialogue to allude to the new way to leave the cave. Fixed bug if the player is expelled and tries to talk to Trebonius about the arch-mage robe. Fixed bug where you can keep the arch-mage robe if you are wearing the hooded version when talking to Trebonius.
 V2.4.1 - Fixed female arch mage 1st person mesh link to plugin
+V2.4.2 - Fixed dialogue filtering bug which could make the quest impossible to complete if you were the Arch-Mage and hadn't killed Trebonius. Replaced bespoke teleportation disabling script with generic version from OAAB_Data. Fixed some typos.
 
 
 =============================
