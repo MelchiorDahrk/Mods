@@ -1,0 +1,138 @@
+The Elder Scrolls III MORROWIND:
+
+==================
+Atronach Expansion
+==================
+
+By Melchior Dahrk
+
+
+1. Description
+2. Requirements
+3. Installing the plug-in
+4. Playing the plug-in
+5. Save games
+6. Conflicts/Known Errors
+7. Credits
+8. Contact and Information
+9. Legal Stuff/Disclaimer
+10. Changelog
+
+===============
+1. DESCRIPTION
+===============
+
+This mod takes several community resources as well as my own work and adds many new types of creatures (and associated loot) to the game.
+
+Bone Golem: This fleshless undead golem will directly damage your health with it's Deathbloom spell.
+Flesh Atronach: The equivalent of a Poison Atronach, this daedra was featured in TES4: Shivering Isles. 
+Iron Atronach: This atronach has no spellcasting ability but resists shock and is immune to poison. Choose your spells carefully.
+Swamp Myconid: Found in the Bitter Coast Region, this strange creature is the weakest of them all, but don't take it too lightly...
+Telvanni Myconid: Created from the minds of powerful wizards, these creatures are a formidable foe.
+Ash Golem: The Ash Golem is often summoned by powerful Mabrigash to ward off unwanted attention.
+Crystal Golem: This animated mass of wizard crystal is a foe to be reckoned with.
+
+===============
+2. Requirements
+===============
+
+Morrowind, Tribunal, Bloodmoon, OAAB_Data, and Tamriel_Data
+
+========================
+3. INSTALLING THE PLUGIN
+========================
+
+Mod comes packaged with a fomod installer.
+
+00 Core - Required files.
+01 Summon Spell Shop (MWSE) - Adds a new shop outside the gates of Tel Branora where you can buy summoning spells. REQUIRES MWSE AND MAGICKA EXPANDED.
+02 Leveled Creatures Additions - Adds the new creatures to leveled lists. REQUIRES MERGING LEVELED LISTS.
+
+===============
+5. SAVE GAMES
+===============
+
+Updating to 4.00+ from any previous versions requires a new save.
+
+============================
+6. CONFLICTS / KNOWN ERRORS
+============================
+
+Anything which places a building in the exact same spot as the Spell Boutique.
+
+And if you are using "Atronach Expansion_LeveledLists.esp", then also use a leveled list merger to avoid conflicts.
+
+============
+7. CREDITS
+============
+
+Bethesda for the great game of Morrowind
+CaptainZaltan for the Bone Golem
+KaidaStudios for the crystal golem base
+Ashstaar for the flesh atronach base
+Alaisiagae for most of the textures on the new ingredients
+Thanks to Archive Textures for making so many wonderful textures available for free. ( http://archivetextures.net/ )
+Thanks to Spiral Graphics for some truly creative seamless textures. ( http://www.spiralgraphics.biz/packs/ )
+OperatorJack for the MWSE Magicka Expanded framework
+Reizeron for the blank spell icon
+rot for fixed particle effects on creatures (https://www.nexusmods.com/morrowind/mods/46194)
+
+Me for the mod itself :)
+
+==========================
+8. CONTACT AND INFORMATION
+==========================
+
+If you have any questions, concerns or ideas, please feel free to write me.  I will not accept any harassment.  Consider this your first warning.
+
+melchior.darhk@gmail.com
+
+=========================
+9. LEGAL STUFF/ DISCLAIMER
+=========================
+
+Feel free use these creatures in your own mod. Just please give me credit where credit is due. Note that not all the creatures are my own work. Make sure to check my credits section or contact me for more information.
+
+=========
+Changelog
+=========
+
+1.00 	Initial Release
+
+2.00 	Lots of new stuff: Unique ingredients; 5 new monsters; all creatures are summonable now; two version are now included, one with only summons and one with summons and leveled list additions.
+
+2.05 	The Air Atronach no longer has missing texture issues.
+     	The Swamp Myconid used to have the fire-texture particles, now it has a more appropriate particle effect
+
+2.10 	Air Atronach removed, creature speeds rebalanced, void essence and crystal chunk re-mapped
+
+2.11 	Fixed icons not showing up properly
+
+2.12 	Tweaked UVs on the Telvanni Myconid to be more aesthetically pleasing
+     	Removed unused myconid texture
+     	Removed stalhrim texture which was replacing the associated texture in the game (unadvertised change)
+
+2.13 	Fixed collision on the Swamp and Telvanni Myconids
+
+3.00 	Added support for Magicka Expanded MWSE framework. Use a pre-3.0 version if you do not want to use MWSE.
+     	Fixed particle animations on Myconids thanks to Rot's Creature VFX mod.
+
+3.01 	Fixed bugged swamp myconid model
+
+4.00 	New model for Flesh Atronach
+	Improved animation of ash golem
+	Added OAAB_Data and Tamriel_Data dependency
+	Removed loot from summoned versions
+	Remodeled scrap iron
+	Updated all IDs (requires new save)
+	Updated loot lists
+	New model for Crystal Golem
+	Made scrap iron a misc item instead of ingredient
+	Removed atronach flesh, Telvanni resin, myconoid fungus, and crystal shard (replacing with appropriate vanilla + OAAB/TD items)
+	Removed unused wind assets
+	Added black markers to Mona's boutique
+	Replaced iron golem with iron atronach from OAAB_Data
+	Converted to ESM (to allow other mods to easily integrate the new creatures/items into the game in their own way)
+	Separated spell shop into optional addon (MWSE)
+	Separated leveled list additions into optional addon (OpenMW/MWSE)
+	Added fomod
