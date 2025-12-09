@@ -1,0 +1,25 @@
+[package]
+name = "Grahtwood Roost"
+description = "Adds a treehouse outside of Hla Oad which can be yours after completing a short quest."
+homepage = "https://www.nexusmods.com/morrowind/mods/52888"
+authors = [
+	"Juidius",
+	"Melchior Dahrk",
+]
+version = "1.2.0"
+
+[dependencies]
+assets = [ 
+	"GrahtwoodRoost.esp",
+	"Icons/md_bc",
+	"Meshes/md_bc",
+	"Textures/md_bc",
+]
+
+[dependencies.mods."Graht Morrowind Swamp Trees"]
+version = ">=3.0.0"
+url = "https://www.nexusmods.com/morrowind/mods/49771?tab=files"
+
+[dependencies.mods."OAAB_Data"]
+version = "^2.1.8"
+url = "https://www.nexusmods.com/morrowind/mods/49042"

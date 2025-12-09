@@ -1,0 +1,53 @@
+Grahtwood Roost
+by Melchior Dahrk and Juidius
+
+Made for the 2023 May Modathon
+Week 2: Solitude and Wilderness
+
+
+A Khajiit is stuck by herself in an enormous Graht Tree in the wilderness of the Bitter Coast. It seemed like a good idea at the time to build a treehouse and hide from all of her troubles, but she soon realized life 400 feet above the ground isn't what she thought it'd be.
+
+Obtain a cozy treehouse of your own through a short quest to help Tsanara get back on solid ground. Afterwards, you can read her plans for improving Grahtwood Roost and conduct the improvements yourself using a custom workbench.
+
+Features:
+A short quest to get the treehouse
+New generic dialogue about the lore of the Bitter Coast graht trees
+Ashfall integration for those who use Ashfall (including a functional "mud stove")
+A new style of mini-dungeon under the roots of the Graht tree
+"Build" the improvements to Grahtwood Roost yourself on a custom workbench model with scripted behavior
+A unique weapon which can be used to return to the Grahtwood Roost (or close enough)
+New glowbug "glowjug" lights
+A new book singing the praises of glorious Verticality
+Build a wooden lift to ascend to the treehouse in real time
+Build an overlook which is perfect for taking in the view or landing an airship on
+Purchase a telescope for your treehouse to stargaze and receive bonuses depending on the time of year and phase of the moons
+
+
+Recommended Mods:
+Glowbugs - while not required, the glowbug lights and glowbugs which appear around the treehouse at night go great with the original Glowbugs mod
+Ashfall - while not required, users of Ashfall will enjoy a functional new type of stove as well as a neat new chair to sit in.
+Yul Marshee and the Visage of Mzund - the overlook expansion to the Roost was specifically concepted to provide a place to land the Serican Rain airship from Yul Marshee. I highly recommend getting your own airship to sail around Vvardenfell!
+Vapourmist - The clouds in Vapourmist really add a sense of height when you're up in the Graht trees.
+
+
+Requirements and Compatibility:
+This mod requires OAAB_Data, Tamriel_Data, and - of course - Graht Morrowind Swamp Trees (GMST).
+As long as you're using GMST, I do not foresee any compatibility issues since the treehouse is located far above the ground.
+
+
+Installation:
+Copy contents of the archive into your Data Files directory
+
+
+Credits:
+Juidius for collaborating on the mod and making the shack interior!
+Merlord for assistance with the Ashfall integration
+Greatness7 for the TES3 Blender addon
+petethegoat for the witch's hut that I modified into the treehouse
+
+
+Changelog:
+1.0.0 - Initial release
+1.0.1 - Fixed script issue on Agabix which could cause issues while reloading. Fixed wood visibility on mud stove with Ashfall.
+1.1.0 - Updated to work with Graht Morrowind Swamp Trees 3.0.0. Can now work with the Shorter Swamp Trees option included in that update.
+1.2.0 - Updated to work with Graht Morrowind Swamp Trees 4.0.1. Replaced Glowjugs with their OAAB_Data equivalents. Added fomod.
