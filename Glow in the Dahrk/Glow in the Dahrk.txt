@@ -20,6 +20,8 @@ Features:
 * Support for any static objects to be made to transition to nighttime versions
 * Pluginless and patch-free alternative to "Windows Glow"
 
+Notes for modders can be found on the Morrowing Modding Wiki: https://morrowind-modding.github.io/programmers-reference/glow-in-the-dahrk
+
 
 =============================
  Installation
