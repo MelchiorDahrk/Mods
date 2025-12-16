@@ -2,7 +2,7 @@
  Glow in the Dahrk
 =============================
 by Melchior Dahrk & NullCascade
-Version 3.2.4
+Version 3.3.0
 
 This is a modern, pluginless replacement of the old Windows Glow mods. Windows Glow (WG) suffered from every mod needing a patch to work with it. Glow in the Dahrk (GitD) handles this automatically through the meshes themselves with powerful Lua code by NullCascade which can switch the visible portion of NIFs on the fly. With this feature, any mod using the vanilla windows (or GitD-compatible meshes) will automatically switch to a glowing version at night in exteriors or during the day for interiors. In addition, WG forced players to use the textures it provided which didn't always match their texture replacer of choice. Glow in the Dahrk accomplishes a subtle glow on the windows without needing to replace the vanilla textures; so players can use vanilla or a texture replacer of their choice!
 
@@ -74,11 +74,14 @@ Due to the way GITD handles the glow texture overlay, some window retextures may
 Distant Lights:
 This mod must be installed AFTER Distant Lights. If you still want the Hlaalu, Redoran, and Velothi windows from DL to show up in Distant Land, then add "_dist" to the end of their file names.
 
+Raven Rock Glass Windows:
+Tomb of the Snow Prince packages its own windows glow functionality for Raven Rock. Do not activate this plugin if you have TotSP installed.
+
 
 =============================
  Credits
 =============================
-Greatness7 for the code used to accelerate the mesh creation and for uncovering the NiCollisionSwitch node
+Greatness7 for the code used to accelerate the mesh creation, for uncovering the NiCollisionSwitch node, and for updating all the SwitchNode flags to use UpdateOnlyActive
 Siberian Crab for the basic glow texture from which I designed the others
 Hrnchamd for quickly releasing a fix to MGE XE to let this mod work properly
 NullCascade again for not only making the code used by this mod, but also for continuing to develop MWSE into the Lua-based powerhouse it has become
@@ -151,3 +154,4 @@ V3.2.1 - Fixed incorrect texture paths in OAAB shack meshes.
 V3.2.2 - Fixed incorrect texture paths on vanilla shack meshes.
 V3.2.3 - For Modders: fixed bug which made it impossible for interops to add profile definitions to cells that didn't already have one from another source. Updated fomod.
 V3.2.4 - Fixed Dark Molag Mar patch.
+V3.3.0 - Added the `UpdateOnlyActive` flag to NiSwitchNodes which improves performance for Morrowind.exe. Added missing texture for the Dark Molag Mar patch.
