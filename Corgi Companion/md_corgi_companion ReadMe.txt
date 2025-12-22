@@ -3,8 +3,6 @@
 =============================
 by Melchior Dahrk
 
-Version 1.30
-
 In December 2015, I held a Follower Appreciation Event through my Tumblr blog in which the Grand Prize was a mod of your choosing for Morrowind. The grand prize winner, m-l-helena, requested a Corgi Companion mod.
 
 This mod adds a corgi companion to Morrowind made by me. The companion functionality is based off of Emma and Grumpy's work and the base for the texture I used was created by Nivea. The corgi, named Dinky by request, is a fully functional companion. You may now enjoy countless hours exploring Vvardenfell and beyond with this lovable pet and friend.
@@ -65,3 +63,4 @@ V1.20 - Dinky is now "essential" and will be knocked unconscious rather than dyi
 V1.21 - Fixed the "-Health" topic to compensate for Dinky's new "essential" status. Added a "-Status" topic to show Dinky's health and strength.
 V1.30 - Included option version of the mod to make Dinky non-essential and killable if you're a monster
 V1.40 - Reduced Dinky's speed. Cleaned dirty dialogue edits. Added HD textures. Added fomod
+V1.50 - Gave Dinky his own custom sound gen (was using wolf before). Reduced dinky's attack power. Merged essential/non-essential dinky into a single plugin (you get a choice when you first take ownership). Replaced werewolf sounds in dialogue with new corgi sounds.
