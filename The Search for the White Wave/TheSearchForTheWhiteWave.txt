@@ -28,17 +28,18 @@ This mod has been playtested in both the vanilla (MGE XE, MWSE, MCP) and OpenMW 
 Installation:
 00 Core - the base files
 01 MWSE Addons - includes several things:
-	interop to add tooltips to a couple items from this mod
-	interop for SSQN
+	interop to add tooltips to a couple items from this mod (requires Tooltips Complete)
+	interop for quest notifications (requires SSQN)
+	interop for 2 custom achievements (requires The Achievement Framework)
+	custom music
 	override file to make the ship at Dagon Fel not affect distant land
 01 OpenMW Addons - SSQN support
 02 HD Textures
-03 Music (MWSE - MUSE) - Requires MUSE
 03 Music (OpenMW - S3maphore) - Requires S3maphore
 
 
 Credits:
-Greatness7 for troubleshooting support
+Greatness7 for troubleshooting support and for the MWSE-Lua code for music
 tewlwolow for troubleshooting support
 Tamriel_Data for the ice peaks
 
@@ -61,7 +62,7 @@ Changelog:
 1.2 - Fixed rope placement issue on Silver Lark. Moved rowboat position in Dagon Fel. Tweaked lighting in the White Wave. Edited loot on the White Wave.
 1.3 - Removed galleon assets which are now included in OAAB_Data. Nerfed ice wraiths. Made the Captain's Key easier to find. Cleaned dirty edits. Made it so the ravens in the icy cave are animated. Added SSQN support. Added fomod.
 1.4 - Slightly moved Devos and his rowboat in Dagon Fel for compatibility with Sheogorad - Groves of the North. Added OpenMW SSQN support. Added more weather types to the Sea of Ghosts region. Added custom music for the new cells (support for both OpenMW and MWSE). Added lots more sound emitters to cells to improve ambiance. Cleaned plugin.
-
+1.5 - MWSE version no longer requires MUSE to play music. Fixed incorrect encoding on music mp3s. Fixed SSQN icon path. Fixed travel script functionality in OpenMW. Fixed some placement of some barrels in the icy cave with the latest OAAB_Data. Added new secret to the Sea of Ghosts area.
 
 
 
