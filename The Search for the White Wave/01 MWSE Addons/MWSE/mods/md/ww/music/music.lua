@@ -17,10 +17,10 @@ local function onCellChanged(e)
     local isCustom = isCustomMusicCell(e.cell)
     local wasCustom = isCustomMusicCell(e.previousCell)
     if isCustom and not wasCustom then
-        tes3.messageBox("CellChanged to custom music cell: %s", tracks[e.cell.id])
+        -- tes3.messageBox("CellChanged to custom music cell: %s", tracks[e.cell.id])
         tes3.streamMusic({ path = tracks[e.cell.id],  situation = tes3.musicSituation.explore })
     elseif wasCustom and not isCustom then
-        tes3.messageBox("CellChanged from custom music cell, ending music...")
+        -- tes3.messageBox("CellChanged from custom music cell, ending music...")
         tes3.skipToNextMusicTrack({ force = true })
     end
 end
