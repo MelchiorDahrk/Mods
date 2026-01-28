@@ -15,8 +15,6 @@ local function whiteWaveCombatRule(playback)
         and playback.rules.cellNameExact(WhiteWaveCells)
 end
 
-local PlaylistPriority = require 'doc.playlistPriority'
-
 ---@type S3maphorePlaylist[]
 return {
     {
