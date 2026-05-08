@@ -1,0 +1,30 @@
+Graht Morrowind Lily Pads
+by Melchior Dahrk
+
+Description
+==================================
+Whatever's in the water of the Bitter Coast that made the trees grow to incredible heights is affecting the lily pads.
+This is an optional add-on for Graht Morrowind Swamp Trees which adds several copses of giant lily pad "trees" to the Bitter Coast. One of the giant lily pad bulbs is large enough to climb in through a knothole -- if you can find it.
+
+
+Permissions
+==================================
+You are free to:
+Adapt - remix, transform, and build upon the material
+
+Under the following terms:
+Attribution - You must give appropriate credit.
+Non-Commercial - You may not use the material for commercial purposes (i.e. no payment of monetary compensation as a condition for the download).
+
+If author(s) is/are not able to be contacted through a reasonable effort,
+Then you are free to copy and redistribute the material for use in The Elder Scrolls III: Morrowind
+
+
+Credits
+==================================
+Greatness7 for the blender NIF plugin
+
+
+Changelog
+==================================
+v1.0.0 - Initial release
