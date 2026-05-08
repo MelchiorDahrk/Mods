@@ -1,0 +1,37 @@
+The Mananaut's Message
+by Melchior Dahrk and AFFA
+
+Made for the 2023 May Modathon
+Week 3: Serendipity & Adventure
+
+
+This mod adds Royal Imperial Mananaut Alberius outside of the Tower of Tel Fyr. He has a message that he wants you to deliver for him. At the end of the quest, you'll get your very own royal mananaut outfit!
+
+For some background on this mod, I made the "mananaut" outfit last year based on an AI-generated image which inspired me. I then used Midjourney to generate textures for it, pieced together some model resources and modeled bits myself to come up with the outfit you'll find in this mod. But I could never decide what to do with the "space mage" outfit (as I called it). Then Modathon came around this year and I was asking people for suggestions on how to implement it. AFFA aka Douglas Goodall -- who was one of the original quest writers for Morrowind -- came around with this idea:
+
+> "Royal Imperial Mananaut Alberius comes from an outer realm on the authority of Koor-in-Ymne to capture/punish one Yagrum for waterstriding and refusing to wear the left glove that marks guests. His fine is decreed as seventy years, four sky children, or two pinches of subcreatia."
+
+I thought this sounded great, so I asked AFFA if he'd be willing to write the quest for the mod and he got the first draft done that same day! So this mod includes a quest from the same person who gave us many of the faction questlines in the original game. It has great, esoteric dialogue that you'd expect from an "astronaut lawman" in The Elder Scrolls.
+
+AFFA released another mod already for this year's Modathon which I also highly recommend you check out. It's called "Fargoth Says Hello" (https://www.nexusmods.com/morrowind/mods/52751).
+
+
+Compatibility:
+This mod should be fully compatible. It simply adds a new NPC outside of Tel Fyr.
+
+
+Installation:
+Move the contents of the archive into your Data Files directory.
+
+
+Credits:
+AFFA aka Douglas Goodall - the quest in this mod
+Kurp - helping with the texture effects on the outfit
+Greatness7 - technical assistance
+Remiros - some robe pieces
+Ruffin Vangarr - some robe pieces
+Olaf - cloak
+
+
+Changelog:
+1.0.0 - Initial release
