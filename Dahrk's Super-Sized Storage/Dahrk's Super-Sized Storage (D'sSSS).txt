@@ -1,0 +1,44 @@
+====================================
+Dahrk's Super-Sized Storage (D'sSSS)
+====================================
+by Melchior Dahrk
+v2.0
+
+
+Description
+=======================
+Ever been annoyed that your cozy little Canal South-Two apartment in Vivec couldn't hold more than one suit of iron armor in all the containers combined? Ever wished you could sort all your ebony armor into one chest? Well, I have.
+
+This simple mod increases the capacity of all containers (BM and TR included) by x100. Zero capacity containers are unaltered (0*100=0). For instance, crates in the original game had a weight capacity of 200. By applying this mod, they will be able to hold 20,000. Enough to help you sort out those pesky dwemer cogs.
+
+This is not a realism mod, it's a convenience and sanity saver mod. So don't expect to rationalize how many cuirasses you just stuffed into that chest; just be glad they aren't separated into 5 different chest into 3 different apartments.
+
+
+Installation
+=======================
+New in Version 2.0, this mod now uses MWSE Lua to automatically update the container size for not just the vanilla game, but every modded container, and be automatically compatible with other mods that edit these containers by adding scripts to them (e.g. Animated Containers) without needing any patches! All thanks to the power of MWSE Lua.
+
+To install, copy the MWSE folder into your Data Files directory (no plugin selection required!)
+
+V2.0 mod requires the latest version of MGE XE and MWSE 2.1 Nightly which can be found at the links below:
+
+MGE XE 0.10.1 or later: https://www.nexusmods.com/morrowind/mods/41102
+MWSE 2.1 nightly (install 2nd): http://nullcascade.com/mwse/mwse-dev.zip
+
+Credits
+=======================
+Greatness7 - for writing the Lua code I used in this update!
+NullCascade and Hrnchamd - for continuing to develop and support MGE XE and MWSE!
+Bethesda - for the spark of inspiration which led to the creation of this wonderful game
+Melchior Dahrk - I just did everything else (which wasn't much in version 2.0, admittedly)
+
+
+Usage
+=======================
+Feel free to use this mod in part or in whole in your own project or compilation, just be sure to extend proper credits to myself and the individuals mentioned here in the Credits section. Please ask me personally before reuploading this mod to a mod hosting site. If I cannot be reached for a period over 6 months, feel free to upload the mod again for archival (preferably at Morrowind Modding History).
+
+
+Changelog
+=======================
+v1.0 - Initial release
+v2.0 - The Great Lua Update! Automatic compatibility with all mods and no more merging objects required!
