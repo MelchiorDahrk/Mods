@@ -1,0 +1,59 @@
+# Vendored OpenMW Lua Docs
+
+These files were generated from the official OpenMW Lua documentation and are bundled so the skill can work offline.
+
+- Overview: references/docs/overview.md
+- API Reference: references/docs/api.md
+- Package openmw.ambient: references/docs/openmw_ambient.md
+- Package openmw.animation: references/docs/openmw_animation.md
+- Package openmw.async: references/docs/openmw_async.md
+- Package openmw.camera: references/docs/openmw_camera.md
+- Package openmw.content: references/docs/openmw_content.md
+- Package openmw.core: references/docs/openmw_core.md
+- Package openmw.debug: references/docs/openmw_debug.md
+- Package openmw.input: references/docs/openmw_input.md
+- Package openmw.markup: references/docs/openmw_markup.md
+- Package openmw.menu: references/docs/openmw_menu.md
+- Package openmw.nearby: references/docs/openmw_nearby.md
+- Package openmw.postprocessing: references/docs/openmw_postprocessing.md
+- Package openmw.self: references/docs/openmw_self.md
+- Package openmw.storage: references/docs/openmw_storage.md
+- Package openmw.types: references/docs/openmw_types.md
+- Package openmw.ui: references/docs/openmw_ui.md
+- Package openmw.util: references/docs/openmw_util.md
+- Package openmw.vfs: references/docs/openmw_vfs.md
+- Package openmw.world: references/docs/openmw_world.md
+- Package openmw_aux.calendar: references/docs/openmw_aux_calendar.md
+- Package openmw_aux.time: references/docs/openmw_aux_time.md
+- Package openmw_aux.ui: references/docs/openmw_aux_ui.md
+- Package openmw_aux.util: references/docs/openmw_aux_util.md
+- AI Package Combat: references/docs/ai_combat.md
+- AI Package Escort: references/docs/ai_escort.md
+- AI Package Follow: references/docs/ai_follow.md
+- AI Package Pursue: references/docs/ai_pursue.md
+- AI Package Travel: references/docs/ai_travel.md
+- AI Package Wander: references/docs/ai_wander.md
+- Interface Activation: references/docs/interface_activation.md
+- Interface AI: references/docs/interface_ai.md
+- Interface AnimationController: references/docs/interface_animation.md
+- Interface Camera: references/docs/interface_camera.md
+- Interface Combat: references/docs/interface_combat.md
+- Interface Controls: references/docs/interface_controls.md
+- Interface Crimes: references/docs/interface_crimes.md
+- Interface GamepadControls: references/docs/interface_gamepadcontrols.md
+- Interface ItemUsage: references/docs/interface_item_usage.md
+- Interface MWUI: references/docs/interface_mwui.md
+- Interface Settings: references/docs/interface_settings.md
+- Interface SkillProgression: references/docs/interface_skill_progression.md
+- Interface UI: references/docs/interface_ui.md
+- Widget: references/docs/widget.md
+- Container Widget: references/docs/widget_container.md
+- Flex Widget: references/docs/widget_flex.md
+- Image Widget: references/docs/widget_image.md
+- Text Widget: references/docs/widget_text.md
+- TextEdit Widget: references/docs/widget_textedit.md
+- Setting Renderers: references/docs/setting_renderers.md
+- Engine Handlers Reference: references/docs/engine_handlers.md
+- Events: references/docs/events.md
+- Iterable Types: references/docs/iterables.md
+- Teal: references/docs/teal.md

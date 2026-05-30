@@ -1,0 +1,6 @@
+PLAYER: scripts/SunsDusk/SharedRay_v1.lua
+MENU: scripts/SunsDusk/colorPicker.lua
+GLOBAL: scripts/SunsDusk/sd_g.lua
+PLAYER: scripts/SunsDusk/sd_p.lua
+CUSTOM: scripts/SunsDusk/sd_a.lua
+LOAD: scripts/SunsDusk/sd_l.lua

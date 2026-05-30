@@ -1,0 +1,2 @@
+NPC, CREATURE: scripts/missxp/missxp.lua
+PLAYER: scripts/missxp/player.lua

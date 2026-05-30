@@ -1,0 +1,23 @@
+{
+  "skill_name": "openmw-lua",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "Write an OpenMW Lua player script that shows a message when I press K, include the .omwscripts line and mention how to hot reload it.",
+      "expected_output": "Uses a PLAYER script, openmw.ui or appropriate input handler, returns engineHandlers with onKeyPress, includes PLAYER: path entry and reloadlua note.",
+      "files": []
+    },
+    {
+      "id": 1,
+      "prompt": "Review this OpenMW Lua local NPC script for API misuse: it calls openmw.world from onUpdate, edits a nearby actor directly, and scans openmw.nearby inside onSave.",
+      "expected_output": "Flags context violations, explains local script mutation limits, explains nearby inactive/save-load restriction, recommends openmw.self/events/global script where appropriate.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Create an OpenMW Lua load script that adds or edits content records, and tell me which package and .omwscripts flag it needs.",
+      "expected_output": "Chooses LOAD context, uses openmw.content, avoids runtime world APIs, includes LOAD: .omwscripts entry and relevant record/content caveats.",
+      "files": []
+    }
+  ]
+}
