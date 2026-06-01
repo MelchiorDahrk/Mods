@@ -2,7 +2,7 @@
  Mage Robes
 =============================
 by Melchior Dahrk
-Version 2.4.2
+Version 2.5.0
 
 These robes were originally made for my Lyithdonea project, but I decided to release them as a standalone mod for Modathon 2018. The concept behind the mod is to provide both an immersive experience by giving a uniform to mages guild members as well as to improve gameplay by providing a useful alternative to armor for mages; such as is offered in Skyrim. Many Mages Guild members will now wear the new robes. 
 
@@ -11,17 +11,7 @@ These robes were originally made for my Lyithdonea project, but I decided to rel
  Installation
 =============================
 
-Wrye Mash
-Installation
-==============
-
-Archive is set up to use Sub-Packages and the ESP/ESM Filter (especially for the Add-Ons Sub-Package) for Mash Installers:
-
-00 Core --- required files
-01 Automatic Add-Ons (MWSE) --- if you use MWSE, this code will automatically patch all qualifying Mages Guild members in your game
-01 Static Add-Ons (non-MWSE) --- if you do not use MWSE, I have included specific add-ons for other mods. Select the ESPs which match the mods you use.
-02 Vanilla-Style Robe Enchantments --- optional patch (read more in Patches below)
-
+OpenMW players should install [Mage Robes for OpenMW-Lua](https://modding-openmw.com/mods/mage-robes-for-openmw-lua/).
 
 Manual
 Installation
@@ -31,11 +21,13 @@ Installation
 
 01 Robe Distribution (MWSE) --- Automatically distributes robes to all Mages Guild NPCs in your game (province mods included).
 
-01 Robe Distribution (OpenMW) --- Manually distributes robes to all Mages Guild NPCs on Vvardenfell using plugins which need to be activated separately.
-
 02 Vanilla-Style Robe Enchantments --- This patch lowers the power of the robe enchantments to be more similar to enchantments in the vanilla game. See its ReadMe for details.
 
 03 Normal and Specular Maps for OpenMW --- Install this if you use normal maps in your game.
+
+04 HD Textures
+
+05 Rise of House Telvanni Patch --- Allows you to complete the Arch-Mage quest with Canctunian Ponius' replacement if he's dead as part of the RoHT quest line.
 
 
 =============================
@@ -56,6 +48,9 @@ Each of the Mages Guild questgivers will give the player a set of robes once the
 =============================
  Recommended Mods
 =============================
+
+Mage Robes for OpenMW-Lua --- https://modding-openmw.com/mods/mage-robes-for-openmw-lua/ --- distributes robes to NPCs
+
 Mastering Magicka --- https://www.nexusmods.com/morrowind/mods/42269 --- penalizes mages for wearing armor among other changes to the magic system
 
 Subtle magic Glow --- https://www.nexusmods.com/morrowind/mods/4468 --- to make it so that the new, detailed robes are not obscured by the "shrink wrap" enchantment effect
@@ -152,6 +147,7 @@ V2.3.0 - Replaced the Scroll of Return with a 2-way amulet on Lillorne. Fixed so
 V2.4.0 - Added 1st person mesh for female arch-mage robe. Added Listien Bierles to the MWSE blacklist. Updated Gorluck's dialogue to allude to the new way to leave the cave. Fixed bug if the player is expelled and tries to talk to Trebonius about the arch-mage robe. Fixed bug where you can keep the arch-mage robe if you are wearing the hooded version when talking to Trebonius.
 V2.4.1 - Fixed female arch mage 1st person mesh link to plugin
 V2.4.2 - Fixed dialogue filtering bug which could make the quest impossible to complete if you were the Arch-Mage and hadn't killed Trebonius. Replaced bespoke teleportation disabling script with generic version from OAAB_Data. Fixed some typos.
+V2.5.0 - Added patch for Rise of House Telvanni. Removed old robe distribution plugins (handled with lua now).
 
 
 =============================
@@ -247,4 +243,4 @@ Skink-in-Tree's-Shade:
 Skink will give the player Novice Robes of Mysticism once they complete the Soul of an Ash Ghoul quest. You must talk to him about "soul trapping".
 
 Trebonius Artorius:
-Trebonius will send the player on a quest to retriev the Arch-Mage's Robes if they talk to him about "member of the mages guild". If Trebonius is dead, talk to Flacassia Fauseius -Vivec Guild Guide- after becoming Arch-Mage about "the Arch-Mage's robe".
+Trebonius will send the player on a quest to retrieve the Arch-Mage's Robes if they talk to him about "member of the mages guild". If Trebonius is dead, talk to Flacassia Fauseius -Vivec Guild Guide- after becoming Arch-Mage about "the Arch-Mage's robe".
