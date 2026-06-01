@@ -1,0 +1,29 @@
+Sload Floater - Giant Bull Netch Replacer
+A Creature Mod and Modder's Resource
+by Melchior Dahrk
+
+Prior to the game's release, Sload were supposed to have a presence in Morrowind. Michael Kirkbride has some concept art which shows what is labeled a "Sload Floater" (Gasbag Mass Transit) and there was even a concept for a "Skyport". The creature in this mod is a speculative rendering of what such a floater might look like based on a combination of the concept art and the appearance of the netch in TES3 which it appears that the "floaters" ultimately turned into.
+
+My personal head canon is that the netch are descended from the sload floaters which were introduced to the Morrowind ecosystem by Sload merchants. Like much of the other wildlife, the floaters adapted and eventually became the netch. There are much larger sload floaters out there (see the concept art), the one you'll encounter in this mod happens to be a very small one.
+
+This mod doesn't bring the sload to Morrowind, but it does replace the Giant Bull Netch with a Sload Floater. Apparently Bighead still thinks this is a netch - just a GIANT one - with EYES*! Gasbags must be weak to forks. You might find a note hinting at the creature's origins after you fork it to death...
+
+*The eyes are actually windows into the unpleasant, jelly-filled interior.
+
+
+=== Permissions ===
+You are free to:
+Adapt - remix, transform, and build upon the material
+
+Under the following terms:
+Attribution - You must give appropriate credit.
+Non-Commercial - You may not use the material for commercial purposes (i.e. no payment of monetary compensation as a condition for the download).
+
+If author(s) is/are not able to be contacted through a reasonable effort,
+Then you are free to copy and redistribute the material for use in The Elder Scrolls III: Morrowind
+
+
+=== Credits ===
+Saint_Jiub - netch bristles texture source
+Remiros - Intelligent Textures for some texture sources
+Nobiax - jelly & carapace texture source
