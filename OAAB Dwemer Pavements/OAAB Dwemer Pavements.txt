@@ -1,0 +1,37 @@
+OAAB Dwemer Pavements
+by Melchior Dahrk
+
+In the vanilla game, many of the dwemer ruins use regular cobblestone land textures in their exteriors. For most of them, this doesn't stand out too much. A major exception being of Arkngthunch-Sturdumz in the West Gash which uses the same very polished cobblestone texture as is used in Balmora, High Town (where the manors are located). Did House Hlaalu come and pave the exterior of this isolated ruin? That doesn't make any sense. So I decided that it would be better for dwemer ruins to have their own pavement texture outside of their entrances. This mod replaces the cobblestone textures outside of all Vvardenfell-based dwemer ruins with a new texture. In addition to the texture swap, I also made a "road edge" mesh which helps blend this new pavement into the ruins and the surrounding landscape.
+
+Some of my reasoning for making this mod is that the designer who used that cobblestone texture outside of Arkngthunch-Sturdumz clearly wanted to show that it was stone bricks on the ground outside of the ruin, but didn't have the texture asset available to properly visualize that intention. So I tried to create what I thought a dedicated cobblestone/pavement texture may have looked for the dwemer set.
+
+These assets are included in OAAB_Data 1.9.0 and later. So that repository is a requirement.
+
+
+Compatibility:
+A patch by Lucas is included for Trackless Grazelands. Load order should be: OAAB Dwemer Pavements, Trackless Grazelands, Patch.
+
+This mod edits the exterior of most dwemer ruins. Therefore it has the potential to conflict with mods which do the same. With that said, my edits are very minimal. I do not change the landscape shape (but I do change landscape textures), and my mesh additions are relatively minimal. But if a mod makes drastic changes to the exterior, then it could definitely conflict. I would appreciate players notify me if anything is found and I may be able to create patches.
+
+
+Credits:
+textures.com for the pavement source
+Lucas for the Trackless Grazelands patch
+
+
+Permissions:
+You are free to:
+Adapt - remix, transform, and build upon the material
+
+Under the following terms:
+Attribution - You must give appropriate credit.
+Non-Commercial - You may not use the material for commercial purposes (i.e. no payment of monetary compensation as a condition for the download).
+
+If author(s) is/are not able to be contacted through a reasonable effort,
+Then you are free to copy and redistribute the material for use in The Elder Scrolls III: Morrowind
+
+
+Changelog
+1.0 - initial release
+1.1 - moved chunk blocking Nchurdamz entrance
+1.2 - added patch by Lucas for Trackless Grazelands
