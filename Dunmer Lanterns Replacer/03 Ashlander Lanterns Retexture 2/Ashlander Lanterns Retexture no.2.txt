@@ -1,0 +1,5 @@
+Ashlander Lanterns Retexture no.2 by starwarsgal9875
+
+Install files by placing the Data Files folder in the directory where your Morrowind.exe is located.
+
+Alternately, place this archive into your Installers directory and install using Mash Installers
