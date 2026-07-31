@@ -2,7 +2,7 @@
  Dunmer Lanterns Replacer
 =============================
 by Melchior Dahrk
-Version 14.0
+Version 14.1
 
 
 =====================
@@ -96,3 +96,4 @@ v13.0: Applies light mesh improvements from "Improved Lights for All Shaders" to
 v13.1: Fixed emissive properties on a few meshes. Added OAAB_Data patch.
 v13.2: Fixed the OAAB_Data Patch adding glow effect if you select no glow.
 v14.0: Updated for Tamriel_Data 10.0. Added OAAB_Data glass lanterns. Optimized a few meshes.
+v14.1: Fixed LOD on light_de_lantern_06.nif.
