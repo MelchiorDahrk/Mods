@@ -1,0 +1,30 @@
+Mortal Ties
+by Melchior Dahrk
+made for Summer Modjam 2026
+
+This is an alternate version of the vanilla vampire quest: Blood Ties. Start the quest by talking to Tusamircil at the Mages Guild in Wolverine Hall, Sadrith Mora.
+
+Features
+- A strange family including a vampire, an orphaned vampire hunter, and a forlorn great grandson.
+- Benefit from the arcane art of alchemy with a specialized vampire hunting potion.
+- Discover forgotten lore linking a "dark liege" to the family.
+- Overhauled cave of Yesamsi
+
+Installation
+00 Core - Required files.
+01 MWSE Addons - Support for The Achievement Framework, SSQN, and Tooltips Complete.
+01 OpenMW Addons - Support for OMW Achievements and SSQN.
+02 Ashmelech Reborn Patch - Incorporates the new enchanter NPC into the scripts from this mod (must load after `Mortal Ties.esp`)
+
+Credits
+Turstrigo - Silver blade model
+
+Changelog
+2.0 - Added path out of the water in Yesamsi. Added more loot to Yesamsi. Fixed corroded sword not being removed from the player. Improved pathing around waterfall in Yesamsi. Added more dialogue to Dhaunayne for when you kill Kjeld or become a vampire. Added additional signet ring, in case you return Sinyaramen's. Added method for becoming a vampire naturally. Properly restrained the vanilla quest from starting if this quest is complete before becoming a vampire. Fixed dialogue bug when turning in corroded sword to Dhaunayne. Made it so the quest won't break with Sinyaramen if the player becomes a vampire. Fixed typo in dialogue results which could prevent one quest ending. Made Vilandon's ghost unreactive to attacks. Fixed bug where Skink could give infinite books. Sinyaramen now moves on to his next life. Extended protection from wearing the Aundae signet ring. Gave Dhaunayne more appropriate responses for the Vilandon topic.
+1.6 - Improved directions to Valenvaryon. Added interop for Completionist (OpenMW). Added patch for Visible Rings (OpenMW).
+1.5 - Added pathgrid for vanilla/MWSE.
+1.4 - Added interop for Essential Indicators (MWSE). Fixed MWSE main.lua typo. Fixed script compile errors in vanilla. Made compatible with Mines & Caverns (Mortal Ties must load last).
+1.3 - Added achievement support. Added SSQN support. Added tooltips support. Fixed script ID. Added patch for Ashmelech Reborn. Added fomod.
+1.2 - Added custom model for the Aundae signet ring
+1.1 - Added custom model for the silver blade
+1.0 - Initial release

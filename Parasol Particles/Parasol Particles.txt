@@ -1,0 +1,50 @@
+Parasol Particles
+by Melchior Dahrk
+
+This mod adds falling spores particle effects to the emperor parasol mushrooms. I have included LOD to help with performance (the particles will disable once they are outside of visible range). The mod also includes a optional replacers if you use PeterBitt's, SWG's, or the Telvanni Bump model replacers.
+
+
+Installation
+
+You only need to install one.
+
+00 Core - replacer for vanilla parasols. Compatible with Epic Trees.
+00 PeterBitt's Replacer - replacer for PeterBitt's parasols (https://www.nexusmods.com/morrowind/mods/45350)
+00 SWG's Replacer - replacer for SWG's parasols (https://www.nexusmods.com/morrowind/mods/42595) - this also optimizes SWG's replacer for better performance
+00 Telvanni Bump Maps Replacer - replacer for Telvanni Bump Maps (https://www.nexusmods.com/morrowind/mods/42431)
+
+If you use Ashfall, insteall the "Ashfall" folder instead of the other folder. You only need ONE 00 folder for this mod to work. Choose based on your desired replacer. Note that these patches only include the meshes, you will need to install the original replacer first to get the proper textures.
+
+Patches
+
+01 OAAB_Data Patch - makes the "mushroof" mesh from OAAB_Data drop spores.
+
+
+Permissions
+
+You are free to:
+Adapt - remix, transform, and build upon the material
+
+Under the following terms:
+Attribution - You must give appropriate credit.
+Non-Commercial - You may not use the material for commercial purposes (i.e. no payment of monetary compensation as a condition for the download).
+
+If author(s) is/are not able to be contacted through a reasonable effort,
+Then you are free to copy and redistribute the material for use in The Elder Scrolls III: Morrowind
+
+
+Credits
+
+Remiros for the updated parasol meshes from the Morrowind Optimization Patch
+
+
+Changes
+
+1.0 - initial release
+1.1 - additional optimization to vanilla and SWG's parasols
+1.2 - added patch for Telvanni Bump Maps
+1.3 - Made base package use the optimized and improved meshes from MOP with permission
+1.4 - Resized particles to be more visible at smaller parasol scale in game
+1.5 - Re-release on dedicated mod page. No mod updates. Revisions to readme.
+1.6 - Added OAAB_data patch. Added Ashfall trees support. Added fomod.
+1.7 - Added patch for PeterBitt's vanilla-sized replacer.

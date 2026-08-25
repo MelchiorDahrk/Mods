@@ -1,0 +1,24 @@
+[package]
+name = "Mortal Ties - Yesamsi Overhaul"
+version = "2.0"
+description = "Alternate version of the vanilla vampire quest: Blood Ties."
+homepage = "https://www.nexusmods.com/morrowind/mods/59961"
+authors = [
+    "Melchior Dahrk",
+]
+
+[dependencies]
+assets = [
+    "Mortal Ties.esp",
+    "Meshes\\mdMT",
+    "Icons\\mdMT",
+    "Textures\\mdMT",
+]
+
+[dependencies.mods."OAAB_Data"]
+version = ">=2.5.0"
+url = "https://www.nexusmods.com/morrowind/mods/49042"
+
+[dependencies.mods."Tamriel_Data"]
+plugin = "Tamriel_Data.esm"
+url = "https://www.nexusmods.com/morrowind/mods/44537"
