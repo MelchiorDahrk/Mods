@@ -28,3 +28,4 @@ Nifskope
 ===Changelog===
 v1.0 - Initial upload
 v2.0 - Adds hoodless and true-robe (can be worn over clothes/armor) versions to Samarys Ancestral Tomb. Complete with new icons and ground meshes. Also fixes a 3D-model issue on the cowl.
+v2.1 - 1st person fix by DaredevilPoet!
