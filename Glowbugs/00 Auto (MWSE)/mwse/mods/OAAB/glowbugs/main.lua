@@ -63,8 +63,11 @@ local function safeDelete(ref)
     timer.delayOneFrame(
         function()
             activeBugs[ref] = nil
-            bugCells[ref.cell] = nil
-            ref:delete()
+            -- the ref may have been invalidated by the engine during the frame we waited
+            if ref:isValid() then
+                bugCells[ref.cell] = nil
+                ref:delete()
+            end
         end
     )
 end
@@ -83,9 +86,13 @@ end
 local function toggleBugsVisibility(state)
     local index = state and 1 or 0
     for ref, _ in pairs(activeBugs) do
-        if isSourcelessRef(ref) and not state then
+        if not ref:isValid() then
+            -- the engine freed this ref without us cleaning it up (objectInvalidated
+            -- is disabled); drop the stale pointer before anything dereferences it
+            activeBugs[ref] = nil
+        elseif isSourcelessRef(ref) and not state then
             safeDelete(ref)
-        elseif ref and ref.sceneNode then
+        elseif ref.sceneNode then
             local root = ref.sceneNode:getObjectByName("BugsRoot")
             if root and root.switchIndex ~= index then
                 root.switchIndex = index
@@ -197,6 +204,13 @@ local function spawnBugs(availableBugs, cell)
             }
         end
     end
+
+    -- Mark the cell as populated right now. refCreated normally sets this, but it
+    -- fires from the engine's lazy referenceSceneNodeCreated (on render), not from
+    -- createReference. Without this, a second conditionCheck (cellChanged /
+    -- weatherTransitionFinished / hourly timer) firing before the next render would
+    -- see bugCells[cell] == nil and spawn another full batch into the same cell.
+    bugCells[cell] = true
 
     toggleBugsVisibility(true)
 end

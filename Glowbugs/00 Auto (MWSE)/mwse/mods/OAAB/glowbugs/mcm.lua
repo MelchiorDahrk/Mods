@@ -94,7 +94,7 @@ template:createExclusionsPage{
 }
 
 --- Only show additional options is our esp is active
-if tes3.isModActive("OAAB_Red&Violet_Glowbugs.esp") then
+if tes3.isModActive("OAAB_RedViolet_Glowbugs.ESP") then
 	---
 	template:createExclusionsPage{
 		label = "Red",

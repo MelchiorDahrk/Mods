@@ -51,6 +51,11 @@ If author(s) is/are not able to be contacted through a reasonable effort,
 Then you are free to copy and redistribute the material for use in The Elder Scrolls III: Morrowind
 
 
+Credits
+==============================
+StormAtronach0 - Fixed performance issue in the MWSE implementation
+
+
 Changelog
 ==============================
 V1.0 - Initial release
@@ -60,3 +65,4 @@ V2.1 - Fix bug visibility breaking on cell changes
 V3.0 - Fixed faulty dialogue greetings about glowbugs. Now dependent on OAAB_Data. Merged glowbugs into OAAB_Data for easy modder usage.
 V4.0 - Manual version is now OpenMW-compatible. Includes auto version (MWSE-only). Added fomod.
 V4.1 - Added script for OpenMW so glowbugs only come out at night.
+V4.2 - Fixed bug where too many glowbugs could generate and impact performance in MWSE version. Fixed typo in MWSE MCM for the optional Red and Violet glowbugs.
