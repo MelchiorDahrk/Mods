@@ -1,0 +1,62 @@
+Glowbugs
+by Melchior Dahrk, Greatness7, & Tewlwolow (auto version)
+=========================================================
+
+This mod adds firefly-like insects called glowbugs across the Bitter Coast region. These passive insects congregate in clusters across the coast creating magical vistas for players to soak in. While exploring the saltwater swamps of Vvardenfell with this mod, it is often difficult to see where the starry sky ends and the clouds of glowing insects begin. Only coming out on calm nights, glowbugs can be caught by the agile adventurer. Their thorax makes a quality component in potions of light. Or if you're barbaric, just gobble a few before jumping into that spooky ancestral tomb to light your own way - hands free!
+
+This mod utilizes MWSE to allow the player to pick individual glowbugs from a cluster even though they're all part of a single mesh. This is one of the ways that this mod is able to add extensive visual effects across the entire region with minimal performance impact. The glowbug object is a highly complex NIF using mutliple LOD levels to switch between particle systems and actual shapes that the player can see and interact with.
+
+This mod is a great complement to Mistify and I recommend using both mods together (https://www.nexusmods.com/morrowind/mods/48112).
+
+Note for OpenMW users: OpenMW does not support explicit NIF controller targets like the vanilla game which is used to make the LOD feature work for the particle systems. So you may encounter pop-in. This is an issue with OpenMW, not this mod.
+
+NEW IN VERSION 2.0
+
+Glowbugs have migrated to the Ascadian Isles! Their diet in this region gives their glow a more familiar hue. It is recommended that if you use the new optional Ascadian Isles plugin that you use a mod like VitruvianGuar's Alchemical Knowledge (https://www.nexusmods.com/morrowind/mods/49036) to prevent exploitation by combining the different colored ingredients.
+
+Dialogue commentary! NPCs in each of the regions will now comment about the glowbugs when they're active (they only come out on random nights now). Talk to people across the Bitter Coast and Ascadian Isles to hear what they have to say about the little bugs.
+
+NEW AUTO VERSION
+Glowbugs can now invade every corner of Tamriel! An optional MWSE module to automate the glowbugs placement has been added, plus an optional .esp file to add red and violet variants. Use MCM to control spawn density, chance, and regions where glowbugs will appear. It is natively compatible with any landmass mods, so you can have glowbugs in TR/PT regions as well with no hassle.
+
+They are naturally drawn to flora, and try to stay away from the cities, where light could expose them to predators. They will now appear during nighttime regardless of any mods that change daylight duration.
+
+This still relies on OAAB_Data for green and blue bugs, and you will have an option to also spawn red and violet variants if you use the plugin. The file will overwrite Glowbugs script from OAAB_Data, but keeps all the functionality and extends it. It means you will still be able to harvest the little fellas.
+
+It is compatible with hand-placed glowbugs. If the script detects OAAB glowbugs in the cell, it will not spawn additional ones. This means you can still use them as a decorative element in your mods, and the on/off mechanic based on daytime will still be applied. For example, you might want to keep the original BC and AI plugins active while also use this module to spawn the glowbugs in other regions.
+
+Note that glowbug density is per cell, not per bug type, so you can choose to spawn multiple glowbug types in one region and the overall number is still honoured. Feel free to mix and match!
+
+
+Installation
+==============================
+00 Auto (MWSE) - See description above. Automatically places glowbugs. Compatible with manual version. (MWSE-only)
+01 Manual (AI) - Adds glowbugs in the Ascadian Isles. (MWSE/OpenMW-compatible)
+02 Manual (BC) - Adds glowbugs in the Bitter Coast. (MWSE/OpenMW-compatible)
+03 Glowbug Script (OpenMW) - Adds a script to glowbugs so they only come out at night.
+
+With the "Manual" versions, glowbugs have a 1/3 chance to show up on any given clear night. If you want to increase/decrease the frequency, you can change the global variable "AB_GlowbugsChance" in game using the console. Default value is 33.33 (33.33/100 chance). Change it to 50 ("set AB_GlowbugsChance to 50") for a 50% chance etc.
+
+
+Permissions
+==============================
+You are free to:
+Adapt - remix, transform, and build upon the material
+
+Under the following terms:
+Attribution - You must give appropriate credit.
+Non-Commercial - You may not use the material for commercial purposes (i.e. no payment of monetary compensation as a condition for the download).
+
+If author(s) is/are not able to be contacted through a reasonable effort,
+Then you are free to copy and redistribute the material for use in The Elder Scrolls III: Morrowind
+
+
+Changelog
+==============================
+V1.0 - Initial release
+V1.1 - Updated mesh to work slightly better with scum replacers that use alpha blending
+V2.0 - Glowbugs now appear in the Ascadian Isles with the optional AI plugin. Made glowbugs appear on random days. Lots of NPCs in BC and AI now have comments about glowbugs when they're out -- make sure to talk to everyone! Fixed potential issue with glowbugs being used indoors by other mods.
+V2.1 - Fix bug visibility breaking on cell changes
+V3.0 - Fixed faulty dialogue greetings about glowbugs. Now dependent on OAAB_Data. Merged glowbugs into OAAB_Data for easy modder usage.
+V4.0 - Manual version is now OpenMW-compatible. Includes auto version (MWSE-only). Added fomod.
+V4.1 - Added script for OpenMW so glowbugs only come out at night.
