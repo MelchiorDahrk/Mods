@@ -15,11 +15,16 @@ Installation
 01 MWSE Addons - Support for The Achievement Framework, SSQN, and Tooltips Complete.
 01 OpenMW Addons - Support for OMW Achievements and SSQN.
 02 Ashmelech Reborn Patch - Incorporates the new enchanter NPC into the scripts from this mod (must load after `Mortal Ties.esp`)
+03 Completionist (OpenMW) - Adds this quest to the Completionist mod for OpenMW.
+04 Visible Rings (OpenMW) - Makes the Aundae signet ring show up on the player's hand if using this mod.
+05 Patch for Purists Patch - PFP erroneously includes some new greetings for this quest which break this mod. This patch deletes those greetings.
 
 Credits
 Turstrigo - Silver blade model
 
 Changelog
+2.2 - Fixed bug which could cause Sinyaramen to appear in his new location too early.
+2.1 - Added patch for Patch for Purists (which has some bugged greetings which can break this quest).
 2.0 - Added path out of the water in Yesamsi. Added more loot to Yesamsi. Fixed corroded sword not being removed from the player. Improved pathing around waterfall in Yesamsi. Added more dialogue to Dhaunayne for when you kill Kjeld or become a vampire. Added additional signet ring, in case you return Sinyaramen's. Added method for becoming a vampire naturally. Properly restrained the vanilla quest from starting if this quest is complete before becoming a vampire. Fixed dialogue bug when turning in corroded sword to Dhaunayne. Made it so the quest won't break with Sinyaramen if the player becomes a vampire. Fixed typo in dialogue results which could prevent one quest ending. Made Vilandon's ghost unreactive to attacks. Fixed bug where Skink could give infinite books. Sinyaramen now moves on to his next life. Extended protection from wearing the Aundae signet ring. Gave Dhaunayne more appropriate responses for the Vilandon topic.
 1.6 - Improved directions to Valenvaryon. Added interop for Completionist (OpenMW). Added patch for Visible Rings (OpenMW).
 1.5 - Added pathgrid for vanilla/MWSE.
