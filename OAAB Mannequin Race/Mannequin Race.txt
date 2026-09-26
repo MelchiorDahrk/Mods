@@ -1,0 +1,17 @@
+# OAAB Mannequin Race
+
+"Artificial beings of wood and metal fashioned to resemble the humanoid races of Tamriel, these Mannequins have been animated by magical means. Despite their stiff limbs, they are tireless and singularly suited to the wearing of armor and clothing. Mannequins are highly resistant to illness and untroubled by the need for breath; yet their wooden frames are vulnerable to flame. Although their unnatural stillness and expressionless faces are disquieting to many, they are known to be excellent listeners."
+
+## Features
+* Can use their armorer skill to repair damage to their wooden and metal frames - use any repair tool and look for the mannequin icon.
+* Receive a daily power to "Strike a Pose", boosting their survivability and restoring health and fatigue - exit the pose by sneaking.
+
+## Installation
+Requires OAAB_Data
+
+- MWSE: Install `01 MWSE Functions` alongside the core plugin.
+- OpenMW: Install `01 OpenMW Functions` and enable `OAAB_Mannequin_Race.omwscripts`.
+	- OAAB_Data's OpenMW Functions animation package must also be installed, with "use additional anim sources = true" in OpenMW's [Game] settings.
+
+## Credits
+* AI was used to help code the racial abilities in this mod.
