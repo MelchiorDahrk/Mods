@@ -1,0 +1,11 @@
+[package]
+name = "OAAB Mannequin Pose Designer"
+description = "Browse live NIF previews, organize portable pose metadata, and create, edit, and share mannequin poses with inventory props."
+version = "0.3.21"
+
+[tools.mwse]
+lua-mod = "MannequinPoseDesigner"
+
+[dependencies.mods."OAAB Data"]
+plugin = "OAAB_Data.esm"
+mwse-module = "OAAB.Mannequins.poses"

@@ -1,0 +1,255 @@
+{
+  "source": "arp-body_retargeted.blend",
+  "armatures": [
+    {
+      "name": "Bip01",
+      "bone_count": 34
+    },
+    {
+      "name": "rig",
+      "bone_count": 249
+    },
+    {
+      "name": "Rig",
+      "bone_count": 66
+    }
+  ],
+  "tes3_bones": [
+    {
+      "blender": "Bip01 Pelvis",
+      "tes3": "Bip01 Pelvis",
+      "parent": "Bip01"
+    },
+    {
+      "blender": "Bip01 Spine",
+      "tes3": "Bip01 Spine",
+      "parent": "Bip01 Pelvis"
+    },
+    {
+      "blender": "Bip01 Spine1",
+      "tes3": "Bip01 Spine1",
+      "parent": "Bip01 Spine"
+    },
+    {
+      "blender": "Bip01 Spine2",
+      "tes3": "Bip01 Spine2",
+      "parent": "Bip01 Spine1"
+    },
+    {
+      "blender": "Bip01 Neck",
+      "tes3": "Bip01 Neck",
+      "parent": "Bip01 Spine2"
+    },
+    {
+      "blender": "Bip01 Head",
+      "tes3": "Bip01 Head",
+      "parent": "Bip01 Neck"
+    },
+    {
+      "blender": "Bip01 Clavicle.L",
+      "tes3": "Bip01 L Clavicle",
+      "parent": "Bip01 Neck"
+    },
+    {
+      "blender": "Bip01 UpperArm.L",
+      "tes3": "Bip01 L UpperArm",
+      "parent": "Bip01 L Clavicle"
+    },
+    {
+      "blender": "Bip01 Forearm.L",
+      "tes3": "Bip01 L Forearm",
+      "parent": "Bip01 L UpperArm"
+    },
+    {
+      "blender": "Bip01 Hand.L",
+      "tes3": "Bip01 L Hand",
+      "parent": "Bip01 L Forearm"
+    },
+    {
+      "blender": "Bip01 Finger0.L",
+      "tes3": "Bip01 L Finger0",
+      "parent": "Bip01 L Hand"
+    },
+    {
+      "blender": "Bip01 Finger01.L",
+      "tes3": "Bip01 L Finger01",
+      "parent": "Bip01 L Finger0"
+    },
+    {
+      "blender": "Bip01 Finger1.L",
+      "tes3": "Bip01 L Finger1",
+      "parent": "Bip01 L Hand"
+    },
+    {
+      "blender": "Bip01 Finger11.L",
+      "tes3": "Bip01 L Finger11",
+      "parent": "Bip01 L Finger1"
+    },
+    {
+      "blender": "Bip01 Finger2.L",
+      "tes3": "Bip01 L Finger2",
+      "parent": "Bip01 L Hand"
+    },
+    {
+      "blender": "Bip01 Finger21.L",
+      "tes3": "Bip01 L Finger21",
+      "parent": "Bip01 L Finger2"
+    },
+    {
+      "blender": "Shield Bone",
+      "tes3": "Shield Bone",
+      "parent": "Bip01 L Hand"
+    },
+    {
+      "blender": "Bip01 Clavicle.R",
+      "tes3": "Bip01 R Clavicle",
+      "parent": "Bip01 Neck"
+    },
+    {
+      "blender": "Bip01 UpperArm.R",
+      "tes3": "Bip01 R UpperArm",
+      "parent": "Bip01 R Clavicle"
+    },
+    {
+      "blender": "Bip01 Forearm.R",
+      "tes3": "Bip01 R Forearm",
+      "parent": "Bip01 R UpperArm"
+    },
+    {
+      "blender": "Bip01 Hand.R",
+      "tes3": "Bip01 R Hand",
+      "parent": "Bip01 R Forearm"
+    },
+    {
+      "blender": "Bip01 Finger0.R",
+      "tes3": "Bip01 R Finger0",
+      "parent": "Bip01 R Hand"
+    },
+    {
+      "blender": "Bip01 Finger01.R",
+      "tes3": "Bip01 R Finger01",
+      "parent": "Bip01 R Finger0"
+    },
+    {
+      "blender": "Bip01 Finger1.R",
+      "tes3": "Bip01 R Finger1",
+      "parent": "Bip01 R Hand"
+    },
+    {
+      "blender": "Bip01 Finger11.R",
+      "tes3": "Bip01 R Finger11",
+      "parent": "Bip01 R Finger1"
+    },
+    {
+      "blender": "Bip01 Finger2.R",
+      "tes3": "Bip01 R Finger2",
+      "parent": "Bip01 R Hand"
+    },
+    {
+      "blender": "Bip01 Finger21.R",
+      "tes3": "Bip01 R Finger21",
+      "parent": "Bip01 R Finger2"
+    },
+    {
+      "blender": "Weapon Bone",
+      "tes3": "Weapon Bone",
+      "parent": "Bip01 R Hand"
+    },
+    {
+      "blender": "Bip01 Thigh.L",
+      "tes3": "Bip01 L Thigh",
+      "parent": "Bip01 Spine"
+    },
+    {
+      "blender": "Bip01 Calf.L",
+      "tes3": "Bip01 L Calf",
+      "parent": "Bip01 L Thigh"
+    },
+    {
+      "blender": "Bip01 Foot.L",
+      "tes3": "Bip01 L Foot",
+      "parent": "Bip01 L Calf"
+    },
+    {
+      "blender": "Bip01 Thigh.R",
+      "tes3": "Bip01 R Thigh",
+      "parent": "Bip01 Spine"
+    },
+    {
+      "blender": "Bip01 Calf.R",
+      "tes3": "Bip01 R Calf",
+      "parent": "Bip01 R Thigh"
+    },
+    {
+      "blender": "Bip01 Foot.R",
+      "tes3": "Bip01 R Foot",
+      "parent": "Bip01 R Calf"
+    }
+  ],
+  "ik_constraints": [
+    {
+      "armature": "rig",
+      "bone": "forearm_ik.r",
+      "target": "c_hand_ik.r",
+      "pole": "",
+      "chain_length": 2,
+      "pole_angle": 0.0
+    },
+    {
+      "armature": "rig",
+      "bone": "forearm_ik_nostr.r",
+      "target": "c_hand_ik.r",
+      "pole": "c_arms_pole.r",
+      "chain_length": 2,
+      "pole_angle": 0.0
+    },
+    {
+      "armature": "rig",
+      "bone": "forearm_ik.l",
+      "target": "c_hand_ik.l",
+      "pole": "",
+      "chain_length": 2,
+      "pole_angle": 0.0
+    },
+    {
+      "armature": "rig",
+      "bone": "forearm_ik_nostr.l",
+      "target": "c_hand_ik.l",
+      "pole": "c_arms_pole.l",
+      "chain_length": 2,
+      "pole_angle": 3.1415927410125732
+    },
+    {
+      "armature": "rig",
+      "bone": "leg_ik.r",
+      "target": "foot_ik_target.r",
+      "pole": "c_leg_pole.r",
+      "chain_length": 2,
+      "pole_angle": 3.1415927410125732
+    },
+    {
+      "armature": "rig",
+      "bone": "leg_ik_nostr.r",
+      "target": "foot_ik_target.r",
+      "pole": "c_leg_pole.r",
+      "chain_length": 2,
+      "pole_angle": -3.1415927410125732
+    },
+    {
+      "armature": "rig",
+      "bone": "leg_ik.l",
+      "target": "foot_ik_target.l",
+      "pole": "",
+      "chain_length": 2,
+      "pole_angle": 0.0
+    },
+    {
+      "armature": "rig",
+      "bone": "leg_ik_nostr.l",
+      "target": "foot_ik_target.l",
+      "pole": "c_leg_pole.l",
+      "chain_length": 2,
+      "pole_angle": 0.0
+    }
+  ]
+}

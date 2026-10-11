@@ -1,4 +1,5 @@
 require("OAAB.MannequinRace.repair")
+require("OAAB.MannequinRace.bucket_helm")
 
 local spellId = "ABmann_pw_StrikeAPose"
 local stateKey = "oaabMannequinRaceStrikePose"

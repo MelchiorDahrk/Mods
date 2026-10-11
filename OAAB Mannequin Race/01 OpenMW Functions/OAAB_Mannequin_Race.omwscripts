@@ -1,3 +1,4 @@
 PLAYER: scripts/oaab/mannequin_race/strike_a_pose.lua
 PLAYER: scripts/oaab/mannequin_race/repair.lua
 GLOBAL: scripts/oaab/mannequin_race/repair_global.lua
+GLOBAL: scripts/oaab/mannequin_race/bucket_helm_global.lua

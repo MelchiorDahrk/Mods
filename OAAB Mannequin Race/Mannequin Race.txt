@@ -5,6 +5,7 @@
 ## Features
 * Can use their armorer skill to repair damage to their wooden and metal frames - use any repair tool and look for the mannequin icon.
 * Receive a daily power to "Strike a Pose", boosting their survivability and restoring health and fatigue - exit the pose by sneaking.
+* Can wear common buckets as helmets - equip a bucket to permanently turn it into armor.
 
 ## Installation
 Requires OAAB_Data
