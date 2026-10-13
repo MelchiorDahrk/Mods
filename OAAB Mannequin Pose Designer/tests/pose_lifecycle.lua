@@ -55,6 +55,7 @@ local itemData
 tes3.addItem=function() itemData={data={}}; return 1,portableItem,itemData end
 tes3.createReference=function() return reference(base,F.scene(relaxed)) end
 local source,sourceNodes=F.scene(posed)
+local poseMissing=false
 local wrapper=F.node(props.prefix.."0001"); wrapper:attachChild(F.mesh())
 wrapper.translation=tes3vector3.new(2,3,4); wrapper.scale=0.7
 rig.find(source,"Bip01 R Hand"):attachChild(wrapper)
@@ -62,6 +63,8 @@ local free=F.node(props.prefix.."0002"); free:attachChild(F.mesh())
 free.translation=tes3vector3.new(20,-10,5); source:attachChild(free); source:update()
 tes3.loadMesh=function(file,cache)
     assert(cache==false)
+    if file=="oaab/k/mann_relax.nif" then return F.scene(relaxed) end
+    if poseMissing and file=="props.nif" then return nil end
     return file=="plain.nif" and F.scene(posed) or source
 end
 package.loaded['OAAB.Mannequins.discovery']={
@@ -130,5 +133,16 @@ check(pcall(fire,"simulate") and pcall(fire,"simulated"),"Invalid handles are ch
 live.sceneNode=F.scene(relaxed)
 check(pcall(fire,"simulate") and pcall(fire,"simulated"),"Scene replacement does not use cached bones from the previous scene")
 check(api.apply(live) and matchesPose(live) and wrappers(live.sceneNode)==2,"Normal rebuild flow rebinds the pose and props to the new scene")
+check(pickup.pickUp(live) and itemData.data.oaabMannequins.poseFile=="props.nif","Portable items can retain an assignment before its pose is deleted")
+poseMissing=true
+local dropped=reference(portableItem); dropped.data=itemData.data
+live=assert(pickup.place(dropped)); frame()
+check(api.getSelectedFile(live)=="oaab/k/mann_relax.nif" and wrappers(live.sceneNode)==0,
+    "Placing a portable mannequin after deleting its assigned pose quietly selects Relaxed without stale props")
+local restored=rig.capture(live.sceneNode)
+for i,bone in ipairs(relaxed) do
+    check(v.length(v.sub(restored[i].translation,bone.translation))<1e-6 and restored[i].scale==bone.scale,
+        "Portable missing-pose fallback applies every Relaxed bone")
+end
 check(invalidReads==0,"No deleted reference field was read anywhere in maintenance or refresh")
 print("PASS: "..count.." portable pose/prop lifecycle, invalid userdata, refresh and scene-rebuild assertions")

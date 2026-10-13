@@ -16,3 +16,7 @@ Requires OAAB_Data
 
 ## Credits
 * AI was used to help code the racial abilities in this mod.
+
+## Changelog
+1.1 - Added head and hair variants, added female torso, separated neck piece so it shows up with shirts/cuirasses, added racial ability to wear buckets as helmets
+1.0 - Initial release

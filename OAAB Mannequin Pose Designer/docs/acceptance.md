@@ -6,6 +6,14 @@ application, camera setup, UI placement, or other installed mods' event interact
 Start the 0.3.0 pass with [the focused pose library checklist](pose_library.md#focused-in-game-checklist),
 then check the existing editor behavior below.
 
+Debug mode checks: open **Mod Config > OAAB Mannequin Pose Designer > Settings**.
+With Debug mode off (the default), browse previews, enter/leave the editor,
+toggle focus, and add/edit/save props; no designer or embedded-prop diagnostics
+should be appended to `mwse.log`. Enable Debug mode and repeat to confirm those
+diagnostics appear. Disable it and confirm logging stops immediately. Close
+the MCM and restart the game to verify the preference persists. Enable Debug
+mode for the log-based checks below.
+
 Bone hover checks: move within 18 pixels of a handle without clicking. Only the
 closest selectable node should enlarge to 18 pixels and glow pale gold, and its
 associated body piece should temporarily glow amber. The selected bone and
@@ -269,8 +277,14 @@ UI scales, viewport resizing, and session termination while controls are expande
    Repeat with the HUD already hidden and confirm it remains hidden afterward.
    Repeat with Master volume already zero or adjusted. Repeat with AI or world
    rendering already disabled, some MGE features off, and a nondefault simulation
-   speed. Focus must start off on entry,
-   stay on while naming or retrying a failed save, and restore settings after
+   speed. Focus must start off on entry with Enter Focus Mode by default disabled.
+   Enable the setting under Mod Config > OAAB Mannequin Pose Designer > Settings,
+   close the MCM, and open both Create Pose and Edit Pose: focus must start on,
+   including its status, grid, lighting, hidden HUD, and frozen time. Press F to
+   turn it off, exit, and reopen: focus must start on again. Restart the game and
+   confirm the preference persists. Disable it and confirm the next session starts
+   off. Changing the setting during editing must affect only the next session.
+   Focus must stay on while naming or retrying a failed save, and restore settings after
    save, Escape, load, a cell change, reference removal, or a scene rebuild.
 6. Make an asymmetric pose with a raised arm, bent leg, head turn, and body lean.
    Press M and choose Entire Pose, then Mirror Entire Pose: left and right limbs,

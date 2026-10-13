@@ -1,3 +1,4 @@
+local log=require("MannequinPoseDesigner.logger")
 -- Real scene geometry for bone handles. UI NIF widgets use the menu renderer's
 -- model loader and fixed-frame menus leave background geometry behind.
 local picking=require("MannequinPoseDesigner.bone_picking")
@@ -75,7 +76,7 @@ function M.create(indices)
     parent:attachChild(self.root)
     self.root:update()
     if mwse then
-        mwse.log("[OAAB Pose Designer] Bone scene handles: mesh=%s, shape=node, handles=%d, source radius=%.4f, attached=%s",
+        log("[OAAB Pose Designer] Bone scene handles: mesh=%s, shape=node, handles=%d, source radius=%.4f, attached=%s",
             path,#indices,radius,tostring(self.root.parent~=nil))
     end
     return self

@@ -28,7 +28,10 @@ local ref={data={},sceneNode=F.scene(bones),updateLighting=function() end}
 local api=dofile(apiFile)
 local count=0
 local function check(ok,why) assert(ok,why); count=count+1 end
+local logged=0
+mwse.log=function() logged=logged+1 end
 check(api.apiVersion>=5 and api.select(ref,"props.nif"),"API v5 applies decorated NIF without the designer")
+check(logged==0,"Standalone embedded-prop playback is quiet")
 local live=rig.find(ref.sceneNode,wrapper.name)
 check(live and live~=wrapper and live.parent.name==p.parentBone,"Bone prop is independently cloned beneath runtime skeleton")
 check(rig.find(ref.sceneNode,free.name).parent==ref.sceneNode,"Free prop stays outside Bip01")
@@ -51,7 +54,21 @@ api.setSelectedFile(ref,nil); check(countWrappers(ref.sceneNode)==0,"Clearing po
 local runtime=require('OAAB.Mannequins.pose_props')
 local prepared=runtime.prepare(source,source.children[1],ref.sceneNode.children[1],{})
 check(prepared[1].parent==ref.sceneNode,"Missing runtime bone falls back to root")
+runtime.debugLog=require("MannequinPoseDesigner.logger")
+local config=require("MannequinPoseDesigner.config")
+logged=0
+runtime.prepare(source,source.children[1],ref.sceneNode.children[1],{})
+check(logged==0,"Missing-parent diagnostics respect disabled debug mode")
+config.debugMode=true
+runtime.prepare(source,source.children[1],ref.sceneNode.children[1],{})
+check(logged>0,"Missing-parent diagnostics use the enabled designer logger")
+logged=0
 api.select(ref,"props.nif")
+check(logged==1,"Embedded-prop application uses the enabled designer logger")
+config.debugMode=false
+logged=0
+api.select(ref,"props.nif")
+check(logged==0,"Disabling debug silences runtime playback immediately")
 local badParent=F.node("Bad Parent"); badParent.attachChild=function() error("Attachment failed") end
 check(not pcall(runtime.replace,ref.sceneNode,{{node=F.node(props.prefix.."0003"),parent=badParent}})
     and countWrappers(ref.sceneNode)==2,"Failed runtime attachment restores existing wrappers")

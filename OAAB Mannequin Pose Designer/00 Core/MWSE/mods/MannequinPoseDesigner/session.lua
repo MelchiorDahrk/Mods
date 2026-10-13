@@ -1,3 +1,5 @@
+local log=require("MannequinPoseDesigner.logger")
+local config=require("MannequinPoseDesigner.config")
 local v=require("MannequinPoseDesigner.math3d")
 local rig=require("MannequinPoseDesigner.rig")
 local library=require("MannequinPoseDesigner.library")
@@ -39,12 +41,12 @@ local function reference(s)
     if not ref.deleted and not ref.disabled and ref.sceneNode then return ref end
 end
 local function report(err)
-    mwse.log("[OAAB Pose Designer] %s",tostring(err))
+    log("[OAAB Pose Designer] %s",tostring(err))
     tes3.messageBox("Pose Designer: %s",tostring(err))
 end
 local function restore(fn)
     local ok,err=pcall(fn)
-    if not ok then mwse.log("[OAAB Pose Designer] Cleanup: %s",tostring(err)) end
+    if not ok then log("[OAAB Pose Designer] Cleanup: %s",tostring(err)) end
 end
 local function restoreFocus(s)
     local state=s.focus
@@ -54,24 +56,24 @@ local function restoreFocus(s)
     focus.restore(state,restore)
 end
 local function toggleFocus(s)
-    mwse.log("[OAAB Pose Designer] Focus toggle requested: current=%s, pose=%s, props=%d",
+    log("[OAAB Pose Designer] Focus toggle requested: current=%s, pose=%s, props=%d",
         s.focus and "on" or "off",tostring(s.originalFile),#s.props)
     if s.focus then
         restoreFocus(s)
-        mwse.log("[OAAB Pose Designer] Focus off: restoration complete")
+        log("[OAAB Pose Designer] Focus off: restoration complete")
         return
     end
     -- Take ownership before any write so a failed toggle can still be cleaned up.
-    mwse.log("[OAAB Pose Designer] Focus activation: capture scene and settings")
+    log("[OAAB Pose Designer] Focus activation: capture scene and settings")
     s.focus=focus.capture(rig.engineVector(s.groundFrame.translation))
-    mwse.log("[OAAB Pose Designer] Focus activation: apply isolation")
+    log("[OAAB Pose Designer] Focus activation: apply isolation")
     focus.update(s.focus,s.scene,s.overlay.native.root)
-    mwse.log("[OAAB Pose Designer] Focus on: mannequin=%s, landscape=%s, saved scene flags=%d, native water=%s, MGE=%s, master volume=%s, music volume=%s",
+    log("[OAAB Pose Designer] Focus on: mannequin=%s, landscape=%s, saved scene flags=%d, native water=%s, MGE=%s, master volume=%s, music volume=%s",
         tostring(s.scene),tostring(s.focus.terrain and s.focus.terrain.node),#s.focus.visibility,
         tostring(s.focus.water~=nil),tostring(s.focus.render~=nil),
         tostring(s.focus.audio and s.focus.audio.controller.volumeMaster),
         tostring(s.focus.audio and s.focus.audio.controller.volumeMusic))
-    mwse.log("[OAAB Pose Designer] Focus Sunshafts original state=%s; native sunglare suppressed=%s",
+    log("[OAAB Pose Designer] Focus Sunshafts original state=%s; native sunglare suppressed=%s",
         tostring(s.focus.sunShader and s.focus.sunShader.enabled),tostring(s.focus.render and s.focus.render.noMWSunglare))
 end
 local function restoreVisibility(visibility)
@@ -145,7 +147,7 @@ function M.finish(save, unloading, name,replaceFile)
                 assert(name,"Enter a pose name and ID before saving")
                 file=library.write(s.bones,name,s.props,apply,s.originalFile,s.libraryRecords)
             end
-            mwse.log("[OAAB Pose Designer] Saved pose applied: %s",file)
+            log("[OAAB Pose Designer] Saved pose applied: %s",file)
         end)
         if not ok then
             if s.attemptedLoad then
@@ -170,7 +172,7 @@ function M.finish(save, unloading, name,replaceFile)
                     if not s.highlight then s.highlight=highlight.create(s.scene,s.bones,s.nodes) end
                     highlight.update(s.highlight,s.selected,s.selectedProp~=nil)
                 end)
-                if not restored then mwse.log("[OAAB Pose Designer] Highlight recovery: %s",tostring(problem)) end
+                if not restored then log("[OAAB Pose Designer] Highlight recovery: %s",tostring(problem)) end
             end
             report(err)
             if not rebound then M.finish(false) end
@@ -239,7 +241,7 @@ function M.finish(save, unloading, name,replaceFile)
 end
 function M.start(ref,api,editFile,records)
     if active or not api.canPose(ref) or not ref.sceneNode or not tes3.mobilePlayer then
-        mwse.log("[OAAB Pose Designer] Start refused: active=%s, scene=%s, player=%s",tostring(active~=nil),tostring(ref.sceneNode~=nil),tostring(tes3.mobilePlayer~=nil))
+        log("[OAAB Pose Designer] Start refused: active=%s, scene=%s, player=%s",tostring(active~=nil),tostring(ref.sceneNode~=nil),tostring(tes3.mobilePlayer~=nil))
         return false
     end
     local s={handle=tes3.makeSafeObjectHandle(ref),api=api,scene=ref.sceneNode,originalFile=api.getSelectedFile(ref),orientation=ref.orientation:copy(),player=tes3.mobilePlayer,playerCell=tes3.player.cell,flags={},drafts={},undo={},redo={},locks={},props={},heldAxes={},cameraHeld={},cursor={0,0},selected=1,mode="IK",symmetry="off",handles=true}
@@ -252,7 +254,7 @@ function M.start(ref,api,editFile,records)
         local found,pose=pcall(library.find,editFile)
         if not found then report(pose); return false end
         if not pose or not s.originalFile or pose.file:lower():gsub("\\","/")~=s.originalFile:lower():gsub("\\","/") then
-            mwse.log("[OAAB Pose Designer] Edit refused: selected custom pose changed or disappeared")
+            log("[OAAB Pose Designer] Edit refused: selected custom pose changed or disappeared")
             return false
         end
         s.editFile=pose.file
@@ -275,12 +277,13 @@ function M.start(ref,api,editFile,records)
         end
     end
     local ok,err=pcall(function()
-        mwse.log("[OAAB Pose Designer] Editor entry: selected=%s, edit=%s",
+        log("[OAAB Pose Designer] Editor entry: selected=%s, edit=%s",
             tostring(s.originalFile),tostring(s.editFile))
         tes3ui.suppressTooltip(true)
         api.suspend(ref,true)
-        mwse.log("[OAAB Pose Designer] Editor entry: capture live skeleton")
+        log("[OAAB Pose Designer] Editor entry: capture live skeleton")
         s.bones,s.nodes=rig.capture(ref.sceneNode)
+        log("[OAAB Pose Designer] Editor entry: captured %d bone(s)",#s.bones)
         s.selectable={}
         s.selectableIndex={}
         for i,bone in ipairs(s.bones) do
@@ -301,13 +304,13 @@ function M.start(ref,api,editFile,records)
             end
         end
         if #s.props>0 then
-            mwse.log("[OAAB Pose Designer] Editor entry: restore %d prop(s)",#s.props)
+            log("[OAAB Pose Designer] Editor entry: restore %d prop(s)",#s.props)
             props.hideEmbedded(s); props.restore(s)
-            mwse.log("[OAAB Pose Designer] Editor entry: props restored, errors=%s",tostring(next(s.propScene.errors)~=nil))
-            if next(s.propScene.errors) then tes3.messageBox("Some prop meshes could not be restored. Definitions are retained; see MWSE.log. Select their nodes to delete them or restore their source meshes.") end
+            log("[OAAB Pose Designer] Editor entry: props restored, errors=%s",tostring(next(s.propScene.errors)~=nil))
+            if next(s.propScene.errors) then tes3.messageBox("Some prop meshes could not be restored. Definitions are retained. Select their nodes to delete them or restore their source meshes. For details in mwse.log, enable Debug mode in the mod's MCM and reopen the editor.") end
         end
         s.highlight=highlight.create(s.scene,s.bones,s.nodes)
-        mwse.log("[OAAB Pose Designer] Initial bone highlight maps to %d shape(s)",
+        log("[OAAB Pose Designer] Initial bone highlight maps to %d shape(s)",
             #(s.highlight.parts[s.selected] or {}))
         highlight.update(s.highlight,s.selected)
         local frame=rig.frame(s.nodes)
@@ -339,16 +342,17 @@ function M.start(ref,api,editFile,records)
                 node.appCulled=true
             end
         end
-        mwse.log("[OAAB Pose Designer] Editor entry: write draft checkpoint")
+        log("[OAAB Pose Designer] Editor entry: write draft checkpoint")
         checkpoint(s) -- A real NIF exists from the beginning of the session.
-        mwse.log("[OAAB Pose Designer] Editor entry: create controls and handles")
+        log("[OAAB Pose Designer] Editor entry: create controls and handles")
         s.overlay=overlay.create(s.bones,s.selectable)
-        mwse.log("[OAAB Pose Designer] Editor entry: initial overlay layout")
+        if config.focusModeByDefault then toggleFocus(s) end
+        log("[OAAB Pose Designer] Editor entry: initial overlay layout")
         overlay.update(s.overlay,s,world)
         highlight.update(s.highlight,s.hovered or s.selected)
     end)
     if not ok then M.finish(false); report(err); return false end
-    mwse.log("[OAAB Pose Designer] Editor active with %d bones",#s.bones)
+    log("[OAAB Pose Designer] Editor active with %d bones",#s.bones)
     return true
 end
 local function ready()
@@ -376,7 +380,7 @@ end
 local function current(s)
     local ref=reference(s)
     if not ref or ref.sceneNode~=s.scene or tes3.mobilePlayer~=s.player or tes3.player.cell~=s.playerCell then
-        mwse.log("[OAAB Pose Designer] Editor closed: reference=%s, sceneChanged=%s, playerChanged=%s, cellChanged=%s",tostring(ref~=nil),tostring(ref and ref.sceneNode~=s.scene),tostring(tes3.mobilePlayer~=s.player),tostring(tes3.player.cell~=s.playerCell))
+        log("[OAAB Pose Designer] Editor closed: reference=%s, sceneChanged=%s, playerChanged=%s, cellChanged=%s",tostring(ref~=nil),tostring(ref and ref.sceneNode~=s.scene),tostring(tes3.mobilePlayer~=s.player),tostring(tes3.player.cell~=s.playerCell))
         M.finish(false)
         return
     end
@@ -926,7 +930,7 @@ local function key(e)
             if before then s.props=before.props; props.restore(s) end
             s.drag=nil; consumedEscape={}; return false
         end
-        mwse.log("[OAAB Pose Designer] Escape received; menuMode=%s",tostring(tes3ui.menuMode()))
+        log("[OAAB Pose Designer] Escape received; menuMode=%s",tostring(tes3ui.menuMode()))
         -- keyDown only claims Lua callbacks. The game's native Escape test runs
         -- later, after finish has released active and the normal keybind lock.
         consumedEscape={}
@@ -940,7 +944,7 @@ local function key(e)
             s.cameraHeld={}
             local input=tes3.worldController.menuController.inputController
             local owner=keyboardOwner(e.element) and e.element or (input and input.textInputFocus)
-            mwse.log("[OAAB Pose Designer] Numpad input captured: scan=%s, element=%s, type=%s",
+            log("[OAAB Pose Designer] Numpad input captured: scan=%s, element=%s, type=%s",
                 tostring(k),tostring(owner and owner.id),tostring(owner and owner.type))
             return
         end
@@ -953,7 +957,7 @@ local function key(e)
             syncOrbitTarget(s)
             orbit.apply(s.orbit,cameraAction,e.isControlDown)
             s.cameraHeld[k]={action=cameraAction,remaining=orbit.repeatDelay}
-            mwse.log("[OAAB Pose Designer] Numpad camera: scan=%s, action=%s, ctrl=%s, yaw=%.6f, pitch=%.6f, distance=%.3f",
+            log("[OAAB Pose Designer] Numpad camera: scan=%s, action=%s, ctrl=%s, yaw=%.6f, pitch=%.6f, distance=%.3f",
                 tostring(k),cameraAction,tostring(e.isControlDown==true),s.orbit.yaw,s.orbit.pitch,s.orbit.distance)
         end
         return false

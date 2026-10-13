@@ -195,10 +195,12 @@ function M.patchTemplate(bones,bytes,kind)
             end
         end
     end
-    assert(#ordered==(kind=="xnif" and 0 or #bones),"Template animation count mismatch")
     for _,bone in ipairs(bones) do
-        assert(seen[bone.name:lower()],"Template is missing bone: "..bone.name)
+        assert(seen[bone.name:lower()],"Template is missing bone: "..bone.name
+            .." ("..kind.."; captured "..#bones.." bones)")
     end
+    assert(#ordered==(kind=="xnif" and 0 or #bones),"Template animation count mismatch ("
+        ..kind.."; matched "..#ordered..", captured "..#bones..")")
     if kind~="xnif" then
         local keys=blocks(bytes,"NiKeyframeData")
         assert(#keys==#ordered,"Template keyframe count mismatch")

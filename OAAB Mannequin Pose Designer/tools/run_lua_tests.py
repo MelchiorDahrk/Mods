@@ -10,7 +10,7 @@ from lupa.luajit21 import LuaRuntime
 
 API = Path(r'D:\Games\Morrowind\Repositories\OAAB_Data\01 MWSE Functions\MWSE\mods\OAAB\Mannequins\poses.lua')
 
-def run(script, arguments):
+def create_runtime():
     os.chdir(ROOT)
     lua = LuaRuntime(encoding=None, unpack_returned_tuples=True)
 
@@ -60,6 +60,10 @@ def run(script, arguments):
             end,
         }
     ''')
+    return lua
+
+def run(script, arguments):
+    lua = create_runtime()
     lua.globals().arg = lua.table_from([os.fsencode(a) for a in arguments])
     lua.globals().arg[0] = os.fsencode(script)
     lua.execute(b'assert(loadfile(arg[0]))()', name=os.fsencode(script))
@@ -82,3 +86,5 @@ if __name__ == '__main__':
     runpy.run_path(str(ROOT / 'tests/verify_gizmos.py'))
     runpy.run_path(str(ROOT / 'tests/verify_preview_host.py'))
     runpy.run_path(str(ROOT / 'tests/verify_focus_grid.py'))
+    runpy.run_path(str(ROOT / 'tests/verify_mannequin_variants.py'),
+                   init_globals={'OAAB_ROOT': API.parents[5]})

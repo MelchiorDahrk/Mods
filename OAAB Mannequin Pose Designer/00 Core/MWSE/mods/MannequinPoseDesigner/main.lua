@@ -1,9 +1,20 @@
+local log=require("MannequinPoseDesigner.logger")
+local config=require("MannequinPoseDesigner.config")
+local savedConfig=mwse.loadConfig("MannequinPoseDesigner",config)
+config.debugMode=savedConfig.debugMode==true
+config.focusModeByDefault=savedConfig.focusModeByDefault==true
+
+event.register("modConfigReady",function() require("MannequinPoseDesigner.mcm").register() end)
+
 local function initialize()
     local ok,poses=pcall(require,"OAAB.Mannequins.poses")
     if not ok or not poses.apiVersion or poses.apiVersion<6 then
-        mwse.log("[OAAB Pose Designer] Requires OAAB_Data pose API v6. Install the included compatibility archive.")
+        log("[OAAB Pose Designer] Requires OAAB_Data pose API v6. Install the included compatibility archive.")
         return
     end
+    -- Optional diagnostics hook; OAAB can still play embedded props on its own.
+    local hasProps,propRuntime=pcall(require,"OAAB.Mannequins.pose_props")
+    if hasProps then propRuntime.debugLog=log end
     local session=require("MannequinPoseDesigner.session")
     local menu=require("MannequinPoseDesigner.library_menu")
     session.register()
@@ -20,11 +31,11 @@ local function initialize()
             local opened,err=pcall(menu.open,reference,poses,entries)
             if not opened then
                 menu.close()
-                mwse.log("[OAAB Pose Library] Could not open: %s",tostring(err))
+                log("[OAAB Pose Library] Could not open: %s",tostring(err))
                 fallback=true
                 local restored,problem=pcall(poses.showMenu,reference)
                 fallback=false
-                if not restored then mwse.log("[OAAB Pose Library] Fallback: %s",tostring(problem)) end
+                if not restored then log("[OAAB Pose Library] Fallback: %s",tostring(problem)) end
             end
         end)
     end,{priority=-1000})

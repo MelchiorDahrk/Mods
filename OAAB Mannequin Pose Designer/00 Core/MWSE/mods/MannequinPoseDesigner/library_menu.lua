@@ -1,3 +1,4 @@
+local log=require("MannequinPoseDesigner.logger")
 local library=require("MannequinPoseDesigner.library")
 local catalog=require("MannequinPoseDesigner.catalog")
 local preview=require("MannequinPoseDesigner.preview")
@@ -51,7 +52,7 @@ function M.open(ref,api,entries,options)
     local status=menu:createLabel({text=""}); status.width=width; status.autoWidth=false; status.wrapText=true
     local function errorText(err)
         status.text=tostring(err); status.color={1,0.35,0.35}; menu:updateLayout()
-        mwse.log("[OAAB Pose Library] %s",tostring(err))
+        log("[OAAB Pose Library] %s",tostring(err))
     end
     local function guarded(fn)
         return function()
@@ -193,7 +194,7 @@ function M.open(ref,api,entries,options)
             local current=handle:getObject()
             if current.deleted or not api.canPose(current) then return end
             if not require("MannequinPoseDesigner.session").start(current,api,nil,records) then
-                tes3.messageBox("Pose Designer could not start. Check MWSE.log.")
+                tes3.messageBox("Pose Designer could not start. Enable Debug mode in the mod's MCM and try again for details in mwse.log.")
             end
         end)
     end)
@@ -259,7 +260,7 @@ function M.open(ref,api,entries,options)
                     if currentRef.deleted or not api.canPose(currentRef) then return end
                     if not require("MannequinPoseDesigner.session").start(currentRef,api,pose.file,records) then
                         if old then api.select(currentRef,old) else api.setSelectedFile(currentRef,nil) end
-                        tes3.messageBox("Could not edit this pose. Check MWSE.log.")
+                        tes3.messageBox("Could not edit this pose. Enable Debug mode in the mod's MCM and try again for details in mwse.log.")
                     end
                 end)
             end)
@@ -341,7 +342,7 @@ function M.open(ref,api,entries,options)
             local ok,element,motion=pcall(preview.create,entry.holder,entry.pose.file,cardWidth-12,previewHeight)
             if not ok then
                 entry.holder:createLabel({text="Preview unavailable"})
-                mwse.log("[OAAB Pose Library] Preview %s: %s",entry.pose.file,tostring(element))
+                log("[OAAB Pose Library] Preview %s: %s",entry.pose.file,tostring(element))
             else
                 state.previews[identity(entry.pose.file)]=motion
                 motion.setSpinning(identity(entry.pose.file)==identity(state.selected))

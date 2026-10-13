@@ -1,3 +1,4 @@
+local log=require("MannequinPoseDesigner.logger")
 -- Isolate the live mannequin without turning off the renderer that draws it.
 local M={}
 local grid=require("MannequinPoseDesigner.focus_grid")
@@ -128,10 +129,10 @@ local function updateFloor(self,scene)
             self.failedGridVertexCount=count
             if mwse then
                 if self.gridMesh then
-                    mwse.log("[OAAB Pose Designer] Focus grid resize to %d vertices rejected; keeping %d: %s",
+                    log("[OAAB Pose Designer] Focus grid resize to %d vertices rejected; keeping %d: %s",
                         count,self.gridVertexCount,tostring(mesh))
                 else
-                    mwse.log("[OAAB Pose Designer] Focus grid load of %d vertices rejected; continuing without grid: %s",
+                    log("[OAAB Pose Designer] Focus grid load of %d vertices rejected; continuing without grid: %s",
                         count,tostring(mesh))
                 end
             end
@@ -195,7 +196,7 @@ function M.update(self,scene,handles)
     -- logging the scene walk on every focused frame.
     local function trace(stage)
         if not self.activationComplete and mwse then
-            mwse.log("[OAAB Pose Designer] Focus activation: %s",stage)
+            log("[OAAB Pose Designer] Focus activation: %s",stage)
         end
     end
     local paths={node=self.root,children={}}

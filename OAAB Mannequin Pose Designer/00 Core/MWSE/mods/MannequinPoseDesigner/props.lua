@@ -1,10 +1,11 @@
+local debugLog=require("MannequinPoseDesigner.logger")
 -- Editable definitions contain only plain values. Native nodes live separately.
 local v=require("MannequinPoseDesigner.math3d")
 local rig=require("MannequinPoseDesigner.rig")
 local highlight=require("MannequinPoseDesigner.highlight")
 local M={prefix="OAAB Pose Prop "}
 local function log(format,...)
-    mwse.log("[OAAB Pose Designer Props] "..format,...)
+    debugLog("[OAAB Pose Designer Props] "..format,...)
 end
 local function finite(n) return type(n)=="number" and n==n and math.abs(n)<1e10 end
 local function array(a,size)

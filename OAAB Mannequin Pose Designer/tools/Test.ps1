@@ -2,6 +2,7 @@
 param(
     [Parameter(Mandatory)][string]$Lua,
     [string]$OaabRoot = 'D:\Games\Morrowind\Repositories\OAAB_Data',
+    [string]$MannequinRaceRoot = 'D:\Games\Morrowind\Repositories\Mods\OAAB Mannequin Race',
     [string]$JsonLibrary = 'D:\Games\Morrowind\Data Files\MWSE\core\lib\dkjson.lua',
     [string]$Python = 'python'
 )
@@ -30,4 +31,6 @@ try {
     if ($LASTEXITCODE -ne 0) { throw 'Preview canvas NIF validation failed' }
     & $Python 'tests/verify_focus_grid.py'
     if ($LASTEXITCODE -ne 0) { throw 'Focus grid NIF validation failed' }
+    & $Python 'tests/verify_mannequin_variants.py' $OaabRoot $MannequinRaceRoot
+    if ($LASTEXITCODE -ne 0) { throw 'Mannequin variant compatibility failed' }
 } finally { Pop-Location }

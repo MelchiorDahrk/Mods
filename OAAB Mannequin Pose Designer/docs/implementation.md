@@ -1,5 +1,12 @@
 # Implementation notes
 
+`main.lua` loads the saved `debugMode` and `focusModeByDefault` preferences into
+the shared `config.lua` table and registers `mcm.lua` on `modConfigReady`. Both
+default to false; the MCM saves them as `MWSE/config/MannequinPoseDesigner.json`
+on close. Every designer diagnostic goes through `logger.lua`, which checks the live preference
+on each call. The optional OAAB embedded-prop diagnostics use the same logger.
+User-facing error messages remain available with debug mode off.
+
 `main.lua` registers a listener for `OAAB:mannequinPoseMenu` after initialization.
 The existing OAAB interaction/ownership code remains responsible for access. API
 v6's generic `handled` flag suppresses the stock UI while `library_menu.lua` opens
@@ -333,6 +340,13 @@ until a successful preview. The ordinary name/save path exports an accepted blen
 `nif.lua` patches the three bundled OAAB Relaxed animation templates. It keeps
 the template geometry, skin data, attachment nodes, text keys, controller flags,
 and key timing intact, and replaces the 35 bone transforms and constant key values.
+Both OAAB_Data's mannequin body and the OAAB Mannequin Race body with its separate
+neck use this same skeleton. The body geometry is loaded independently from pose
+templates, so poses work with either mesh. `tests/verify_mannequin_variants.py`
+checks both actual files through capture, initial and edited draft exports,
+imports, stock blend alignment and preview assembly, including deformation of
+the race body's neck skin. Export failures name an unmatched bone and report
+the template kind and captured skeleton size; editor entry also logs that size.
 Serializing the live actor scene would capture equipment, effects, engine
 controllers, and reference transforms.
 
@@ -509,7 +523,10 @@ or cursor menu. The authored gizmo NIF remains unchanged on disk.
 The controls panel
 lists the current bone and mode; H switches between full and compact lists.
 
-F toggles focus mode for the current session. `focus.lua` captures HUD visibility, AI, sky/world,
+The MCM's Enter Focus Mode by default setting activates focus on Create Pose and
+Edit Pose entry, after the overlay and grounding frame exist and within the
+startup cleanup guard. It applies to the next session; F toggles focus for the
+current session without changing the saved preference. `focus.lua` captures HUD visibility, AI, sky/world,
 simulation speed, scene culling, native water, master volume, and MGE background render settings. It keeps
 `worldDisabled=false` so the live mannequin can render; ToggleWorld hides that
 mannequin and does not suppress MGE XE's separate distant-land renderer. Scene

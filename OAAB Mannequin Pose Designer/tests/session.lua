@@ -1,4 +1,5 @@
 package.path="./MWSE/mods/?.lua;"..package.path
+local config=require("MannequinPoseDesigner.config")
 local v=require("MannequinPoseDesigner.math3d")
 local realRig=require("MannequinPoseDesigner.rig")
 local lighting=dofile("tests/focus_lighting_fixture.lua")
@@ -455,7 +456,44 @@ local function focusEnabled()
         "Focus also suppresses native water rendered outside the world root")
     for name in pairs(originalMge) do check(not mge.render[name],"Hide MGE feature "..name) end
 end
-check(session.start(ref,api) and not lastState.focus,"Each session starts with focus mode off")
+check(not config.focusModeByDefault,"Focus Mode by default is off initially")
+config.focusModeByDefault=true
+check(session.start(ref,api) and lastState.focus,"Create Pose enters Focus Mode immediately when the preference is enabled")
+focusEnabled()
+do
+    local before=realRig.vector(cameraRoot.translation)
+    callbacks.render({}) -- No cameraControl event occurs before automatic focus.
+    check(lastState.originalCamera and v.length(v.sub(realRig.vector(lastState.originalCamera.camera.translation),before))<1e-7
+        and v.length(v.sub(realRig.vector(cameraRoot.translation),before))>1e-6,
+        "Default Focus Mode captures the gameplay camera and frames the mannequin without simulation")
+    before=realRig.vector(cameraRoot.translation)
+    callbacks.mouseWheel({delta=1})
+    callbacks.render({})
+    check(v.length(v.sub(realRig.vector(cameraRoot.translation),before))>1e-6 and worldController.simulationTimeScalar==0,
+        "Default Focus Mode supports camera movement while time starts frozen")
+end
+focusKey()
+check(not lastState.focus and config.focusModeByDefault and session.isActive(),
+    "F overrides Focus Mode for the current session without changing the default")
+check(not session.start(ref,api) and not lastState.focus,"Refusing a second entry does not reapply the default to the active session")
+session.finish(false)
+do
+    local restored=cameraEvent(99)
+    callbacks.cameraControl(restored)
+    check(restored.cameraTransform.translation.x==10 and restored.armCameraTransform.translation.x==11,
+        "Default Focus Mode exit restores the gameplay camera captured before any simulation")
+    -- Model the engine applying the restored camera transforms after exit.
+    cameraRoot:copyTransforms(restored.cameraTransform)
+    armCameraRoot:copyTransforms(restored.armCameraTransform)
+end
+controlsRestored()
+check(session.start(ref,api) and lastState.focus,"The next session reapplies the enabled Focus Mode default")
+focusEnabled()
+config.focusModeByDefault=false
+check(lastState.focus,"Changing the preference leaves the active session's Focus Mode unchanged")
+session.finish(true,false,{id="Focus_Default",name="Focus Default"})
+controlsRestored()
+check(session.start(ref,api) and not lastState.focus,"Disabling the preference starts the next session with Focus Mode off")
 callbacks.keyDown({keyCode=tes3.scanCode.f})
 focusEnabled()
 callbacks.keyDown({keyCode=tes3.scanCode.f})
@@ -587,6 +625,11 @@ tes3.worldController=setmetatable({menuController=menuController,worldCamera=wor
 focusKey()
 check(not session.isActive() and not menuController.aiDisabled and not menuController.worldDisabled,
     "A failed time freeze restores AI and scene/MGE settings already changed")
+config.focusModeByDefault=true
+check(not session.start(ref,api) and not session.isActive()
+    and not menuController.aiDisabled and not menuController.worldDisabled,
+    "A failed default Focus Mode activation aborts entry and restores partially changed settings")
+config.focusModeByDefault=false
 tes3.worldController=savedController
 controlsRestored()
 
@@ -1896,6 +1939,16 @@ local function submitName(name,id)
     namePrompt.close(prompt)
     prompt.onSave({name=name,id=id or "Edit",description="",category=""})
 end
+for _,defaultFocus in ipairs({false,true}) do
+    config.focusModeByDefault=defaultFocus
+    selection=custom
+    check(session.start(ref,api,custom) and (lastState.focus~=nil)==defaultFocus,
+        "Edit Pose follows the Focus Mode default preference on entry")
+    if defaultFocus then focusEnabled() end
+    session.finish(false)
+    controlsRestored()
+end
+config.focusModeByDefault=false
 for _,baseline in ipairs({"oaab/k/mann_relax.nif","oaab/k/mann_contrapposto.nif",
     "oaab/k/mann_adlocutio.nif","OAAB\\K\\MANN_ADLOCUTIO2.NIF",false}) do
     selection=baseline or nil

@@ -127,7 +127,15 @@ local function companionPaths(path)
     return library.disk(directory.."/x"..stem..".nif"),library.disk(directory.."/x"..stem..".kf")
 end
 local namedNif,namedKf=companionPaths(named)
+local refreshed={}
+package.loaded["OAAB.Mannequins.poses"]={refreshFile=function(path)
+    check(not lfs.attributes(library.disk(path)),"Refresh runs only after the main pose file has been removed")
+    local x,kf=companionPaths(path)
+    check(not lfs.attributes(x) and not lfs.attributes(kf),"Refresh runs only after both companions have been removed")
+    refreshed[#refreshed+1]=path
+end}
 library.remove(named)
+check(#refreshed==1 and refreshed[1]==named,"Successful deletion refreshes all loaded users through OAAB")
 check(not lfs.attributes(library.disk(named)) and not lfs.attributes(namedNif)
     and not lfs.attributes(namedKf),"Deleting a named pose removes all three files")
 check(library.idFile("Guard_Stance")==named,"Deleted pose name can be reused")
@@ -152,12 +160,14 @@ end
 check(read(library.disk(protected))==protectedBytes,"Invalid deletion never touches saved poses")
 local protectedNif,protectedKf=companionPaths(protected)
 local originalRemove=os.remove
+local refreshBeforeFailure=#refreshed
 os.remove=function(path)
     if path==protectedKf then return nil,"Simulated removal failure" end
     return originalRemove(path)
 end
 local removed,removeErr=pcall(library.remove,protected)
 os.remove=originalRemove
+check(#refreshed==refreshBeforeFailure,"A failed file removal cannot refresh mannequins to a fallback")
 check(not removed and tostring(removeErr):find("Simulated removal failure",1,true),"Removal failure is reported")
 check(read(library.disk(protected))==protectedBytes and lfs.attributes(protectedKf,"mode")=="file",
     "Companion removal failure preserves the main NIF and stops deletion")

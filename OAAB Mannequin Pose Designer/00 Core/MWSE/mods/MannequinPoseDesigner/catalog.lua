@@ -4,7 +4,11 @@ local function identity(file) return file:lower():gsub("\\","/") end
 function M.list(entries)
     local records,seen={},{}
     for _,pose in ipairs(library.list()) do records[#records+1]=pose; seen[identity(pose.file)]=true end
-    for _,entry in ipairs(entries or library.blendList()) do
+    if not entries then
+        local ok,api=pcall(require,"OAAB.Mannequins.poses")
+        entries=ok and api.listPoses and api.listPoses() or library.blendList()
+    end
+    for _,entry in ipairs(entries) do
         if entry.file and not seen[identity(entry.file)] then
             local data=library.readMetadata(entry.file) or {}
             local name=data.name or (type(entry.label)=="string" and entry.label:gsub(" %(Default%)$","")) or library.label(entry.file)

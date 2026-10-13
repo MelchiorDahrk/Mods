@@ -1,3 +1,4 @@
+local log=require("MannequinPoseDesigner.logger")
 -- A native UI scene hosting the actual pose NIF and its posed mannequin body.
 -- Both are uncached, isolated instances. The empty
 -- canvas/centred block pattern comes from fishing/ui/PreviewPane.lua. createNif
@@ -110,7 +111,7 @@ function M.create(parent,file,width,height)
         root.appCulled=false
         root:updateProperties(); root:update({controllers=false}); root:updateEffects()
         parent:updateLayout()
-        mwse.log("[OAAB Pose Library] Preview %s + %s: bones=%d, %dx%d, posed extent=%.3f, scale=%.4f",file,assembled.bodyFile,assembled.bones,width,height,diameter,scale)
+        log("[OAAB Pose Library] Preview %s + %s: bones=%d, %dx%d, posed extent=%.3f, scale=%.4f",file,assembled.bodyFile,assembled.bones,width,height,diameter,scale)
     end)
     if not ok then
         releaseLight(); element:destroy()

@@ -91,7 +91,7 @@ tes3ui={createMenu=function(args) local e=element(args); menus[args.id]=e; retur
     enterMenuMode=function() mode=true end,leaveMenuMode=function() mode=false end,menuMode=function() return mode end,
     acquireTextInput=function() end,getViewportSize=function() return 1024,720 end,getPalette=function() return {1,1,1} end}
 timer={frame={delayOneFrame=function(fn) frames[#frames+1]=fn end}}
-mwse={log=function() end}
+mwse={log=function() end,loadConfig=function(_,defaults) return defaults end}
 package.preload["OAAB.Mannequins.discovery"]=function() return {getMannequinProfile=function(reference) return reference.profile end} end
 local api=assert(loadfile(arg[1]))(); package.loaded["OAAB.Mannequins.poses"]=api
 check(api.showMenu(ref) and #message.buttons==5,"OAAB alone keeps its original menu")

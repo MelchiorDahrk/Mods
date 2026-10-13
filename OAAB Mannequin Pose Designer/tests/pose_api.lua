@@ -35,6 +35,18 @@ tes3={event={simulate="simulate",simulated="simulated"},niType={NiNode="NiNode"}
 mwse={log=function() end}
 local ref={data={},sceneNode=target,isDead=false,updateLighting=function() end}
 local api=assert(loadfile(apiFile))()
+local registered={label="Registered",file="registered.nif"}
+api.registerPose("z",registered)
+api.registerPose("a",{label="First registered",file="first.nif"})
+local catalog=api.listPoses()
+check(#catalog==6 and catalog[1].file=="oaab/k/mann_relax.nif" and catalog[5].file=="first.nif"
+    and catalog[6].file=="registered.nif","Catalog includes stock and sorted registered poses without a mannequin")
+catalog[1].label="Changed default"; catalog[6].file="changed.nif"; table.remove(catalog,2)
+local fresh=api.listPoses()
+check(#fresh==6 and fresh[1].label=="Relaxed" and fresh[6].file==registered.file,
+    "Catalog snapshots cannot mutate built-in poses, registrations or later lists")
+api.unregisterPose("z"); api.unregisterPose("a")
+check(#api.listPoses()==4,"Unregistered poses disappear from the independent catalog")
 check(api.apiVersion>=2,"Static pose API is available")
 check(api.select(ref,"pose.nif"),"Mannequin accepts a NIF pose without native loading")
 check(api.getSelectedFile(ref)=="pose.nif","Selected pose persists in reference data")

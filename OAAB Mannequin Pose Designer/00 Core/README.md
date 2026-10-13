@@ -13,6 +13,7 @@ Create, edit, and share custom poses for OAAB_Data mannequins. Includes a pose l
 - **Step into your own studio.** Focus mode hides the surroundings and freezes time; orbit, pan, and zoom to find your best angle.
 - **Experiment freely.** Undo, redo, and reset individual bones, limbs, or the whole pose while you work.
 - **Save it. Share it.** Name, describe, and categorize your creations, revise saved poses or save new variants, and share portable NIF/KF bundles with embedded props.
+- **Manage poses from the MCM.** Scroll through the full pose list, edit custom names, descriptions, and categories, or delete custom poses without finding a mannequin.
 
 ### Requirements
 
@@ -20,6 +21,14 @@ Create, edit, and share custom poses for OAAB_Data mannequins. Includes a pose l
 - OAAB_Data -- **Core** and **MWSE Functions**
 
 OpenMW is not currently supported.
+
+### MCM settings
+
+Open **Mod Config > OAAB Mannequin Pose Designer > Settings** and enable **Enter Focus Mode by default** to start Create Pose and Edit Pose sessions with the surroundings hidden and time frozen. It is off by default, applies the next time you open the designer, and is saved when you close the MCM. Press **F** while editing to toggle Focus Mode for that session.
+
+Open **Mod Config > OAAB Mannequin Pose Designer > Settings** and enable **Debug mode** to write troubleshooting diagnostics to `mwse.log`. It is off by default, takes effect immediately, and is saved when you close the MCM.
+
+Open **Mod Config > OAAB Mannequin Pose Designer > Poses** to scroll through the full list of built-in and custom poses. Each entry shows its name, source, ID, and file path. The included OAAB API helper also lists poses registered by other mods. Reopen the MCM after installing or removing pose files. Choose **Edit Metadata** to change a custom pose's name, description, or category, then **Save Metadata**. Its ID and filenames stay fixed. **Delete** asks for confirmation before removing the custom pose bundle. With the updated OAAB API helper, loaded mannequins using the deleted pose quietly return to Relaxed; unloaded or portable mannequins do so when loaded or placed. Built-in and registered poses are read-only.
 
 ### Installation
 
@@ -82,3 +91,14 @@ Attached props follow their bone as you pose the mannequin.
 Poses are saved in `Data Files/meshes/pose/k/`. New poses need a name and a unique ID. IDs can contain up to 19 letters, numbers, underscores, or hyphens and must start with a letter or number. An ID such as `guardlean` creates `guardlean.nif`, `xguardlean.nif`, and `xguardlean.kf`.
 
 Use **Save Changes** to update the pose opened with **Edit Pose**, or **Save As** to make a new copy. **Edit Metadata** changes the displayed name, description, and category while keeping the IDs/filenames.
+
+### Changelog
+
+Version 1.1.0
+- Added MCM
+- Made debugging off by default
+- Made pose deletion fall back to relaxed pose more smoothly
+- Fixed error from not having OAAB Mannequin Race installed
+
+Version 1.0.0
+- Initial Release

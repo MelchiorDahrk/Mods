@@ -36,4 +36,17 @@ local missing={}
 for i=1,#bones-1 do missing[i]=bones[i] end
 assert(not pcall(nif.patchTemplate,missing,read(root.."mann_relax.nif"),"nif"),
     "Mismatched skeleton must be refused before animation loading")
+local rig=require("MannequinPoseDesigner.rig")
+for _,rename in ipairs({false,true}) do
+    local unmatched=rig.clone(bones)
+    local index=rename and #unmatched or #unmatched+1
+    unmatched[index]=rig.clone({bones[#bones]})[1]
+    unmatched[index].name="Bip01 Unexpected"
+    for _,case in ipairs({{"mann_relax.nif","nif"},{"xmann_relax.nif","xnif"},{"xmann_relax.kf","kf"}}) do
+        local ok,err=pcall(nif.patchTemplate,unmatched,read(root..case[1]),case[2])
+        local expected=rename and case[2]=="kf" and bones[#bones].name or "Bip01 Unexpected"
+        assert(not ok and err:find(expected,1,true),
+            "Report the unmatched live bone instead of only an animation count")
+    end
+end
 print("PASS: full OAAB animation template patching and skeleton checks")

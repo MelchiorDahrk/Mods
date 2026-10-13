@@ -1,3 +1,4 @@
+local log=require("MannequinPoseDesigner.logger")
 -- The author's NIF is a temporary control under the handle root.
 local v=require("MannequinPoseDesigner.math3d")
 local rig=require("MannequinPoseDesigner.rig")
@@ -36,7 +37,7 @@ function M.create(parent)
             geometry[data]=ok and result or false
             if not ok then
                 self.fuzzyUnavailable=true
-                mwse.log("[OAAB Pose Designer] Fuzzy ring picking unavailable for %s; retaining exact picking: %s",shape.name,tostring(result))
+                log("[OAAB Pose Designer] Fuzzy ring picking unavailable for %s; retaining exact picking: %s",shape.name,tostring(result))
             end
         end
         return data and geometry[data] or nil

@@ -1,3 +1,4 @@
+local log=require("MannequinPoseDesigner.logger")
 local lfs = require("lfs")
 local nif = require("MannequinPoseDesigner.nif")
 local rig = require("MannequinPoseDesigner.rig")
@@ -170,7 +171,7 @@ local function publish(file,contents,apply,createOnly)
     for _,entry in ipairs(paths) do
         if entry.backedUp then
             local removed,problem=os.remove(entry.backup)
-            if not removed then mwse.log("[OAAB Pose Designer] Backup retained at %s: %s",entry.backup,tostring(problem)) end
+            if not removed then log("[OAAB Pose Designer] Backup retained at %s: %s",entry.backup,tostring(problem)) end
         end
     end
     return file
@@ -276,6 +277,14 @@ function M.remove(file)
             local ok,err=os.remove(disk(path))
             assert(ok,"Could not delete "..path..": "..tostring(err))
         end
+    end
+    -- Reapply loaded users only after the bundle is gone. OAAB's missing-file
+    -- fallback updates their skeleton, removes props and persists Relaxed.
+    -- Unloaded mannequins use the same fallback when their scene is restored.
+    local api=package.loaded["OAAB.Mannequins.poses"]
+    if api and api.refreshFile then
+        local ok,err=pcall(api.refreshFile,file)
+        if not ok then log("[OAAB Pose Designer] Deleted pose refresh failed for %s: %s",file,tostring(err)) end
     end
 end
 function M.read(file)

@@ -25,6 +25,27 @@ details retain the full name. The footer contains no Refresh button. Metadata
 changes still refresh automatically, and reopening discovers
 externally installed poses.
 
+The MCM also has a **Poses** page for management without a mannequin. It lists
+the complete custom collection and the built-in/registered catalog from the
+optional `poses.listPoses()` API method, with an older-helper fallback to the
+four stock poses. Reference-specific menu event actions are not included.
+The page shows the full pose list in alphabetical order. Entries display the
+name, source, ID, and file path; categories and descriptions appear in the
+metadata editor. The list has no search field, Refresh button, or pose count.
+Opening the page rereads disk metadata, and editing or deleting refreshes the
+list automatically. Its native scroll pane holds the list; **Edit Metadata**
+switches to an inline form outside the scroll pane. Save uses the same validated,
+transactional main-NIF update as the library and keeps IDs/companions intact.
+Cancel discards form changes; I/O failures retain inputs for retry. Deletion uses
+a cancellable confirmation inside MCM menu mode and removes only custom bundles.
+After successful deletion, the library refreshes loaded users. OAAB quietly
+falls back to Relaxed if their assigned file cannot be loaded, removes old pose
+props and persists the fallback path. Unloaded/portable mannequins use the same
+fallback on scene rebuild/placement. Closing/changing MCM tabs invalidates pending
+confirmations and unregisters the view's text-repeat handlers. Built-in and
+registered poses remain read-only. These pose edits commit when saved, independently
+of the MCM's debug preference saved on close.
+
 Library buttons use MGE XE's `menu_thin_border.nif` style, with zero outer
 margins and one-pixel padding. The grid measures the same styled button when
 reserving card rows for pagination.
@@ -87,6 +108,7 @@ reserving card rows for pagination.
 | Module | Responsibility |
 | --- | --- |
 | `main.lua` | Optional OAAB menu replacement and lifecycle registration |
+| `mcm.lua` / `mcm_poses.lua` | Settings and mannequin-independent pose management |
 | `catalog.lua` | Normalize records, source/category/search filters, sorting |
 | `library_menu.lua` | Cards, pagination, selection, actions and bounded preview lifetime |
 | `preview.lua` | Native UI canvas, actual mesh attachment, posed bounds, scene lighting and cleanup |
@@ -156,8 +178,15 @@ entry prefixed `OAAB:PoseProps:`, distinct from portable descriptive metadata.
 A shared NIF carries both geometry and editable definitions; individual
 prop operations still require the source item meshes. Older geometry-only poses
 can use Save As and have their skeleton edited while preserving embedded props.
-Deletion removes the custom bundle after explicit confirmation. Other mannequins
-still referencing a deleted file need a new pose assigned.
+Deletion removes the custom bundle after explicit confirmation and then refreshes
+all loaded mannequins assigned that file, matching case and slash direction.
+Missing assignments quietly use Relaxed through OAAB's BSA-aware loader; the
+fallback is persisted only after its skeleton and prop cleanup succeed. Unloaded
+mannequins, old saves and portable items recover on their normal load/rebuild/place
+flow. Failed companion deletion keeps the main NIF available and does not refresh
+users; retry can finish deletion. Built-in files and other custom bundles are
+protected. An explicit attempt to select an invalid file still reports failure
+and restores the prior selection.
 
 ## Preview verification
 
@@ -273,6 +302,23 @@ and archive verification checks that this exact asset is shipped there.
     main NIF metadata and confirm IDs, descriptions, props and companion
     hashes remain intact. Try a category shared with a read-only registered pose;
     its X must be disabled. Uncategorized has no X.
+11. Open Mod Config > OAAB Mannequin Pose Designer > Poses without activating a
+    mannequin. Scroll through the full alphabetical list of stock, custom,
+    imported and registered poses. Entries show names, sources, IDs, and paths,
+    with no categories, descriptions, search field, Refresh button, or pose count.
+    Reopen the MCM after an external file change. Edit/save/cancel metadata,
+    retry a failed save, and confirm IDs/companions stay fixed. Cancel/confirm deletion,
+    including the final custom pose. Close/change tabs during editing or a
+    confirmation and verify no stale callback changes files. Check the MCM at
+    its minimum size and your UI scale; fields, actions and scrollbars must remain
+    accessible. Built-in/registered poses must have no editing/deletion buttons.
+12. Assign one custom pose with props to several mannequins, including one in a
+    different cell and one picked up as an item. Delete the pose through MCM.
+    Loaded users must immediately become Relaxed without messages or stale props;
+    the other users must do so when loaded/placed. Load an older save that still
+    references the deleted file and check the same fallback. Inspect saved pose
+    paths and confirm Relaxed persists. Test OAAB defaults installed in a BSA and
+    confirm unrelated mannequins/pose files stay unchanged.
 
 ## Native API sources
 
