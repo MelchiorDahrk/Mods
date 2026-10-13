@@ -94,6 +94,9 @@ Use **Save Changes** to update the pose opened with **Edit Pose**, or **Save As*
 
 ### Changelog
 
+Version 1.2.0
+- Improved rotation gizmo visuals (thanks, G7!)
+
 Version 1.1.0
 - Added MCM
 - Made debugging off by default

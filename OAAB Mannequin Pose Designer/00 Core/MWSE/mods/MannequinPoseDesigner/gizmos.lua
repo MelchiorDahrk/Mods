@@ -9,6 +9,14 @@ local M={}
 local shapeNames={X_move={mode="move",axis="x"},Y_move={mode="move",axis="y"},Z_move={mode="move",axis="z"},
     X={mode="rotate",axis="x"},Y={mode="rotate",axis="y"},Z={mode="rotate",axis="z"}}
 local path="pose\\h\\gizmo.nif"
+-- The handle root hangs off the scene root, above WorldObjectRoot's depth
+-- property, so the mask and rings must carry their own depth state.
+local function depthProperty(testFunction)
+    local depth=niZBufferProperty.new()
+    depth.propertyFlags=3 -- Test and write enabled.
+    depth.testFunction=testFunction
+    return depth
+end
 local function setHighlight(self,entry)
     if self.highlighted==entry then return end
     if self.highlighted then
@@ -55,6 +63,9 @@ function M.create(parent)
             -- The mask follows the rings, independently of their shared
             -- sorting parent, which also contains the movement arrows.
             shape.appCulled=false
+            -- Stamp the mask's depth over the mannequin so only the rings'
+            -- back halves are hidden, never their front halves inside the body.
+            shape.zBufferProperty=depthProperty(ni.zBufferPropertyTestFunction.always)
             self.masks[#self.masks+1]=shape
             self.occluders[#self.occluders+1]={shape=shape,geometry=pickGeometry(shape)}
             return
@@ -77,6 +88,8 @@ function M.create(parent)
             if entry.mode=="rotate" then
                 self.radius=math.max(self.radius or 0,shape.worldBoundRadius)
                 entry.geometry=pickGeometry(shape)
+                -- Test against the mask. Movement arrows stay always on top.
+                shape.zBufferProperty=depthProperty(ni.zBufferPropertyTestFunction.lessEqual)
             end
             shape.appCulled=entry.mode=="move"
         elseif shape:isInstanceOfType(tes3.niType.NiNode) then
