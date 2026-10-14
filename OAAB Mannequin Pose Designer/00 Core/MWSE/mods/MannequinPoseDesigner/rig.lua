@@ -4,8 +4,28 @@ function M.vector(a) return {a.x,a.y,a.z} end
 function M.matrix(a) return {a.x.x,a.x.y,a.x.z,a.y.x,a.y.y,a.y.z,a.z.x,a.z.y,a.z.z} end
 function M.engineVector(a) return tes3vector3.new(unpack(a)) end
 function M.engineMatrix(a) return tes3matrix33.new(unpack(a)) end
+-- Weapon Sheathing adds these Bip01-named item attachment branches to actor
+-- meshes. They are not animated pose bones and are absent from OAAB templates.
+-- Treating them as non-bones also keeps their equipped meshes out of capture.
+local weaponSheathingAttachments={
+    ["bip01 shortbladeonehand"]=true,
+    ["bip01 longbladeonehand"]=true,
+    ["bip01 longbladetwoclose"]=true,
+    ["bip01 bluntonehand"]=true,
+    ["bip01 blunttwoclose"]=true,
+    ["bip01 blunttwowide"]=true,
+    ["bip01 speartwowide"]=true,
+    ["bip01 axeonehand"]=true,
+    ["bip01 axetwoclose"]=true,
+    ["bip01 marksmanbow"]=true,
+    ["bip01 marksmancrossbow"]=true,
+    ["bip01 marksmanthrown"]=true,
+    ["bip01 attachweapon"]=true,
+    ["bip01 attachshield"]=true,
+}
 local function isBone(name)
     name=(name or ""):lower()
+    if weaponSheathingAttachments[name] then return false end
     return name=="bip01" or name:match("^bip01 ") or name=="weapon bone" or name=="shield bone"
 end
 function M.find(root, name)

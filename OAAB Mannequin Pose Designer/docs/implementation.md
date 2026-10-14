@@ -1,5 +1,19 @@
 # Implementation notes
 
+`rig.lua` excludes Weapon Sheathing's fourteen `Bip01` item attachment branches
+from skeleton capture, including their equipped mesh descendants. Weapon
+Sheathing 1.6 patches actor meshes on `meshLoaded`, adding twelve weapon-type
+slots plus `Bip01 AttachWeapon` and `Bip01 AttachShield`. The broad bone-name
+prefix previously captured these alongside the 35 OAAB pose bones, causing the
+initial draft export to fail with `Template is missing bone: Bip01
+LongBladeTwoClose` (49 captured bones). Capture and rebinding now retain the
+35 pose bones while leaving the runtime attachments in the scene. The same
+capture rules cover saved-pose reads, previews, props and blending; strict
+template validation still rejects missing or unexpected skeleton bones.
+`tests/weapon_sheathing.lua` covers attachment branches and nested item bones,
+case-insensitive names, capture order and parents, rebinding after reparenting,
+stock-pose alignment, identical NIF/xNIF/KF exports and attachment preservation.
+
 `main.lua` loads the saved `debugMode` and `focusModeByDefault` preferences into
 the shared `config.lua` table and registers `mcm.lua` on `modConfigReady`. Both
 default to false; the MCM saves them as `MWSE/config/MannequinPoseDesigner.json`

@@ -93,6 +93,8 @@ Poses are saved in `Data Files/meshes/pose/k/`. New poses need a name and a uniq
 Use **Save Changes** to update the pose opened with **Edit Pose**, or **Save As** to make a new copy. **Edit Metadata** changes the displayed name, description, and category while keeping the IDs/filenames.
 
 ### Changelog
+Version 1.2.1
+- Fixed pose creation and editing with Weapon Sheathing enabled
 
 Version 1.2.0
 - Improved rotation gizmo visuals (thanks, G7!)
