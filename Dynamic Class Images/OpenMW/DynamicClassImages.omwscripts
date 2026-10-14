@@ -1,0 +1,2 @@
+# Load after StatsWindow.omwscripts when Stats Window Extender is installed.
+PLAYER: scripts/DynamicClassImages/statsWindow.lua
