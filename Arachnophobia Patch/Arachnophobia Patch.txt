@@ -1,0 +1,20 @@
+Arachnophobia Patch for Morrowind
+
+Uses MWSE Dynamic Object Replacer (https://www.nexusmods.com/morrowind/mods/52105) to replace centurion spiders with centurion spheres and all spider creatures in OAAB_Data and Tamriel_Data in real time with other creatures depending on their size. No need for individual mod patches.
+
+Replaces all web textures with moss.
+
+Replaces the centurion spider mesh with a centurion scarab in case it gets past the script.
+Replaces the spider meshes from OAAB_Data and Tamriel_Data. If any manage to slip past the script, they'll just look like a mudcrab.
+
+The `ArachnophobiaPatch_OAAB.ESP` plugin overrides the web trap script in OAAB_Data so that it won't spawn spiderlings.
+
+Credits:
+ChaosZero
+
+v1.0.0 - Initial release
+v1.1.0 - Mesh replacer now uses mudcrabs. Covers TR Dridrea now.
+v1.2.0 - Updated to include custom creatures in TR
+v1.3.0 - Updated to include centurion spiders. Stopped replacing quest-related spiders from TR to avoid breaking quests (will show up as mudcrabs instead).
+v1.4.0 - Made the archive modular.
+v1.5.0 - Updated to cover TD Spider Daedra. Added fomod.
