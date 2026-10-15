@@ -1,0 +1,52 @@
+# Requires Static Switching System instance rules and H3lp Yours3lf.
+# Keep this filename stable: SSS uses the module path for saved once tracking.
+# AB_Fau_SpiderParasol is deliberately omitted to preserve native respawning.
+# The loose meshes cover it, dead actors, and creatures before SSS processes them.
+log_name: "Arachnophobia Patch - OAAB_Data"
+instances:
+  - conditions:
+      - object_type: Creature
+      - record_id: "^ab_fau_spiderblackbby$"
+      - is_dead: false
+      - is_respawning: false
+    once: true
+    actions:
+      - replace:
+          scrib: 1
+  - conditions:
+      - object_type: Creature
+      - record_id: "^ab_fau_spiderparasolbby$"
+      - is_dead: false
+      - is_respawning: false
+    once: true
+    actions:
+      - replace:
+          scrib: 1
+  - conditions:
+      - object_type: Creature
+      - record_id: "^ab_fau_spiderblack$"
+      - is_dead: false
+      - is_respawning: false
+    once: true
+    actions:
+      - replace:
+          rat: 1
+  # Matron replacements intentionally do not retain the spiderling spawn scripts.
+  - conditions:
+      - object_type: Creature
+      - record_id: "^ab_fau_spiderblacklrg$"
+      - is_dead: false
+      - is_respawning: false
+    once: true
+    actions:
+      - replace:
+          rat: 1
+  - conditions:
+      - object_type: Creature
+      - record_id: "^ab_fau_spiderparasollrg$"
+      - is_dead: false
+      - is_respawning: false
+    once: true
+    actions:
+      - replace:
+          nix-hound: 1

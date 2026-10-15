@@ -1,0 +1,88 @@
+# Requires Static Switching System instance rules and H3lp Yours3lf.
+# Keep this filename stable: SSS uses the module path for saved once tracking.
+# Exact IDs leave custom TR quest creatures and summoned variants unchanged.
+# T_Dae_Cre_SpiderDae_02 is deliberately omitted: TR quests require its soul.
+# The loose meshes cover these exceptions and creatures before SSS processes them.
+log_name: "Arachnophobia Patch - Tamriel_Data"
+instances:
+  - conditions:
+      - object_type: Creature
+      - record_id: "^t_glb_fau_lrgspider_03$"
+      - is_dead: false
+      - is_respawning: false
+    once: true
+    actions:
+      - replace:
+          scrib: 1
+  - conditions:
+      - object_type: Creature
+      - record_id: "^t_glb_fau_lrgspider_01$"
+      - is_dead: false
+      - is_respawning: false
+    once: true
+    actions:
+      - replace:
+          rat: 1
+  - conditions:
+      - object_type: Creature
+      - record_id: "^t_glb_fau_lrgspider_02$"
+      - is_dead: false
+      - is_respawning: false
+    once: true
+    actions:
+      - replace:
+          nix-hound: 1
+  - conditions:
+      - object_type: Creature
+      - record_id: "^t_dae_cre_drid_01$"
+      - is_dead: false
+      - is_respawning: false
+    once: true
+    actions:
+      - replace:
+          daedroth: 1
+  - conditions:
+      - object_type: Creature
+      - record_id: "^t_dae_cre_dridbs_01$"
+      - is_dead: false
+      - is_respawning: false
+    once: true
+    actions:
+      - replace:
+          "golden saint": 1
+  - conditions:
+      - object_type: Creature
+      - record_id: "^t_dae_cre_dridgr_01$"
+      - is_dead: false
+      - is_respawning: false
+    once: true
+    actions:
+      - replace:
+          "golden saint": 1
+  - conditions:
+      - object_type: Creature
+      - record_id: "^t_dae_cre_dridls_01$"
+      - is_dead: false
+      - is_respawning: false
+    once: true
+    actions:
+      - replace:
+          clannfear: 1
+  - conditions:
+      - object_type: Creature
+      - record_id: "^t_dae_cre_spiderdae_01$"
+      - is_dead: false
+      - is_respawning: false
+    once: true
+    actions:
+      - replace:
+          t_dae_cre_dremcyr_01: 1
+  - conditions:
+      - object_type: Creature
+      - record_id: "^t_dae_cre_spiderdae_03$"
+      - is_dead: false
+      - is_respawning: false
+    once: true
+    actions:
+      - replace:
+          t_dae_cre_dremkynr_01: 1

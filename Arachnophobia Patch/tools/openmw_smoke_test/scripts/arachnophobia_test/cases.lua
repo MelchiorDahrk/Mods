@@ -1,0 +1,17 @@
+return {
+{"ab_fau_spiderblackbby","scrib"},
+{"ab_fau_spiderparasolbby","scrib"},
+{"ab_fau_spiderblack","rat"},
+{"ab_fau_spiderblacklrg","rat"},
+{"ab_fau_spiderparasollrg","nix-hound"},
+{"t_glb_fau_lrgspider_03","scrib"},
+{"t_glb_fau_lrgspider_01","rat"},
+{"t_glb_fau_lrgspider_02","nix-hound"},
+{"t_dae_cre_drid_01","daedroth"},
+{"t_dae_cre_dridbs_01","golden saint"},
+{"t_dae_cre_dridgr_01","golden saint"},
+{"t_dae_cre_dridls_01","clannfear"},
+{"t_dae_cre_spiderdae_01","t_dae_cre_dremcyr_01"},
+{"t_dae_cre_spiderdae_03","t_dae_cre_dremkynr_01"},
+{"centurion_spider","centurion_sphere"},
+}

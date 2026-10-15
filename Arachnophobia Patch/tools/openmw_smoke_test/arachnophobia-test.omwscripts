@@ -1,0 +1,4 @@
+GLOBAL: scripts/arachnophobia_test/global.lua
+PLAYER: scripts/arachnophobia_test/player.lua
+MENU: scripts/arachnophobia_test/menu.lua
+CUSTOM: scripts/arachnophobia_test/dead.lua

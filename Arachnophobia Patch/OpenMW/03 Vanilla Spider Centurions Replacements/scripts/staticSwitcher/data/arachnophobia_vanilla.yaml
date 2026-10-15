@@ -1,0 +1,14 @@
+# Requires Static Switching System instance rules and H3lp Yours3lf.
+# Keep this filename stable: SSS uses the module path for saved once tracking.
+# Exact matching preserves quest centurions, which use the scarab mesh fallback.
+log_name: "Arachnophobia Patch - Vanilla"
+instances:
+  - conditions:
+      - object_type: Creature
+      - record_id: "^centurion_spider$"
+      - is_dead: false
+      - is_respawning: false
+    once: true
+    actions:
+      - replace:
+          centurion_sphere: 1

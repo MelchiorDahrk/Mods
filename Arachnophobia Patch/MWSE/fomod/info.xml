@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<fomod>
+	<Name>Arachnophobia Patch - MWSE</Name>
+	<Author>Melchior Dahrk</Author>
+	<Version>1.6.0</Version>
+	<Website>https://www.nexusmods.com/morrowind/mods/52476</Website>
+	<Description>Self-contained MWSE package. Includes replacement meshes, animations, optional moss web textures, the OAAB web-trap patch, and optional MWSE Dynamic Object Replacer creature replacements.</Description>
+	<Groups>
+		<element>Patches</element>
+	</Groups>
+</fomod>

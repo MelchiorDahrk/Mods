@@ -1,0 +1,37 @@
+Arachnophobia Patch for Morrowind - OpenMW
+
+Replaces spider and spider-daedra meshes with mudcrabs, spider centurion meshes with scarabs, and optional web textures with moss. Covers vanilla Morrowind, OAAB_Data, and Tamriel_Data, including custom creatures that use those meshes.
+
+Installation with a mod manager
+
+1. Install this OpenMW archive. It contains all visual assets; no other Arachnophobia Patch download is required.
+2. Choose Static Switching System replacements or Visual replacements only.
+   - Runtime replacements require Static Switching System with instance-rule support and H3lp Yours3lf. Enable H3lp Yours3lf.esp before Static Switching System.esp. FlexTag is not required.
+   - Visual-only mode requires neither runtime framework. Creatures retain their original records, names, and behavior.
+3. Select the creature components and web textures you want.
+4. Expose the installed mod data directory through a data= entry in openmw.cfg, or use your mod manager's OpenMW export. SSS discovers the selected YAML modules automatically; they do not need their own content= entry.
+
+Static Switching System: https://www.nexusmods.com/morrowind/mods/57282
+H3lp Yours3lf: https://www.nexusmods.com/morrowind/mods/56417
+
+
+## Runtime behavior
+SSS replaces 15 ordinary creature records when all three components are selected. Dead creatures, respawning base records (including OAAB parasol spiders), quest variants, and the soul-sensitive matriarch retain their original records and use the replacement meshes.
+
+Runtime replacements create fresh actors and do not copy the original actor's health, inventory changes, scripts, or soul identity. Generated replacements do not inherit native respawning; leveled encounter resets still need broader gameplay testing. Replacements persist in saves: removing or editing a YAML module does not undo actors already replaced. Keep module filenames stable for saved once-tracking.
+
+The installer lets you select vanilla spider centurions, OAAB_Data creatures, Tamriel_Data creatures, and optional moss textures independently. Each selected creature component always includes its replacement meshes and animation files, including in visual-only mode. Quest creatures and the Spider Daedra Matriarch needed for soul-gem quests keep their original records and use the mesh fallback.
+
+Install after other mods replacing the same meshes or textures so these files take priority.
+
+If OAAB_Data is selected, enable ArachnophobiaPatch_OAAB.ESP after OAAB_Data.esm. It requires Morrowind, Tribunal, Bloodmoon, and OAAB_Data. The ESP replaces AB_WebTrap_s with an empty script, disabling all scripted web-trap behavior, including spiderling spawns. This patch is included in visual-only installations too.
+
+
+## Changelog
+v1.0.0 - Initial release
+v1.1.0 - Mesh replacer now uses mudcrabs. Covers TR Dridrea now.
+v1.2.0 - Updated to include custom creatures in TR
+v1.3.0 - Updated to include centurion spiders. Stopped replacing quest-related spiders from TR to avoid breaking quests (will show up as mudcrabs instead).
+v1.4.0 - Made the archive modular.
+v1.5.0 - Updated to cover TD Spider Daedra. Added fomod.
+v1.6.0 - Added optional OpenMW SSS instance replacements. Fixed the FOMOD missing OAAB web-trap ESP install and duplicate Tamriel_Data MWSE rule keys. Preserved the Spider Daedra Matriarch record required by soul-gem quests.

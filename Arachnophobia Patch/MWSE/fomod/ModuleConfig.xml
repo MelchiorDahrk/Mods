@@ -1,0 +1,146 @@
+<?xml version='1.0' encoding='utf-8'?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://qconsulting.ca/fo3/ModConfig5.0.xsd">
+	<moduleName>Arachnophobia Patch - MWSE</moduleName>
+	<moduleImage path="fomod\images\header.png" />
+	<requiredInstallFiles>
+		<file source="Arachnophobia Patch.txt" destination="Arachnophobia Patch.txt" priority="0" />
+	</requiredInstallFiles>
+	<installSteps order="Explicit">
+		<installStep name="Options">
+			<optionalFileGroups order="Explicit">
+				<group name="Runtime" type="SelectExactlyOne">
+					<plugins order="Explicit">
+						<plugin name="Dynamic Object Replacer replacements">
+							<description>Replaces ordinary creatures using MWSE Dynamic Object Replacer. Requires MWSE and Dynamic Object Replacer. Also installs the mesh fallbacks for quest creatures and unlisted variants.</description>
+							<conditionFlags>
+								<flag name="runtime">On</flag>
+							</conditionFlags>
+							<typeDescriptor>
+								<type name="Optional" />
+							</typeDescriptor>
+						</plugin>
+						<plugin name="Visual replacements only">
+							<description>Installs replacement meshes and optional moss textures for MWSE. Creatures keep their original records and behavior. No runtime replacement framework is required.</description>
+							<files />
+							<typeDescriptor>
+								<type name="Optional" />
+							</typeDescriptor>
+						</plugin>
+					</plugins>
+				</group>
+				<group name="Webs" type="SelectExactlyOne">
+					<plugins order="Explicit">
+						<plugin name="Replace with moss">
+							<description />
+							<files>
+								<folder source="00 Visual Replacements\Textures" destination="Textures" priority="0" />
+							</files>
+							<typeDescriptor>
+								<type name="Optional" />
+							</typeDescriptor>
+						</plugin>
+						<plugin name="Don't change">
+							<description />
+							<files />
+							<typeDescriptor>
+								<type name="Optional" />
+							</typeDescriptor>
+						</plugin>
+					</plugins>
+				</group>
+			</optionalFileGroups>
+		</installStep>
+		<installStep name="Creature Replacements">
+			<optionalFileGroups order="Explicit">
+				<group name="Options" type="SelectAny">
+					<plugins order="Explicit">
+						<plugin name="Vanilla">
+							<description>Includes spider centurions. Quest variants use a scarab mesh while keeping their original records.</description>
+							<conditionFlags>
+								<flag name="vanilla">On</flag>
+							</conditionFlags>
+							<typeDescriptor>
+								<type name="Optional" />
+							</typeDescriptor>
+						</plugin>
+						<plugin name="OAAB_Data">
+							<description>Includes spiders and the web-trap script patch. Requires OAAB_Data, Tribunal, and Bloodmoon. Enable ArachnophobiaPatch_OAAB.ESP after OAAB_Data.esm.</description>
+							<conditionFlags>
+								<flag name="oaab">On</flag>
+							</conditionFlags>
+							<typeDescriptor>
+								<type name="Optional" />
+							</typeDescriptor>
+						</plugin>
+						<plugin name="Tamriel_Data">
+							<description>Includes spiders, dridrea, and spider daedra. Requires Tamriel_Data. Quest creatures and Spider Daedra Matriarchs needed for soul-gem quests use mudcrab meshes while keeping their original records.</description>
+							<conditionFlags>
+								<flag name="tamriel">On</flag>
+							</conditionFlags>
+							<typeDescriptor>
+								<type name="Optional" />
+							</typeDescriptor>
+						</plugin>
+					</plugins>
+				</group>
+			</optionalFileGroups>
+		</installStep>
+	</installSteps>
+	<conditionalFileInstalls>
+		<patterns>
+			<pattern>
+				<dependencies operator="And">
+					<flagDependency flag="vanilla" value="On" />
+				</dependencies>
+				<files>
+					<folder source="00 Visual Replacements\Meshes\r" destination="Meshes\r" priority="0" />
+				</files>
+			</pattern>
+			<pattern>
+				<dependencies operator="And">
+					<flagDependency flag="oaab" value="On" />
+				</dependencies>
+				<files>
+					<folder source="00 Visual Replacements\Meshes\oaab" destination="Meshes\oaab" priority="0" />
+					<file source="01 OAAB_Data Creature Replacements\ArachnophobiaPatch_OAAB.ESP" destination="ArachnophobiaPatch_OAAB.ESP" priority="0" />
+				</files>
+			</pattern>
+			<pattern>
+				<dependencies operator="And">
+					<flagDependency flag="tamriel" value="On" />
+				</dependencies>
+				<files>
+					<folder source="00 Visual Replacements\Meshes\tr" destination="Meshes\tr" priority="0" />
+					<folder source="00 Visual Replacements\Meshes\sky" destination="Meshes\sky" priority="0" />
+				</files>
+			</pattern>
+			<pattern>
+				<dependencies operator="And">
+					<flagDependency flag="runtime" value="On" />
+					<flagDependency flag="vanilla" value="On" />
+				</dependencies>
+				<files>
+					<folder source="03 Vanilla Spider Centurions Replacements\MWSE" destination="MWSE" priority="0" />
+				</files>
+			</pattern>
+			<pattern>
+				<dependencies operator="And">
+					<flagDependency flag="runtime" value="On" />
+					<flagDependency flag="oaab" value="On" />
+				</dependencies>
+				<files>
+					<folder source="01 OAAB_Data Creature Replacements\MWSE" destination="MWSE" priority="0" />
+				</files>
+			</pattern>
+			<pattern>
+				<dependencies operator="And">
+					<flagDependency flag="runtime" value="On" />
+					<flagDependency flag="tamriel" value="On" />
+				</dependencies>
+				<files>
+					<folder source="02 Tamriel_Data Creature Replacements\MWSE" destination="MWSE" priority="0" />
+				</files>
+			</pattern>
+		</patterns>
+	</conditionalFileInstalls>
+</config>

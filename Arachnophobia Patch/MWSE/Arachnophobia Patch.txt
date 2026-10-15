@@ -1,0 +1,31 @@
+Arachnophobia Patch for Morrowind - MWSE
+
+Replaces spider and spider-daedra meshes with mudcrabs, spider centurion meshes with scarabs, and optional web textures with moss. Covers vanilla Morrowind, OAAB_Data, and Tamriel_Data, including custom creatures that use those meshes.
+
+Installation with a mod manager
+
+1. Install this MWSE archive. It contains all visual assets; no other Arachnophobia Patch download is required.
+2. Choose Dynamic Object Replacer replacements or Visual replacements only.
+   - Runtime replacements require MWSE and Dynamic Object Replacer: https://www.nexusmods.com/morrowind/mods/52105
+   - Visual-only mode requires neither runtime framework. Creatures retain their original records, names, and behavior.
+3. Select the creature components and web textures you want.
+
+
+## Runtime behavior
+Dynamic Object Replacer replaces 16 ordinary creature records when all three components are selected. Quest variants and the soul-sensitive Spider Daedra Matriarch retain their original records and use the replacement meshes. Runtime swaps change the creature record and its associated gameplay properties.
+
+The installer lets you select vanilla spider centurions, OAAB_Data creatures, Tamriel_Data creatures, and optional moss textures independently. Each selected creature component always includes its replacement meshes and animation files, including in visual-only mode. Quest creatures and the Spider Daedra Matriarch needed for soul-gem quests keep their original records and use the mesh fallback.
+
+Install after other mods replacing the same meshes or textures so these files take priority.
+
+If OAAB_Data is selected, enable ArachnophobiaPatch_OAAB.ESP after OAAB_Data.esm. It requires Morrowind, Tribunal, Bloodmoon, and OAAB_Data. The ESP replaces AB_WebTrap_s with an empty script, disabling all scripted web-trap behavior, including spiderling spawns. This patch is included in visual-only installations too.
+
+
+## Changelog
+v1.0.0 - Initial release
+v1.1.0 - Mesh replacer now uses mudcrabs. Covers TR Dridrea now.
+v1.2.0 - Updated to include custom creatures in TR
+v1.3.0 - Updated to include centurion spiders. Stopped replacing quest-related spiders from TR to avoid breaking quests (will show up as mudcrabs instead).
+v1.4.0 - Made the archive modular.
+v1.5.0 - Updated to cover TD Spider Daedra. Added fomod.
+v1.6.0 - Added optional OpenMW SSS instance replacements. Fixed the FOMOD missing OAAB web-trap ESP install and duplicate Tamriel_Data MWSE rule keys. Preserved the Spider Daedra Matriarch record required by soul-gem quests.
