@@ -1,0 +1,68 @@
+Unto Dust
+by Melchior Dahrk & Greatness7
+
+"...unto dust shalt thou return."
+- Genesis 3:19b
+==============================
+This mod adds a floating dust effect in the air to places where the dead are entombed; similar to what is seen in Skyrim barrows. So now places like Ancestral Tombs, Nordic Barrows, and Ashlander Burials will display this effect. I was inspired to make this mod when I noticed an unused texture in the game for a dust particle. The reasoning is that the dust motes are stirred into the air by the player's disturbance of the tomb and the movement of its guardians. Unfortunately, the vanilla game does not support particle rotations, but I managed to fake it with a texture flip controller to add some dynamic behavior to the particles.
+
+Thanks to MWSE, the dust effect will appear in any mod-added Tombs, Barrows, Crypts, Catacombs, & Burials. This is accomplished by checking names. Which is one of the reasons that "grave" was omitted to avoid affecting the player home "Uvirith's Grave". If you notice any cells from mods which should not be included, let me know and I can investigate adding a blacklist.
+
+This effect has been heavily optimized and I never dropped below 60 FPS during testing. Only one effect is ever present in a tomb at a time because it follows the player thanks to MWSE-lua enabling us to attach it directly to the camera.
+
+
+Requirements:
+==============================
+This mod uses the pre-release 2.1-branch of MWSE, currently in development. By using this mod, you're basically asking to be a tester! If you encounter any issues please post a report, ideally on the MWSE bug tracker (https://github.com/MWSE/MWSE/issues). You can download the latest nightly build from the link below.
+
+MWSE Download (Direct): https://github.com/MWSE/MWSE/releases/download/build-automatic/mwse.zip
+
+This this mod requires Morrowind Graphic Extender (MGE-XE) version 0.10.1. Older versions will not work with MWSE 2.0+! Additionally, it will require the latest nightly build of MWSE 2.1.
+
+MGE XE Download: https://www.nexusmods.com/morrowind/mods/41102
+
+This mod will NOT work with OpenMW.
+
+
+Installation:
+==============================
+This archive is set up to work with a mod installer like Wrye Mash. To install it manually, copy the contents of the 00 Core and either the 01 Default Dust or 01 Denser Dust (NOT BOTH) folders into your Data Files directory. There is no plugin to activate.
+
+00 Core - Required files
+
+01 Default Dust - Subtle effect to simulate the air being stirred but not too many particles. Expect to notice a few motes as you walk through a tomb and while you stand still, observing. Pick only one dust variant.
+
+01 Denser Dust - Default too subtle for you? Install this if you have a hard time noticing the effect or just think it looks better with more dust in tombs. Expect to always see multiple dust motes in the air. Pick only one dust variant.
+
+
+Permissions:
+==============================
+You are free to:
+Adapt - remix, transform, and build upon the material
+
+Under the following terms:
+Attribution - You must give appropriate credit.
+Non-Commercial - You may not use the material for commercial purposes (i.e. no payment of monetary compensation as a condition for the download).
+
+If author(s) is/are not able to be contacted through a reasonable effort,
+Then you are free to copy and redistribute the material for use in The Elder Scrolls III: Morrowind
+
+
+To modders:
+==============================
+Please note that the particle effect is specifically tailored to work in this mod. For instance, it has an enormous radius to deal with a culling issue and if you attempt to use it in a more traditional way (e.g. through a plugin), it may never be culled. There are some other idiosyncrasies with it which may cause issues in such a usage. Just be cognizant of this and test thoroughly before releasing anything using this effect as a base!
+
+One thing which was learned during the development of this mod is that MGE XE has an internal issue which makes it very unstable (e.g. prone to frequent and persistent CTDs and perhaps other unknown issues) when used in combination with particle effects using a zbuffer. It is recommended that you set those to Read Only (Flag 1) if you need a zbuffer.
+
+
+Credits:
+==============================
+NullCascade for all of his work on MWSE 2.1
+Greatness7 for coding this mod and extensive troubleshooting on the particle effect
+Niftools Developers for Nifskope
+
+
+Changes:
+==============================
+1.0 - Initial Release
+1.1 - Cleaned up code. Mod now affects multiple tomb-like cell-types, not just Ancestral Tombs.
