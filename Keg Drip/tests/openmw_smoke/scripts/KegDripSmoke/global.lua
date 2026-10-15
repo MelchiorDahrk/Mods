@@ -6,7 +6,10 @@ local sources, receivers, animated = {}, {}, {}
 local rayHits, leavingPuddles = {}, {}
 local growingPuddle, initialScale
 local stage, elapsed = 'spawn', 0
-local ids = {furn_com_kegstand_dr=true, furn_de_kegstand_dr=true, furn_winekeg00_dr=true}
+local ids = {
+    furn_com_kegstand_dr=true, furn_de_kegstand_dr=true, furn_winekeg00_dr=true,
+    hf_furn_kegstand_01_dr=true, hr_furn_kegstand_01_dr=true, sky_furn_n_m_keg_01_dr=true,
+}
 local function check(value, message)
     assert(value, 'KEG DRIP TEST FAILED: '..message)
 end
@@ -66,6 +69,9 @@ local function spawn()
             'furn_winekeg00_dr', util.vector3(0,-43.4,-69.5), true},
         {'furn_com_kegstand', 'furn_com_kegstand_dr', util.vector3(0,-54.4,-64), true},
         {'furn_de_kegstand', 'furn_de_kegstand_dr', util.vector3(0,-54.4,-64), false},
+        {'kd_test_hf_kegstand', 'hf_furn_kegstand_01_dr', util.vector3(0,-54.4,-64), true},
+        {'kd_test_hr_kegstand', 'hr_furn_kegstand_01_dr', util.vector3(0,-54.4,-64), true},
+        {'kd_test_sky_keg', 'sky_furn_n_m_keg_01_dr', util.vector3(0,-54.4,-64), true},
     }
     for i, case in ipairs(cases) do
         local object = world.createObject(case[1])
@@ -82,7 +88,7 @@ local function spawn()
         bucket:teleport(player.cell, position+rotation*(case[3]*1.25)+offset, {onGround=false})
         receivers[#receivers+1] = bucket
     end
-    print('KEG DRIP TEST: API revision '..core.API_REVISION..', spawned four upright kegs and one tilted exclusion')
+    print('KEG DRIP TEST: API revision '..core.API_REVISION..', spawned seven upright kegs and one tilted exclusion')
 end
 return {
     eventHandlers = {
@@ -99,13 +105,13 @@ return {
             local ok, message = pcall(function()
                 if stage=='spawn' then spawn(); stage='initial'
                 elseif stage=='initial' then
-                    verify(4)
+                    verify(7)
                     check(puddleAt(sources[4]), 'uncovered keg did not form a puddle')
                     puddleAt(sources[4]):setScale(0.8)
                     world.players[1]:sendEvent('KegDripSmokeSave', {})
                     stage='await-load'
                 elseif stage=='loaded' then
-                    verify(4, false)
+                    verify(7, false)
                     local puddle = puddleAt(sources[4])
                     check(not puddle or puddle.scale < 0.2, 'puddle survived save/load')
                     leavingPuddles = puddles(sources[1].object.cell)
@@ -118,11 +124,11 @@ return {
                     world.players[1]:teleport(sources[1].object.cell, util.vector3(0,0,128))
                     stage='returned'
                 elseif stage=='returned' then
-                    verify(4)
+                    verify(7)
                     receivers[1]:remove()
                     stage='receiver-removed'
                 elseif stage=='receiver-removed' then
-                    verify(4)
+                    verify(7)
                     growingPuddle = puddleAt(sources[1])
                     check(growingPuddle and growingPuddle.scale > 0 and growingPuddle.scale < 0.2, 'removed bucket did not start a small puddle')
                     local foundRay = false
@@ -144,11 +150,11 @@ return {
                     duplicate:teleport(list[1].cell,list[1].position,{rotation=list[1].rotation,onGround=false})
                     stage='duplicate'
                 elseif stage=='duplicate' then
-                    verify(4, false)
+                    verify(7, false)
                     check(growingPuddle.scale == 1, 'puddle grew beyond scale 1.0')
                     local count=0
                     for _ in pairs(animated) do count=count+1 end
-                    check(count>=3, 'not all three models passed animation probes')
+                    check(count==6, 'not all six models passed animation probes')
                     world.players[1]:teleport(world.getExteriorCell(40,40), util.vector3(40*8192+4096,40*8192+4096,100))
                     stage='exterior-spawn'
                 elseif stage=='exterior-spawn' then

@@ -3,6 +3,9 @@ local kegs = {
     ["f\\furn_com_kegstand.nif"] = { id = "furn_com_kegstand_dr", offset = tes3vector3.new(0, -54.4, -64) },
     ["f\\furn_de_kegstand.nif"] = { id = "furn_de_kegstand_dr", offset = tes3vector3.new(0, -54.4, -64) },
     ["f\\furn_winekeg00.nif"] = { id = "furn_winekeg00_dr", offset = tes3vector3.new(0, -43.4, -69.5) },
+    ["hf\\f\\hf_furn_kegstand_01.nif"] = { id = "hf_furn_kegstand_01_dr", offset = tes3vector3.new(0, -54.4, -64) },
+    ["hr\\f\\hr_furn_kegstand_01.nif"] = { id = "hr_furn_kegstand_01_dr", offset = tes3vector3.new(0, -54.4, -64) },
+    ["sky\\f\\sky_furn_n_m_keg_01.nif"] = { id = "sky_furn_n_m_keg_01_dr", offset = tes3vector3.new(0, -54.4, -64) },
 }
 local effectIds = {}
 for _, keg in pairs(kegs) do effectIds[keg.id] = true end
@@ -64,12 +67,15 @@ local function refreshCell(cell, dt)
     end
 
     local wasModified = cell.modified
-    for keg in cell:iterateReferences(tes3.objectType.static) do
+    for keg in cell:iterateReferences() do
         local definition = kegs[normalizeMesh(keg.object.mesh)]
-        local rotation = tes3matrix33.new()
-        local o = keg.orientation
-        rotation:fromEulerXYZ(o.x, o.y, o.z)
-        if definition and available(keg) and keg.sceneNode and (rotation * up).z >= minimumUp then
+        local rotation
+        if definition and available(keg) and keg.sceneNode then
+            rotation = tes3matrix33.new()
+            local o = keg.orientation
+            rotation:fromEulerXYZ(o.x, o.y, o.z)
+        end
+        if rotation and (rotation * up).z >= minimumUp then
             local effect
             for _, candidate in ipairs(effects) do
                 if not used[candidate] and available(candidate)

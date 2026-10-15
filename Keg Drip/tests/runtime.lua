@@ -26,12 +26,17 @@ local definitions = {
     {'f/Furn_Com_Kegstand.NIF', 'furn_com_kegstand_dr', v(0, -54.4, -64)},
     {'meshes\\f\\FURN_DE_KEGSTAND.NIF', 'furn_de_kegstand_dr', v(0, -54.4, -64)},
     {'f/furn_winekeg00.nif', 'furn_winekeg00_dr', v(0, -43.4, -69.5)},
+    {'meshes/HF/F/HF_Furn_Kegstand_01.NIF', 'hf_furn_kegstand_01_dr', v(0, -54.4, -64)},
+    {'hr\\f\\hr_furn_kegstand_01.nif', 'hr_furn_kegstand_01_dr', v(0, -54.4, -64)},
+    {'SKY/f/sky_furn_n_m_keg_01.nif', 'sky_furn_n_m_keg_01_dr', v(0, -54.4, -64)},
 }
+local dripIds = {}
+for _, definition in ipairs(definitions) do dripIds[definition[2]] = true end
 
 local function run(runtime)
     local cells, serial, creates, animations = {}, 0, 0, 0
     local groundZ, groundNormal, missRay, rays = -20, v(0,0,1), false, {}
-    local globalEvents
+    local globalEvents, objectTypes
     local handlers, callbacks = {}, {}
     local function queue(callback) callbacks[#callbacks+1]=callback end
     local function cell(exterior, x, y)
@@ -40,7 +45,7 @@ local function run(runtime)
         function c:getAll(kind)
             local result = {}
             for _, object in ipairs(self.objects) do
-                if object.kind == kind and not object.deleted then result[#result+1] = object end
+                if (not kind or object.kind == kind) and not object.deleted then result[#result+1] = object end
             end
             return result
         end
@@ -58,6 +63,7 @@ local function run(runtime)
             rotation=r(angles and angles.x, angles and angles.y, angles and angles.z), scale=scale or 1,
             cell=c, sceneNode={appCulled=false}, tempData={}, scripts={}, modified=false}
         o.object = {id=o.recordId, objectType=kind, mesh=mesh}
+        o.type = objectTypes and objectTypes[kind]
         function o:isValid() return not self.deleted end
         function o:remove() self.count=0; self.deleted=true end
         function o:delete() self:remove(); self.modified=true; self.cell.modified=true end
@@ -112,7 +118,7 @@ local function run(runtime)
                 end,
                 rayTest=function(options)
                     assert(options.direction.z==-1 and options.maxDistance==4096 and options.returnNormal)
-                    assert(options.ignore[1].kind=='static' and options.ignore[2].kind=='activator')
+                    assert(options.ignore[1].object.mesh and options.ignore[2].kind=='activator')
                     rays[#rays+1]=options.position
                     if missRay then return nil end
                     return {intersection=v(options.position.x,options.position.y,groundZ),normal=groundNormal}
@@ -121,9 +127,16 @@ local function run(runtime)
         else
             local function kind(name)
                 return {objectIsInstance=function(o) return o.kind==name end,
-                    record=function(o) return {model=o.object.mesh} end}
+                    record=function(o)
+                        assert(o.kind==name, 'record lookup used the wrong object type')
+                        return {model=o.object.mesh}
+                    end}
             end
-            local types={Static=kind('static'), Activator=kind('activator'), Miscellaneous=kind('misc')}
+            objectTypes={static=kind('static'), activator=kind('activator'), misc=kind('misc'), container=kind('container'), marker={}}
+            local types={Static=objectTypes.static, Activator=objectTypes.activator, Miscellaneous=objectTypes.misc}
+            for _, c in ipairs(cells) do
+                for _, o in ipairs(c.objects) do o.type=objectTypes[o.kind] end
+            end
             -- The engine uses type objects as getAll's argument.
             for _, c in ipairs(cells) do
                 local old=c.getAll
@@ -148,7 +161,7 @@ local function run(runtime)
             end}
             package.loaded['openmw.nearby']={COLLISION_TYPE={World=1,HeightMap=2},castRay=function(from,to,options)
                 assert(to.x==from.x and to.y==from.y and to.z==from.z-4096)
-                assert(options.ignore.kind=='static' and options.collisionType==3)
+                assert(options.ignore.object.mesh and options.collisionType==3)
                 rays[#rays+1]=from
                 if missRay then return {hit=false} end
                 return {hit=true,hitPos=v(from.x,from.y,groundZ),hitNormal=groundNormal}
@@ -170,19 +183,26 @@ local function run(runtime)
         flush(); flush()
     end
     local function settle() tick(); tick() end -- OpenMW round trip for local raycasts.
-    local sources, receivers = {}, {}
+    local sources, receivers, originalTypes = {}, {}, {}
     local function pair(index, options)
         options=options or {}
         local definition=definitions[index]
         local c=options.cell or here
         local angles=options.angles or v(0,0,math.pi/2)
-        local keg=object(c,'static',definition[1],v(serial*200,0,128),angles,options.scale or 1.5)
+        local keg=object(c,options.kind or 'static',definition[1],v(serial*200,0,128),angles,options.scale or 1.5)
         local landing=keg.position+keg.rotation*(definition[3]*keg.scale)
         local bucket=object(c,'misc',options.mesh or 'm/Mod_BuCkEt.nif',landing+(options.delta or v(0,0,0)))
         sources[#sources+1]=keg; receivers[#receivers+1]=bucket
+        originalTypes[keg]=keg.object.objectType
         return keg, bucket
     end
-    for i=1,3 do pair(i) end
+    for i=1,#definitions do pair(i) end
+    local otherTypes = {}
+    for _, kind in ipairs({'container', 'activator', 'misc'}) do
+        local keg, bucket=pair(1,{kind=kind})
+        otherTypes[#otherTypes+1]={keg=keg, bucket=bucket}
+    end
+    local expectedDrips = #definitions + #otherTypes + 5
     local tilted=pair(1,{angles=v(math.pi/4,0,0)})
     local upside=pair(1,{angles=v(math.pi,0,0)})
     local distant=pair(1,{delta=v(22.1,0,0)})
@@ -195,10 +215,12 @@ local function run(runtime)
     object(here,'static',nil,v(0,0,0))
     object(here,'misc',nil,v(0,0,0))
     object(here,'static','f/unrelated.nif',v(0,0,0))
+    object(here,'marker',nil,v(0,0,0)) -- Some OpenMW types have no record API.
     local function effects(c, puddles)
         local result={}
         for _, o in ipairs(c.objects) do
-            if o.kind=='activator' and o.count>0 and (o.recordId:lower()=='kegpuddle')==(puddles or false) then
+            if o.kind=='activator' and o.count>0
+                and ((puddles and o.recordId:lower()=='kegpuddle') or (not puddles and dripIds[o.recordId:lower()])) then
                 result[#result+1]=o
             end
         end
@@ -207,19 +229,25 @@ local function run(runtime)
     local function assertSources()
         for _, keg in ipairs(sources) do
             assert(not keg.sceneNode.appCulled and not keg.modified, 'source keg was changed')
-            assert(keg.object.objectType=='static', 'source keg was replaced')
+            assert(keg.object.objectType==originalTypes[keg], 'source keg was replaced')
         end
         assert(disabledKeg.disabled and not disabledKeg.enabled)
         assert(deletedKeg.deleted)
     end
     settle()
-    assert(#effects(here)==8, runtime..': eligibility or exclusions failed')
+    assert(#effects(here)==expectedDrips, runtime..': eligibility or exclusions failed')
     assert(#effects(here,true)==4, runtime..': uncovered kegs did not form puddles')
-    for _, keg in ipairs({sources[1],sources[2],sources[3],boundary}) do
+    local transformed = {boundary}
+    for i=1,#definitions do transformed[#transformed+1]=sources[i] end
+    for _, source in ipairs(otherTypes) do transformed[#transformed+1]=source.keg end
+    for _, keg in ipairs(transformed) do
         local matched=false
         for _, effect in ipairs(effects(here)) do
             if effect.position:distance(keg.position)<0.01 then
                 matched=true; assert(effect.scale==keg.scale)
+                for i=1,#definitions do
+                    if keg==sources[i] then assert(effect.recordId==definitions[i][2], 'wrong drip record') end
+                end
                 if runtime=='MWSE' then assert(effect.orientation==keg.orientation)
                 else assert(effect.rotation==keg.rotation and effect:hasScript('scripts/KegDrip/effect.lua')) end
             end
@@ -233,8 +261,8 @@ local function run(runtime)
         assert(puddle.scale>0 and puddle.scale<0.1, 'puddle did not start small')
     end
     for _=1,10 do tick() end
-    assert(creates==12,'duplicates during repeated refresh')
-    if runtime=='MWSE' then assert(animations==8,'animations restarted every scan') end
+    assert(creates==expectedDrips+4,'duplicates during repeated refresh')
+    if runtime=='MWSE' then assert(animations==expectedDrips,'animations restarted every scan') end
     local oldPuddle=effects(here,true)[1]
     assert(oldPuddle.scale>0.1 and oldPuddle.scale<1,'puddle did not grow slowly')
     local before=creates
@@ -247,7 +275,7 @@ local function run(runtime)
         load(); handlers.onLoad()
     end
     settle()
-    assert(#effects(here)==8 and creates==before+4,'drips duplicated or puddles not reset on load')
+    assert(#effects(here)==expectedDrips and creates==before+4,'drips duplicated or puddles not reset on load')
     assert(oldPuddle.deleted,'puddle survived reload')
     local leaving=effects(here,true)[1]
     if runtime=='MWSE' then handlers.cellDeactivated({cell=here}) end
@@ -256,17 +284,17 @@ local function run(runtime)
     player.cell=here; activeCells={here}
     if runtime=='MWSE' then handlers.cellActivated({cell=here}); flush() end
     settle()
-    assert(#effects(here)==8 and #effects(here,true)==4,'cell re-entry did not restart puddles')
+    assert(#effects(here)==expectedDrips and #effects(here,true)==4,'cell re-entry did not restart puddles')
     local existing=effects(here)[1]
     object(here,'activator',nil,existing.position,existing.orientation,existing.scale,existing.recordId).rotation=existing.rotation
-    tick(); assert(#effects(here)==8,'legacy duplicate not cleaned')
+    tick(); assert(#effects(here)==expectedDrips,'legacy duplicate not cleaned')
     local p=effects(here,true)[1]
     object(here,'activator',nil,p.position,p.orientation,p.scale,p.recordId).rotation=p.rotation
     tick(); assert(#effects(here,true)==4,'duplicate puddle not cleaned')
     local firstDrip=effects(here)[1]
     receivers[1].disabled=true; receivers[1].enabled=false
     groundNormal=v(0.3,0.4,math.sqrt(0.75))
-    settle(); assert(#effects(here)==8 and #effects(here,true)==5,'removed receiver stopped drip or failed to form puddle')
+    settle(); assert(#effects(here)==expectedDrips and #effects(here,true)==5,'removed receiver stopped drip or failed to form puddle')
     assert(firstDrip==effects(here)[1],'removing receiver recreated drip')
     local landing=sources[1].position+sources[1].rotation*(definitions[1][3]*sources[1].scale)
     local under
@@ -278,21 +306,43 @@ local function run(runtime)
     assert((normal-groundNormal):length()<0.001,'puddle not aligned to sloped ground')
     receivers[1].disabled=false; receivers[1].enabled=true
     local paused=under.scale
-    tick(5); assert(under.scale==paused and #effects(here)==8,'restored receiver did not pause puddle growth')
+    tick(5); assert(under.scale==paused and #effects(here)==expectedDrips,'restored receiver did not pause puddle growth')
     receivers[1].position=receivers[1].position+v(100,0,0)
-    tick(); assert(under.scale>paused and #effects(here)==8,'moving receiver did not resume growth')
+    tick(); assert(under.scale>paused and #effects(here)==expectedDrips,'moving receiver did not resume growth')
     tick(120); assert(under.scale==1,'puddle did not cap at exactly 1.0')
     tick(120); assert(under.scale==1,'puddle exceeded 1.0')
     sources[2].disabled=true; sources[2].enabled=false
-    tick(); assert(#effects(here)==7,'disabled keg still drips')
+    tick(); assert(#effects(here)==expectedDrips-1,'disabled keg still drips')
     here.modified=true
     receivers[3].deleted=true
     missRay=true
-    settle(); assert(#effects(here)==7 and #effects(here,true)==5 and here.modified,'ray miss stopped drip, spawned puddle, or lost modified cell state')
+    settle(); assert(#effects(here)==expectedDrips-1 and #effects(here,true)==5 and here.modified,'ray miss stopped drip, spawned puddle, or lost modified cell state')
     missRay=false
     settle(); assert(#effects(here,true)==6,'failed raycast was not retried')
+    for _, source in ipairs(otherTypes) do
+        source.bucket.deleted=true
+        settle()
+        assert(#effects(here,true)==7, 'non-static keg did not form a puddle')
+        local oldDrip
+        for _, effect in ipairs(effects(here)) do
+            if effect.position:distance(source.keg.position)<0.01 then oldDrip=effect end
+        end
+        assert(oldDrip, 'non-static keg stopped dripping')
+        source.keg.position=source.keg.position+v(40,0,0)
+        settle()
+        assert(oldDrip.deleted and #effects(here)==expectedDrips-1, 'moving non-static keg left a stale or duplicate drip')
+        local moved=false
+        for _, effect in ipairs(effects(here)) do
+            if effect.position:distance(source.keg.position)<0.01 then moved=true end
+        end
+        assert(moved, 'drip did not follow non-static keg')
+        source.keg.deleted=true
+        settle()
+        expectedDrips=expectedDrips-1
+        assert(#effects(here)==expectedDrips-1 and #effects(here,true)==6, 'removed non-static keg left an effect')
+    end
     assertSources()
-    print('PASS '..runtime..': continuous drips, ground raycasts, slopes, growth/cap, receiver changes, temporary puddles, duplicates, source preservation')
+    print('PASS '..runtime..': all keg object types, continuous drips, ground raycasts, slopes, growth/cap, receiver changes, temporary puddles, duplicates, source preservation')
 end
 run('MWSE')
 run('OpenMW')

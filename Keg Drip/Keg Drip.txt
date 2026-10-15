@@ -5,39 +5,37 @@ by Melchior Dahrk & Greatness7
 
 There is an unused texture in Morrowind's files called "tx_alpha_kegdrip00". It appears that Bethesda intended to make leaky taps at some point during development but never followed through. This mod takes that texture and adds a dripping effect to select kegstands in the game. Along with the visual effect, you'll notice a subtle dripping sound to increase the immersion.
 
-This mod covers both the common and dunmer style kegstands as well as the unused "furn_winekeg00" model. The drip is placed as a separate effect at the keg's position, rotation, and scale. The original keg stays visible and keeps its own mesh, including any mesh replacer you have installed. Uncaught drips form a puddle using the included puddle mesh.
+This mod covers both the common and dunmer style kegstands, the unused "furn_winekeg00" model, and the additional Tamriel Data kegstands. The drip is placed as a separate effect at the keg's position, rotation, and scale. The original keg stays visible and keeps its own mesh, including any mesh replacer you have installed. Uncaught drips form a puddle using the included puddle mesh.
 
-Both runtime versions detect mod-added static kegs that use one of these three standard mesh paths. The keg must be upright (within 5 degrees). The wine keg uses its own tap offset. Nearby cells are checked once per second. An enabled bucket or bowl within 22 units of the drip's landing point catches the drip; moving or picking it up leaves the drip running and starts a puddle below it. A downward raycast finds the surface, and the puddle follows its slope, growing from a tiny spot to a maximum scale of 1.0 over about a minute. Returning the receiver pauses growth. If the ray finds no ground, the drip continues and placement is retried.
+Detects kegs of any object type, including those added by mods, that use one of these mesh paths:
+- f\furn_com_kegstand.nif
+- f\furn_de_kegstand.nif
+- f\furn_winekeg00.nif
+- hf\f\hf_furn_kegstand_01.nif
+- hr\f\hr_furn_kegstand_01.nif
+- sky\f\sky_furn_n_m_keg_01.nif
 
-Puddles are temporary: they are deleted when their cell unloads and start fresh after loading a game. They are never included in saves. The kegPuddle record uses a DontSaveObject script for Morrowind. OpenMW ignores that command, so its Lua module deletes puddles before saving; uncovered taps begin forming new puddles afterward. Existing drip effects are reused on cell re-entry and save/load instead of stacking duplicates.
+The keg must be upright (within 5 degrees). Nearby cells are checked once per second. An enabled bucket or bowl within 22 units of the drip's landing point catches the drip; moving or picking it up leaves the drip running and starts a puddle below it.
 
 
 Installation
 ==============================
 
+Mod manager (FOMOD)
+- Install the archive with a FOMOD-compatible mod manager and choose MWSE or OpenMW.
+- Enable Keg Drip.ESP.
+- For OpenMW, make sure the installed mod is included as a data directory and also enable Keg Drip.omwscripts, with Keg Drip.ESP loading first.
+
+Manual installation
+
 00 Core
-- Includes the meshes, textures, sound, and shared Keg Drip.ESP. Install this module and enable Keg Drip.ESP, then install ONE of the two 01 runtime modules below.
+- Includes the meshes, textures, sound, and shared Keg Drip.ESP. Install this module and enable Keg Drip.ESP, then install ONE of the two 01 modules below.
 
 01 MWSE Version
-- Install the MWSE folder into Data Files. This module dynamically places the separate drip effects at qualifying kegstands, including those added by other mods. The existing animation and sound play on the effect, without hiding or replacing the keg.
-- You must update to the latest version of MWSE for the features in this mod to work properly.
+- Install the MWSE folder into Data Files.
 
 01 OpenMW Version
-- Requires OpenMW 0.49 or later. Add 00 Core and 01 OpenMW as data directories in the OpenMW launcher (or copy their contents into your mod data directory). Enable both Keg Drip.ESP and Keg Drip.omwscripts, with the ESP before the scripts file. No MWSE installation is needed.
-- This module performs the same detection and places the same separate animated effects. It covers the player's interior or the surrounding 3 by 3 exterior cells, including mod-added kegs using the supported mesh paths. The effect's animation includes the drip sound.
-- For manual configuration, add these content entries after Morrowind.esm:
-  content=Keg Drip.ESP
-  content=Keg Drip.omwscripts
-
-Updating from an older version
-- Replace the old mod files with 00 Core and your chosen runtime module. Keg Drip.ESP now lives in 00 Core; keep it enabled. Restart the game before loading your save so any kegs hidden by the old MWSE script have their scene nodes rebuilt. The effect records keep their existing IDs, and duplicates are removed when a cell is checked.
-- The old Non-MWSE and Smoothed modules are no longer part of this package. Remove an older Non-MWSE placement plugin before using the runtime version. Install your preferred keg mesh replacer separately.
-
-
-Uninstalling
-==============================
-
-Disable Keg Drip.ESP and, on OpenMW, Keg Drip.omwscripts. Remove the installed mod files. Original keg references are never disabled, hidden, or replaced by this version. MWSE effects are temporary; OpenMW saves the separate effect references with the plugin. It is recommended that you clean your save game whenever removing plugins.
+- Add as a data directory in the OpenMW launcher (or copy contents into your mod data directory). Enable Keg Drip.omwscripts with Keg Drip.ESP loading before the scripts file.
 
 
 Permissions
@@ -61,12 +59,19 @@ Greatness7 for creating the awesome MWSE script which makes this mod possible!
 gkillhour for the drip sound
 qarl for the keg puddle reflection texture
 NullCascade for all of his work on MWSE 2.0
-Tarius for the Better Kegstands models included with permission
 
 
 Changes
 ==============================
+Version 2.0
+- Added OpenMW support
+- Place separate drip effects instead of replacing kegs
+- Form puddles if buckets are removed
+- Added Tamriel_Data support
+- Added support for non-static kegs
 
-1.0 - initial release
-1.1 - added smoothed option based on Tarius' Better Kegstands
-1.2 - place separate drip effects without replacing kegs; add OpenMW Lua support; prevent duplicate effects; form temporary, raycast puddles when receivers are missing without stopping the drip
+Version 1.1
+- added smoothed option based on Tarius' Better Kegstands
+
+Version 1.0
+- initial release
