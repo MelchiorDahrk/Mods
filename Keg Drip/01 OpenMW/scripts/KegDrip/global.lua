@@ -1,6 +1,27 @@
 local types = require('openmw.types')
 local util = require('openmw.util')
 local world = require('openmw.world')
+local I = require('openmw.interfaces')
+local storage = require('openmw.storage')
+
+I.Settings.registerGroup {
+    key = 'SettingsGlobalKegDrip',
+    page = 'KegDrip',
+    l10n = 'KegDrip',
+    name = 'GroupName',
+    permanentStorage = true,
+    settings = {
+        {
+            key = 'formPuddles',
+            renderer = 'checkbox',
+            name = 'FormPuddlesName',
+            description = 'FormPuddlesDescription',
+            default = true,
+        },
+    },
+}
+local settings = storage.globalSection('SettingsGlobalKegDrip')
+local formPuddles = settings:get('formPuddles') ~= false
 
 -- These records use the existing effect-only NIFs, at the keg's own transform.
 local kegs = {
@@ -70,6 +91,7 @@ local function refreshCell(cell, dt, resetPuddles)
             local record = keg.type.record and keg.type.record(keg)
             local definition = record and kegs[normalizeMesh(record.model)]
             if definition and (keg.rotation * up).z >= minimumUp then
+                local landing = keg.position + keg.rotation * (definition.offset * keg.scale)
                 local effect
                 for _, candidate in ipairs(effects) do
                     if not used[candidate.id] and available(candidate)
@@ -78,47 +100,51 @@ local function refreshCell(cell, dt, resetPuddles)
                         break
                     end
                 end
-                if not effect then
-                    effect = world.createObject(definition.id)
-                    effect:setScale(keg.scale)
-                    effect:addScript(effectScript)
-                    effect:teleport(cell, keg.position, { rotation = keg.rotation, onGround = false })
-                elseif not effect:hasScript(effectScript) then
-                    effect:addScript(effectScript)
-                end
-                used[effect.id] = true
-                local landing = keg.position + keg.rotation * (definition.offset * keg.scale)
-                local covered = hasReceiver(landing, receivers)
-                local puddle, initialScale
-                for _, candidate in ipairs(puddles) do
-                    local delta = candidate.position - landing
-                    if not used[candidate.id] and available(candidate)
-                        and delta.x * delta.x + delta.y * delta.y < 0.25
-                        and delta.z < 32 * keg.scale and delta.z > -4096 then
-                        puddle = candidate
-                        break
+                local covered = (formPuddles or not effect) and hasReceiver(landing, receivers)
+                -- Preserve drips that started before their bucket was removed.
+                if formPuddles or covered or effect then
+                    if not effect then
+                        effect = world.createObject(definition.id)
+                        effect:setScale(keg.scale)
+                        effect:addScript(effectScript)
+                        effect:teleport(cell, keg.position, { rotation = keg.rotation, onGround = false })
+                    elseif not effect:hasScript(effectScript) then
+                        effect:addScript(effectScript)
                     end
-                end
-                if not covered and not puddle then
-                    local hit = ground[effect.id]
-                    if hit and (hit.landing - landing):length() < 0.01 then
-                        puddle = world.createObject(puddleId)
-                        initialScale = 0.01
-                        puddle:setScale(0.01)
-                        puddle:teleport(cell, hit.position, { rotation = hit.rotation, onGround = false })
-                    else
-                        -- Physics raycasts are local-only; the drip's local
-                        -- script reports the surface back to this global script.
-                        effect:sendEvent('KegDripGroundRay', { landing = landing, keg = keg })
+                    used[effect.id] = true
+                    if formPuddles then
+                        local puddle, initialScale
+                        for _, candidate in ipairs(puddles) do
+                            local delta = candidate.position - landing
+                            if not used[candidate.id] and available(candidate)
+                                and delta.x * delta.x + delta.y * delta.y < 0.25
+                                and delta.z < 32 * keg.scale and delta.z > -4096 then
+                                puddle = candidate
+                                break
+                            end
+                        end
+                        if not covered and not puddle then
+                            local hit = ground[effect.id]
+                            if hit and (hit.landing - landing):length() < 0.01 then
+                                puddle = world.createObject(puddleId)
+                                initialScale = 0.01
+                                puddle:setScale(0.01)
+                                puddle:teleport(cell, hit.position, { rotation = hit.rotation, onGround = false })
+                            else
+                                -- Physics raycasts are local-only; the drip's local
+                                -- script reports the surface back to this global script.
+                                effect:sendEvent('KegDripGroundRay', { landing = landing, keg = keg })
+                            end
+                        end
+                        ground[effect.id] = nil
+                        if puddle then
+                            used[puddle.id] = true
+                            temporaryPuddles[puddle.id] = puddle
+                            -- setScale is deferred in OpenMW; a new object still
+                            -- reports scale 1 until the queued action is applied.
+                            if not covered then puddle:setScale(math.min(1, (initialScale or puddle.scale) + dt * puddleGrowth)) end
+                        end
                     end
-                end
-                ground[effect.id] = nil
-                if puddle then
-                    used[puddle.id] = true
-                    temporaryPuddles[puddle.id] = puddle
-                    -- setScale is deferred in OpenMW; a new object still
-                    -- reports scale 1 until the queued action is applied.
-                    if not covered then puddle:setScale(math.min(1, (initialScale or puddle.scale) + dt * puddleGrowth)) end
                 end
             end
         end
@@ -170,7 +196,8 @@ local function refresh(cell, dt)
         end
     end
     for _, candidate in ipairs(cells) do
-        refreshCell(candidate, dt, not containsCell(activeCells, candidate))
+        local newlyActive = not containsCell(activeCells, candidate)
+        if formPuddles or newlyActive then refreshCell(candidate, dt, newlyActive) end
     end
     activeCells = cells
 end
@@ -178,7 +205,7 @@ end
 return {
     eventHandlers = {
         KegDripGround = function(data)
-            if available(data.effect) and effectIds[data.effect.recordId] then
+            if formPuddles and available(data.effect) and effectIds[data.effect.recordId] then
                 ground[data.effect.id] = data
             end
         end,
@@ -200,11 +227,19 @@ return {
             elapsed = 1
         end,
         onUpdate = function(dt)
+            local enabled = settings:get('formPuddles') ~= false
+            if enabled ~= formPuddles then
+                formPuddles = enabled
+                clearPuddles()
+                activeCells = {}
+                previousCell = nil
+                elapsed = 0
+            end
             if dt == 0 then return end
             local player = world.players[1]
             if not player or not player.cell then return end
-            elapsed = elapsed + dt
-            if player.cell ~= previousCell or elapsed >= 1 then
+            if formPuddles then elapsed = elapsed + dt end
+            if player.cell ~= previousCell or (formPuddles and elapsed >= 1) then
                 local growthTime = player.cell == previousCell and elapsed or 0
                 previousCell = player.cell
                 elapsed = 0

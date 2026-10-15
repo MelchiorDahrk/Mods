@@ -21,6 +21,10 @@ assert struct.unpack_from('<I', header, 296)[0] == len(records) - 1
 objects, scripts = {}, {}
 for kind, body in records[1:]:
     fields = dict(chunks(body, struct.Struct('<4sI')))
+    if b'MODL' in fields:
+        model = fields[b'MODL']
+        assert model.endswith(b'\0'), (kind, model)
+        assert len(model) <= 32, f"{kind!r} MODL exceeds 32 bytes: {model!r}"
     if kind == b'ACTI':
         objects[fields[b'NAME'].rstrip(b'\0')] = fields
     elif kind == b'SCPT':
@@ -41,7 +45,7 @@ effects = {
     b'furn_winekeg00_dr': b'f\\furn_winekeg00_dr.nif',
     b'hf_furn_kegstand_01_dr': b'hf\\f\\hf_furn_kegstand_01_dr.nif',
     b'hr_furn_kegstand_01_dr': b'hr\\f\\hr_furn_kegstand_01_dr.nif',
-    b'sky_furn_n_m_keg_01_dr': b'sky\\f\\sky_furn_n_m_keg_01_dr.nif',
+    b'sky_furn_n_m_keg_01_dr': b'sky\\f\\sky_furn_keg_01_dr.nif',
 }
 assert set(objects) == set(effects) | {b'kegPuddle'}
 for record_id, mesh in effects.items():
@@ -51,4 +55,4 @@ for record_id, mesh in effects.items():
     assert path.with_name('x' + path.name).is_file(), path
     assert path.with_name('x' + path.stem + '.kf').is_file(), path
 assert [(kind, body) for kind, body in records if kind == b'STAT'] == []
-print('PASS ESP: six drip records and animation assets, record sizes/count, kegPuddle mesh, attached DontSaveObject source and bytecode')
+print('PASS ESP: six drip records and animation assets, MODL paths within 32 bytes, record sizes/count, kegPuddle mesh, attached DontSaveObject source and bytecode')

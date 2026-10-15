@@ -33,8 +33,10 @@ local definitions = {
 local dripIds = {}
 for _, definition in ipairs(definitions) do dripIds[definition[2]] = true end
 
-local function run(runtime)
+local function run(runtime, initialPuddles)
     local cells, serial, creates, animations = {}, 0, 0, 0
+    local config = {formPuddles=initialPuddles}
+    local scans, menuToggle = 0, nil
     local groundZ, groundNormal, missRay, rays = -20, v(0,0,1), false, {}
     local globalEvents, objectTypes
     local handlers, callbacks = {}, {}
@@ -43,6 +45,7 @@ local function run(runtime)
         local c = {objects={}, modified=false, isExterior=exterior, gridX=x, gridY=y}
         cells[#cells+1] = c
         function c:getAll(kind)
+            scans=scans+1
             local result = {}
             for _, object in ipairs(self.objects) do
                 if (not kind or object.kind == kind) and not object.deleted then result[#result+1] = object end
@@ -100,6 +103,23 @@ local function run(runtime)
     end
     local function load()
         if runtime == 'MWSE' then
+            mwse={loadConfig=function(name, defaults)
+                assert(name=='Keg Drip' and defaults.formPuddles==true, 'puddles must default to on')
+                if config.formPuddles==nil then config.formPuddles=defaults.formPuddles end
+                return config
+            end, mcm={createTemplate=function(options)
+                assert(options.name=='Keg Drip' and options.config==config)
+                local template={}
+                function template:saveOnClose(name, settings) assert(name=='Keg Drip' and settings==config) end
+                function template:createSideBarPage()
+                    return {sidebar={createInfo=function() end}, createOnOffButton=function(_, button)
+                        assert(button.configKey=='formPuddles')
+                        menuToggle=button.callback
+                    end}
+                end
+                function template:register() end
+                return template
+            end}}
             tes3vector3={new=v}; tes3matrix33={new=r}
             timer={delayOneFrame=queue}
             event={register=function(name, callback) handlers[name]=callback end}
@@ -124,6 +144,7 @@ local function run(runtime)
                     return {intersection=v(options.position.x,options.position.y,groundZ),normal=groundNormal}
                 end}
             assert(loadfile('01 MWSE/MWSE/mods/KegDrip/main.lua'))()
+            handlers.modConfigReady()
         else
             local function kind(name)
                 return {objectIsInstance=function(o) return o.kind==name end,
@@ -173,6 +194,19 @@ local function run(runtime)
                     end
                     return cell(true,x,y)
                 end}
+            package.loaded['openmw.storage']={globalSection=function(name)
+                assert(name=='SettingsGlobalKegDrip')
+                return {get=function(_, key) return config[key] end}
+            end}
+            package.loaded['openmw.interfaces']={Settings={registerPage=function(options)
+                assert(options.key=='KegDrip' and options.l10n=='KegDrip')
+            end, registerGroup=function(options)
+                assert(options.key=='SettingsGlobalKegDrip' and options.page=='KegDrip' and options.permanentStorage)
+                local setting=options.settings[1]
+                assert(setting.key=='formPuddles' and setting.renderer=='checkbox' and setting.default==true, 'puddles must default to on')
+                if config.formPuddles==nil then config.formPuddles=setting.default end
+            end}}
+            assert(loadfile('01 OpenMW/scripts/KegDrip/menu.lua'))()
             local script=assert(loadfile('01 OpenMW/scripts/KegDrip/global.lua'))()
             handlers=script.engineHandlers; globalEvents=script.eventHandlers
         end
@@ -183,6 +217,11 @@ local function run(runtime)
         flush(); flush()
     end
     local function settle() tick(); tick() end -- OpenMW round trip for local raycasts.
+    local function setPuddles(enabled)
+        config.formPuddles=enabled
+        if runtime=='MWSE' then menuToggle(); flush() end
+        settle()
+    end
     local sources, receivers, originalTypes = {}, {}, {}
     local function pair(index, options)
         options=options or {}
@@ -234,7 +273,56 @@ local function run(runtime)
         assert(disabledKeg.disabled and not disabledKeg.enabled)
         assert(deletedKeg.deleted)
     end
+    if runtime=='MWSE' then handlers.loaded(); flush() end
     settle()
+    if initialPuddles==false then
+        local expectedCovered=expectedDrips-4
+        assert(#effects(here)==expectedCovered, runtime..': bucket-only eligibility failed with puddles off')
+        assert(#effects(here,true)==0 and #rays==0, 'puddles or raycasts ran while disabled')
+        local firstDrip=effects(here)[1]
+        local beforeScans=scans
+        receivers[1].deleted=true
+        receivers[2].position=receivers[2].position+v(100,0,0)
+        disabledBucket.disabled=false; disabledBucket.enabled=true
+        for _=1,10 do tick() end
+        if runtime=='MWSE' then
+            handlers.cellChanged()
+            handlers.referenceSceneNodeCreated({reference=sources[1]})
+            local beforeAnimations=animations
+            handlers.referenceSceneNodeCreated({reference=firstDrip})
+            assert(animations==beforeAnimations+1, 'late-loaded drip animation relied on periodic scans')
+            flush()
+        end
+        assert(scans==beforeScans, runtime..': repeated receiver/cell scans with puddles off')
+        assert(#effects(here)==expectedCovered and effects(here)[1]==firstDrip, 'removing bucket stopped or recreated a started drip')
+        assert(#effects(here,true)==0 and #rays==0, 'disabled mode started puddles or raycasts')
+        if runtime=='MWSE' then handlers.cellDeactivated({cell=here}) end
+        player.cell=away; activeCells={away}; tick()
+        pair(1,{cell=away})
+        player.cell=here; activeCells={here}
+        if runtime=='MWSE' then handlers.cellActivated({cell=here}); flush() end
+        settle()
+        assert(#effects(here)==expectedCovered+1 and effects(here)[1]==firstDrip, 'cell re-entry lost started drips or did not check new receivers')
+        -- A saved drip stays on after its receiver has gone.
+        if runtime=='MWSE' then handlers.loaded(); flush() else handlers.onSave(); load(); handlers.onLoad() end
+        settle()
+        assert(config.formPuddles==false and #effects(here)==expectedCovered+1, 'load reset the disabled preference or a started drip')
+        beforeScans=scans
+        tick(120)
+        assert(scans==beforeScans, 'periodic scans restarted after loading with puddles off')
+        setPuddles(true)
+        assert(#effects(here)==expectedDrips and #effects(here,true)>0 and #rays>0, 'enabling puddles did not restart detection and growth')
+        local activeDrips=#effects(here)
+        setPuddles(false)
+        assert(#effects(here)==activeDrips and #effects(here,true)==0, 'disabling puddles removed started drips or left puddles')
+        beforeScans=scans
+        local beforeRays=#rays
+        tick(120)
+        assert(scans==beforeScans and #rays==beforeRays, 'disabling puddles left scans or raycasts running')
+        assertSources()
+        print('PASS '..runtime..': default on, saved toggle, bucket-only startup, no periodic scans while off, persistent drips, cell re-entry, live toggles and puddle cleanup')
+        return
+    end
     assert(#effects(here)==expectedDrips, runtime..': eligibility or exclusions failed')
     assert(#effects(here,true)==4, runtime..': uncovered kegs did not form puddles')
     local transformed = {boundary}
@@ -346,6 +434,8 @@ local function run(runtime)
 end
 run('MWSE')
 run('OpenMW')
+run('MWSE', false)
+run('OpenMW', false)
 
 local plays={}
 package.loaded['openmw.self']={}

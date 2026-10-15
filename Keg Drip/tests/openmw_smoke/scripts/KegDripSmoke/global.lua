@@ -2,6 +2,7 @@ local core = require('openmw.core')
 local types = require('openmw.types')
 local util = require('openmw.util')
 local world = require('openmw.world')
+local settings = require('openmw.storage').globalSection('SettingsGlobalKegDrip')
 local sources, receivers, animated = {}, {}, {}
 local rayHits, leavingPuddles = {}, {}
 local growingPuddle, initialScale
@@ -103,7 +104,9 @@ return {
             if elapsed < delay then return end
             elapsed = 0
             local ok, message = pcall(function()
-                if stage=='spawn' then spawn(); stage='initial'
+                if stage=='spawn' then
+                    check(settings:get('formPuddles')==true, 'puddles did not default to enabled')
+                    spawn(); stage='initial'
                 elseif stage=='initial' then
                     verify(7)
                     check(puddleAt(sources[4]), 'uncovered keg did not form a puddle')
@@ -155,9 +158,17 @@ return {
                     local count=0
                     for _ in pairs(animated) do count=count+1 end
                     check(count==6, 'not all six models passed animation probes')
-                    world.players[1]:teleport(world.getExteriorCell(40,40), util.vector3(40*8192+4096,40*8192+4096,100))
-                    stage='exterior-spawn'
-                elseif stage=='exterior-spawn' then
+                    settings:set('formPuddles', false)
+                    stage='puddles-disabled'
+                elseif stage=='puddles-disabled' then
+                    verify(7, false)
+                    check(#puddles(sources[1].object.cell)==0, 'disabling left existing puddles')
+                    receivers[2]:remove()
+                    stage='off-receiver-removed'
+                elseif stage=='off-receiver-removed' then
+                    verify(7, false)
+                    check(#puddles(sources[1].object.cell)==0, 'bucket removal formed a puddle while disabled')
+                    -- Populate the cells before loading them: disabled mode scans once.
                     sources={}
                     for x=40,41 do
                         local cell=world.getExteriorCell(x,40)
@@ -166,16 +177,31 @@ return {
                         object:teleport(cell,position,{onGround=false})
                         local bucket=world.createObject('misc_com_bucket_01')
                         bucket:teleport(cell,position+util.vector3(0,-54.4,-64),{onGround=false})
-                        sources[#sources+1]={object=object,position=position}
+                        sources[#sources+1]={object=object,position=position,bucket=bucket}
                     end
-                    stage='exterior-verify'
-                elseif stage=='exterior-verify' then
+                    local position=sources[1].position+util.vector3(1000,0,0)
+                    local uncovered=world.createObject('furn_com_kegstand')
+                    uncovered:teleport(world.getExteriorCell(40,40),position,{onGround=false})
+                    world.players[1]:teleport(world.getExteriorCell(40,40), util.vector3(40*8192+4096,40*8192+4096,100))
+                    stage='exterior-off'
+                elseif stage=='exterior-off' or stage=='exterior-bucket-removed' then
                     for _, source in ipairs(sources) do
                         check(source.object.enabled and types.Static.objectIsInstance(source.object), 'exterior source changed')
                         local list=effects(source.object.cell)
                         check(#list==1 and (list[1].position-source.position):length()<0.01, 'exterior or adjacent cell drip missing')
+                        check(#puddles(source.object.cell)==0, 'disabled mode formed exterior puddles')
                     end
-                    print('KEG DRIP TEST PASSED: source preservation, transforms, animation, continuous dripping, raycast puddles, growth/cap, save/load, cell cleanup, duplicates, adjacent exterior cells')
+                    if stage=='exterior-off' then
+                        sources[1].bucket:remove()
+                        stage='exterior-bucket-removed'
+                    else
+                        settings:set('formPuddles', true)
+                        stage='exterior-enabled'
+                    end
+                elseif stage=='exterior-enabled' then
+                    check(#effects(sources[1].object.cell)==2, 'enabling did not start the uncovered exterior keg')
+                    check(#effects(sources[2].object.cell)==1, 'enabling duplicated an adjacent cell drip')
+                    print('KEG DRIP TEST PASSED: source preservation, transforms, animation, continuous dripping, raycast puddles, growth/cap, save/load, cell cleanup, duplicates, adjacent exterior cells, default-on setting, bucket-only startup while off, persistent drips, live toggles')
                     core.quit(); stage='done'
                 end
             end)

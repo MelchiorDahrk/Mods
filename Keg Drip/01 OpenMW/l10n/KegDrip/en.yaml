@@ -1,0 +1,5 @@
+PageName: "Keg Drip"
+PageDescription: "Dripping taps and optional puddles for kegstands."
+GroupName: "Puddles"
+FormPuddlesName: "Form puddles"
+FormPuddlesDescription: "Form puddles under uncaught drips. Disabling removes existing puddles and stops the once-per-second checks."

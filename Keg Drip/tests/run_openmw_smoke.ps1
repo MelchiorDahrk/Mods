@@ -10,6 +10,11 @@ $taskUserData = Join-Path $taskOutput 'user-data'
 $taskEngineRoot = (Resolve-Path -LiteralPath $OpenMWDirectory).Path
 $taskData = (Resolve-Path -LiteralPath $MorrowindData).Path
 New-Item -ItemType Directory -Path $taskConfig, (Join-Path $taskUserData 'data') -Force | Out-Null
+# Each run starts with the mod's default preferences in this isolated config.
+foreach ($taskStorageName in @('global_storage.bin', 'player_storage.bin')) {
+    $taskStorageFile = Join-Path $taskConfig $taskStorageName
+    if (Test-Path -LiteralPath $taskStorageFile -PathType Leaf) { Remove-Item -LiteralPath $taskStorageFile }
+}
 $taskLines = @(
     ('user-data="{0}"' -f $taskUserData.Replace('\','/')),
     ('data-local="{0}"' -f (Join-Path $taskUserData 'data').Replace('\','/')),
@@ -36,4 +41,4 @@ $taskSave = Get-ChildItem -LiteralPath (Join-Path $taskUserData 'saves') -File -
 if (-not $taskSave) { throw 'OpenMW test did not produce a save.' }
 $taskSaveText = [System.Text.Encoding]::ASCII.GetString([System.IO.File]::ReadAllBytes($taskSave.FullName))
 if ($taskSaveText -match 'kegpuddle') { throw 'A puddle reference or script was included in the save.' }
-Write-Output "PASS OpenMW engine: continuous drips, raycast puddles, growth/cap, cell cleanup, no puddles in save, animation and source preservation. Logs: $taskOutput"
+Write-Output "PASS OpenMW engine: continuous drips, raycast puddles, growth/cap, cell cleanup, no puddles in save, animation, source preservation, default-on setting, bucket-only startup while off, persistent drips and live toggles. Logs: $taskOutput"

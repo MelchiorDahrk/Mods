@@ -15,7 +15,14 @@ Detects kegs of any object type, including those added by mods, that use one of 
 - hr\f\hr_furn_kegstand_01.nif
 - sky\f\sky_furn_n_m_keg_01.nif
 
-The keg must be upright (within 5 degrees). Nearby cells are checked once per second. An enabled bucket or bowl within 22 units of the drip's landing point catches the drip; moving or picking it up leaves the drip running and starts a puddle below it.
+The keg must be upright (within 5 degrees). With puddles enabled, nearby cells are checked once per second. An enabled bucket or bowl within 22 units of the drip's landing point catches the drip; moving or picking it up leaves the drip running and starts a puddle below it.
+
+Configuration
+==============================
+
+"Form puddles" is enabled by default. Change it in the Keg Drip MCM for MWSE, or in Options > Scripts > Keg Drip for OpenMW. The preference is saved between game sessions.
+
+Turning puddles off removes existing puddles and stops the once-per-second checks. Buckets and bowls are checked once when a cell loads: a new drip starts only if a receiver is found. Once a drip has started, it stays on even if the bucket is moved or removed. Existing drips also stay on when you disable puddles. Turn puddles back on to resume periodic receiver checks and puddle formation.
 
 
 Installation
@@ -66,9 +73,11 @@ Changes
 Version 2.0
 - Added OpenMW support
 - Place separate drip effects instead of replacing kegs
-- Form puddles if buckets are removed
+- Form puddles if buckets are removed (optional)
 - Added Tamriel_Data support
 - Added support for non-static kegs
+- Added fomod installer
+- Added option to silence the sound
 
 Version 1.1
 - added smoothed option based on Tarius' Better Kegstands

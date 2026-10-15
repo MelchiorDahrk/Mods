@@ -1,2 +1,3 @@
 GLOBAL: scripts/KegDrip/global.lua
+MENU: scripts/KegDrip/menu.lua
 CUSTOM: scripts/KegDrip/effect.lua
