@@ -1,0 +1,2 @@
+GLOBAL: scripts/KegDrip/global.lua
+CUSTOM: scripts/KegDrip/effect.lua

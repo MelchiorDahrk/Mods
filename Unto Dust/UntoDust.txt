@@ -45,7 +45,7 @@ Then you are free to copy and redistribute the material for use in The Elder Scr
 Credits:
 ==============================
 NullCascade for all of his work on MWSE 2.1
-Greatness7 for coding this mod and extensive troubleshooting on the original particle effect
+Greatness7 for coding this mod and extensive troubleshooting on the original particle effect and the OpenMW Virtual List
 Niftools Developers for Nifskope
 
 
@@ -55,3 +55,4 @@ Changes:
 1.1 - Cleaned up code. Mod now affects multiple tomb-like cell-types, not just Ancestral Tombs.
 1.2 - Added native OpenMW Lua support with both dust variants, matching mod-added interiors, and automatic save/load restoration. Included OpenMW meshes with corrected particle colors and an eye-level offset. Updated engine-specific installation instructions.
 2.0 - Added OpenMW compatibility. Replaced the particle implementation with shader using the original dust texture. Added MCM density settings and cell whitelist/blacklist controls.
+2.1 - Improved the OpenMW MCM (thanks to G7's Virtual List!)

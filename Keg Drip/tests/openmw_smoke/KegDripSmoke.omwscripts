@@ -1,0 +1,4 @@
+GLOBAL: scripts/KegDripSmoke/global.lua
+PLAYER: scripts/KegDripSmoke/player.lua
+MENU: scripts/KegDripSmoke/menu.lua
+CUSTOM: scripts/KegDripSmoke/probe.lua

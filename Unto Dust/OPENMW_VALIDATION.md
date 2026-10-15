@@ -47,11 +47,14 @@ exterior exclusion, zero density, and persistence across script contexts. Set
 values support cell names containing semicolons. MWSE tests also check native
 exclusions pages, complete interior enumeration, transfer variables, Reset,
 arrow direction, and migration of older text settings. `tests/openmw_cells.lua`
-exercises the real picker renderer callbacks: complete world enumeration,
-literal search, empty-query prompts, bounded broad-search results, Add/Remove,
-Clear, independent list searches, selected cells remaining visible through
-search changes, and removal of unavailable cells. OpenMW uses a single-column
-search-first layout, with headings above the controls and no pagination.
+exercises the real picker and bundled OpenMW Virtual List with 10,000 interiors:
+complete world enumeration, bounded visible row creation, full-catalogue
+browsing, literal search, keyboard and mouse-wheel navigation, Add/Remove,
+Clear (including filtered-out selections), independent pane/list filters,
+filter and scroll retention after edits, and removal of unavailable cells.
+OpenMW uses paired bordered panes with search boxes, native scrollbars and
+selection colors, following Greatness7's assetReviewTools MCM. The bundled MIT
+license and pinned upstream revision are in `scripts/UntoDust/virtual_list`.
 
 For a GPU rendering test, run `tools/validate_dust_rendering.py` with a Python
 environment containing NumPy and Pillow. It compiles the common GLSL on a hidden

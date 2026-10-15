@@ -4,20 +4,12 @@ local async = require('openmw.async')
 local I = require('openmw.interfaces')
 local l10n = require('openmw.core').l10n('UntoDust')
 local lists = require('scripts.UntoDust.cellLists')
-local states = {}
-local resultLimit = 8
-local pickerWidth = 440
+local List = require('scripts.UntoDust.virtual_list.extras').VirtualListExt
+local states, needsFocusToggle = {}, {}
+local paneWidth, paneHeight, rowHeight, gap = 456, 208, 20, 16
 
-local function text(name, caption, width)
-    return {
-        name = name,
-        template = I.MWUI.templates.textParagraph,
-        props = { text = caption, size = util.vector2(width, 0) },
-    }
-end
-
-local function space(height)
-    return { type = ui.TYPE.Widget, props = { size = util.vector2(0, height) } }
+local function space(width, height)
+    return { type = ui.TYPE.Widget, props = { size = util.vector2(width, height) } }
 end
 
 local function button(name, caption, callback)
@@ -35,146 +27,197 @@ local function button(name, caption, callback)
     }
 end
 
-local function sortedNames(names)
-    local result = {}
-    for _, name in pairs(names) do result[#result + 1] = name end
-    table.sort(result, function(a, b) return a:lower() < b:lower() end)
-    return result
+local function indexOf(entries, name)
+    for index, entry in ipairs(entries) do
+        if entry == name then return index end
+    end
 end
 
 local function render(value, set, argument)
     argument = argument or {}
     local key = argument.key or 'whitelist'
-    local state = states[key] or { query = '' }
+    local state = states[key] or { available = { query = '' }, selected = { query = '' } }
     states[key] = state
-    local names = {}
+    local names, selected = {}, {}
     for _, name in ipairs(argument.cells or {}) do names[name:lower()] = name end
-    local selected = {}
     for name in pairs(lists.read(value)) do
-        -- Retain unavailable cells so users can remove old plugin selections.
+        -- Keep unavailable cells removable, using installed spelling when possible.
         names[name:lower()] = names[name:lower()] or name
         selected[names[name:lower()]] = true
     end
-    local allNames = sortedNames(names)
-    local element, build
-    local function refresh()
-        element.layout = build()
-        element:update()
+    local allNames = {}
+    for _, name in pairs(names) do allNames[#allNames + 1] = name end
+    table.sort(allNames, function(a, b) return a:lower() < b:lower() end)
+
+    local panes = {}
+    local function savePositions()
+        for id, pane in pairs(panes) do
+            local index = pane.list:getFirstVisibleIndex()
+            state[id].anchor = {
+                name = pane.entries[index], index = index,
+                offset = pane.list:getItemViewportOffset(index),
+            }
+        end
     end
 
-    local function transfer(name, include)
+    local function transfer(id, include)
+        local pane = panes[id]
+        local name = pane.entries[pane.list:getSelectedIndex()]
+        if not name then return end
         selected[name] = include or nil
+        savePositions()
         local result = {}
         for entry in pairs(selected) do result[entry] = true end
-        set(result)
-        -- Settings owns the replacement element after a storage change.
+        set(result) -- Native Settings replaces the renderer after a storage change.
     end
 
-    local function section(id, caption, entries, include, limit)
-        local rows = {}
-        for index = 1, math.min(limit or #entries, #entries) do
-            local name = entries[index]
-            rows[#rows + 1] = {
-                name = name,
-                type = ui.TYPE.Flex,
-                props = { horizontal = true, arrange = ui.ALIGNMENT.Center },
-                content = ui.content {
-                    text('cellName', name, pickerWidth - 90),
-                    { type = ui.TYPE.Widget, props = { size = util.vector2(12, 0) } },
-                    button('transfer', l10n(include and 'AddCell' or 'RemoveCell'), function() transfer(name, include) end),
-                },
-            }
-            rows[#rows + 1] = space(6)
+    local function createPane(id, include)
+        local paneState = state[id]
+        local entries = {}
+        local function filter()
+            entries = {}
+            local query = paneState.query:match('^%s*(.-)%s*$'):lower()
+            for _, name in ipairs(allNames) do
+                if (not not selected[name]) ~= include and name:lower():find(query, 1, true) then
+                    entries[#entries + 1] = name
+                end
+            end
         end
-        if #entries == 0 then rows[1] = text('empty', l10n('NoSelectedCells'), pickerWidth) end
+        filter()
+        local caption = l10n(include and 'AvailableCells' or 'SelectedCells')
+        local heading = ui.create {
+            name = 'heading', template = I.MWUI.templates.textHeader,
+            props = { text = caption .. ' (' .. #entries .. ')' },
+        }
+        local list = List.create {
+            viewportSize = util.vector2(paneWidth, paneHeight),
+            -- Leave room for the scrollbar; cell names stay on a single row.
+            itemSize = util.vector2(paneWidth - 24, rowHeight),
+            itemCount = math.max(1, #entries),
+            itemLayout = function(index, controller)
+                if #entries == 0 then
+                    return controller:createPlaceholder {
+                        text = l10n(include and 'NoCells' or
+                            (paneState.query:find('%S') and 'NoSelectedMatches' or 'NoSelectedCells')),
+                    }
+                end
+                local name = entries[index]
+                local row = controller:createItemLayout {
+                    index = index, props = { text = name },
+                    onMousePress = function(event)
+                        if event.button == 1 then paneState.selection = name end
+                    end,
+                }
+                row.name = name
+                return row
+            end,
+        }
+        list:getElement().layout.name = 'list'
+        panes[id] = { list = list, entries = entries }
+
+        local function select(index)
+            if entries[index] then
+                paneState.selection = entries[index]
+                list:changeSelection(index)
+            end
+        end
+        local selectedIndex = indexOf(entries, paneState.selection) or (#entries > 0 and 1 or nil)
+        if selectedIndex then select(selectedIndex) end
+        list:setKeyPressHandler {
+            -- The upstream keyboard handler expects an index even for an empty list.
+            getSelectedIndex = function() return list:getSelectedIndex() or 1 end,
+            setSelectedIndex = select,
+        }
+        if paneState.anchor and #entries > 0 then
+            local anchor = paneState.anchor
+            local index = indexOf(entries, anchor.name) or math.min(anchor.index, #entries)
+            list:scrollToIndex(index, anchor.offset)
+        end
+
+        local search = list:createSearchBox {
+            text = l10n(include and 'SearchInteriors' or 'SearchSelected'),
+            initialText = paneState.query,
+            onTextChanged = function(query)
+                paneState.query = query
+                local oldIndex = list:getSelectedIndex()
+                filter()
+                panes[id].entries = entries
+                local newIndex = indexOf(entries, paneState.selection) or (#entries > 0 and 1 or nil)
+                paneState.selection = entries[newIndex]
+                paneState.anchor = nil
+                list:resetSelection()
+                list:setSelectedIndex(newIndex)
+                list:rebuildAndScroll(math.max(1, #entries), oldIndex, newIndex)
+                heading.layout.props.text = caption .. ' (' .. #entries .. ')'
+                heading:update()
+            end,
+            onTextCleared = function(element)
+                needsFocusToggle[#needsFocusToggle + 1] = element
+            end,
+        }
+        search.layout.name = 'input'
+        search.layout.props.size = util.vector2(paneWidth - 4, 24)
         return {
-            name = id,
-            type = ui.TYPE.Flex,
+            name = id, type = ui.TYPE.Flex,
             content = ui.content {
+                heading, space(0, 6),
                 {
-                    name = 'heading',
-                    template = I.MWUI.templates.textHeader,
-                    props = { text = caption .. ' (' .. #entries .. ')' },
+                    type = ui.TYPE.Container, template = I.MWUI.templates.borders,
+                    content = ui.content { search },
                 },
-                space(6),
+                space(0, 6),
                 {
-                    name = 'rows',
-                    type = ui.TYPE.Flex,
-                    content = ui.content(rows),
+                    type = ui.TYPE.Container, template = I.MWUI.templates.borders,
+                    content = ui.content { list:getElement() },
                 },
+                space(0, 6),
+                button('transfer', l10n(include and 'AddCell' or 'RemoveCell'), function() transfer(id, include) end),
             },
         }
     end
 
-    build = function()
-        local available, chosen = {}, {}
-        local exactMatch
-        local query = state.query:match('^%s*(.-)%s*$'):lower()
-        for _, name in ipairs(allNames) do
-            if selected[name] then
-                chosen[#chosen + 1] = name
-            elseif query ~= '' and name:lower():find(query, 1, true) then
-                if name:lower() == query then exactMatch = name
-                else available[#available + 1] = name end
-            end
-        end
-        -- A short cell name must remain reachable even if many longer names
-        -- contain it and would otherwise fill the limited result list.
-        if exactMatch then table.insert(available, 1, exactMatch) end
-        local content = {
-            {
-                name = 'title',
-                template = I.MWUI.templates.textHeader,
-                props = { text = l10n(key == 'blacklist' and 'BlacklistName' or 'WhitelistName') },
-            },
-            space(8),
-            text('searchLabel', l10n('SearchInteriors'), pickerWidth),
-            space(4),
-            {
-                name = 'search',
-                template = I.MWUI.templates.box,
-                content = ui.content { {
-                    template = I.MWUI.templates.padding,
-                    content = ui.content { {
-                        name = 'input',
-                        template = I.MWUI.templates.textEditLine,
-                        props = { text = state.query, size = util.vector2(pickerWidth - 16, 0) },
-                        events = { textChanged = async:callback(function(queryText)
-                            state.query = queryText
-                            refresh()
-                        end) },
-                    } },
-                } },
-            },
-            space(8),
+    local content = {
+        {
+            name = 'title', template = I.MWUI.templates.textHeader,
+            props = { text = l10n(key == 'blacklist' and 'BlacklistName' or 'WhitelistName') },
+        },
+        space(0, 8),
+    }
+    if not argument.ready then
+        content[#content + 1] = {
+            name = 'help', template = I.MWUI.templates.textParagraph,
+            props = { text = l10n('LoadGameForCells'), size = util.vector2(paneWidth * 2 + gap, 0) },
         }
-        if not argument.ready then
-            content[#content + 1] = text('help', l10n('LoadGameForCells'), pickerWidth)
-        elseif query == '' then
-            content[#content + 1] = text('help', l10n('SearchPrompt'), pickerWidth)
-        elseif #available == 0 then
-            content[#content + 1] = text('noResults', l10n('NoCells'), pickerWidth)
-        else
-            content[#content + 1] = section('available', l10n('SearchResults'), available, true, resultLimit)
-            if #available > resultLimit then
-                content[#content + 1] = text('moreResults', l10n('RefineSearch'), pickerWidth)
-            end
-        end
-        content[#content + 1] = space(16)
-        content[#content + 1] = section('selected', l10n('SelectedCells'), chosen, false)
-        if #chosen > 0 then
-            content[#content + 1] = space(6)
-            content[#content + 1] = button('clear', l10n('ClearList'), function() set({}) end)
-        end
-        return {
-            name = 'cellPicker',
-            type = ui.TYPE.Flex,
-            props = { size = util.vector2(pickerWidth, 0) },
-            content = ui.content(content),
-        }
+        content[#content + 1] = space(0, 8)
     end
-    element = ui.create(build())
-    return element
+    content[#content + 1] = {
+        name = 'panes', type = ui.TYPE.Flex, props = { horizontal = true },
+        content = ui.content { createPane('available', true), space(gap, 0), createPane('selected', false) },
+    }
+    content[#content + 1] = space(0, 8)
+    content[#content + 1] = button('clear', l10n('ClearList'), function()
+        if next(selected) then
+            savePositions()
+            set({})
+        end
+    end)
+    return ui.create { name = 'cellPicker', type = ui.TYPE.Flex, content = ui.content(content) }
 end
 
-return { render = render }
+-- Match the search focus workaround used by assetReviewTools. Destroyed
+-- elements are dropped when native Settings rebuilds the renderer.
+local function onFrame()
+    for index = #needsFocusToggle, 1, -1 do
+        local element = needsFocusToggle[index]
+        local layout = element.layout
+        if not layout then
+            table.remove(needsFocusToggle, index)
+        else
+            layout.props.visible = layout.props.visible == false
+            local ok = pcall(function() element:update() end)
+            if not ok or layout.props.visible then table.remove(needsFocusToggle, index) end
+        end
+    end
+end
+
+return { render = render, onFrame = onFrame, onMouseWheel = List.getMouseWheelHandler() }

@@ -19,6 +19,10 @@ def validate_assets():
         assert (ROOT / '00 OpenMW' / entry.split(': ', 1)[1]).is_file()
     for module in ('cellLists.lua', 'cellPicker.lua'):
         assert (ROOT / '00 OpenMW/scripts/UntoDust' / module).is_file()
+    virtual_list = ROOT / '00 OpenMW/scripts/UntoDust/virtual_list'
+    for module in ('init.lua', 'styles.lua', 'extras/init.lua', 'extras/extended.lua',
+                   'extras/list_state.lua', 'extras/font_color.lua', 'LICENSE', 'README.md'):
+        assert (virtual_list / module).is_file(), f'Missing virtual-list dependency: {module}'
     assert (ROOT / '00 OpenMW/scripts/UntoDust/settings.lua').is_file()
     assert (ROOT / '00 OpenMW/l10n/UntoDust/en.yaml').is_file()
     for variant in ('01 Default Dust', '01 Denser Dust'):
