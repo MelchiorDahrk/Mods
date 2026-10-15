@@ -1,0 +1,3 @@
+GLOBAL: scripts/UntoDustSmoke/global.lua
+PLAYER: scripts/UntoDustSmoke/player.lua
+MENU: scripts/UntoDustSmoke/menu.lua
