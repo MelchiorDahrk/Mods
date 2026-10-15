@@ -1,0 +1,66 @@
+==============================
+	Keg Drip
+by Melchior Dahrk & Greatness7
+==============================
+
+There is an unused texture in Morrowind's files called "tx_alpha_kegdrip00". It appears that Bethesda intended to make leaky taps at some point during development but never followed through. This mod takes that texture and adds a dripping effect to select kegstands in the game. Along with the visual effect, you'll notice a subtle dripping sound to increase the immersion.
+
+This mod covers both the common and dunmer style kegstands as well as the unused "furn_winekeg00" model (which has been cleaned up and made available as a resource). The archive also includes a puddle mesh which is not used by this mod, but is made available for modders as a resource.
+
+
+Installation
+==============================
+
+00 Core
+- Includes all required base files along with the unused kegstand resource. Does not function on its own. You MUST install one of the two 01 modules.
+
+01 MWSE Version
+- If you use MWSE, this module will dynamically replace all applicable kegstands in your game, including those added by other mods if they meet certain criteria. The first time a kegstand is loaded, it is scanned to see if a bucket or bowl is located underneath the tap and that the kegstand isn't leaning or upside down. If so, then it will be replaced with a dripping version of the kegstand mesh. You must also activate the included ESP.
+- You must update to the latest version of MWSE for the features in this mod to work properly.
+
+01 Non-MWSE Version
+- If you do not use MWSE, you may install this module which manually replaces select kegstands in the base game and its expansions with drippy versions using a plugin. This will not cover any mod-added kegstands.
+
+02 Smoothed
+- This patch uses Tarius' models to provide a smooth option for the kegstands. The meshes have had the UVs improved and more detail added over what is in Better Kegstands. Still requires 00 Core to function.
+
+
+Uninstalling
+==============================
+
+MWSE Version
+- The code has been written in such a way that it should be safe to simply remove all files associated with this mod. It is recommended that you clean your save game whenever removing plugins.
+
+Non-MWSE Version
+- It is recommended that you clean your save game whenever removing plugins.
+
+
+Permissions
+==============================
+
+You are free to:
+Adapt - remix, transform, and build upon the material
+
+Under the following terms:
+Attribution - You must give appropriate credit.
+Non-Commercial - You may not use the material for commercial purposes (i.e. no payment of monetary compensation as a condition for the download).
+
+If author(s) is/are not able to be contacted through a reasonable effort,
+Then you are free to copy and redistribute the material for use in The Elder Scrolls III: Morrowind
+
+
+Credits
+==============================
+
+Greatness7 for creating the awesome MWSE script which makes this mod possible!
+gkillhour for the drip sound
+qarl for the keg puddle reflection texture
+NullCascade for all of his work on MWSE 2.0
+Tarius for the Better Kegstands models included with permission
+
+
+Changes
+==============================
+
+1.0 - initial release
+1.1 - added smoothed option based on Tarius' Better Kegstands
