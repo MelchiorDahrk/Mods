@@ -1,0 +1,8 @@
+09:08:36 (6) - ==================== Opened Logfile mwedit.log ================
+09:08:36 (6) - The current date is Friday, 16 of October, 2026.
+09:08:36 (6) - Error (9 / 2): No such file or directory
+09:08:36 (6) - 		 User Message: Failed to open the file 'Functions.dat' (mode was 'reading')!
+09:08:36 (6) - Error (9 / 2): No such file or directory
+09:08:36 (6) - 		 User Message: Failed to open the file 'customfunctions.dat' (mode was 'reading')!
+09:08:37 (12) - Error (9 / 2): No such file or directory
+09:08:37 (12) - 		 User Message: Failed to open the file 'mweditextrafile.esp' (mode was 'reading')!

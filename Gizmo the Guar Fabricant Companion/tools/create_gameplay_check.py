@@ -109,6 +109,7 @@ return { engineHandlers = {
   p:teleport(p.cell, util.vector3(0,0,40))
   gizmo = world.getObjectByFormId(core.getFormId('Fabricant Guar.ESP', 1))
   g.mdfg_global_new = 1
+  g.mdfg_global_storage = 300
   guar = world.createObject('guar')
   guar:teleport(p.cell, util.vector3(150,0,40))
   token = world.createObject('iron dagger')
@@ -136,6 +137,7 @@ return { engineHandlers = {
   elseif stage == 1 then
    check(common.near(gizmo, player, 300), 'whistle moved original reference')
    check(types.Actor.inventory(gizmo):countOf('iron dagger') == 1, 'whistle inventory retained')
+   check(types.Actor.stats.attributes.strength(gizmo).base == 200, 'whistle retains 1000 lb storage tier')
    matrix = world.createObject('mdfg_matrix')
    matrix:teleport(player.cell, util.vector3(-200,0,40))
    g.mdfg_global_matrixform = 1
@@ -170,6 +172,7 @@ return { engineHandlers = {
    stage = 6
   elseif stage == 6 then
    check(not types.Actor.isDead(gizmo) and gizmo.enabled, 'actual resurrection')
+   check(types.Actor.stats.attributes.strength(gizmo).base == 200, 'revival retains 1000 lb storage tier')
    check(types.Actor.inventory(gizmo):countOf('iron dagger') == 1, 'revival inventory no loss or duplicates')
    local found = types.Actor.inventory(gizmo):find('iron dagger')
    check(types.Item.itemData(found).condition == 25, 'revival condition retained')

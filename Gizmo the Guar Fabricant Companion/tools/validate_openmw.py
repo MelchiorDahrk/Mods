@@ -5,6 +5,7 @@ import ctypes
 import hashlib
 from pathlib import Path
 import re
+import struct
 import xml.etree.ElementTree as ET
 from esp import records, field, string
 from build_openmw_patch import build
@@ -17,7 +18,24 @@ def main():
     parser.add_argument('--lua-dll', type=Path, help='64-bit Lua 5.1/LuaJIT DLL (e.g. OpenMW lua51.dll)')
     args = parser.parse_args()
     core = ROOT / '00 Core/Fabricant Guar.ESP'
-    assert hashlib.sha256(core.read_bytes()).hexdigest() == '9728aeb0d30bcbb01246ac46b86654566ea8daa7e300627205cc33b553500a61'
+    assert hashlib.sha256(core.read_bytes()).hexdigest() == '08f6e9c860b1715b86e51f1b785253724237bf55457ed55717bdfc85c5fec807'
+    core_records = list(records(core))
+    gizmo = next(fs for tag, fs, *_ in core_records if tag == b'SCPT'
+                 and string(field(fs, b'SCHD')[:32]).lower() == 'mdfg_script_gizmo')
+    source = string(field(gizmo, b'SCTX')).replace('\r', '').strip()
+    assert source == (ROOT / 'tools/mwscript/mdFG_script_gizmo.txt').read_text().strip()
+    header = struct.unpack('<32sIIIII', field(gizmo, b'SCHD'))
+    assert header[1:4] == (5, 1, 9)
+    assert header[4:] == (len(field(gizmo, b'SCDT')), len(field(gizmo, b'SCVR')))
+    assert field(gizmo, b'SCDT').endswith(b'\x01\x01'), 'native script compilation is incomplete'
+    assert field(gizmo, b'SCVR').split(b'\0')[:-1] == [name.encode() for name in (
+        'Companion', 'Topics', 'g_health_ratio', 'g_magicka_ratio', 'g_fatigue_ratio', 'instance',
+        'direction', 'ftemp', 'timer', 'currscale', 'tempscale', 'xPos', 'yPos', 'zPos', 'storageStrength')]
+    for id_, strength in (('8370743075113210', 100), ('3004223443178475751', 150),
+                          ('16709141131934011502', 200)):
+        result = next(field(fs, b'BNAM') for tag, fs, *_ in core_records
+                      if tag == b'INFO' and string(field(fs, b'INAM')) == id_)
+        assert f'SetStrength {strength}'.encode() in result and b'ModStrength' not in result
     patch = ROOT / '01 OpenMW/Fabricant Guar - OpenMW.esp'
     before = patch.read_bytes()
     build()

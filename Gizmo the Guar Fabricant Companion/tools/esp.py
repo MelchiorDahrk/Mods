@@ -1,4 +1,4 @@
-"""Small lossless TES3 record reader/writer for the OpenMW-only patch."""
+"""Small lossless TES3 record reader/writer for plugin builds and checks."""
 import re
 import struct
 from pathlib import Path

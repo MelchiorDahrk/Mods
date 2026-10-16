@@ -2,7 +2,7 @@
 
 Implemented October 16, 2026. Target: OpenMW 0.51.0.
 
-The implementation is in `01 OpenMW`. The core ESP and the entire MWSE option are unchanged. This is an implemented port with automated engine integration checks, not a certification of every gameplay interaction on the final 0.51.0 release.
+The implementation is in `01 OpenMW`. The MWSE Lua option is unchanged. The shared core ESP also contains the storage-capacity correction described below, which applies to both engines. This is an implemented port with automated engine integration checks, not a certification of every gameplay interaction on the final 0.51.0 release.
 
 ## Installation
 
@@ -55,6 +55,14 @@ Attraction retains the original 1,024-unit radius, one-second simulation cadence
 
 The retained ESP still handles dialogue, quests, upgrade installation, scaling, foraging/cooldowns, feeding, magicka and soul features, movement abilities, and creation of matrix/Imperfect forms. Their complete in-game regression remains necessary.
 
+### Storage capacity (both engines)
+
+Gizmo has 250 lb of storage before augmentation, then 500, 750, and 1000 lb after the three upgrades. The shared core now sets Strength to 100, 150, and 200 in those three dialogue results. The original `ModStrength 50` statements stopped increasing Strength at 100; the original companion level update also overwrote Strength with a value capped at 100.
+
+`mdFG_script_gizmo` now derives storage Strength from the purchased `mdFG_global_storage` tier before its Follow-only logic. It caches the applied value, so ordinary updates leave attribute damage and modifiers alone. The cache is refreshed after the existing companion level update; level, health, and fatigue scaling remain in place. A new float is appended after the original locals, preserving their names, types, and indexes. Existing upgraded games initialize that new local to zero and recover their purchased capacity when Gizmo's script next runs, without buying the upgrades again, including when stationary.
+
+Only four core records changed: Gizmo's SCPT (source and native bytecode) and the three storage-upgrade INFO result bodies. The native script was compiled with MWEdit 0.6.1. Its editable source is `tools/mwscript/mdFG_script_gizmo.txt`; import that source into a temporary compiler plugin, compile and save it, then run `python tools/import_storage_script.py <compiled-plugin.esp>` to copy only the intended record and update the three result scripts. The importer rejects stale source, incomplete bytecode, or reordered existing locals. Rebuild the OpenMW patch afterwards to refresh its core master size. Original Morrowind/MWSE still requires an in-game runtime check.
+
 ### Whistle warnings during dialogue
 
 The OpenMW patch also overrides `mdFG_script_gizmoKey`. The original inventory script checks the dead, matrix, and Imperfect globals every frame before checking `MenuMode` or `OnPCEquip`. Entering matrix form from dialogue therefore repeatedly inserts "Gizmo does not respond while entangled." into the dialogue until it closes. The same ordering also repeats the other unavailable-state warnings during ordinary play.
@@ -96,7 +104,7 @@ Two originally suspected dialogue errors were tested before correction:
 - `[Augment]`, `2324171041221531644`: OpenMW's dialogue compiler rejected the unterminated Cancel string. The patch closes the quote.
 - `Greeting 1`, `474631467945721504`: the original AddItem spelling compiled, but an execution of that exact statement did not award the integral. The corrected statement did. The patch adds the separating space and removes the leading space inside the ID.
 
-The core ESP's SHA-256 remains `9728aeb0d30bcbb01246ac46b86654566ea8daa7e300627205cc33b553500a61`. `tools/build_openmw_patch.py` deterministically rebuilds only the compatibility ESP from core sources.
+The storage-corrected core ESP's SHA-256 is `08f6e9c860b1715b86e51f1b785253724237bf55457ed55717bdfc85c5fec807`. The earlier reviewed core was `9728aeb0d30bcbb01246ac46b86654566ea8daa7e300627205cc33b553500a61`. `tools/build_openmw_patch.py` deterministically rebuilds only the compatibility ESP from core sources; its only change for the storage fix is the core master size.
 
 ## Validation performed
 
@@ -119,7 +127,8 @@ Checks use a separate profile under `tools/.cache/engine`, a temporary laborator
 | Repair | Three successive native MerchantRepair opens and cancellations passed. The lifecycle harness supplies a damaged weapon and gold so native list/pricing setup runs. Clicking a repair purchase, insufficient-funds behavior, and keyboard/gamepad navigation remain manual checks. |
 | Summoning | Whistle moved the original placed reference from its original exterior to the laboratory. Disabled Gizmo in `toddtest` survived a real save/load and a subsequent matrix summon. Matrix and Imperfect reversion used their own source positions, restored enabled/form flags, and retained inventory. The harness drives matrix requests after the prompt, rather than navigating that prompt. |
 | Revival | Real native death, native resurrection, original reference, full health, inventory count/no duplication, and a damaged item's condition passed. An actual save/load during the inventory/resurrection handshake also passed. |
-| Installer | XML, every source path, all four engine/texture combinations, Lua imports, manifest entries, patch scope/determinism, and unchanged core checksum are checked by `validate_openmw.py`. Real mod-manager UI installation remains manual. |
+| Storage | Actual INFO result bodies produce 500/750/1000 lb and consume 3/6/9 ore. The original second result reproduced the 500 lb cap. The fixed core retains 1000 lb through companion level refreshes at player levels 1, 25, and 50, with health scaling retained. Simulated old-save tier/local values recover all three tiers while stationary. Attribute damage/modifiers persist during idle updates. An actual save/load retains the top tier and its applied-strength cache. Prompt navigation and original Morrowind/MWSE runtime testing remain manual. |
+| Installer | XML, every source path, all four engine/texture combinations, Lua imports, manifest entries, patch scope/determinism, corrected core checksum, native script layout/source, and the three storage result scripts are checked by `validate_openmw.py`. Real mod-manager UI installation remains manual. |
 
 ### Remaining release acceptance checks
 
@@ -153,6 +162,10 @@ python tools/run_openmw.py
 
 python tools/create_ai_check.py
 python tools/run_openmw.py
+
+python tools/create_storage_check.py
+python tools/run_openmw.py
+# Supply --baseline <pre-fix-core.esp> to reproduce the 500 lb cap.
 ```
 
 The profile generators default to the local installation paths used for this work; adjust their data paths if reproducing elsewhere. `run_openmw.py --engine <path> --config <directory>` selects another executable/profile and always starts its helper window hidden. The runner checks completion markers and mod/test Lua errors and returns nonzero on failure or timeout, even when the engine itself exits normally. Individual assertions are recorded as `FG TEST PASS` in `openmw.log`. Build/cache output is ignored by Git and is not installed by FOMOD.

@@ -1,0 +1,271 @@
+Begin mdFG_script_gizmo
+
+short Companion
+short Topics
+
+short g_health_ratio
+short g_magicka_ratio
+short g_fatigue_ratio
+
+float direction
+float ftemp
+float timer
+
+float currscale
+float tempscale
+
+float xPos
+float yPos
+float zPos
+
+; Appended to preserve the existing local-variable indexes in saved games.
+float storageStrength
+
+long instance
+
+
+if ( MenuMode )
+    return
+endif
+
+
+; add topics
+if ( Topics == 0 )
+	if ( OnActivate == 1 )
+		AddTopic "[Analyze]"
+		AddTopic "[Augment]"
+		AddTopic "[Program]"
+		AddTopic "[Reward]"
+		AddTopic "[Transform]"
+		Activate
+		set Topics to 1
+	endif
+endif
+
+
+if ( GetJournalIndex TR_SothaSil >= 100 )
+	if ( GetPCCell "Sotha Sil, Dome of Sotha Sil" )
+		if ( mdFG_global_sothasil == 0 )
+			set mdFG_global_sothasil to 1
+			ForceGreeting
+		endif
+	endif
+endif
+
+
+; fps delay
+set timer to ( timer + GetSecondsPassed )
+if ( timer < 0.1 )
+	return
+endif
+set timer to 0
+
+
+; is dead
+if ( mdFG_global_dead == 0 )
+	if ( GetHealth <= 0 )
+		set mdFG_global_dead to 1
+		set mdFG_global_following to 0
+		if ( mdFG_global_matrix == 1 )
+			if ( GetDisabled == 0 )
+				PlaceAtMe "wildwerewolf" 1 0 1
+				PlaceAtMe "mdFG_matrix" 1 0 1
+				set mdFG_global_matrixform to 1
+				Disable
+				PositionCell 0 0 0 0 "toddtest"
+				StopScript mdFG_script_WaitOneDay_cap
+				StopScript mdFG_script_WaitOneDay_forage
+			endif
+		endif
+	endif
+endif
+
+
+; change scale
+if ( mdFG_global_scale == 101 )
+	set direction to 1
+	set mdFG_global_scale to 102
+elseif ( mdFG_global_scale == 51 )
+	set direction to -1
+	set mdFG_global_scale to 52
+endif 
+
+if ( direction != 0 )
+	set tempscale to 0.3 * GetSecondsPassed
+	set tempscale to tempscale * direction
+	ModScale tempscale
+	set currscale to GetScale
+	if ( direction == -1 )
+		if ( currscale <= 0.5 )
+			set direction to 0
+			set tempscale to 0
+			set mdFG_global_scale to 50
+		endif
+	else
+		if ( currscale >= 1 )
+			set direction to 0
+			set tempscale to 0
+			set mdFG_global_scale to 100
+		endif
+	endif
+endif
+
+
+; matrix form & imperfect form & summoned
+if ( mdFG_global_new == 1 )
+	if ( companion == 0 )
+		set companion to 1
+	endif
+endif
+
+if ( mdFG_global_matrixform == 1 )
+	if ( GetDisabled == 0 )
+		PlaceAtMe "mdFG_effect_matrix" 1 0 1
+		PlaceAtMe "mdFG_matrix" 1 0 1
+		Disable
+		PositionCell 0 0 0 0 "toddtest"
+		StopScript mdFG_script_WaitOneDay_cap
+		StopScript mdFG_script_WaitOneDay_forage
+	endif
+elseif ( mdFG_global_imperfect == 1 )
+	if ( GetDisabled == 0 )
+		PlaceAtMe "mdFG_effect_matrix" 1 0 1
+		PlaceAtMe "mdFG_Imperfect" 1 0 1
+		Disable
+		PositionCell 0 0 0 0 "toddtest"
+		StopScript mdFG_script_WaitOneDay_cap
+		StopScript mdFG_script_WaitOneDay_forage
+	endif
+elseif ( mdFG_global_summoned == 1 )
+	if ( GetDisabled == 0 )
+		PlaceAtMe "mdFG_effect_matrix" 1 0 1
+		set mdFG_global_summoned to 0
+	endif
+endif
+
+
+; storage capacity: 250 lb base, then 500 / 750 / 1000 lb
+; Sync purchased tiers even when not following, including existing saves.
+; Only set Strength when needed so ordinary attribute effects can persist.
+set ftemp to ( mdFG_global_storage / 2 + 50 )
+if ( storageStrength != ftemp )
+    SetStrength ftemp
+    set storageStrength to ftemp
+endif
+
+
+; following
+if ( GetCurrentAIPackage != 3 )
+	return
+endif
+
+
+; upgrade level
+if ( GetPCSleep )
+    set Companion to 0
+endif
+if ( Companion == 0 )
+    set Companion to 1
+
+    set ftemp to ( Player->GetLevel )
+    SetLevel ftemp
+
+    set ftemp to ( ftemp * 1000 )
+    SetHealth ftemp
+    SetFatigue ftemp
+
+    ; Refresh storage after a level update or native resurrection.
+    set storageStrength to 0
+
+    ; MessageBox "Gizmo's skills have improved!"
+    return
+endif
+
+
+; limit combat speed
+if ( GetWeaponDrawn != GetSpellReadied )
+    if ( GetSpeed > 100 )
+        SetSpeed 100
+    endif
+endif
+
+
+; water walking
+if ( Player->GetEffect sEffectWaterWalking )
+    if ( GetEffect sEffectWaterWalking == 0 )
+        AddSpell "mdFG_ability_ww_real"
+    endif
+elseif ( GetSpell "mdFG_ability_ww_real" )
+    RemoveSpell "mdFG_ability_ww_real"
+endif
+
+
+; levitate
+if ( Player->GetEffect sEffectLevitate )
+    if ( GetEffect sEffectLevitate == 0 )
+        AddSpell "mdFG_ability_lev_real"
+    else; align to player
+        set zPos to ( Player->GetPos z )
+        SetPos z zPos
+    endif
+elseif ( GetSpell "mdFG_ability_lev_real" )
+    RemoveSpell "mdFG_ability_lev_real"
+endif
+
+
+; distance
+set ftemp to ( GetDistance Player )
+
+if ( ftemp < 300 )
+    ClearForceRun
+    SetSpeed 40
+
+elseif ( ftemp < 900 )
+    set ftemp to ( Player->GetSpeed ) * 1.5
+    SetSpeed ftemp
+
+else; warp behind player
+    set zPos to ( Player->GetAngle z )
+    if ( zPos <= -135 )
+        set xPos to -1
+        set yPos to -2
+    elseif ( zPos <= -90 )
+        set xPos to -2
+        set yPos to -1
+    elseif ( zPos <= -45 )
+        set xPos to -2
+        set yPos to  1
+    elseif ( zPos <= 0 )
+        set xPos to -1
+        set yPos to  2
+    elseif ( zPos <= 45 )
+        set xPos to  1
+        set yPos to  2
+    elseif ( zPos <= 90 )
+        set xPos to  2
+        set yPos to  1
+    elseif ( zPos <= 135 )
+        set xPos to  2
+        set yPos to -1
+    else
+        set xPos to  1
+        set yPos to -2
+    endif
+
+    set xPos to ( Player->GetPos x ) - ( xPos * 35 )
+    set yPos to ( Player->GetPos y ) - ( yPos * 35 )
+    set zPos to ( Player->GetPos z )
+
+    SetPos x xPos
+    SetPos y yPos
+    SetPos z zPos
+
+    AiFollow Player 0 0 0 0
+
+    ForceRun
+endif
+
+set ftemp to 0
+
+
+end
