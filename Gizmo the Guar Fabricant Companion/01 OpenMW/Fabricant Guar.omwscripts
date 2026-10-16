@@ -1,0 +1,4 @@
+# Load after Fabricant Guar.ESP and Fabricant Guar - OpenMW.esp.
+GLOBAL: scripts/FabricantGuar/global.lua
+PLAYER: scripts/FabricantGuar/player.lua
+PLAYER, NPC, CREATURE: scripts/FabricantGuar/actor.lua
