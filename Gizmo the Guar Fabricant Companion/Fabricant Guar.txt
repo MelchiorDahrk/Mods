@@ -1,0 +1,64 @@
+Gizmo the Guar Fabricant Companion
+by Melchior Dahrk
+1.3.0
+
+Introduction
+After winning the Runner Up prize for my Tumblr mod giveaway, monaluxstesblog requested a mash up of a "Guar and the Clockwork City / Sotha Sil". So I created a Fabricant guar and made it a well-featured companion.
+
+You'll find Gizmo wandering around outside of Ald Sotha. How did he get there? Only Sotha Sil might know...
+
+
+Features
+Metal feetsies
+Deadly blade paws
+Custom fabricant gura sounds
+Upgrade Gizmo with augmentations!
+Reward Gizmo with scratches, pets, or treats
+Install a repair module to let Gizmo repair your gear
+Send Gizmo to forage around the area for tasty morsels
+Upgradeable storage capacity to carry more of your burdens
+Check on the status of Gizmo's health, magicka, fatigue, and mood
+Improve Gizmo's bioreactor so that he heals more when you feed him
+Experience emotional turmoil with Gizmo when you visit the Clockwork City
+Put Gizmo in your pocket with his matrix form to bring his optimism with you anywhere
+Unlock Gizmo's hidden potential to transform into another more powerful but volatile form
+Activate Gizmo's musk atomizer to attract nearby guar to your aid (including mod added guar!)
+Enhance Gizmo's magicka capacitor to restore your own magicka or fill soul gems
+Death is not the end for Gizmo once his matrix form is enabled; revive him!? At a cost...
+
+
+Playing the mod
+To find Gizmo, travel to Ald Sotha near Vivec City. You'll find him wandering around outside.
+
+[Augments] can be unlocked by performing the simple tasks that Gizmo's display panel will explain to you.
+[Transform] can only be unlocked by discovering what became of Sotha Sil in the Tribunal main quest. Should still work even if you have already completed the quest. Caution: Gizmo will kill indiscriminately in this form.
+
+
+Requirements
+This mod uses the alpha and thus experimental and not necessarily stable 2.1-branch of MWSE, currently in development. By using this mod, you're basically asking to be a tester! If you encounter any issues please post a report, ideally on the MWSE bug tracker. You can download the latest nightly build from the link below.
+
+This mod requires Morrowind Graphic Extender (MGE-XE) version 0.10.1. Older versions will not work with MWSE 2.0+! Additionally, it will require the latest nightly build of MWSE 2.1.
+
+
+Credits
+Greatness7 - huge amounts of coding help
+Merlord - coding help
+Mort - coding help
+Petethegoat - coding help
+PikachunoTM - coding help
+rotouns - coding help
+RubberMan - coding help
+Leyawynn - playtesting and Gizmo's sounds
+NullCascade - MWSE 2.1
+Hrnchamd - MGE XE
+DassiD - Morrowind Enhanced Textures for HD sources
+Morrowind Modding Community Discord - help with brainstorming
+
+
+Changelog
+1.0.0 - Initial release
+1.0.1 - Fixed texture folder
+1.0.2 - Fixed icons folder
+1.1.0 - Fixed Gizmo's inventory being wiped when he turns into matrix form. Added missing matrix effect.
+1.2.0 - Added a "pet whistle" to call Gizmo from anywhere. Added sounds to some of Gizmo's greetings. Added "[Cancel]" options to several dialogue responses. Cleaned dialogue. Added mwse metadata.
+1.3.0 - Added HD textures. Added fomod. Added splash screen for Gizmo.

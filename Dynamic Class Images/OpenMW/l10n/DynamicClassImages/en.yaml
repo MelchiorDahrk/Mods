@@ -1,5 +1,5 @@
 name: "Dynamic Class Images"
-description: "Class artwork by Melchior Dahrk, with the original image rules by Merlord and Melchior Dahrk. Adds pictures to Uncapper's CustomUI level-up window and Stats Window Extender's class tooltip, plus a matching class panel beside the stat review menu. Each display works independently."
+description: "Class artwork by Melchior Dahrk, with the original image rules by Merlord and Melchior Dahrk. Shows a class preview beside the stat review menu. With Uncapper installed, also adds pictures to its CustomUI level-up window. With Stats Window Extender installed, also adds pictures to its class tooltip. Both integrations are optional and work independently."
 artwork: "Class artwork"
 enabled: "Enable Dynamic Class Images"
 enabledDescription: "Show finished pictures for standard classes and layered artwork for custom classes. When disabled, Uncapper uses its usual skill-based picture and the class tooltip and stat review panel keep only their text. Changes apply when the level-up window or tooltip opens, and immediately to an open stat review panel."

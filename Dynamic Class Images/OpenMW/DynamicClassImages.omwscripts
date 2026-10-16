@@ -1,2 +1,2 @@
-# Load after StatsWindow.omwscripts when Stats Window Extender is installed.
-PLAYER: scripts/DynamicClassImages/statsWindow.lua
+# Load after Stats Window Extender and Uncapper when installed; both are optional.
+PLAYER: scripts/DynamicClassImages/main.lua
