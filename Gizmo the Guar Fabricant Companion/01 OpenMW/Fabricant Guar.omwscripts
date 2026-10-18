@@ -1,4 +1,9 @@
 # Load after Fabricant Guar.ESP and Fabricant Guar - OpenMW.esp.
 GLOBAL: scripts/FabricantGuar/global.lua
 PLAYER: scripts/FabricantGuar/player.lua
-PLAYER, NPC, CREATURE: scripts/FabricantGuar/actor.lua
+# Keep the old path known so saved auto-started instances can be removed.
+CUSTOM: scripts/FabricantGuar/actor.lua
+CUSTOM: scripts/FabricantGuar/companion.lua
+CUSTOM: scripts/FabricantGuar/imperfect.lua
+CUSTOM: scripts/FabricantGuar/guar.lua
+CUSTOM: scripts/FabricantGuar/observer.lua

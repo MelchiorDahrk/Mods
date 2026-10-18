@@ -89,10 +89,18 @@ def main():
             assert len([p for p in files if p.startswith('textures/')]) == 13
             print(f'PASS install {e.get("name")} / {t.get("name")}: {len(files)} files')
     directory = ROOT / '01 OpenMW'
+    manifest = {}
     for line in (directory / 'Fabricant Guar.omwscripts').read_text().splitlines():
         if line.strip() and not line.startswith('#'):
             flags, path = line.split(':', 1)
             assert (directory / path.strip()).is_file(), path
+            manifest[path.strip()] = {flag.strip() for flag in flags.split(',')}
+    for role in ('actor', 'companion', 'imperfect', 'guar', 'observer'):
+        assert manifest[f'scripts/FabricantGuar/{role}.lua'] == {'CUSTOM'}
+    for role in ('actor', 'companion', 'guar', 'observer'):
+        source = (directory / f'scripts/FabricantGuar/{role}.lua').read_text()
+        assert not re.search(r'\bonUpdate\s*=', source), role
+    assert 'addOnHitHandler' not in (directory / 'scripts/FabricantGuar/observer.lua').read_text()
     for path in directory.rglob('*.lua'):
         for name in re.findall(r"require\(['\"](scripts\.[^'\"]+)['\"]\)", path.read_text()):
             assert (directory / (name.replace('.', '/') + '.lua')).is_file(), name
@@ -105,7 +113,7 @@ def main():
         lua.lua_tolstring.argtypes = [ctypes.c_void_p, ctypes.c_int, ctypes.c_void_p]
         lua.lua_tolstring.restype = ctypes.c_char_p
         lua.lua_close.argtypes = [ctypes.c_void_p]
-        for path in directory.rglob('*.lua'):
+        for path in [*directory.rglob('*.lua'), *ROOT.glob('01 MWSE/**/*.lua')]:
             state = lua.luaL_newstate()
             result = lua.luaL_loadfile(state, str(path).encode())
             error = lua.lua_tolstring(state, -1, None) if result else None

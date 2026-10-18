@@ -2,7 +2,7 @@
 
 Implemented October 16, 2026. Target: OpenMW 0.51.0.
 
-The implementation is in `01 OpenMW`. The MWSE Lua option is unchanged. The shared core ESP also contains the storage-capacity correction described below, which applies to both engines. This is an implemented port with automated engine integration checks, not a certification of every gameplay interaction on the final 0.51.0 release.
+The implementation is in `01 OpenMW`. Both Lua options now include the improvements described in [Performance implementation.md](Performance%20implementation.md). The shared core ESP also contains the storage-capacity correction described below, which applies to both engines. This is an implemented port with automated engine integration checks, not a certification of every gameplay interaction on the final 0.51.0 release.
 
 ## Installation
 
@@ -47,7 +47,7 @@ OpenMW's [global script implementation](https://github.com/OpenMW/openmw/blob/op
 
 `global.lua` uses the ESP globals as the gameplay interface. Its saved Lua state contains only accepted requests, their immutable destinations, the original reference, UI request IDs, and the fraction of the attraction interval elapsed. Nearby actors, threat reports, and watch subscriptions are rebuilt after load.
 
-`actor.lua` runs AI actions locally. Threat monitoring is enabled only during Guard/Patrol eligibility, checks packages every 0.5 simulation seconds, and expires reports after 1.5 seconds. It examines the whole Combat sequence, including packages below the active package, and Follow/Escort relationships that side with Player. Public combat hit callbacks cover attacks initiated by Player and attacks on Player/allies. No damage is changed or activation suppressed.
+Scoped CUSTOM scripts run AI actions locally; `actor.lua` is an inert migration path. Threat monitoring requires living, nearby Gizmo in Guard/Patrol. Event-only observers inspect on a central 0.5-second schedule, send changes and meaningful one-second refreshes, and expire reports after 1.5 seconds. It examines the whole Combat sequence, including packages below the active package, and Follow/Escort relationships that side with Player. Public combat hit callbacks cover attacks initiated by Player and attacks on Player/allies. No damage is changed or activation suppressed.
 
 Guard/Patrol are recognized by their retained Wander command (distance 0 or 800), `following == 0`, `foraging == 0`, and the original death/form flags. `mdFG_global_new` requests the post-summon greeting and is cleared by that greeting; it does not gate assistance. Forage's distance 1,800 and later Follow/Escort/Travel commands are excluded. Gizmo must be alive and within 3,000 units of Player in the same worldspace. Adding Follow retains current Combat packages. This approximates MWSE's player `inCombat`; exact fleeing and unusual allied-combat behavior still need manual playtesting.
 
@@ -117,7 +117,7 @@ Checks use a separate profile under `tools/.cache/engine`, a temporary laborator
 | Area | Result and boundary |
 | --- | --- |
 | Bridge | Repetition, same-frame coalescing, stopped locals, pending save/load, and Player caller behavior verified in engine. |
-| Lua | All five modules parse with the installed engine's Lua DLL and load in engine without mod Lua errors. |
+| Lua | All nine OpenMW modules and the MWSE module parse with the installed engine's Lua DLL. Scoped runtime, migration, and measurement results appear in the performance documentation. |
 | MWScript/dialogue | Retained and overridden scripts compile. Patched result scripts compile. Full engine compilation also finds unrelated existing Bethesda errors in `Museum` and `forged land deed`; these were present in the unpatched baseline and are not modified. |
 | Whistle/dialogue regression | The original whistle reproduced repeated warning calls while native Gizmo dialogue was open. The patched script stayed quiet during dialogue and idle play, warned once per injected equip event in matrix/Imperfect/dead states, accepted a repeated use, and opened the native call prompt after dialogue closed. Test-only counters surround the real MessageBox calls; inventory input and prompt-button navigation still need manual testing. |
 | Collection | Native activation with collector unequipped leaves sample at 0; equipped activation sets it to 1. Normal activation is not cancelled. |

@@ -10,9 +10,22 @@ local mdFG_global_imperfect
 local mdFG_global_dead
 
 
--- Guar Detection
+-- Active actor and guar detection; reference handles are never saved.
 
-local guarReferences = {}
+local guarReferences, actorReferences = {}, {}
+local controllerTimer
+local guardPending = false
+local checkGuard
+
+local function distanceSquared(a, b)
+    local x, y, z = a.x - b.x, a.y - b.y, a.z - b.z
+    return x*x + y*y + z*z
+end
+
+local function living(ref)
+    return ref and not ref.disabled and not ref.deleted and ref.mobile
+        and ref.mobile.health.current > 0
+end
 
 local function isGuar(object)
 	local id = object.id:lower()
@@ -20,22 +33,26 @@ local function isGuar(object)
 end
 
 local function onRefCreated(e)
-	if isGuar(e.reference.object) then
-		guarReferences[e.reference] = true
-	end
+    local ref = e.reference
+    local kind = ref.object.objectType
+    if kind ~= tes3.objectType.creature and kind ~= tes3.objectType.npc then return end
+    local handle = tes3.makeSafeObjectHandle(ref)
+    actorReferences[ref] = handle
+    if isGuar(ref.object) then guarReferences[ref] = handle end
 end
 
 local function onRefDeleted(e)
-	guarReferences[e.reference] = nil
+	guarReferences[e.reference], actorReferences[e.reference] = nil, nil
 end
 
-local function getNearbyGuars()
-	local pos = tes3.player.position
-	for ref in pairs(guarReferences) do
-		if ref.position:distance(pos) < 1024 then
-			coroutine.yield(ref)
-		end
-	end
+local function rebuildActors()
+    guarReferences, actorReferences = {}, {}
+    for _, cell in pairs(tes3.getActiveCells()) do
+        for ref in cell:iterateReferences({ tes3.objectType.creature, tes3.objectType.npc }) do
+            onRefCreated({ reference = ref })
+        end
+    end
+    if tes3.player then onRefCreated({ reference = tes3.player }) end
 end
 
 
@@ -44,6 +61,7 @@ end
 local atomizerTimer
 
 local function followPlayer(ref)
+	if not living(ref) then return end
 	local aiData = ref.mobile.aiData
 	if not aiData then return end
 
@@ -71,15 +89,21 @@ end
 
 local function muskAtomizerTick()
 	if (mdFG_global_following.value == 1) and (mdFG_global_MuskAtomizer.value == 1) then
-		for ref in coroutine.wrap(getNearbyGuars) do
-			followPlayer(ref)
-		end
+        local position = tes3.player.position
+        for key, handle in pairs(guarReferences) do
+            local ref = handle:getObject()
+            if not ref then guarReferences[key], actorReferences[key] = nil, nil
+            elseif living(ref) and distanceSquared(ref.position, position) < 1024 * 1024 then
+                followPlayer(ref)
+            end
+        end
 	end
 end
 
 local function muskAtomizerStart()
 	if atomizerTimer then
 		atomizerTimer:cancel()
+        atomizerTimer = nil
 	end
 	if (mdFG_global_following.value == 1) and (mdFG_global_MuskAtomizer.value == 1) then
 		atomizerTimer = timer.start{duration=1, iterations=-1, type=timer.simulate, callback=muskAtomizerTick}
@@ -90,40 +114,29 @@ end
 -- Imperfect Aggro
 
 local function getClosestCombatTarget(ref, distance)
-	local closestRef
-	for i, cell in pairs(tes3.getActiveCells()) do
-		for otherRef in cell:iterateReferences() do
-			if (otherRef.object.objectType == tes3.objectType.creature
-				or otherRef.object.objectType == tes3.objectType.npc)
-			then
-				local dist = ref.position:distance(otherRef.position)
-				if (dist < distance
-				    and ref.object ~= otherRef.object
-				    and otherRef.disabled == false
-				    and otherRef.deleted == false
-				    and otherRef.mobile ~= nil
-				    and otherRef.mobile.health.current > 0)
-				then
-					closestRef = otherRef
-					distance = dist
-				end
-			end
-		end
-	end
-	return closestRef, distance
+    local closestRef
+    local best = distance * distance
+    local position = ref.position
+    for key, handle in pairs(actorReferences) do
+        local otherRef = handle:getObject()
+        if not otherRef then actorReferences[key], guarReferences[key] = nil, nil
+        elseif otherRef.object ~= ref.object and living(otherRef) then
+            local squared = distanceSquared(position, otherRef.position)
+            if squared < best then closestRef, best = otherRef, squared end
+        end
+    end
+    return closestRef
 end
 
 local function mdFG_script_imperfectFight()
 	mwscript.stopScript{script="mdFG_script_imperfectFight"}
 
 	local imperfect = tes3.getReference("mdFG_Imperfect")
-	-- mwse.log("imperfect.mobile.inCombat == %s", imperfect.mobile.inCombat)
-	if imperfect.mobile.inCombat == true then
+	if not living(imperfect) or imperfect.mobile.inCombat == true then
 		return
 	end
 
-	local closestRef, distance = getClosestCombatTarget(imperfect, 1000)
-	-- mwse.log("closestRef == %s, distance == %s", closestRef, distance)
+	local closestRef = getClosestCombatTarget(imperfect, 1000)
 	if closestRef then
 		mwscript.startCombat{reference=imperfect, target=closestRef}
 	end
@@ -132,19 +145,39 @@ end
 
 -- Gizmo Guards
 
-local function mdFG_script_AIGuard()
+checkGuard = function()
+    if not guardPending then return end
+    if not mwscript.scriptRunning{script="mdFG_script_AIGuard"} then guardPending = false; return end
+    local gizmo, player = tes3.getReference("mdFG_gizmo"), tes3.player
+    if living(gizmo) and living(player) and player.mobile.inCombat
+        and distanceSquared(gizmo.position, player.position) < 3000 * 3000 then
+        -- Starting Follow can synchronously emit combatStarted through native
+        -- AI or another mod. Consume this request before calling back into AI.
+        guardPending = false
+        followPlayer(gizmo)
+        mdFG_global_following.value = 1
+        mwscript.stopScript{script="mdFG_script_AIGuard"}
+    end
+end
 
-	local gizmo = tes3.getReference("mdFG_gizmo")
-	local player = tes3.getReference("player")
-	local dist = gizmo.position:distance(player.position)
-	-- mwse.log("gizmo.mobile.inCombat == %s", gizmo.mobile.inCombat)
-	if (player.mobile.inCombat == true
-		and dist < 3000)
-	then
-		followPlayer(gizmo)
-		mdFG_global_following.value = 1
-		mwscript.stopScript{script="mdFG_script_AIGuard"}
-	end
+local function mdFG_script_AIGuard()
+    -- Leave the original running-script flag intact for existing/new saves.
+    -- Subsequent override calls do no reference lookup or distance work.
+    if not guardPending then guardPending = true; checkGuard() end
+end
+
+local function startController()
+    if controllerTimer then controllerTimer:cancel() end
+    atomizerTimer = nil -- MWSE cancels simulation timers before loaded.
+    guardPending = mwscript.scriptRunning{script="mdFG_script_AIGuard"}
+    rebuildActors()
+    muskAtomizerStart()
+    local atomizerEnabled = mdFG_global_following.value == 1 and mdFG_global_MuskAtomizer.value == 1
+    controllerTimer = timer.start{duration=0.1, iterations=-1, type=timer.simulate, callback=function()
+        checkGuard()
+        local enabled = mdFG_global_following.value == 1 and mdFG_global_MuskAtomizer.value == 1
+        if enabled ~= atomizerEnabled then atomizerEnabled = enabled; muskAtomizerStart() end
+    end}
 end
 
 
@@ -166,6 +199,7 @@ local function mdFG_script_SummonGizmo(e)
     local cell = e.reference.cell
     timer.delayOneFrame(function()
         local ref = tes3.getReference("mdFG_gizmo")
+        if not ref then return end
         tes3.positionCell{reference=ref, position=pos, orientation=ori, cell=cell}
         mwscript.disable{reference=ref}
         mwscript.enable{reference=ref}
@@ -178,7 +212,9 @@ end
 event.register("initialized", function()
 	if tes3.isModActive("Fabricant Guar.ESP") then
 		-- register events
-		event.register("loaded", muskAtomizerStart)
+		event.register("loaded", startController)
+        event.register("cellChanged", rebuildActors)
+        event.register("combatStarted", function() checkGuard() end)
 		event.register("activate", collectMuskSample)
 		event.register("mobileActivated", onRefCreated)
 		event.register("mobileDeactivated", onRefDeleted)

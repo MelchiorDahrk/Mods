@@ -1,0 +1,3238 @@
+{
+  "baseline": {
+    "metadata": {
+      "variant": "baseline",
+      "instrumented": false,
+      "engine": "D:\\Games\\OpenMW\\OpenMW 0.51.0 Dev\\openmw.exe",
+      "engine_build": "CI_COMMIT_REF_NAME master\nCI_JOB_ID 13218057878\nCI_COMMIT_SHA 1409c532c8f8fcc8c3bb33fe67f2fa8d76d8dc8d\n\ufeffCI_COMMIT_REF_NAME master\nCI_JOB_ID 13218057879\nCI_COMMIT_SHA 1409c532c8f8fcc8c3bb33fe67f2fa8d76d8dc8d\n",
+      "seconds": 5.0,
+      "warmup": 2.0,
+      "source_sha256": {
+        "Fabricant Guar - OpenMW.esp": "108e087ac386941caddffeb682824b5886725d59ce94a47ecbaa478fb72565ea",
+        "Fabricant Guar.omwscripts": "896b329af477d63ec4e0713da56b8b5091093242d6468fb10e17917b9a9d5f9e",
+        "scripts/FabricantGuar/actor.lua": "8a9e7b1a5039bc5d65652e7f8906cf716c57050362b8a6ee27d39edf4064cb89",
+        "scripts/FabricantGuar/common.lua": "0304a7a96de978609d267deb36ed20a9c2e6a2268930c9f54baec5540615271a",
+        "scripts/FabricantGuar/global.lua": "51c03e4140749962b8edc61a3b1d52df2ba8e2dbc51da02d155c37c821e3021a",
+        "scripts/FabricantGuar/lifecycle.lua": "6782734bbc30d29fb57d8b51320ee05191af1168463c1881d212eac505ae28fe",
+        "scripts/FabricantGuar/player.lua": "7ecb1671028d894be9ed64a9f12cee4d88ba6809c2b983eac0312ffda43b5377"
+      }
+    },
+    "samples": [
+      {
+        "frames": 9372.0,
+        "wall": 4.999417,
+        "simulation": 4.999728101,
+        "median_ms": 0.500500028,
+        "p95_ms": 0.739999989,
+        "peak_working_set_bytes": 521093120,
+        "counts": {},
+        "scenario": "idle",
+        "population": 0,
+        "repeat": 1
+      },
+      {
+        "frames": 9666.0,
+        "wall": 5.0003232,
+        "simulation": 5.000350201,
+        "median_ms": 0.489099999,
+        "p95_ms": 0.712700014,
+        "peak_working_set_bytes": 517083136,
+        "counts": {},
+        "scenario": "idle",
+        "population": 0,
+        "repeat": 2
+      },
+      {
+        "frames": 9373.0,
+        "wall": 4.9997214,
+        "simulation": 4.999744197,
+        "median_ms": 0.500000024,
+        "p95_ms": 0.748399994,
+        "peak_working_set_bytes": 455856128,
+        "counts": {},
+        "scenario": "idle",
+        "population": 0,
+        "repeat": 3
+      },
+      {
+        "frames": 4023.0,
+        "wall": 5.0006643,
+        "simulation": 5.000362697,
+        "median_ms": 1.165100024,
+        "p95_ms": 1.886900049,
+        "peak_working_set_bytes": 476942336,
+        "counts": {},
+        "scenario": "idle",
+        "population": 50,
+        "repeat": 1
+      },
+      {
+        "frames": 3997.0,
+        "wall": 5.0010715,
+        "simulation": 5.000848603,
+        "median_ms": 1.177800004,
+        "p95_ms": 1.927400008,
+        "peak_working_set_bytes": 478523392,
+        "counts": {},
+        "scenario": "idle",
+        "population": 50,
+        "repeat": 2
+      },
+      {
+        "frames": 3684.0,
+        "wall": 5.0008012,
+        "simulation": 5.000542496,
+        "median_ms": 1.261200057,
+        "p95_ms": 2.042999957,
+        "peak_working_set_bytes": 477364224,
+        "counts": {},
+        "scenario": "idle",
+        "population": 50,
+        "repeat": 3
+      },
+      {
+        "frames": 806.0,
+        "wall": 4.998671,
+        "simulation": 4.999561996,
+        "median_ms": 5.861899815,
+        "p95_ms": 8.598299697,
+        "peak_working_set_bytes": 541487104,
+        "counts": {},
+        "scenario": "idle",
+        "population": 200,
+        "repeat": 1
+      },
+      {
+        "frames": 853.0,
+        "wall": 4.9986884,
+        "simulation": 4.9983981,
+        "median_ms": 5.544099957,
+        "p95_ms": 8.109199814,
+        "peak_working_set_bytes": 541564928,
+        "counts": {},
+        "scenario": "idle",
+        "population": 200,
+        "repeat": 2
+      },
+      {
+        "frames": 853.0,
+        "wall": 4.9962981,
+        "simulation": 4.996961799,
+        "median_ms": 5.693099927,
+        "p95_ms": 7.732099853,
+        "peak_working_set_bytes": 542494720,
+        "counts": {},
+        "scenario": "idle",
+        "population": 200,
+        "repeat": 3
+      },
+      {
+        "frames": 155.0,
+        "wall": 5.0162065,
+        "simulation": 5.007982293,
+        "median_ms": 30.354399234,
+        "p95_ms": 45.392300934,
+        "peak_working_set_bytes": 680484864,
+        "counts": {},
+        "scenario": "idle",
+        "population": 500,
+        "repeat": 1
+      },
+      {
+        "frames": 152.0,
+        "wall": 4.9862019,
+        "simulation": 4.987273712,
+        "median_ms": 30.411200598,
+        "p95_ms": 48.53240028,
+        "peak_working_set_bytes": 685658112,
+        "counts": {},
+        "scenario": "idle",
+        "population": 500,
+        "repeat": 2
+      },
+      {
+        "frames": 151.0,
+        "wall": 5.0088128,
+        "simulation": 5.004616292,
+        "median_ms": 31.361598521,
+        "p95_ms": 49.430601299,
+        "peak_working_set_bytes": 686612480,
+        "counts": {},
+        "scenario": "idle",
+        "population": 500,
+        "repeat": 3
+      },
+      {
+        "frames": 9337.0,
+        "wall": 5.000701,
+        "simulation": 5.000722201,
+        "median_ms": 0.495199987,
+        "p95_ms": 0.773200009,
+        "peak_working_set_bytes": 455368704,
+        "counts": {},
+        "scenario": "guard",
+        "population": 0,
+        "repeat": 1
+      },
+      {
+        "frames": 9385.0,
+        "wall": 5.0000143,
+        "simulation": 4.999996801,
+        "median_ms": 0.492100022,
+        "p95_ms": 0.774200016,
+        "peak_working_set_bytes": 456376320,
+        "counts": {},
+        "scenario": "guard",
+        "population": 0,
+        "repeat": 2
+      },
+      {
+        "frames": 9449.0,
+        "wall": 5.0001871,
+        "simulation": 4.9999388,
+        "median_ms": 0.49050001,
+        "p95_ms": 0.766600017,
+        "peak_working_set_bytes": 455237632,
+        "counts": {},
+        "scenario": "guard",
+        "population": 0,
+        "repeat": 3
+      },
+      {
+        "frames": 3911.0,
+        "wall": 5.0012531,
+        "simulation": 5.001259001,
+        "median_ms": 1.176799997,
+        "p95_ms": 1.974599902,
+        "peak_working_set_bytes": 477495296,
+        "counts": {},
+        "scenario": "guard",
+        "population": 50,
+        "repeat": 1
+      },
+      {
+        "frames": 3517.0,
+        "wall": 5.0014692,
+        "simulation": 5.001187406,
+        "median_ms": 1.343599986,
+        "p95_ms": 2.156399889,
+        "peak_working_set_bytes": 479191040,
+        "counts": {},
+        "scenario": "guard",
+        "population": 50,
+        "repeat": 2
+      },
+      {
+        "frames": 3501.0,
+        "wall": 4.9993249,
+        "simulation": 4.999783698,
+        "median_ms": 1.327099977,
+        "p95_ms": 2.157399897,
+        "peak_working_set_bytes": 478523392,
+        "counts": {},
+        "scenario": "guard",
+        "population": 50,
+        "repeat": 3
+      },
+      {
+        "frames": 825.0,
+        "wall": 5.0024384,
+        "simulation": 5.005500394,
+        "median_ms": 5.807199981,
+        "p95_ms": 8.449899964,
+        "peak_working_set_bytes": 541351936,
+        "counts": {},
+        "scenario": "guard",
+        "population": 200,
+        "repeat": 1
+      },
+      {
+        "frames": 857.0,
+        "wall": 5.0049713,
+        "simulation": 5.003042193,
+        "median_ms": 5.572500173,
+        "p95_ms": 7.998200133,
+        "peak_working_set_bytes": 541237248,
+        "counts": {},
+        "scenario": "guard",
+        "population": 200,
+        "repeat": 2
+      },
+      {
+        "frames": 822.0,
+        "wall": 5.0045493,
+        "simulation": 5.003117603,
+        "median_ms": 5.794300232,
+        "p95_ms": 8.554300293,
+        "peak_working_set_bytes": 542269440,
+        "counts": {},
+        "scenario": "guard",
+        "population": 200,
+        "repeat": 3
+      },
+      {
+        "frames": 151.0,
+        "wall": 5.031337,
+        "simulation": 5.022025486,
+        "median_ms": 31.849000603,
+        "p95_ms": 47.520600259,
+        "peak_working_set_bytes": 687456256,
+        "counts": {},
+        "scenario": "guard",
+        "population": 500,
+        "repeat": 1
+      },
+      {
+        "frames": 154.0,
+        "wall": 5.0233086,
+        "simulation": 5.033130696,
+        "median_ms": 31.303800642,
+        "p95_ms": 46.53089866,
+        "peak_working_set_bytes": 687104000,
+        "counts": {},
+        "scenario": "guard",
+        "population": 500,
+        "repeat": 2
+      },
+      {
+        "frames": 152.0,
+        "wall": 5.0231403,
+        "simulation": 5.020645186,
+        "median_ms": 31.955901533,
+        "p95_ms": 46.498499811,
+        "peak_working_set_bytes": 686993408,
+        "counts": {},
+        "scenario": "guard",
+        "population": 500,
+        "repeat": 3
+      },
+      {
+        "frames": 9234.0,
+        "wall": 5.0003735,
+        "simulation": 5.0004339,
+        "median_ms": 0.497800007,
+        "p95_ms": 0.787700003,
+        "peak_working_set_bytes": 455008256,
+        "counts": {},
+        "scenario": "far",
+        "population": 0,
+        "repeat": 1
+      },
+      {
+        "frames": 9404.0,
+        "wall": 5.0000105,
+        "simulation": 5.000010202,
+        "median_ms": 0.492200023,
+        "p95_ms": 0.750100007,
+        "peak_working_set_bytes": 454787072,
+        "counts": {},
+        "scenario": "far",
+        "population": 0,
+        "repeat": 2
+      },
+      {
+        "frames": 8963.0,
+        "wall": 5.0002963,
+        "simulation": 5.000316502,
+        "median_ms": 0.509099977,
+        "p95_ms": 0.841100002,
+        "peak_working_set_bytes": 455868416,
+        "counts": {},
+        "scenario": "far",
+        "population": 0,
+        "repeat": 3
+      },
+      {
+        "frames": 7643.0,
+        "wall": 4.9996197,
+        "simulation": 4.999623298,
+        "median_ms": 0.587899995,
+        "p95_ms": 1.083899988,
+        "peak_working_set_bytes": 475566080,
+        "counts": {},
+        "scenario": "far",
+        "population": 50,
+        "repeat": 1
+      },
+      {
+        "frames": 7705.0,
+        "wall": 5.0010606,
+        "simulation": 5.000842601,
+        "median_ms": 0.584899972,
+        "p95_ms": 1.077800058,
+        "peak_working_set_bytes": 475185152,
+        "counts": {},
+        "scenario": "far",
+        "population": 50,
+        "repeat": 2
+      },
+      {
+        "frames": 7917.0,
+        "wall": 5.0002723,
+        "simulation": 4.999900803,
+        "median_ms": 0.566100003,
+        "p95_ms": 1.023999997,
+        "peak_working_set_bytes": 474734592,
+        "counts": {},
+        "scenario": "far",
+        "population": 50,
+        "repeat": 3
+      },
+      {
+        "frames": 4599.0,
+        "wall": 4.9977659,
+        "simulation": 4.998259399,
+        "median_ms": 0.953099981,
+        "p95_ms": 2.066799905,
+        "peak_working_set_bytes": 526626816,
+        "counts": {},
+        "scenario": "far",
+        "population": 200,
+        "repeat": 1
+      },
+      {
+        "frames": 4588.0,
+        "wall": 5.0001486,
+        "simulation": 5.000200104,
+        "median_ms": 0.955099997,
+        "p95_ms": 2.089400077,
+        "peak_working_set_bytes": 527503360,
+        "counts": {},
+        "scenario": "far",
+        "population": 200,
+        "repeat": 2
+      },
+      {
+        "frames": 4570.0,
+        "wall": 4.9994342,
+        "simulation": 4.9997285,
+        "median_ms": 0.953199982,
+        "p95_ms": 2.119099954,
+        "peak_working_set_bytes": 527187968,
+        "counts": {},
+        "scenario": "far",
+        "population": 200,
+        "repeat": 3
+      },
+      {
+        "frames": 2455.0,
+        "wall": 4.9994477,
+        "simulation": 4.999473999,
+        "median_ms": 1.766699948,
+        "p95_ms": 3.56839993,
+        "peak_working_set_bytes": 633798656,
+        "counts": {},
+        "scenario": "far",
+        "population": 500,
+        "repeat": 1
+      },
+      {
+        "frames": 2488.0,
+        "wall": 4.9965506,
+        "simulation": 4.997322898,
+        "median_ms": 1.76080002,
+        "p95_ms": 3.50719993,
+        "peak_working_set_bytes": 633704448,
+        "counts": {},
+        "scenario": "far",
+        "population": 500,
+        "repeat": 2
+      },
+      {
+        "frames": 2480.0,
+        "wall": 5.0030961,
+        "simulation": 5.003178597,
+        "median_ms": 1.772999996,
+        "p95_ms": 3.53029999,
+        "peak_working_set_bytes": 634056704,
+        "counts": {},
+        "scenario": "far",
+        "population": 500,
+        "repeat": 3
+      },
+      {
+        "frames": 9442.0,
+        "wall": 4.9995253,
+        "simulation": 4.999633499,
+        "median_ms": 0.491000013,
+        "p95_ms": 0.765500008,
+        "peak_working_set_bytes": 454467584,
+        "counts": {},
+        "scenario": "attract",
+        "population": 0,
+        "repeat": 1
+      },
+      {
+        "frames": 9473.0,
+        "wall": 4.9999392,
+        "simulation": 4.9998841,
+        "median_ms": 0.488899997,
+        "p95_ms": 0.757700007,
+        "peak_working_set_bytes": 455696384,
+        "counts": {},
+        "scenario": "attract",
+        "population": 0,
+        "repeat": 2
+      },
+      {
+        "frames": 9290.0,
+        "wall": 5.0003849,
+        "simulation": 5.000367902,
+        "median_ms": 0.494499982,
+        "p95_ms": 0.784499978,
+        "peak_working_set_bytes": 455151616,
+        "counts": {},
+        "scenario": "attract",
+        "population": 0,
+        "repeat": 3
+      },
+      {
+        "frames": 2614.0,
+        "wall": 5.0005474,
+        "simulation": 5.000678501,
+        "median_ms": 1.468400005,
+        "p95_ms": 4.574100021,
+        "peak_working_set_bytes": 505544704,
+        "counts": {},
+        "scenario": "attract",
+        "population": 50,
+        "repeat": 1
+      },
+      {
+        "frames": 2660.0,
+        "wall": 5.0017657,
+        "simulation": 5.001937903,
+        "median_ms": 1.404999988,
+        "p95_ms": 4.982300103,
+        "peak_working_set_bytes": 483176448,
+        "counts": {},
+        "scenario": "attract",
+        "population": 50,
+        "repeat": 2
+      },
+      {
+        "frames": 2573.0,
+        "wall": 4.9999254,
+        "simulation": 4.999894202,
+        "median_ms": 1.442700042,
+        "p95_ms": 4.987100139,
+        "peak_working_set_bytes": 483053568,
+        "counts": {},
+        "scenario": "attract",
+        "population": 50,
+        "repeat": 3
+      },
+      {
+        "frames": 71.0,
+        "wall": 4.9824907,
+        "simulation": 4.982943103,
+        "median_ms": 70.630699396,
+        "p95_ms": 77.469803393,
+        "peak_working_set_bytes": 569131008,
+        "counts": {},
+        "scenario": "attract",
+        "population": 200,
+        "repeat": 1
+      },
+      {
+        "frames": 70.0,
+        "wall": 4.9420801,
+        "simulation": 4.952375095,
+        "median_ms": 69.889299572,
+        "p95_ms": 79.923897982,
+        "peak_working_set_bytes": 569794560,
+        "counts": {},
+        "scenario": "attract",
+        "population": 200,
+        "repeat": 2
+      },
+      {
+        "frames": 75.0,
+        "wall": 4.9808726,
+        "simulation": 4.982226182,
+        "median_ms": 66.027700901,
+        "p95_ms": 75.516998768,
+        "peak_working_set_bytes": 569409536,
+        "counts": {},
+        "scenario": "attract",
+        "population": 200,
+        "repeat": 3
+      },
+      {
+        "frames": 25.0,
+        "wall": 6.5663743,
+        "simulation": 4.992470175,
+        "median_ms": 200.00000298,
+        "p95_ms": 200.00000298,
+        "peak_working_set_bytes": 757317632,
+        "counts": {},
+        "scenario": "attract",
+        "population": 500,
+        "repeat": 1
+      },
+      {
+        "frames": 25.0,
+        "wall": 6.74625,
+        "simulation": 5.000000075,
+        "median_ms": 200.00000298,
+        "p95_ms": 200.00000298,
+        "peak_working_set_bytes": 757960704,
+        "counts": {},
+        "scenario": "attract",
+        "population": 500,
+        "repeat": 2
+      },
+      {
+        "frames": 26.0,
+        "wall": 6.8715395,
+        "simulation": 5.191595376,
+        "median_ms": 200.00000298,
+        "p95_ms": 200.00000298,
+        "peak_working_set_bytes": 754184192,
+        "counts": {},
+        "scenario": "attract",
+        "population": 500,
+        "repeat": 3
+      }
+    ]
+  },
+  "baseline_unavailable": {
+    "metadata": {
+      "variant": "baseline",
+      "instrumented": false,
+      "engine": "D:\\Games\\OpenMW\\OpenMW 0.51.0 Dev\\openmw.exe",
+      "engine_build": "CI_COMMIT_REF_NAME master\nCI_JOB_ID 13218057878\nCI_COMMIT_SHA 1409c532c8f8fcc8c3bb33fe67f2fa8d76d8dc8d\n\ufeffCI_COMMIT_REF_NAME master\nCI_JOB_ID 13218057879\nCI_COMMIT_SHA 1409c532c8f8fcc8c3bb33fe67f2fa8d76d8dc8d\n",
+      "seconds": 5,
+      "warmup": 2,
+      "source_sha256": {
+        "Fabricant Guar - OpenMW.esp": "108e087ac386941caddffeb682824b5886725d59ce94a47ecbaa478fb72565ea",
+        "Fabricant Guar.omwscripts": "896b329af477d63ec4e0713da56b8b5091093242d6468fb10e17917b9a9d5f9e",
+        "scripts/FabricantGuar/actor.lua": "8a9e7b1a5039bc5d65652e7f8906cf716c57050362b8a6ee27d39edf4064cb89",
+        "scripts/FabricantGuar/common.lua": "0304a7a96de978609d267deb36ed20a9c2e6a2268930c9f54baec5540615271a",
+        "scripts/FabricantGuar/global.lua": "51c03e4140749962b8edc61a3b1d52df2ba8e2dbc51da02d155c37c821e3021a",
+        "scripts/FabricantGuar/lifecycle.lua": "6782734bbc30d29fb57d8b51320ee05191af1168463c1881d212eac505ae28fe",
+        "scripts/FabricantGuar/player.lua": "7ecb1671028d894be9ed64a9f12cee4d88ba6809c2b983eac0312ffda43b5377"
+      }
+    },
+    "samples": [
+      {
+        "frames": 9427.0,
+        "wall": 5.0001983,
+        "simulation": 5.000389902,
+        "median_ms": 0.492900028,
+        "p95_ms": 0.771099993,
+        "peak_working_set_bytes": 519835648,
+        "counts": {},
+        "scenario": "unavailable",
+        "population": 0,
+        "repeat": 1
+      },
+      {
+        "frames": 9249.0,
+        "wall": 4.9997741,
+        "simulation": 4.999949904,
+        "median_ms": 0.507900026,
+        "p95_ms": 0.769699982,
+        "peak_working_set_bytes": 516911104,
+        "counts": {},
+        "scenario": "unavailable",
+        "population": 0,
+        "repeat": 2
+      },
+      {
+        "frames": 9679.0,
+        "wall": 4.9997817,
+        "simulation": 4.9998036,
+        "median_ms": 0.486300007,
+        "p95_ms": 0.725799997,
+        "peak_working_set_bytes": 455356416,
+        "counts": {},
+        "scenario": "unavailable",
+        "population": 0,
+        "repeat": 3
+      },
+      {
+        "frames": 8375.0,
+        "wall": 4.997479,
+        "simulation": 4.998237104,
+        "median_ms": 0.529100012,
+        "p95_ms": 1.013300032,
+        "peak_working_set_bytes": 473358336,
+        "counts": {},
+        "scenario": "unavailable",
+        "population": 50,
+        "repeat": 1
+      },
+      {
+        "frames": 8153.0,
+        "wall": 5.0000536,
+        "simulation": 5.000055402,
+        "median_ms": 0.538700027,
+        "p95_ms": 1.061600051,
+        "peak_working_set_bytes": 474775552,
+        "counts": {},
+        "scenario": "unavailable",
+        "population": 50,
+        "repeat": 2
+      },
+      {
+        "frames": 8364.0,
+        "wall": 5.0001285,
+        "simulation": 5.000093902,
+        "median_ms": 0.532599981,
+        "p95_ms": 0.973000017,
+        "peak_working_set_bytes": 476663808,
+        "counts": {},
+        "scenario": "unavailable",
+        "population": 50,
+        "repeat": 3
+      },
+      {
+        "frames": 4751.0,
+        "wall": 4.9997032,
+        "simulation": 4.999581703,
+        "median_ms": 0.915299985,
+        "p95_ms": 2.043300075,
+        "peak_working_set_bytes": 525471744,
+        "counts": {},
+        "scenario": "unavailable",
+        "population": 200,
+        "repeat": 1
+      },
+      {
+        "frames": 4832.0,
+        "wall": 5.000339,
+        "simulation": 5.000280701,
+        "median_ms": 0.905200024,
+        "p95_ms": 1.99280004,
+        "peak_working_set_bytes": 525787136,
+        "counts": {},
+        "scenario": "unavailable",
+        "population": 200,
+        "repeat": 2
+      },
+      {
+        "frames": 4770.0,
+        "wall": 5.0008143,
+        "simulation": 5.000787201,
+        "median_ms": 0.916499994,
+        "p95_ms": 2.002400113,
+        "peak_working_set_bytes": 525787136,
+        "counts": {},
+        "scenario": "unavailable",
+        "population": 200,
+        "repeat": 3
+      },
+      {
+        "frames": 2573.0,
+        "wall": 5.0041346,
+        "simulation": 5.002144204,
+        "median_ms": 1.699900022,
+        "p95_ms": 3.427600022,
+        "peak_working_set_bytes": 634232832,
+        "counts": {},
+        "scenario": "unavailable",
+        "population": 500,
+        "repeat": 1
+      },
+      {
+        "frames": 2538.0,
+        "wall": 4.9999768,
+        "simulation": 4.999952702,
+        "median_ms": 1.719300053,
+        "p95_ms": 3.487499896,
+        "peak_working_set_bytes": 633667584,
+        "counts": {},
+        "scenario": "unavailable",
+        "population": 500,
+        "repeat": 2
+      },
+      {
+        "frames": 2544.0,
+        "wall": 4.9986674,
+        "simulation": 4.998700201,
+        "median_ms": 1.725399983,
+        "p95_ms": 3.454799997,
+        "peak_working_set_bytes": 633602048,
+        "counts": {},
+        "scenario": "unavailable",
+        "population": 500,
+        "repeat": 3
+      }
+    ]
+  },
+  "candidate": {
+    "metadata": {
+      "variant": "candidate",
+      "instrumented": false,
+      "engine": "D:\\Games\\OpenMW\\OpenMW 0.51.0 Dev\\openmw.exe",
+      "engine_build": "CI_COMMIT_REF_NAME master\nCI_JOB_ID 13218057878\nCI_COMMIT_SHA 1409c532c8f8fcc8c3bb33fe67f2fa8d76d8dc8d\n\ufeffCI_COMMIT_REF_NAME master\nCI_JOB_ID 13218057879\nCI_COMMIT_SHA 1409c532c8f8fcc8c3bb33fe67f2fa8d76d8dc8d\n",
+      "seconds": 5,
+      "warmup": 2,
+      "source_sha256": {
+        "Fabricant Guar - OpenMW.esp": "108e087ac386941caddffeb682824b5886725d59ce94a47ecbaa478fb72565ea",
+        "Fabricant Guar.omwscripts": "00c560c3ac8579c735d431e46291d6d86d584edd5dfc1b6a584d7596219bb420",
+        "scripts/FabricantGuar/actor.lua": "39be9bda6e9e3b7aaaa71580924cb9edd5da33143c5ab5cf25fe61adbbbec1f7",
+        "scripts/FabricantGuar/common.lua": "8f6396ec293a0f9cf19e6626457f698ff4784f621ee66c544cb34abe8eea8ff9",
+        "scripts/FabricantGuar/companion.lua": "83037cedf489291e792ca9e68383010da5d39ec31ead6c349a7ca0d7a1860723",
+        "scripts/FabricantGuar/global.lua": "d0987abdb796013e33ba523ec1ab66255176813837f343a81df437a759fc6573",
+        "scripts/FabricantGuar/guar.lua": "4c30b030130a48721148fab498219146df4bc4193bc29d0f80fb6695dc38ab99",
+        "scripts/FabricantGuar/imperfect.lua": "e2672defeb75d1129adb147fc7b9fc808301117a9f9bee684238ec027f5b5d5d",
+        "scripts/FabricantGuar/lifecycle.lua": "6782734bbc30d29fb57d8b51320ee05191af1168463c1881d212eac505ae28fe",
+        "scripts/FabricantGuar/observer.lua": "e6b3c1f0b73c4864b227cc70165c2d7e508a5b09629d2e1ae54f4a4326000fb5",
+        "scripts/FabricantGuar/player.lua": "7ecb1671028d894be9ed64a9f12cee4d88ba6809c2b983eac0312ffda43b5377"
+      }
+    },
+    "samples": [
+      {
+        "frames": 9432.0,
+        "wall": 4.9995434,
+        "simulation": 4.999623902,
+        "median_ms": 0.497000001,
+        "p95_ms": 0.733099994,
+        "peak_working_set_bytes": 454332416,
+        "counts": {},
+        "scenario": "idle",
+        "population": 0,
+        "repeat": 1
+      },
+      {
+        "frames": 9564.0,
+        "wall": 4.9999703,
+        "simulation": 4.9999916,
+        "median_ms": 0.491400016,
+        "p95_ms": 0.726400001,
+        "peak_working_set_bytes": 454729728,
+        "counts": {},
+        "scenario": "idle",
+        "population": 0,
+        "repeat": 2
+      },
+      {
+        "frames": 9476.0,
+        "wall": 5.0004325,
+        "simulation": 5.000342004,
+        "median_ms": 0.496799999,
+        "p95_ms": 0.732999993,
+        "peak_working_set_bytes": 455376896,
+        "counts": {},
+        "scenario": "idle",
+        "population": 0,
+        "repeat": 3
+      },
+      {
+        "frames": 4052.0,
+        "wall": 4.9984894,
+        "simulation": 4.999312602,
+        "median_ms": 1.140199951,
+        "p95_ms": 1.840800047,
+        "peak_working_set_bytes": 476692480,
+        "counts": {},
+        "scenario": "idle",
+        "population": 50,
+        "repeat": 1
+      },
+      {
+        "frames": 3851.0,
+        "wall": 5.0018033,
+        "simulation": 5.001662798,
+        "median_ms": 1.242000028,
+        "p95_ms": 1.942100003,
+        "peak_working_set_bytes": 477044736,
+        "counts": {},
+        "scenario": "idle",
+        "population": 50,
+        "repeat": 2
+      },
+      {
+        "frames": 3950.0,
+        "wall": 4.9992578,
+        "simulation": 4.998946103,
+        "median_ms": 1.180400024,
+        "p95_ms": 1.931700041,
+        "peak_working_set_bytes": 476848128,
+        "counts": {},
+        "scenario": "idle",
+        "population": 50,
+        "repeat": 3
+      },
+      {
+        "frames": 850.0,
+        "wall": 4.9935722,
+        "simulation": 4.994141706,
+        "median_ms": 5.533900112,
+        "p95_ms": 8.482100442,
+        "peak_working_set_bytes": 534814720,
+        "counts": {},
+        "scenario": "idle",
+        "population": 200,
+        "repeat": 1
+      },
+      {
+        "frames": 895.0,
+        "wall": 5.0012257,
+        "simulation": 4.999805695,
+        "median_ms": 5.311999936,
+        "p95_ms": 7.611299865,
+        "peak_working_set_bytes": 537034752,
+        "counts": {},
+        "scenario": "idle",
+        "population": 200,
+        "repeat": 2
+      },
+      {
+        "frames": 846.0,
+        "wall": 5.0040944,
+        "simulation": 5.004050098,
+        "median_ms": 5.62760001,
+        "p95_ms": 8.306399919,
+        "peak_working_set_bytes": 537604096,
+        "counts": {},
+        "scenario": "idle",
+        "population": 200,
+        "repeat": 3
+      },
+      {
+        "frames": 161.0,
+        "wall": 4.9870424,
+        "simulation": 5.00143571,
+        "median_ms": 29.720399529,
+        "p95_ms": 44.96980086,
+        "peak_working_set_bytes": 673980416,
+        "counts": {},
+        "scenario": "idle",
+        "population": 500,
+        "repeat": 1
+      },
+      {
+        "frames": 160.0,
+        "wall": 5.0089533,
+        "simulation": 5.020176189,
+        "median_ms": 29.91889976,
+        "p95_ms": 44.355899096,
+        "peak_working_set_bytes": 672022528,
+        "counts": {},
+        "scenario": "idle",
+        "population": 500,
+        "repeat": 2
+      },
+      {
+        "frames": 159.0,
+        "wall": 4.9581094,
+        "simulation": 4.956522504,
+        "median_ms": 29.696499929,
+        "p95_ms": 43.733399361,
+        "peak_working_set_bytes": 671428608,
+        "counts": {},
+        "scenario": "idle",
+        "population": 500,
+        "repeat": 3
+      },
+      {
+        "frames": 9125.0,
+        "wall": 4.9998767,
+        "simulation": 4.999900802,
+        "median_ms": 0.507800025,
+        "p95_ms": 0.785599987,
+        "peak_working_set_bytes": 454152192,
+        "counts": {},
+        "scenario": "guard",
+        "population": 0,
+        "repeat": 1
+      },
+      {
+        "frames": 9258.0,
+        "wall": 4.9997523,
+        "simulation": 4.9998449,
+        "median_ms": 0.502399984,
+        "p95_ms": 0.777899986,
+        "peak_working_set_bytes": 455708672,
+        "counts": {},
+        "scenario": "guard",
+        "population": 0,
+        "repeat": 2
+      },
+      {
+        "frames": 9231.0,
+        "wall": 5.0009188,
+        "simulation": 5.000632002,
+        "median_ms": 0.501199975,
+        "p95_ms": 0.786199991,
+        "peak_working_set_bytes": 455409664,
+        "counts": {},
+        "scenario": "guard",
+        "population": 0,
+        "repeat": 3
+      },
+      {
+        "frames": 4004.0,
+        "wall": 5.000981,
+        "simulation": 5.000535705,
+        "median_ms": 1.175499987,
+        "p95_ms": 1.866800012,
+        "peak_working_set_bytes": 476790784,
+        "counts": {},
+        "scenario": "guard",
+        "population": 50,
+        "repeat": 1
+      },
+      {
+        "frames": 3876.0,
+        "wall": 5.0025535,
+        "simulation": 5.001809898,
+        "median_ms": 1.213200041,
+        "p95_ms": 1.945000025,
+        "peak_working_set_bytes": 477851648,
+        "counts": {},
+        "scenario": "guard",
+        "population": 50,
+        "repeat": 2
+      },
+      {
+        "frames": 4136.0,
+        "wall": 5.0010422,
+        "simulation": 5.000815005,
+        "median_ms": 1.10600004,
+        "p95_ms": 1.829599962,
+        "peak_working_set_bytes": 476725248,
+        "counts": {},
+        "scenario": "guard",
+        "population": 50,
+        "repeat": 3
+      },
+      {
+        "frames": 821.0,
+        "wall": 5.0014899,
+        "simulation": 5.002647193,
+        "median_ms": 5.889500026,
+        "p95_ms": 8.272299543,
+        "peak_working_set_bytes": 540143616,
+        "counts": {},
+        "scenario": "guard",
+        "population": 200,
+        "repeat": 1
+      },
+      {
+        "frames": 876.0,
+        "wall": 5.0018673,
+        "simulation": 5.001573795,
+        "median_ms": 5.41169988,
+        "p95_ms": 7.727399934,
+        "peak_working_set_bytes": 539648000,
+        "counts": {},
+        "scenario": "guard",
+        "population": 200,
+        "repeat": 2
+      },
+      {
+        "frames": 876.0,
+        "wall": 4.9919101,
+        "simulation": 4.994301604,
+        "median_ms": 5.466999952,
+        "p95_ms": 7.68190017,
+        "peak_working_set_bytes": 540971008,
+        "counts": {},
+        "scenario": "guard",
+        "population": 200,
+        "repeat": 3
+      },
+      {
+        "frames": 157.0,
+        "wall": 5.0218857,
+        "simulation": 5.018946186,
+        "median_ms": 30.507599935,
+        "p95_ms": 45.363299549,
+        "peak_working_set_bytes": 680935424,
+        "counts": {},
+        "scenario": "guard",
+        "population": 500,
+        "repeat": 1
+      },
+      {
+        "frames": 154.0,
+        "wall": 5.0082938,
+        "simulation": 5.007149508,
+        "median_ms": 31.074499711,
+        "p95_ms": 45.357100666,
+        "peak_working_set_bytes": 682057728,
+        "counts": {},
+        "scenario": "guard",
+        "population": 500,
+        "repeat": 2
+      },
+      {
+        "frames": 153.0,
+        "wall": 4.9806716,
+        "simulation": 4.985232398,
+        "median_ms": 31.306598336,
+        "p95_ms": 45.23549974,
+        "peak_working_set_bytes": 678596608,
+        "counts": {},
+        "scenario": "guard",
+        "population": 500,
+        "repeat": 3
+      },
+      {
+        "frames": 9094.0,
+        "wall": 5.0000908,
+        "simulation": 4.9999162,
+        "median_ms": 0.51480002,
+        "p95_ms": 0.803100003,
+        "peak_working_set_bytes": 454418432,
+        "counts": {},
+        "scenario": "far",
+        "population": 0,
+        "repeat": 1
+      },
+      {
+        "frames": 9296.0,
+        "wall": 5.0002167,
+        "simulation": 5.000197698,
+        "median_ms": 0.500500028,
+        "p95_ms": 0.789000012,
+        "peak_working_set_bytes": 456122368,
+        "counts": {},
+        "scenario": "far",
+        "population": 0,
+        "repeat": 2
+      },
+      {
+        "frames": 9273.0,
+        "wall": 4.9999209,
+        "simulation": 4.9999487,
+        "median_ms": 0.505000004,
+        "p95_ms": 0.781700015,
+        "peak_working_set_bytes": 456282112,
+        "counts": {},
+        "scenario": "far",
+        "population": 0,
+        "repeat": 3
+      },
+      {
+        "frames": 8052.0,
+        "wall": 4.9997456,
+        "simulation": 4.999684601,
+        "median_ms": 0.554999977,
+        "p95_ms": 0.999100041,
+        "peak_working_set_bytes": 474251264,
+        "counts": {},
+        "scenario": "far",
+        "population": 50,
+        "repeat": 1
+      },
+      {
+        "frames": 8078.0,
+        "wall": 5.0014741,
+        "simulation": 5.000588801,
+        "median_ms": 0.555899984,
+        "p95_ms": 0.986299943,
+        "peak_working_set_bytes": 474652672,
+        "counts": {},
+        "scenario": "far",
+        "population": 50,
+        "repeat": 2
+      },
+      {
+        "frames": 7897.0,
+        "wall": 5.0004452,
+        "simulation": 5.000441501,
+        "median_ms": 0.565299997,
+        "p95_ms": 1.002299949,
+        "peak_working_set_bytes": 475217920,
+        "counts": {},
+        "scenario": "far",
+        "population": 50,
+        "repeat": 3
+      },
+      {
+        "frames": 4937.0,
+        "wall": 4.9927528,
+        "simulation": 4.994340298,
+        "median_ms": 0.869699987,
+        "p95_ms": 1.990800025,
+        "peak_working_set_bytes": 525008896,
+        "counts": {},
+        "scenario": "far",
+        "population": 200,
+        "repeat": 1
+      },
+      {
+        "frames": 5094.0,
+        "wall": 4.9965779,
+        "simulation": 4.9976214,
+        "median_ms": 0.852599973,
+        "p95_ms": 1.927600009,
+        "peak_working_set_bytes": 526237696,
+        "counts": {},
+        "scenario": "far",
+        "population": 200,
+        "repeat": 2
+      },
+      {
+        "frames": 5040.0,
+        "wall": 4.9994954,
+        "simulation": 4.999440599,
+        "median_ms": 0.861099979,
+        "p95_ms": 1.937799971,
+        "peak_working_set_bytes": 524529664,
+        "counts": {},
+        "scenario": "far",
+        "population": 200,
+        "repeat": 3
+      },
+      {
+        "frames": 2717.0,
+        "wall": 4.99887,
+        "simulation": 4.999023,
+        "median_ms": 1.617399976,
+        "p95_ms": 3.253800096,
+        "peak_working_set_bytes": 630714368,
+        "counts": {},
+        "scenario": "far",
+        "population": 500,
+        "repeat": 1
+      },
+      {
+        "frames": 2647.0,
+        "wall": 5.0043536,
+        "simulation": 5.003030702,
+        "median_ms": 1.621700008,
+        "p95_ms": 3.449399956,
+        "peak_working_set_bytes": 631570432,
+        "counts": {},
+        "scenario": "far",
+        "population": 500,
+        "repeat": 2
+      },
+      {
+        "frames": 2675.0,
+        "wall": 4.9999446,
+        "simulation": 4.999901398,
+        "median_ms": 1.629699953,
+        "p95_ms": 3.307899926,
+        "peak_working_set_bytes": 632971264,
+        "counts": {},
+        "scenario": "far",
+        "population": 500,
+        "repeat": 3
+      },
+      {
+        "frames": 9277.0,
+        "wall": 4.999749,
+        "simulation": 4.999653001,
+        "median_ms": 0.503099989,
+        "p95_ms": 0.757400005,
+        "peak_working_set_bytes": 453705728,
+        "counts": {},
+        "scenario": "attract",
+        "population": 0,
+        "repeat": 1
+      },
+      {
+        "frames": 9247.0,
+        "wall": 5.0003866,
+        "simulation": 5.000204103,
+        "median_ms": 0.500899972,
+        "p95_ms": 0.788000005,
+        "peak_working_set_bytes": 455737344,
+        "counts": {},
+        "scenario": "attract",
+        "population": 0,
+        "repeat": 2
+      },
+      {
+        "frames": 9119.0,
+        "wall": 4.9995987,
+        "simulation": 4.999563301,
+        "median_ms": 0.506500015,
+        "p95_ms": 0.801999995,
+        "peak_working_set_bytes": 455421952,
+        "counts": {},
+        "scenario": "attract",
+        "population": 0,
+        "repeat": 3
+      },
+      {
+        "frames": 2620.0,
+        "wall": 5.001195,
+        "simulation": 5.0011834,
+        "median_ms": 1.399099943,
+        "p95_ms": 5.184399895,
+        "peak_working_set_bytes": 502214656,
+        "counts": {},
+        "scenario": "attract",
+        "population": 50,
+        "repeat": 1
+      },
+      {
+        "frames": 2626.0,
+        "wall": 5.0006238,
+        "simulation": 5.000129303,
+        "median_ms": 1.428500051,
+        "p95_ms": 4.881599918,
+        "peak_working_set_bytes": 482127872,
+        "counts": {},
+        "scenario": "attract",
+        "population": 50,
+        "repeat": 2
+      },
+      {
+        "frames": 2587.0,
+        "wall": 5.0018268,
+        "simulation": 5.001340902,
+        "median_ms": 1.470500021,
+        "p95_ms": 4.977900069,
+        "peak_working_set_bytes": 483295232,
+        "counts": {},
+        "scenario": "attract",
+        "population": 50,
+        "repeat": 3
+      },
+      {
+        "frames": 75.0,
+        "wall": 5.0325819,
+        "simulation": 5.029003706,
+        "median_ms": 67.472502589,
+        "p95_ms": 73.714897037,
+        "peak_working_set_bytes": 565968896,
+        "counts": {},
+        "scenario": "attract",
+        "population": 200,
+        "repeat": 1
+      },
+      {
+        "frames": 74.0,
+        "wall": 4.9882072,
+        "simulation": 4.98802067,
+        "median_ms": 68.38080287,
+        "p95_ms": 72.96589762,
+        "peak_working_set_bytes": 567459840,
+        "counts": {},
+        "scenario": "attract",
+        "population": 200,
+        "repeat": 2
+      },
+      {
+        "frames": 76.0,
+        "wall": 5.0201229,
+        "simulation": 5.016019482,
+        "median_ms": 64.760498703,
+        "p95_ms": 73.015898466,
+        "peak_working_set_bytes": 567283712,
+        "counts": {},
+        "scenario": "attract",
+        "population": 200,
+        "repeat": 3
+      },
+      {
+        "frames": 25.0,
+        "wall": 6.8220229,
+        "simulation": 5.000000075,
+        "median_ms": 200.00000298,
+        "p95_ms": 200.00000298,
+        "peak_working_set_bytes": 747094016,
+        "counts": {},
+        "scenario": "attract",
+        "population": 500,
+        "repeat": 1
+      },
+      {
+        "frames": 25.0,
+        "wall": 6.5818578,
+        "simulation": 5.000000075,
+        "median_ms": 200.00000298,
+        "p95_ms": 200.00000298,
+        "peak_working_set_bytes": 742096896,
+        "counts": {},
+        "scenario": "attract",
+        "population": 500,
+        "repeat": 2
+      },
+      {
+        "frames": 26.0,
+        "wall": 6.7832821,
+        "simulation": 5.19885008,
+        "median_ms": 200.00000298,
+        "p95_ms": 200.00000298,
+        "peak_working_set_bytes": 750374912,
+        "counts": {},
+        "scenario": "attract",
+        "population": 500,
+        "repeat": 3
+      },
+      {
+        "frames": 9370.0,
+        "wall": 4.9999552,
+        "simulation": 5.000034601,
+        "median_ms": 0.500799972,
+        "p95_ms": 0.744800025,
+        "peak_working_set_bytes": 453992448,
+        "counts": {},
+        "scenario": "unavailable",
+        "population": 0,
+        "repeat": 1
+      },
+      {
+        "frames": 9525.0,
+        "wall": 5.0000409,
+        "simulation": 5.000037601,
+        "median_ms": 0.493000029,
+        "p95_ms": 0.723899982,
+        "peak_working_set_bytes": 455065600,
+        "counts": {},
+        "scenario": "unavailable",
+        "population": 0,
+        "repeat": 2
+      },
+      {
+        "frames": 9432.0,
+        "wall": 4.9994652,
+        "simulation": 4.9994822,
+        "median_ms": 0.498300011,
+        "p95_ms": 0.744300021,
+        "peak_working_set_bytes": 455098368,
+        "counts": {},
+        "scenario": "unavailable",
+        "population": 0,
+        "repeat": 3
+      },
+      {
+        "frames": 8573.0,
+        "wall": 5.0000186,
+        "simulation": 5.000021802,
+        "median_ms": 0.524299976,
+        "p95_ms": 0.904300017,
+        "peak_working_set_bytes": 473858048,
+        "counts": {},
+        "scenario": "unavailable",
+        "population": 50,
+        "repeat": 1
+      },
+      {
+        "frames": 8394.0,
+        "wall": 5.0002788,
+        "simulation": 5.000211702,
+        "median_ms": 0.533699989,
+        "p95_ms": 0.944000029,
+        "peak_working_set_bytes": 473944064,
+        "counts": {},
+        "scenario": "unavailable",
+        "population": 50,
+        "repeat": 2
+      },
+      {
+        "frames": 8452.0,
+        "wall": 5.0000512,
+        "simulation": 5.000093701,
+        "median_ms": 0.529900019,
+        "p95_ms": 0.917600002,
+        "peak_working_set_bytes": 473780224,
+        "counts": {},
+        "scenario": "unavailable",
+        "population": 50,
+        "repeat": 3
+      },
+      {
+        "frames": 5416.0,
+        "wall": 5.0001561,
+        "simulation": 5.0001582,
+        "median_ms": 0.810099998,
+        "p95_ms": 1.732300036,
+        "peak_working_set_bytes": 522883072,
+        "counts": {},
+        "scenario": "unavailable",
+        "population": 200,
+        "repeat": 1
+      },
+      {
+        "frames": 5337.0,
+        "wall": 5.0004964,
+        "simulation": 5.000435901,
+        "median_ms": 0.81659999,
+        "p95_ms": 1.822900027,
+        "peak_working_set_bytes": 522571776,
+        "counts": {},
+        "scenario": "unavailable",
+        "population": 200,
+        "repeat": 2
+      },
+      {
+        "frames": 5347.0,
+        "wall": 5.0000965,
+        "simulation": 5.000086102,
+        "median_ms": 0.815099978,
+        "p95_ms": 1.824800042,
+        "peak_working_set_bytes": 523366400,
+        "counts": {},
+        "scenario": "unavailable",
+        "population": 200,
+        "repeat": 3
+      },
+      {
+        "frames": 2886.0,
+        "wall": 4.999191,
+        "simulation": 4.9990461,
+        "median_ms": 1.541799982,
+        "p95_ms": 3.08439997,
+        "peak_working_set_bytes": 623276032,
+        "counts": {},
+        "scenario": "unavailable",
+        "population": 500,
+        "repeat": 1
+      },
+      {
+        "frames": 2817.0,
+        "wall": 5.0014303,
+        "simulation": 5.0013941,
+        "median_ms": 1.544800005,
+        "p95_ms": 3.242200008,
+        "peak_working_set_bytes": 623824896,
+        "counts": {},
+        "scenario": "unavailable",
+        "population": 500,
+        "repeat": 2
+      },
+      {
+        "frames": 2775.0,
+        "wall": 5.0007392,
+        "simulation": 5.0007879,
+        "median_ms": 1.560400007,
+        "p95_ms": 3.226700006,
+        "peak_working_set_bytes": 623509504,
+        "counts": {},
+        "scenario": "unavailable",
+        "population": 500,
+        "repeat": 3
+      }
+    ]
+  },
+  "control": {
+    "metadata": {
+      "variant": "control",
+      "instrumented": false,
+      "engine": "D:\\Games\\OpenMW\\OpenMW 0.51.0 Dev\\openmw.exe",
+      "engine_build": "CI_COMMIT_REF_NAME master\nCI_JOB_ID 13218057878\nCI_COMMIT_SHA 1409c532c8f8fcc8c3bb33fe67f2fa8d76d8dc8d\n\ufeffCI_COMMIT_REF_NAME master\nCI_JOB_ID 13218057879\nCI_COMMIT_SHA 1409c532c8f8fcc8c3bb33fe67f2fa8d76d8dc8d\n",
+      "seconds": 5,
+      "warmup": 2,
+      "source_sha256": {
+        "Fabricant Guar - OpenMW.esp": "108e087ac386941caddffeb682824b5886725d59ce94a47ecbaa478fb72565ea",
+        "Fabricant Guar.omwscripts": "00c560c3ac8579c735d431e46291d6d86d584edd5dfc1b6a584d7596219bb420",
+        "scripts/FabricantGuar/actor.lua": "39be9bda6e9e3b7aaaa71580924cb9edd5da33143c5ab5cf25fe61adbbbec1f7",
+        "scripts/FabricantGuar/common.lua": "8f6396ec293a0f9cf19e6626457f698ff4784f621ee66c544cb34abe8eea8ff9",
+        "scripts/FabricantGuar/companion.lua": "83037cedf489291e792ca9e68383010da5d39ec31ead6c349a7ca0d7a1860723",
+        "scripts/FabricantGuar/global.lua": "d0987abdb796013e33ba523ec1ab66255176813837f343a81df437a759fc6573",
+        "scripts/FabricantGuar/guar.lua": "4c30b030130a48721148fab498219146df4bc4193bc29d0f80fb6695dc38ab99",
+        "scripts/FabricantGuar/imperfect.lua": "e2672defeb75d1129adb147fc7b9fc808301117a9f9bee684238ec027f5b5d5d",
+        "scripts/FabricantGuar/lifecycle.lua": "6782734bbc30d29fb57d8b51320ee05191af1168463c1881d212eac505ae28fe",
+        "scripts/FabricantGuar/observer.lua": "e6b3c1f0b73c4864b227cc70165c2d7e508a5b09629d2e1ae54f4a4326000fb5",
+        "scripts/FabricantGuar/player.lua": "7ecb1671028d894be9ed64a9f12cee4d88ba6809c2b983eac0312ffda43b5377"
+      }
+    },
+    "samples": [
+      {
+        "frames": 892.0,
+        "wall": 5.0009102,
+        "simulation": 5.002328598,
+        "median_ms": 5.310900044,
+        "p95_ms": 7.833199576,
+        "peak_working_set_bytes": 598999040,
+        "counts": {},
+        "scenario": "guard",
+        "population": 200,
+        "repeat": 1
+      },
+      {
+        "frames": 905.0,
+        "wall": 5.007339,
+        "simulation": 5.006016097,
+        "median_ms": 5.231800023,
+        "p95_ms": 7.598899771,
+        "peak_working_set_bytes": 600236032,
+        "counts": {},
+        "scenario": "guard",
+        "population": 200,
+        "repeat": 2
+      },
+      {
+        "frames": 819.0,
+        "wall": 5.0018923,
+        "simulation": 5.001856406,
+        "median_ms": 5.716300104,
+        "p95_ms": 8.858799934,
+        "peak_working_set_bytes": 536260608,
+        "counts": {},
+        "scenario": "guard",
+        "population": 200,
+        "repeat": 3
+      },
+      {
+        "frames": 161.0,
+        "wall": 4.9943939,
+        "simulation": 4.994761908,
+        "median_ms": 29.508499429,
+        "p95_ms": 43.375298381,
+        "peak_working_set_bytes": 672116736,
+        "counts": {},
+        "scenario": "guard",
+        "population": 500,
+        "repeat": 1
+      },
+      {
+        "frames": 163.0,
+        "wall": 5.0289429,
+        "simulation": 5.035909485,
+        "median_ms": 29.18279916,
+        "p95_ms": 44.627398252,
+        "peak_working_set_bytes": 672247808,
+        "counts": {},
+        "scenario": "guard",
+        "population": 500,
+        "repeat": 2
+      },
+      {
+        "frames": 162.0,
+        "wall": 5.0097594,
+        "simulation": 5.023499908,
+        "median_ms": 29.270799831,
+        "p95_ms": 44.315401465,
+        "peak_working_set_bytes": 672591872,
+        "counts": {},
+        "scenario": "guard",
+        "population": 500,
+        "repeat": 3
+      },
+      {
+        "frames": 5192.0,
+        "wall": 5.0004976,
+        "simulation": 5.000484202,
+        "median_ms": 0.844200025,
+        "p95_ms": 1.85390003,
+        "peak_working_set_bytes": 522326016,
+        "counts": {},
+        "scenario": "far",
+        "population": 200,
+        "repeat": 1
+      },
+      {
+        "frames": 5165.0,
+        "wall": 5.0007184,
+        "simulation": 5.000706698,
+        "median_ms": 0.848099997,
+        "p95_ms": 1.849099994,
+        "peak_working_set_bytes": 522780672,
+        "counts": {},
+        "scenario": "far",
+        "population": 200,
+        "repeat": 2
+      },
+      {
+        "frames": 5144.0,
+        "wall": 5.0004163,
+        "simulation": 5.000410202,
+        "median_ms": 0.845999981,
+        "p95_ms": 1.834399998,
+        "peak_working_set_bytes": 522080256,
+        "counts": {},
+        "scenario": "far",
+        "population": 200,
+        "repeat": 3
+      },
+      {
+        "frames": 2828.0,
+        "wall": 4.9992383,
+        "simulation": 4.999208601,
+        "median_ms": 1.576200011,
+        "p95_ms": 3.16559989,
+        "peak_working_set_bytes": 623566848,
+        "counts": {},
+        "scenario": "far",
+        "population": 500,
+        "repeat": 1
+      },
+      {
+        "frames": 2825.0,
+        "wall": 4.9998191,
+        "simulation": 4.999756801,
+        "median_ms": 1.575800008,
+        "p95_ms": 3.147399984,
+        "peak_working_set_bytes": 623280128,
+        "counts": {},
+        "scenario": "far",
+        "population": 500,
+        "repeat": 2
+      },
+      {
+        "frames": 2722.0,
+        "wall": 4.9966594,
+        "simulation": 4.998099097,
+        "median_ms": 1.612100052,
+        "p95_ms": 3.279499942,
+        "peak_working_set_bytes": 623984640,
+        "counts": {},
+        "scenario": "far",
+        "population": 500,
+        "repeat": 3
+      },
+      {
+        "frames": 5404.0,
+        "wall": 4.9995736,
+        "simulation": 4.999555501,
+        "median_ms": 0.807399978,
+        "p95_ms": 1.840500045,
+        "peak_working_set_bytes": 522141696,
+        "counts": {},
+        "scenario": "unavailable",
+        "population": 200,
+        "repeat": 1
+      },
+      {
+        "frames": 5397.0,
+        "wall": 5.0004593,
+        "simulation": 5.000592597,
+        "median_ms": 0.808099983,
+        "p95_ms": 1.803599996,
+        "peak_working_set_bytes": 522035200,
+        "counts": {},
+        "scenario": "unavailable",
+        "population": 200,
+        "repeat": 2
+      },
+      {
+        "frames": 5391.0,
+        "wall": 5.0006364,
+        "simulation": 5.000897899,
+        "median_ms": 0.810199999,
+        "p95_ms": 1.799599966,
+        "peak_working_set_bytes": 523100160,
+        "counts": {},
+        "scenario": "unavailable",
+        "population": 200,
+        "repeat": 3
+      },
+      {
+        "frames": 2889.0,
+        "wall": 4.9984505,
+        "simulation": 4.999371703,
+        "median_ms": 1.534000039,
+        "p95_ms": 3.105599899,
+        "peak_working_set_bytes": 622534656,
+        "counts": {},
+        "scenario": "unavailable",
+        "population": 500,
+        "repeat": 1
+      },
+      {
+        "frames": 2889.0,
+        "wall": 4.9998287,
+        "simulation": 4.999850601,
+        "median_ms": 1.529700006,
+        "p95_ms": 3.121899907,
+        "peak_working_set_bytes": 622899200,
+        "counts": {},
+        "scenario": "unavailable",
+        "population": 500,
+        "repeat": 2
+      },
+      {
+        "frames": 2831.0,
+        "wall": 5.0038291,
+        "simulation": 5.002193399,
+        "median_ms": 1.551300054,
+        "p95_ms": 3.147799987,
+        "peak_working_set_bytes": 622202880,
+        "counts": {},
+        "scenario": "unavailable",
+        "population": 500,
+        "repeat": 3
+      }
+    ]
+  },
+  "baseline_diagnostics": {
+    "metadata": {
+      "variant": "baseline",
+      "instrumented": true,
+      "engine": "D:\\Games\\OpenMW\\OpenMW 0.51.0 Dev\\openmw.exe",
+      "engine_build": "CI_COMMIT_REF_NAME master\nCI_JOB_ID 13218057878\nCI_COMMIT_SHA 1409c532c8f8fcc8c3bb33fe67f2fa8d76d8dc8d\n\ufeffCI_COMMIT_REF_NAME master\nCI_JOB_ID 13218057879\nCI_COMMIT_SHA 1409c532c8f8fcc8c3bb33fe67f2fa8d76d8dc8d\n",
+      "seconds": 5,
+      "warmup": 2,
+      "source_sha256": {
+        "Fabricant Guar - OpenMW.esp": "108e087ac386941caddffeb682824b5886725d59ce94a47ecbaa478fb72565ea",
+        "Fabricant Guar.omwscripts": "896b329af477d63ec4e0713da56b8b5091093242d6468fb10e17917b9a9d5f9e",
+        "scripts/FabricantGuar/actor.lua": "8a9e7b1a5039bc5d65652e7f8906cf716c57050362b8a6ee27d39edf4064cb89",
+        "scripts/FabricantGuar/common.lua": "0304a7a96de978609d267deb36ed20a9c2e6a2268930c9f54baec5540615271a",
+        "scripts/FabricantGuar/global.lua": "51c03e4140749962b8edc61a3b1d52df2ba8e2dbc51da02d155c37c821e3021a",
+        "scripts/FabricantGuar/lifecycle.lua": "6782734bbc30d29fb57d8b51320ee05191af1168463c1881d212eac505ae28fe",
+        "scripts/FabricantGuar/player.lua": "7ecb1671028d894be9ed64a9f12cee4d88ba6809c2b983eac0312ffda43b5377"
+      }
+    },
+    "samples": [
+      {
+        "frames": 835.0,
+        "wall": 5.0036464,
+        "simulation": 5.004035297,
+        "median_ms": 5.786899943,
+        "p95_ms": 8.149400353,
+        "peak_working_set_bytes": 541605888,
+        "counts": {
+          "actor.inspections": 2010.0,
+          "global.FGCombatReport": 2000.0,
+          "global.FGCombatReport_seconds": 0.0069290999381337,
+          "global.report_visits": 4000.0,
+          "actor.onUpdate": 167835.0,
+          "actor.onUpdate_seconds": 0.10248310180032,
+          "global.onUpdate": 835.0,
+          "global.onUpdate_seconds": 0.01353609994112,
+          "player.onFrame": 835.0,
+          "player.onFrame_seconds": 0.00073670003621373,
+          "active_instances.actor": 201.0,
+          "actor.inspection_seconds": 0.022227599998587
+        },
+        "scenario": "idle",
+        "population": 200,
+        "repeat": 1
+      },
+      {
+        "frames": 785.0,
+        "wall": 4.9994065,
+        "simulation": 4.998275999,
+        "median_ms": 6.170799956,
+        "p95_ms": 8.753599599,
+        "peak_working_set_bytes": 540659712,
+        "counts": {
+          "actor.onUpdate": 158570.0,
+          "global.FGCombatReport": 2010.0,
+          "global.FGCombatReport_seconds": 0.0066454996122047,
+          "global.onUpdate_seconds": 0.014137999984086,
+          "global.report_visits": 4020.0,
+          "player.onFrame_seconds": 0.00054289994295686,
+          "actor.inspections": 2020.0,
+          "actor.inspection_seconds": 0.021496600093087,
+          "active_instances.actor": 202.0,
+          "player.onFrame": 785.0,
+          "global.onUpdate": 785.0,
+          "actor.onUpdate_seconds": 0.10094530055358
+        },
+        "scenario": "guard",
+        "population": 200,
+        "repeat": 1
+      },
+      {
+        "frames": 4342.0,
+        "wall": 5.0001142,
+        "simulation": 5.000069607,
+        "median_ms": 1.01430004,
+        "p95_ms": 2.107500099,
+        "peak_working_set_bytes": 527892480,
+        "counts": {
+          "actor.inspections": 2020.0,
+          "actor.inspection_seconds": 0.022797799552791,
+          "global.report_visits": 4020.0,
+          "actor.onUpdate": 877084.0,
+          "actor.onUpdate_seconds": 0.22981209766294,
+          "global.onUpdate": 4342.0,
+          "global.onUpdate_seconds": 0.028302800346864,
+          "active_instances.actor": 202.0,
+          "global.FGCombatReport": 2010.0,
+          "global.FGCombatReport_seconds": 0.0065920998895308,
+          "player.onFrame_seconds": 0.0018451002397342,
+          "player.onFrame": 4342.0
+        },
+        "scenario": "far",
+        "population": 200,
+        "repeat": 1
+      },
+      {
+        "frames": 71.0,
+        "wall": 5.0375086,
+        "simulation": 5.041124698,
+        "median_ms": 70.668898523,
+        "p95_ms": 80.137997866,
+        "peak_working_set_bytes": 592252928,
+        "counts": {
+          "global.onUpdate": 71.0,
+          "global.onUpdate_seconds": 0.0095920000021579,
+          "player.onFrame": 71.0,
+          "player.onFrame_seconds": 8.659997547511e-05,
+          "actor.FGAttract": 470.0,
+          "actor.FGAttract_seconds": 0.010573499996099,
+          "active_instances.actor": 202.0,
+          "global.active_visits": 1010.0,
+          "actor.onUpdate": 14342.0,
+          "actor.onUpdate_seconds": 0.0091802009992534
+        },
+        "scenario": "attract",
+        "population": 200,
+        "repeat": 1
+      },
+      {
+        "frames": 4471.0,
+        "wall": 5.0012677,
+        "simulation": 5.000542705,
+        "median_ms": 0.980000012,
+        "p95_ms": 2.096700016,
+        "peak_working_set_bytes": 526262272,
+        "counts": {
+          "actor.inspections": 2010.0,
+          "actor.inspection_seconds": 0.023541599788587,
+          "global.FGCombatReport": 2000.0,
+          "global.FGCombatReport_seconds": 0.0069355993764475,
+          "actor.onUpdate": 898671.0,
+          "actor.onUpdate_seconds": 0.23449510161299,
+          "global.onUpdate": 4471.0,
+          "global.onUpdate_seconds": 0.024878899479518,
+          "active_instances.actor": 201.0,
+          "player.onFrame": 4471.0,
+          "player.onFrame_seconds": 0.0019859997992171,
+          "global.report_visits": 4000.0
+        },
+        "scenario": "unavailable",
+        "population": 200,
+        "repeat": 1
+      }
+    ]
+  },
+  "candidate_diagnostics": {
+    "metadata": {
+      "variant": "candidate",
+      "instrumented": true,
+      "engine": "D:\\Games\\OpenMW\\OpenMW 0.51.0 Dev\\openmw.exe",
+      "engine_build": "CI_COMMIT_REF_NAME master\nCI_JOB_ID 13218057878\nCI_COMMIT_SHA 1409c532c8f8fcc8c3bb33fe67f2fa8d76d8dc8d\n\ufeffCI_COMMIT_REF_NAME master\nCI_JOB_ID 13218057879\nCI_COMMIT_SHA 1409c532c8f8fcc8c3bb33fe67f2fa8d76d8dc8d\n",
+      "seconds": 5,
+      "warmup": 2,
+      "source_sha256": {
+        "Fabricant Guar - OpenMW.esp": "108e087ac386941caddffeb682824b5886725d59ce94a47ecbaa478fb72565ea",
+        "Fabricant Guar.omwscripts": "00c560c3ac8579c735d431e46291d6d86d584edd5dfc1b6a584d7596219bb420",
+        "scripts/FabricantGuar/actor.lua": "39be9bda6e9e3b7aaaa71580924cb9edd5da33143c5ab5cf25fe61adbbbec1f7",
+        "scripts/FabricantGuar/common.lua": "8f6396ec293a0f9cf19e6626457f698ff4784f621ee66c544cb34abe8eea8ff9",
+        "scripts/FabricantGuar/companion.lua": "83037cedf489291e792ca9e68383010da5d39ec31ead6c349a7ca0d7a1860723",
+        "scripts/FabricantGuar/global.lua": "d0987abdb796013e33ba523ec1ab66255176813837f343a81df437a759fc6573",
+        "scripts/FabricantGuar/guar.lua": "4c30b030130a48721148fab498219146df4bc4193bc29d0f80fb6695dc38ab99",
+        "scripts/FabricantGuar/imperfect.lua": "e2672defeb75d1129adb147fc7b9fc808301117a9f9bee684238ec027f5b5d5d",
+        "scripts/FabricantGuar/lifecycle.lua": "6782734bbc30d29fb57d8b51320ee05191af1168463c1881d212eac505ae28fe",
+        "scripts/FabricantGuar/observer.lua": "e6b3c1f0b73c4864b227cc70165c2d7e508a5b09629d2e1ae54f4a4326000fb5",
+        "scripts/FabricantGuar/player.lua": "7ecb1671028d894be9ed64a9f12cee4d88ba6809c2b983eac0312ffda43b5377"
+      }
+    },
+    "samples": [
+      {
+        "frames": 894.0,
+        "wall": 4.9960623,
+        "simulation": 4.995433409,
+        "median_ms": 5.34630008,
+        "p95_ms": 7.935400121,
+        "peak_working_set_bytes": 535482368,
+        "counts": {
+          "global.onUpdate": 894.0,
+          "global.onUpdate_seconds": 0.0075161001295783,
+          "player.onFrame_seconds": 0.00066909978340846,
+          "player.onFrame": 894.0
+        },
+        "scenario": "idle",
+        "population": 200,
+        "repeat": 1
+      },
+      {
+        "frames": 792.0,
+        "wall": 5.0027927,
+        "simulation": 5.002079792,
+        "median_ms": 5.751799792,
+        "p95_ms": 9.297999553,
+        "peak_working_set_bytes": 540344320,
+        "counts": {
+          "global.onUpdate": 792.0,
+          "global.onUpdate_seconds": 0.012709399859887,
+          "active_instances.companion": 1.0,
+          "observer.FGInspectCombat": 2020.0,
+          "observer.FGInspectCombat_seconds": 0.015240900072968,
+          "global.FGGuardState": 20.0,
+          "observer.inspections": 2020.0,
+          "companion.FGGuardCheck_seconds": 0.0015567999653285,
+          "observer.inspection_seconds": 0.013412199739832,
+          "player.onFrame": 792.0,
+          "player.onFrame_seconds": 0.00063409982249141,
+          "active_instances.observer": 202.0,
+          "companion.FGGuardCheck": 20.0,
+          "global.active_visits": 1010.0,
+          "global.FGGuardState_seconds": 0.0011629000509856
+        },
+        "scenario": "guard",
+        "population": 200,
+        "repeat": 1
+      },
+      {
+        "frames": 4976.0,
+        "wall": 4.9957807,
+        "simulation": 4.997397996,
+        "median_ms": 0.869299984,
+        "p95_ms": 1.950199949,
+        "peak_working_set_bytes": 525807616,
+        "counts": {
+          "observer.FGInspectCombat_seconds": 0.014229300562874,
+          "global.FGGuardState": 20.0,
+          "observer.inspections": 2020.0,
+          "active_instances.companion": 1.0,
+          "observer.inspection_seconds": 0.012740300458972,
+          "player.onFrame_seconds": 0.0021384997380665,
+          "global.onUpdate": 4976.0,
+          "global.onUpdate_seconds": 0.025560800306266,
+          "global.FGGuardState_seconds": 0.00066990000777878,
+          "active_instances.observer": 202.0,
+          "companion.FGGuardCheck_seconds": 0.0012212000001455,
+          "companion.FGGuardCheck": 20.0,
+          "player.onFrame": 4976.0,
+          "global.active_visits": 1010.0,
+          "observer.FGInspectCombat": 2020.0
+        },
+        "scenario": "far",
+        "population": 200,
+        "repeat": 1
+      },
+      {
+        "frames": 71.0,
+        "wall": 4.9777777,
+        "simulation": 4.986943603,
+        "median_ms": 70.272900164,
+        "p95_ms": 76.359502971,
+        "peak_working_set_bytes": 565112832,
+        "counts": {
+          "global.onUpdate_seconds": 0.009678399990662,
+          "guar.FGAttract": 465.0,
+          "guar.FGAttract_seconds": 0.0088753000018187,
+          "active_instances.companion": 1.0,
+          "player.onFrame": 71.0,
+          "player.onFrame_seconds": 7.2300143074244e-05,
+          "global.active_visits": 1010.0,
+          "active_instances.guar": 93.0,
+          "global.guar_visits": 1000.0,
+          "global.onUpdate": 71.0
+        },
+        "scenario": "attract",
+        "population": 200,
+        "repeat": 1
+      },
+      {
+        "frames": 5350.0,
+        "wall": 5.0028853,
+        "simulation": 5.002626098,
+        "median_ms": 0.817099994,
+        "p95_ms": 1.819199999,
+        "peak_working_set_bytes": 522768384,
+        "counts": {
+          "global.onUpdate_seconds": 0.021390800597146,
+          "player.onFrame_seconds": 0.0027126989880344,
+          "player.onFrame": 5350.0,
+          "global.onUpdate": 5350.0
+        },
+        "scenario": "unavailable",
+        "population": 200,
+        "repeat": 1
+      }
+    ]
+  },
+  "mwse_fixture": {
+    "boundary": "Lua API fixture; not native Morrowind runtime",
+    "samples": [
+      {
+        "seconds": [
+          0.003,
+          0.003,
+          0.003
+        ],
+        "reference_visits": [
+          107000,
+          107000,
+          107000
+        ],
+        "handle_lookups": [
+          0,
+          0,
+          0
+        ],
+        "toggle_fixed": false,
+        "variant": "baseline",
+        "scenery": 0,
+        "iterations": 1000
+      },
+      {
+        "seconds": [
+          0.001,
+          0.001,
+          0.002
+        ],
+        "reference_visits": [
+          0,
+          0,
+          0
+        ],
+        "handle_lookups": [
+          107000,
+          107000,
+          107000
+        ],
+        "toggle_fixed": true,
+        "variant": "candidate",
+        "scenery": 0,
+        "iterations": 1000
+      },
+      {
+        "seconds": [
+          0.091,
+          0.089,
+          0.088
+        ],
+        "reference_visits": [
+          5107000,
+          5107000,
+          5107000
+        ],
+        "handle_lookups": [
+          0,
+          0,
+          0
+        ],
+        "toggle_fixed": false,
+        "variant": "baseline",
+        "scenery": 5000,
+        "iterations": 1000
+      },
+      {
+        "seconds": [
+          0.001,
+          0.001,
+          0.002
+        ],
+        "reference_visits": [
+          0,
+          0,
+          0
+        ],
+        "handle_lookups": [
+          107000,
+          107000,
+          107000
+        ],
+        "toggle_fixed": true,
+        "variant": "candidate",
+        "scenery": 5000,
+        "iterations": 1000
+      },
+      {
+        "seconds": [
+          0.367,
+          0.369,
+          0.365
+        ],
+        "reference_visits": [
+          20107000,
+          20107000,
+          20107000
+        ],
+        "handle_lookups": [
+          0,
+          0,
+          0
+        ],
+        "toggle_fixed": false,
+        "variant": "baseline",
+        "scenery": 20000,
+        "iterations": 1000
+      },
+      {
+        "seconds": [
+          0.002,
+          0.001,
+          0.001
+        ],
+        "reference_visits": [
+          0,
+          0,
+          0
+        ],
+        "handle_lookups": [
+          107000,
+          107000,
+          107000
+        ],
+        "toggle_fixed": true,
+        "variant": "candidate",
+        "scenery": 20000,
+        "iterations": 1000
+      }
+    ]
+  },
+  "validation": {
+    "source_sha256": {
+      "00 Core/Fabricant Guar.ESP": "08f6e9c860b1715b86e51f1b785253724237bf55457ed55717bdfc85c5fec807",
+      "00 Core/splash/splash_gizmo.tga": "ea4028f1cd30f8597edafba6da4b63793e6953a0661a0f7c1b4bcad680687af0",
+      "00 Core/Textures/mdFG/Fab_Detail.dds": "0cbabbf0d394ebedb6511f1c7e6cf03fbaa7b2a5e0de4961f348c05c1e66bfc8",
+      "00 Core/Textures/mdFG/tx_board.dds": "0e412b98b954014bdc22cd30b1af4f94df35f26d14402232a0b5b6918611c32b",
+      "00 Core/Textures/mdFG/tx_fabguar_back.dds": "ede077637631892455a4d984bd5ee3c56a4d6e37029cf3f170d4d0bdc413fcd9",
+      "00 Core/Textures/mdFG/tx_fabguar_belly.dds": "2aa66b3031aaa5bfcd879279e3abca50bf542d0cccdcd44b75fa29a3b22de78b",
+      "00 Core/Textures/mdFG/tx_fabguar_body.dds": "c4c45ab4a937c2aa5e3d61bf2a53f06c729b5393fc6f49e55d9084eb8b743e4e",
+      "00 Core/Textures/mdFG/tx_fabguar_eye.dds": "da54e80a40b2a2debf2bfee544e048580481395cc3eef86b7dea288efc0bb70d",
+      "00 Core/Textures/mdFG/tx_fabguar_eye_g.dds": "5cda5315c3a3bfb03669511087ab011583f3b9715c52017ee56fb68fdab81aff",
+      "00 Core/Textures/mdFG/tx_fabguar_head.dds": "fdae727224ab113429294d717ee6109551e1e53ed4e05265bb282f1f1e800fee",
+      "00 Core/Textures/mdFG/tx_fabguar_limb.dds": "07d2065e8e36cce826f32317ee534bd95129042f145b4ef2848bc7b23dcb9ea9",
+      "00 Core/Textures/mdFG/tx_fabguar_limb2.dds": "8292c20a6a625b4ea4febdcce42b31832e9d4d87bfcd709401b820a8c315cb86",
+      "00 Core/Textures/mdFG/tx_fabguar_lip.dds": "0e6c507c9a1627121cc994640d2d64340452a9c5997b0a11dfe038bb5e6e55ac",
+      "00 Core/Textures/mdFG/tx_fabguar_tail.dds": "3ee29a0a53a079e72bc15149dfb8b3d8cb55d9f8aa5e57f7af847474f4abfa00",
+      "00 Core/Textures/mdFG/tx_matrix.dds": "e2f2605cb8be18c62de04020a67b03e1489797dcf233c31ddf398d94e96ce2a4",
+      "00 Core/Sound/mdFG/moan.wav": "a300bbb3ec2aced20c6ed8f8ac2ff79021b9a3fa6f7bf4a574c5fbb4280b60a6",
+      "00 Core/Sound/mdFG/roar.wav": "87688b755de821ea99f47b81683d970d108358739e82e106c9c9dad1030d25ba",
+      "00 Core/Sound/mdFG/scrm.wav": "9fc9e5391d7cce09ec8ec9b10951a58bd58eeb8f92c06bcf2a1fc863eabd9f0a",
+      "00 Core/Meshes/mdFG/fabricant_guar.nif": "fbf7e6ac273da8dd9b82c318df6cdb1276f4963526e7478f41e2c9e141c8a601",
+      "00 Core/Meshes/mdFG/integral.nif": "4c2219c6d5c62894a57ad081231fa48f3d724f2c9db9b5e5be3b158b1c9981d5",
+      "00 Core/Meshes/mdFG/key.nif": "f2fe07d78518f60d23b2943ba2bb678e2ab09504aae4d52926916f9fc5c6ecbb",
+      "00 Core/Meshes/mdFG/matrix.nif": "a852b9250d222db553297e8b65e37357a4d47941742dbfa4883cf9c50d6c6fbf",
+      "00 Core/Meshes/mdFG/matrix_vfx.nif": "29b80a03e62a6cd5166da857fed94526380159d9af1580ec466cf48f08d29451",
+      "00 Core/Meshes/mdFG/muskcollector.nif": "f6fc8dbf833c21feb96ec86d1b7bf8378275f80d217cf5608d75f863910d4143",
+      "00 Core/Meshes/mdFG/repairmodule.nif": "796f3dfce8e4227c1cc833a95eb48a46e0285f426465a22dab3528de3123592f",
+      "00 Core/Meshes/mdFG/xfabricant_guar.kf": "34b8a6fff454687154883cdd25db8a85e651fe3a0d355afee913242b8d9e77e9",
+      "00 Core/Meshes/mdFG/xfabricant_guar.nif": "95eaa0de4480b17255a6f63e50c00d74f670c0e1b3d8f1f3581a582e83d8f9dd",
+      "00 Core/Meshes/mdFG/xmatrix_vfx.kf": "677ec69bc1094c70ca48ef343044f62a7cd50aca43393ebf50f3d140ec05f8ce",
+      "00 Core/Meshes/mdFG/xmatrix_vfx.nif": "108fd5cc2b0cddbfe44ac48d4c9f2b49adfa89b8d07a2115c36c0fe171ec1287",
+      "00 Core/Icons/mdFG/misc_collector.tga": "ea7493e9aebb631ca5bb8fb00b91761837f251a49b3254e8e89cf142cf5056a0",
+      "00 Core/Icons/mdFG/misc_integral.tga": "df8039b3e598e6fffc49ffe9d3c53cd130f6ab32ff36f0d86d70c1ba36a8f99d",
+      "00 Core/Icons/mdFG/misc_key.tga": "8a6570db65ca63e3a29faf6b00b7ea9583c7775ae5268c832dab615b1dc024d5",
+      "00 Core/Icons/mdFG/misc_matrix.tga": "9029e83ffac6b0ca1e70cc5666fdfd4a51162ae36f44fb65af807e77184e35cb",
+      "00 Core/Icons/mdFG/misc_module.tga": "56c0997b812ff8c2400887996588732f939033f4c3a400da8c5dac7323cd13f5",
+      "01 OpenMW/Fabricant Guar - OpenMW.esp": "108e087ac386941caddffeb682824b5886725d59ce94a47ecbaa478fb72565ea",
+      "01 OpenMW/Fabricant Guar.omwscripts": "00c560c3ac8579c735d431e46291d6d86d584edd5dfc1b6a584d7596219bb420",
+      "01 OpenMW/scripts/FabricantGuar/actor.lua": "39be9bda6e9e3b7aaaa71580924cb9edd5da33143c5ab5cf25fe61adbbbec1f7",
+      "01 OpenMW/scripts/FabricantGuar/common.lua": "8f6396ec293a0f9cf19e6626457f698ff4784f621ee66c544cb34abe8eea8ff9",
+      "01 OpenMW/scripts/FabricantGuar/companion.lua": "83037cedf489291e792ca9e68383010da5d39ec31ead6c349a7ca0d7a1860723",
+      "01 OpenMW/scripts/FabricantGuar/global.lua": "d0987abdb796013e33ba523ec1ab66255176813837f343a81df437a759fc6573",
+      "01 OpenMW/scripts/FabricantGuar/guar.lua": "4c30b030130a48721148fab498219146df4bc4193bc29d0f80fb6695dc38ab99",
+      "01 OpenMW/scripts/FabricantGuar/imperfect.lua": "e2672defeb75d1129adb147fc7b9fc808301117a9f9bee684238ec027f5b5d5d",
+      "01 OpenMW/scripts/FabricantGuar/lifecycle.lua": "6782734bbc30d29fb57d8b51320ee05191af1168463c1881d212eac505ae28fe",
+      "01 OpenMW/scripts/FabricantGuar/observer.lua": "e6b3c1f0b73c4864b227cc70165c2d7e508a5b09629d2e1ae54f4a4326000fb5",
+      "01 OpenMW/scripts/FabricantGuar/player.lua": "7ecb1671028d894be9ed64a9f12cee4d88ba6809c2b983eac0312ffda43b5377",
+      "01 MWSE/Fabricant Guar-metadata.toml": "987bdc942801fd6472ea23de6281a72b38926bd4ccfb9b160f83e7ffddbfa196",
+      "01 MWSE/MWSE/mods/FabricantGuar/main.lua": "bf68e1d8a3cb3dce92ecbf3e9c8395b63efcfc68766c2a240a8c95197905d406"
+    },
+    "checks": {
+      "behavior": {
+        "passed": true,
+        "commands": [
+          [
+            "check_openmw_behavior.py"
+          ]
+        ],
+        "assertions": [
+          "guard observes potential hit recipients",
+          "unchanged empty actor produces no report replies",
+          "distant Follow ally retained after report TTL",
+          "distant ally assistance latency below one simulation second",
+          "Forage disables combat observers",
+          "Gizmo outside assistance radius leaves no observer",
+          "entering assistance radius restarts monitoring",
+          "stale reports, hits, assistance and acknowledgements cannot override a later command",
+          "unrelated interior disables monitoring",
+          "direct Combat.onHit and long-range player hit still assist",
+          "one direct callback in mode cycle 1",
+          "one direct callback in mode cycle 2",
+          "one direct callback in mode cycle 3",
+          "one direct callback in mode cycle 4",
+          "one direct callback in mode cycle 5",
+          "one direct callback in mode cycle 6",
+          "one direct callback in mode cycle 7",
+          "one direct callback in mode cycle 8",
+          "one direct callback in mode cycle 9",
+          "one direct callback in mode cycle 10",
+          "one direct callback in mode cycle 11",
+          "one direct callback in mode cycle 12",
+          "one direct callback in mode cycle 13",
+          "one direct callback in mode cycle 14",
+          "one direct callback in mode cycle 15",
+          "one direct callback in mode cycle 16",
+          "one direct callback in mode cycle 17",
+          "one direct callback in mode cycle 18",
+          "one direct callback in mode cycle 19",
+          "one direct callback in mode cycle 20",
+          "one direct callback in mode cycle 21",
+          "one direct callback in mode cycle 22",
+          "one direct callback in mode cycle 23",
+          "one direct callback in mode cycle 24",
+          "one direct callback in mode cycle 25",
+          "one direct callback in mode cycle 26",
+          "one direct callback in mode cycle 27",
+          "one direct callback in mode cycle 28",
+          "one direct callback in mode cycle 29",
+          "one direct callback in mode cycle 30",
+          "one direct callback in mode cycle 31",
+          "one direct callback in mode cycle 32",
+          "one direct callback in mode cycle 33",
+          "one direct callback in mode cycle 34",
+          "one direct callback in mode cycle 35",
+          "one direct callback in mode cycle 36",
+          "one direct callback in mode cycle 37",
+          "one direct callback in mode cycle 38",
+          "one direct callback in mode cycle 39",
+          "one direct callback in mode cycle 40",
+          "one direct callback in mode cycle 41",
+          "one direct callback in mode cycle 42",
+          "one direct callback in mode cycle 43",
+          "one direct callback in mode cycle 44",
+          "one direct callback in mode cycle 45",
+          "one direct callback in mode cycle 46",
+          "one direct callback in mode cycle 47",
+          "one direct callback in mode cycle 48",
+          "one direct callback in mode cycle 49",
+          "one direct callback in mode cycle 50",
+          "one direct callback in mode cycle 51",
+          "one direct callback in mode cycle 52",
+          "one direct callback in mode cycle 53",
+          "one direct callback in mode cycle 54",
+          "one direct callback in mode cycle 55",
+          "one direct callback in mode cycle 56",
+          "one direct callback in mode cycle 57",
+          "one direct callback in mode cycle 58",
+          "one direct callback in mode cycle 59",
+          "one direct callback in mode cycle 60",
+          "one direct callback in mode cycle 61",
+          "one direct callback in mode cycle 62",
+          "one direct callback in mode cycle 63",
+          "one direct callback in mode cycle 64",
+          "one direct callback in mode cycle 65",
+          "one direct callback in mode cycle 66",
+          "one direct callback in mode cycle 67",
+          "one direct callback in mode cycle 68",
+          "one direct callback in mode cycle 69",
+          "one direct callback in mode cycle 70",
+          "one direct callback in mode cycle 71",
+          "one direct callback in mode cycle 72",
+          "one direct callback in mode cycle 73",
+          "one direct callback in mode cycle 74",
+          "one direct callback in mode cycle 75",
+          "one direct callback in mode cycle 76",
+          "one direct callback in mode cycle 77",
+          "one direct callback in mode cycle 78",
+          "one direct callback in mode cycle 79",
+          "one direct callback in mode cycle 80",
+          "one direct callback in mode cycle 81",
+          "one direct callback in mode cycle 82",
+          "one direct callback in mode cycle 83",
+          "one direct callback in mode cycle 84",
+          "one direct callback in mode cycle 85",
+          "one direct callback in mode cycle 86",
+          "one direct callback in mode cycle 87",
+          "one direct callback in mode cycle 88",
+          "one direct callback in mode cycle 89",
+          "one direct callback in mode cycle 90",
+          "one direct callback in mode cycle 91",
+          "one direct callback in mode cycle 92",
+          "one direct callback in mode cycle 93",
+          "one direct callback in mode cycle 94",
+          "one direct callback in mode cycle 95",
+          "one direct callback in mode cycle 96",
+          "one direct callback in mode cycle 97",
+          "one direct callback in mode cycle 98",
+          "one direct callback in mode cycle 99",
+          "one direct callback in mode cycle 100",
+          "100 cycles leave no scoped observers",
+          "native player melee traverses scoped Combat interface",
+          "native-hit observer removes cleanly"
+        ]
+      },
+      "migration": {
+        "passed": true,
+        "commands": [
+          [
+            "check_openmw_migration.py"
+          ]
+        ],
+        "assertions": [
+          "actual resurrection",
+          "revival retains 1000 lb storage tier",
+          "revival inventory no loss or duplicates",
+          "revival condition retained",
+          "revival globals",
+          "revival full health",
+          "revival survived actual save/load",
+          "imperfect reversion completes",
+          "imperfect source destination",
+          "imperfect inventory retained",
+          "legacy script removed from active actor player",
+          "legacy script removed from active actor mdfg_gizmo",
+          "legacy script removed from active actor guar",
+          "original Gizmo owns scoped restoration script"
+        ]
+      },
+      "bridge": {
+        "passed": true,
+        "commands": [
+          [
+            "create_engine_check.py"
+          ],
+          [
+            "run_openmw.py"
+          ]
+        ],
+        "assertions": [
+          "pending retained; summon object=nil",
+          "pending retained; summon object=nil"
+        ]
+      },
+      "ai": {
+        "passed": true,
+        "commands": [
+          [
+            "create_ai_check.py"
+          ],
+          [
+            "run_openmw.py",
+            "--timeout",
+            "45"
+          ]
+        ],
+        "assertions": [
+          "no sample without collector equipped",
+          "native activation samples equipped collector",
+          "atomizer enabled during Follow",
+          "patrol joins rat combat after greeting",
+          "player-initiated hit callback joins combat (injected hit)",
+          "guard joins rat combat after greeting",
+          "Forage command survives combat reports",
+          "Imperfect nearest valid target",
+          "Imperfect replaces disabled target",
+          "guard joins combat targeting player ally",
+          "guard state and combat monitoring rebuilt after load"
+        ]
+      },
+      "lifecycle": {
+        "passed": true,
+        "commands": [
+          [
+            "create_gameplay_check.py"
+          ],
+          [
+            "run_openmw.py"
+          ]
+        ],
+        "assertions": [
+          "corrected greeting AddItem spelling",
+          "whistle moved original reference",
+          "whistle inventory retained",
+          "whistle retains 1000 lb storage tier",
+          "disabled Gizmo in storage survives actual save/load",
+          "matrix destination and enabled state",
+          "matrix reversion flag",
+          "matrix inventory retained",
+          "native actor death",
+          "actual resurrection",
+          "revival retains 1000 lb storage tier",
+          "revival inventory no loss or duplicates",
+          "revival condition retained",
+          "revival globals",
+          "revival full health",
+          "revival survived actual save/load",
+          "imperfect reversion completes",
+          "imperfect source destination",
+          "imperfect inventory retained"
+        ]
+      },
+      "whistle": {
+        "passed": true,
+        "commands": [
+          [
+            "create_whistle_check.py"
+          ],
+          [
+            "run_openmw.py"
+          ]
+        ],
+        "assertions": [
+          "idle inventory script runs without warnings",
+          "native Gizmo dialogue opened",
+          "inventory script continues during dialogue",
+          "entering matrix form does not spam dialogue",
+          "matrix idle stays quiet after dialogue closes",
+          "matrix whistle use consumes event and warns once",
+          "matrix warning does not repeat on later frames",
+          "second matrix whistle use warns once again",
+          "transformed idle stays quiet",
+          "transformed whistle use warns once",
+          "transformed warning does not repeat",
+          "dead idle stays quiet",
+          "dead whistle use warns once",
+          "dead warning does not repeat",
+          "dialogue reopened for pending equip check",
+          "whistle use waits until dialogue closes",
+          "available Gizmo opens the native call prompt after dialogue",
+          "available Gizmo has no unavailable-form warning"
+        ]
+      },
+      "storage": {
+        "passed": true,
+        "commands": [
+          [
+            "create_storage_check.py"
+          ],
+          [
+            "run_openmw.py"
+          ]
+        ],
+        "assertions": [
+          "unupgraded capacity=250",
+          "first purchased tier capacity=500",
+          "first upgrade costs three ore and records tier",
+          "second purchased tier capacity=750",
+          "second upgrade costs six ore and records tier",
+          "third purchased tier capacity=1000",
+          "third upgrade costs nine ore and records tier",
+          "level one refresh capacity=1000",
+          "original level and health scaling retained at level one",
+          "level twenty-five refresh capacity=1000",
+          "original level and health scaling retained at level twenty-five",
+          "level fifty refresh capacity=1000",
+          "existing first-tier save while stationary capacity=500",
+          "existing second-tier save while stationary capacity=750",
+          "existing third-tier save while stationary capacity=1000",
+          "idle storage sync preserves attribute damage and modifiers",
+          "actual save and reload capacity=1000",
+          "purchased tier and cached storage strength survive reload"
+        ]
+      },
+      "scope": {
+        "passed": true,
+        "command": "python -B tools/check_openmw_scopes.py",
+        "evidence": "100 removal/re-addition cycles beneath another Combat interface"
+      },
+      "package": {
+        "passed": true,
+        "commands": [
+          [
+            "validate_openmw.py",
+            "--lua-dll",
+            "D:/Games/OpenMW/OpenMW 0.51.0 Dev/lua51.dll"
+          ]
+        ]
+      },
+      "mwse": {
+        "passed": true,
+        "commands": [
+          [
+            "check_mwse_performance.py"
+          ]
+        ]
+      },
+      "behavior_threads1": {
+        "passed": true,
+        "commands": [
+          [
+            "check_openmw_behavior.py",
+            "--threads",
+            "1"
+          ]
+        ],
+        "assertions": [
+          "guard observes potential hit recipients",
+          "unchanged empty actor produces no report replies",
+          "distant Follow ally retained after report TTL",
+          "distant ally assistance latency below one simulation second",
+          "Forage disables combat observers",
+          "Gizmo outside assistance radius leaves no observer",
+          "entering assistance radius restarts monitoring",
+          "stale reports, hits, assistance and acknowledgements cannot override a later command",
+          "unrelated interior disables monitoring",
+          "direct Combat.onHit and long-range player hit still assist",
+          "one direct callback in mode cycle 1",
+          "one direct callback in mode cycle 2",
+          "one direct callback in mode cycle 3",
+          "one direct callback in mode cycle 4",
+          "one direct callback in mode cycle 5",
+          "one direct callback in mode cycle 6",
+          "one direct callback in mode cycle 7",
+          "one direct callback in mode cycle 8",
+          "one direct callback in mode cycle 9",
+          "one direct callback in mode cycle 10",
+          "one direct callback in mode cycle 11",
+          "one direct callback in mode cycle 12",
+          "one direct callback in mode cycle 13",
+          "one direct callback in mode cycle 14",
+          "one direct callback in mode cycle 15",
+          "one direct callback in mode cycle 16",
+          "one direct callback in mode cycle 17",
+          "one direct callback in mode cycle 18",
+          "one direct callback in mode cycle 19",
+          "one direct callback in mode cycle 20",
+          "one direct callback in mode cycle 21",
+          "one direct callback in mode cycle 22",
+          "one direct callback in mode cycle 23",
+          "one direct callback in mode cycle 24",
+          "one direct callback in mode cycle 25",
+          "one direct callback in mode cycle 26",
+          "one direct callback in mode cycle 27",
+          "one direct callback in mode cycle 28",
+          "one direct callback in mode cycle 29",
+          "one direct callback in mode cycle 30",
+          "one direct callback in mode cycle 31",
+          "one direct callback in mode cycle 32",
+          "one direct callback in mode cycle 33",
+          "one direct callback in mode cycle 34",
+          "one direct callback in mode cycle 35",
+          "one direct callback in mode cycle 36",
+          "one direct callback in mode cycle 37",
+          "one direct callback in mode cycle 38",
+          "one direct callback in mode cycle 39",
+          "one direct callback in mode cycle 40",
+          "one direct callback in mode cycle 41",
+          "one direct callback in mode cycle 42",
+          "one direct callback in mode cycle 43",
+          "one direct callback in mode cycle 44",
+          "one direct callback in mode cycle 45",
+          "one direct callback in mode cycle 46",
+          "one direct callback in mode cycle 47",
+          "one direct callback in mode cycle 48",
+          "one direct callback in mode cycle 49",
+          "one direct callback in mode cycle 50",
+          "one direct callback in mode cycle 51",
+          "one direct callback in mode cycle 52",
+          "one direct callback in mode cycle 53",
+          "one direct callback in mode cycle 54",
+          "one direct callback in mode cycle 55",
+          "one direct callback in mode cycle 56",
+          "one direct callback in mode cycle 57",
+          "one direct callback in mode cycle 58",
+          "one direct callback in mode cycle 59",
+          "one direct callback in mode cycle 60",
+          "one direct callback in mode cycle 61",
+          "one direct callback in mode cycle 62",
+          "one direct callback in mode cycle 63",
+          "one direct callback in mode cycle 64",
+          "one direct callback in mode cycle 65",
+          "one direct callback in mode cycle 66",
+          "one direct callback in mode cycle 67",
+          "one direct callback in mode cycle 68",
+          "one direct callback in mode cycle 69",
+          "one direct callback in mode cycle 70",
+          "one direct callback in mode cycle 71",
+          "one direct callback in mode cycle 72",
+          "one direct callback in mode cycle 73",
+          "one direct callback in mode cycle 74",
+          "one direct callback in mode cycle 75",
+          "one direct callback in mode cycle 76",
+          "one direct callback in mode cycle 77",
+          "one direct callback in mode cycle 78",
+          "one direct callback in mode cycle 79",
+          "one direct callback in mode cycle 80",
+          "one direct callback in mode cycle 81",
+          "one direct callback in mode cycle 82",
+          "one direct callback in mode cycle 83",
+          "one direct callback in mode cycle 84",
+          "one direct callback in mode cycle 85",
+          "one direct callback in mode cycle 86",
+          "one direct callback in mode cycle 87",
+          "one direct callback in mode cycle 88",
+          "one direct callback in mode cycle 89",
+          "one direct callback in mode cycle 90",
+          "one direct callback in mode cycle 91",
+          "one direct callback in mode cycle 92",
+          "one direct callback in mode cycle 93",
+          "one direct callback in mode cycle 94",
+          "one direct callback in mode cycle 95",
+          "one direct callback in mode cycle 96",
+          "one direct callback in mode cycle 97",
+          "one direct callback in mode cycle 98",
+          "one direct callback in mode cycle 99",
+          "one direct callback in mode cycle 100",
+          "100 cycles leave no scoped observers",
+          "native player melee traverses scoped Combat interface",
+          "native-hit observer removes cleanly"
+        ]
+      },
+      "migration_threads1": {
+        "passed": true,
+        "commands": [
+          [
+            "check_openmw_migration.py",
+            "--threads",
+            "1"
+          ]
+        ],
+        "assertions": [
+          "actual resurrection",
+          "revival retains 1000 lb storage tier",
+          "revival inventory no loss or duplicates",
+          "revival condition retained",
+          "revival globals",
+          "revival full health",
+          "revival survived actual save/load",
+          "imperfect reversion completes",
+          "imperfect source destination",
+          "imperfect inventory retained",
+          "legacy script removed from active actor player",
+          "legacy script removed from active actor mdfg_gizmo",
+          "legacy script removed from active actor guar",
+          "original Gizmo owns scoped restoration script"
+        ]
+      }
+    }
+  },
+  "summary": [
+    {
+      "scenario": "idle",
+      "population": 0,
+      "before_median_ms": 0.500000024,
+      "after_median_ms": 0.496799999,
+      "change_percent": -0.6400049692797616,
+      "before_p95_ms": 0.739999989,
+      "after_p95_ms": 0.732999993,
+      "before_wall_fps": 1874.7044585324293,
+      "after_wall_fps": 1895.0360793791338,
+      "before_run_median_range_ms": [
+        0.489099999,
+        0.500500028
+      ],
+      "after_run_median_range_ms": [
+        0.491400016,
+        0.497000001
+      ]
+    },
+    {
+      "scenario": "idle",
+      "population": 50,
+      "before_median_ms": 1.177800004,
+      "after_median_ms": 1.180400024,
+      "change_percent": 0.22075224920783398,
+      "before_p95_ms": 1.927400008,
+      "after_p95_ms": 1.931700041,
+      "before_wall_fps": 799.2287252841716,
+      "after_wall_fps": 790.1172850097869,
+      "before_run_median_range_ms": [
+        1.165100024,
+        1.261200057
+      ],
+      "after_run_median_range_ms": [
+        1.140199951,
+        1.242000028
+      ]
+    },
+    {
+      "scenario": "idle",
+      "population": 200,
+      "before_median_ms": 5.693099927,
+      "after_median_ms": 5.533900112,
+      "change_percent": -2.7963643189359955,
+      "before_p95_ms": 8.109199814,
+      "after_p95_ms": 8.306399919,
+      "before_wall_fps": 170.64476353437036,
+      "after_wall_fps": 170.21882651461414,
+      "before_run_median_range_ms": [
+        5.544099957,
+        5.861899815
+      ],
+      "after_run_median_range_ms": [
+        5.311999936,
+        5.62760001
+      ]
+    },
+    {
+      "scenario": "idle",
+      "population": 500,
+      "before_median_ms": 30.411200598,
+      "after_median_ms": 29.720399529,
+      "change_percent": -2.271535011496484,
+      "before_p95_ms": 48.53240028,
+      "after_p95_ms": 44.355899096,
+      "before_wall_fps": 30.484124599928453,
+      "after_wall_fps": 32.06867520914323,
+      "before_run_median_range_ms": [
+        30.354399234,
+        31.361598521
+      ],
+      "after_run_median_range_ms": [
+        29.696499929,
+        29.91889976
+      ]
+    },
+    {
+      "scenario": "guard",
+      "population": 0,
+      "before_median_ms": 0.492100022,
+      "after_median_ms": 0.502399984,
+      "change_percent": 2.093062698542192,
+      "before_p95_ms": 0.773200009,
+      "after_p95_ms": 0.785599987,
+      "before_wall_fps": 1876.994631795353,
+      "after_wall_fps": 1845.8608046185434,
+      "before_run_median_range_ms": [
+        0.49050001,
+        0.495199987
+      ],
+      "after_run_median_range_ms": [
+        0.501199975,
+        0.507800025
+      ]
+    },
+    {
+      "scenario": "guard",
+      "population": 50,
+      "before_median_ms": 1.327099977,
+      "after_median_ms": 1.175499987,
+      "change_percent": -11.423403860099679,
+      "before_p95_ms": 2.156399889,
+      "after_p95_ms": 1.866800012,
+      "before_wall_fps": 703.193373659084,
+      "after_wall_fps": 800.6429138603006,
+      "before_run_median_range_ms": [
+        1.176799997,
+        1.343599986
+      ],
+      "after_run_median_range_ms": [
+        1.10600004,
+        1.213200041
+      ]
+    },
+    {
+      "scenario": "guard",
+      "population": 200,
+      "before_median_ms": 5.794300232,
+      "after_median_ms": 5.466999952,
+      "change_percent": -5.648659318556348,
+      "before_p95_ms": 8.449899964,
+      "after_p95_ms": 7.727399934,
+      "before_wall_fps": 164.91957202311576,
+      "after_wall_fps": 175.1345942344372,
+      "before_run_median_range_ms": [
+        5.572500173,
+        5.807199981
+      ],
+      "after_run_median_range_ms": [
+        5.41169988,
+        5.889500026
+      ]
+    },
+    {
+      "scenario": "guard",
+      "population": 500,
+      "before_median_ms": 31.849000603,
+      "after_median_ms": 31.074499711,
+      "change_percent": -2.431790251927235,
+      "before_p95_ms": 46.53089866,
+      "after_p95_ms": 45.357100666,
+      "before_wall_fps": 30.259955112143693,
+      "after_wall_fps": 30.748994797389884,
+      "before_run_median_range_ms": [
+        31.303800642,
+        31.955901533
+      ],
+      "after_run_median_range_ms": [
+        30.507599935,
+        31.306598336
+      ]
+    },
+    {
+      "scenario": "far",
+      "population": 0,
+      "before_median_ms": 0.497800007,
+      "after_median_ms": 0.505000004,
+      "change_percent": 1.4463633786168328,
+      "before_p95_ms": 0.787700003,
+      "after_p95_ms": 0.789000012,
+      "before_wall_fps": 1846.6620543445404,
+      "after_wall_fps": 1854.6293402361625,
+      "before_run_median_range_ms": [
+        0.492200023,
+        0.509099977
+      ],
+      "after_run_median_range_ms": [
+        0.500500028,
+        0.51480002
+      ]
+    },
+    {
+      "scenario": "far",
+      "population": 50,
+      "before_median_ms": 0.584899972,
+      "after_median_ms": 0.555899984,
+      "change_percent": -4.958110683581984,
+      "before_p95_ms": 1.077800058,
+      "after_p95_ms": 0.999100041,
+      "before_wall_fps": 1540.6731924024277,
+      "after_wall_fps": 1610.4819413211744,
+      "before_run_median_range_ms": [
+        0.566100003,
+        0.587899995
+      ],
+      "after_run_median_range_ms": [
+        0.554999977,
+        0.565299997
+      ]
+    },
+    {
+      "scenario": "far",
+      "population": 200,
+      "before_median_ms": 0.953199982,
+      "after_median_ms": 0.861099979,
+      "change_percent": -9.662191013343936,
+      "before_p95_ms": 2.089400077,
+      "after_p95_ms": 1.937799971,
+      "before_wall_fps": 917.5727297384722,
+      "after_wall_fps": 1008.1017376273614,
+      "before_run_median_range_ms": [
+        0.953099981,
+        0.955099997
+      ],
+      "after_run_median_range_ms": [
+        0.852599973,
+        0.869699987
+      ]
+    },
+    {
+      "scenario": "far",
+      "population": 500,
+      "before_median_ms": 1.766699948,
+      "after_median_ms": 1.621700008,
+      "change_percent": -8.20738915876168,
+      "before_p95_ms": 3.53029999,
+      "after_p95_ms": 3.307899926,
+      "before_wall_fps": 495.6930569452784,
+      "after_wall_fps": 535.0059278656807,
+      "before_run_median_range_ms": [
+        1.76080002,
+        1.772999996
+      ],
+      "after_run_median_range_ms": [
+        1.617399976,
+        1.629699953
+      ]
+    },
+    {
+      "scenario": "attract",
+      "population": 0,
+      "before_median_ms": 0.491000013,
+      "after_median_ms": 0.503099989,
+      "change_percent": 2.4643534989071236,
+      "before_p95_ms": 0.765500008,
+      "after_p95_ms": 0.788000005,
+      "before_wall_fps": 1888.579301718905,
+      "after_wall_fps": 1849.2570154475657,
+      "before_run_median_range_ms": [
+        0.488899997,
+        0.494499982
+      ],
+      "after_run_median_range_ms": [
+        0.500899972,
+        0.506500015
+      ]
+    },
+    {
+      "scenario": "attract",
+      "population": 50,
+      "before_median_ms": 1.442700042,
+      "after_median_ms": 1.428500051,
+      "change_percent": -0.9842649606022436,
+      "before_p95_ms": 4.982300103,
+      "after_p95_ms": 4.977900069,
+      "before_wall_fps": 522.7427701215271,
+      "after_wall_fps": 523.8747939242521,
+      "before_run_median_range_ms": [
+        1.404999988,
+        1.468400005
+      ],
+      "after_run_median_range_ms": [
+        1.399099943,
+        1.470500021
+      ]
+    },
+    {
+      "scenario": "attract",
+      "population": 200,
+      "before_median_ms": 69.889299572,
+      "after_median_ms": 67.472502589,
+      "change_percent": -3.4580357762924896,
+      "before_p95_ms": 77.469803393,
+      "after_p95_ms": 73.015898466,
+      "before_wall_fps": 14.249901158872209,
+      "after_wall_fps": 14.9028871244003,
+      "before_run_median_range_ms": [
+        66.027700901,
+        70.630699396
+      ],
+      "after_run_median_range_ms": [
+        64.760498703,
+        68.38080287
+      ]
+    },
+    {
+      "scenario": "attract",
+      "population": 500,
+      "before_median_ms": 200.00000298,
+      "after_median_ms": 200.00000298,
+      "change_percent": 0.0,
+      "before_p95_ms": 200.00000298,
+      "after_p95_ms": 200.00000298,
+      "before_wall_fps": 3.7837227014412127,
+      "after_wall_fps": 3.798319678070225,
+      "before_run_median_range_ms": [
+        200.00000298,
+        200.00000298
+      ],
+      "after_run_median_range_ms": [
+        200.00000298,
+        200.00000298
+      ]
+    },
+    {
+      "scenario": "unavailable",
+      "population": 0,
+      "before_median_ms": 0.492900028,
+      "after_median_ms": 0.498300011,
+      "change_percent": 1.095553396884763,
+      "before_p95_ms": 0.769699982,
+      "after_p95_ms": 0.744300021,
+      "before_wall_fps": 1885.3252280014574,
+      "after_wall_fps": 1886.6017909275574,
+      "before_run_median_range_ms": [
+        0.486300007,
+        0.507900026
+      ],
+      "after_run_median_range_ms": [
+        0.493000029,
+        0.500799972
+      ]
+    },
+    {
+      "scenario": "unavailable",
+      "population": 50,
+      "before_median_ms": 0.532599981,
+      "after_median_ms": 0.529900019,
+      "change_percent": -0.5069399354709847,
+      "before_p95_ms": 1.013300032,
+      "after_p95_ms": 0.917600002,
+      "before_wall_fps": 1672.7570101448393,
+      "after_wall_fps": 1690.3826904812495,
+      "before_run_median_range_ms": [
+        0.529100012,
+        0.538700027
+      ],
+      "after_run_median_range_ms": [
+        0.524299976,
+        0.533699989
+      ]
+    },
+    {
+      "scenario": "unavailable",
+      "population": 200,
+      "before_median_ms": 0.915299985,
+      "after_median_ms": 0.815099978,
+      "change_percent": -10.947231360437526,
+      "before_p95_ms": 2.002400113,
+      "after_p95_ms": 1.822900027,
+      "before_wall_fps": 953.8446568591839,
+      "after_wall_fps": 1069.3793609783331,
+      "before_run_median_range_ms": [
+        0.905200024,
+        0.916499994
+      ],
+      "after_run_median_range_ms": [
+        0.810099998,
+        0.81659999
+      ]
+    },
+    {
+      "scenario": "unavailable",
+      "population": 500,
+      "before_median_ms": 1.719300053,
+      "after_median_ms": 1.544800005,
+      "change_percent": -10.14948191826759,
+      "before_p95_ms": 3.454799997,
+      "after_p95_ms": 3.226700006,
+      "before_wall_fps": 508.93564152717977,
+      "after_wall_fps": 563.2388798860198,
+      "before_run_median_range_ms": [
+        1.699900022,
+        1.725399983
+      ],
+      "after_run_median_range_ms": [
+        1.541799982,
+        1.560400007
+      ]
+    }
+  ],
+  "baseline_fixture_sha256": "a26bd3681df89ddf7ca240c6dcae47e4e9422f8575d33ab148851a3ef226a624",
+  "diagnostic_summary": [
+    {
+      "scenario": "idle",
+      "before": {
+        "actor_updates_per_frame": 201.0,
+        "report_replies_per_sim_second": 399.67743656785,
+        "inspection_requests_per_sim_second": 0.0,
+        "report_cache_visits_per_sim_second": 799.3548731357
+      },
+      "after": {
+        "actor_updates_per_frame": 0.0,
+        "report_replies_per_sim_second": 0.0,
+        "inspection_requests_per_sim_second": 0.0,
+        "report_cache_visits_per_sim_second": 0.0
+      }
+    },
+    {
+      "scenario": "guard",
+      "before": {
+        "actor_updates_per_frame": 202.0,
+        "report_replies_per_sim_second": 402.13865748953015,
+        "inspection_requests_per_sim_second": 0.0,
+        "report_cache_visits_per_sim_second": 804.2773149790603
+      },
+      "after": {
+        "actor_updates_per_frame": 0.0,
+        "report_replies_per_sim_second": 0.0,
+        "inspection_requests_per_sim_second": 403.8320226779781,
+        "report_cache_visits_per_sim_second": 0.0
+      }
+    },
+    {
+      "scenario": "far",
+      "before": {
+        "actor_updates_per_frame": 202.0,
+        "report_replies_per_sim_second": 401.99440367510863,
+        "inspection_requests_per_sim_second": 0.0,
+        "report_cache_visits_per_sim_second": 803.9888073502173
+      },
+      "after": {
+        "actor_updates_per_frame": 0.0,
+        "report_replies_per_sim_second": 0.0,
+        "inspection_requests_per_sim_second": 404.2103513902317,
+        "report_cache_visits_per_sim_second": 0.0
+      }
+    },
+    {
+      "scenario": "attract",
+      "before": {
+        "actor_updates_per_frame": 202.0,
+        "report_replies_per_sim_second": 0.0,
+        "inspection_requests_per_sim_second": 0.0,
+        "report_cache_visits_per_sim_second": 0.0
+      },
+      "after": {
+        "actor_updates_per_frame": 0.0,
+        "report_replies_per_sim_second": 0.0,
+        "inspection_requests_per_sim_second": 0.0,
+        "report_cache_visits_per_sim_second": 0.0
+      }
+    },
+    {
+      "scenario": "unavailable",
+      "before": {
+        "actor_updates_per_frame": 201.0,
+        "report_replies_per_sim_second": 399.95658831194805,
+        "inspection_requests_per_sim_second": 0.0,
+        "report_cache_visits_per_sim_second": 799.9131766238961
+      },
+      "after": {
+        "actor_updates_per_frame": 0.0,
+        "report_replies_per_sim_second": 0.0,
+        "inspection_requests_per_sim_second": 0.0,
+        "report_cache_visits_per_sim_second": 0.0
+      }
+    }
+  ],
+  "paired_confirmation": {
+    "source_sha256": {
+      "baseline": {
+        "Fabricant Guar - OpenMW.esp": "108e087ac386941caddffeb682824b5886725d59ce94a47ecbaa478fb72565ea",
+        "Fabricant Guar.omwscripts": "896b329af477d63ec4e0713da56b8b5091093242d6468fb10e17917b9a9d5f9e",
+        "scripts/FabricantGuar/actor.lua": "8a9e7b1a5039bc5d65652e7f8906cf716c57050362b8a6ee27d39edf4064cb89",
+        "scripts/FabricantGuar/common.lua": "0304a7a96de978609d267deb36ed20a9c2e6a2268930c9f54baec5540615271a",
+        "scripts/FabricantGuar/global.lua": "51c03e4140749962b8edc61a3b1d52df2ba8e2dbc51da02d155c37c821e3021a",
+        "scripts/FabricantGuar/lifecycle.lua": "6782734bbc30d29fb57d8b51320ee05191af1168463c1881d212eac505ae28fe",
+        "scripts/FabricantGuar/player.lua": "7ecb1671028d894be9ed64a9f12cee4d88ba6809c2b983eac0312ffda43b5377"
+      },
+      "candidate": {
+        "Fabricant Guar - OpenMW.esp": "108e087ac386941caddffeb682824b5886725d59ce94a47ecbaa478fb72565ea",
+        "Fabricant Guar.omwscripts": "00c560c3ac8579c735d431e46291d6d86d584edd5dfc1b6a584d7596219bb420",
+        "scripts/FabricantGuar/actor.lua": "39be9bda6e9e3b7aaaa71580924cb9edd5da33143c5ab5cf25fe61adbbbec1f7",
+        "scripts/FabricantGuar/common.lua": "8f6396ec293a0f9cf19e6626457f698ff4784f621ee66c544cb34abe8eea8ff9",
+        "scripts/FabricantGuar/companion.lua": "83037cedf489291e792ca9e68383010da5d39ec31ead6c349a7ca0d7a1860723",
+        "scripts/FabricantGuar/global.lua": "d0987abdb796013e33ba523ec1ab66255176813837f343a81df437a759fc6573",
+        "scripts/FabricantGuar/guar.lua": "4c30b030130a48721148fab498219146df4bc4193bc29d0f80fb6695dc38ab99",
+        "scripts/FabricantGuar/imperfect.lua": "e2672defeb75d1129adb147fc7b9fc808301117a9f9bee684238ec027f5b5d5d",
+        "scripts/FabricantGuar/lifecycle.lua": "6782734bbc30d29fb57d8b51320ee05191af1168463c1881d212eac505ae28fe",
+        "scripts/FabricantGuar/observer.lua": "e6b3c1f0b73c4864b227cc70165c2d7e508a5b09629d2e1ae54f4a4326000fb5",
+        "scripts/FabricantGuar/player.lua": "7ecb1671028d894be9ed64a9f12cee4d88ba6809c2b983eac0312ffda43b5377"
+      }
+    },
+    "samples": [
+      {
+        "frames": 2482.0,
+        "wall": 4.997188,
+        "simulation": 4.9986627,
+        "median_ms": 1.711899997,
+        "p95_ms": 3.621600103,
+        "peak_working_set_bytes": 634187776,
+        "counts": {},
+        "variant": "baseline",
+        "pair": 1,
+        "scenario": "unavailable",
+        "population": 500
+      },
+      {
+        "frames": 2733.0,
+        "wall": 5.0007572,
+        "simulation": 5.000787201,
+        "median_ms": 1.571899978,
+        "p95_ms": 3.287300002,
+        "peak_working_set_bytes": 622129152,
+        "counts": {},
+        "variant": "candidate",
+        "pair": 1,
+        "scenario": "unavailable",
+        "population": 500
+      },
+      {
+        "frames": 2861.0,
+        "wall": 5.0000562,
+        "simulation": 5.000097299,
+        "median_ms": 1.535000047,
+        "p95_ms": 3.138199914,
+        "peak_working_set_bytes": 623931392,
+        "counts": {},
+        "variant": "candidate",
+        "pair": 2,
+        "scenario": "unavailable",
+        "population": 500
+      },
+      {
+        "frames": 2514.0,
+        "wall": 4.9991879,
+        "simulation": 4.999169399,
+        "median_ms": 1.708599972,
+        "p95_ms": 3.493899945,
+        "peak_working_set_bytes": 633843712,
+        "counts": {},
+        "variant": "baseline",
+        "pair": 2,
+        "scenario": "unavailable",
+        "population": 500
+      },
+      {
+        "frames": 2588.0,
+        "wall": 5.0007895,
+        "simulation": 5.000672104,
+        "median_ms": 1.682800008,
+        "p95_ms": 3.445900045,
+        "peak_working_set_bytes": 634044416,
+        "counts": {},
+        "variant": "baseline",
+        "pair": 3,
+        "scenario": "unavailable",
+        "population": 500
+      },
+      {
+        "frames": 2832.0,
+        "wall": 5.0028428,
+        "simulation": 5.002253297,
+        "median_ms": 1.549800043,
+        "p95_ms": 3.203199944,
+        "peak_working_set_bytes": 625815552,
+        "counts": {},
+        "variant": "candidate",
+        "pair": 3,
+        "scenario": "unavailable",
+        "population": 500
+      }
+    ]
+  }
+}

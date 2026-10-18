@@ -23,7 +23,7 @@ def run(engine, config, timeout=45, extra=()):
             print(f'Engine timeout after {timeout}s; process {proc.pid} stopped.')
     path = config / 'openmw.log'
     text = path.read_text(encoding='utf-8', errors='replace') if path.exists() else ''
-    failed = bool(re.search(r'FG TEST (FAIL|timeout)|scripts/(fabricantguar/[^]]+|(?:gameplay|bridge)_test.lua|gameplay_player.lua)\].*failed', text))
+    failed = bool(re.search(r'FG TEST (FAIL|timeout)|Lua error:|\[scripts/[^]]+\]\s+\w+\s+failed|Not supported handler', text))
     if 'FG TEST' in text and not any(s in text for s in ('FG TEST COMPLETE', 'FG TEST PASS pending retained')):
         failed = True
     print(f'Engine exit: {code}; log: {path}')

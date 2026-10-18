@@ -18,11 +18,14 @@ end }, eventHandlers = {
  end,
  FGTestInspect = function()
   local p = I.AI.getActivePackage()
-  local followingPlayer = false
+  local followingPlayer, forage = false, false
+  I.AI.forEachPackage(function(package)
+   if package.type=='Wander' and package.distance==1800 then forage=true end
+  end)
   for _, target in ipairs(I.AI.getTargets('Follow')) do
    if types.Player.objectIsInstance(target) then followingPlayer = true end
   end
-  core.sendGlobalEvent('FGTestInspected', { actor = self.object, type = p and p.type, target = p and p.target, distance = p and p.distance, followingPlayer = followingPlayer })
+  core.sendGlobalEvent('FGTestInspected', { actor = self.object, type = p and p.type, target = p and p.target, distance = p and p.distance, followingPlayer = followingPlayer, forage = forage })
  end,
 } }
 ''')
@@ -116,7 +119,10 @@ return { engineHandlers = {
    gizmo:sendEvent('StartAIPackage',{type='Wander',distance=1800}); stage=9
   elseif stage==9 then inspect(gizmo); stage=10
   elseif stage==10 then
-   check(g.mdfg_global_foraging==1 and inspected[gizmo.id].type=='Wander' and inspected[gizmo.id].distance==1800,'Forage command survives combat reports')
+    msg('Forage inspection: flag='..g.mdfg_global_foraging..' active='..tostring(inspected[gizmo.id].type)..' distance='..tostring(inspected[gizmo.id].distance)..' retained='..tostring(inspected[gizmo.id].forage)..' following='..tostring(inspected[gizmo.id].followingPlayer))
+    -- Native Combat may temporarily sit above Wander; assistance must neither
+    -- erase the Forage command nor insert Follow over it.
+    check(g.mdfg_global_foraging==1 and inspected[gizmo.id].forage and not inspected[gizmo.id].followingPlayer,'Forage command survives combat reports')
    enemy:sendEvent('RemoveAIPackages','Combat'); enemy.enabled=false
    guar:teleport(player.cell,util.vector3(-200,0,40))
    g.mdfg_global_imperfect=1

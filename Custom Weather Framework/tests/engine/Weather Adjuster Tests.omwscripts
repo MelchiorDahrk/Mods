@@ -1,0 +1,2 @@
+GLOBAL: scripts/weatheradjust-tests/global.lua
+PLAYER: scripts/weatheradjust-tests/player.lua

@@ -1,0 +1,2 @@
+GLOBAL: scripts/customweather/global.lua
+PLAYER: scripts/customweather/player.lua
