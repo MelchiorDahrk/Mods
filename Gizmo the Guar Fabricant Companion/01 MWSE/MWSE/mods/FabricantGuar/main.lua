@@ -56,6 +56,28 @@ local function rebuildActors()
 end
 
 
+-- Follow movement
+
+local function onCalcMoveSpeed(e)
+    if mdFG_global_following.value ~= 1 or e.speed <= 0 then return end
+    local ref, mobile, player = e.reference, e.mobile, tes3.player
+    if not living(ref) or not living(player) or mobile.inCombat or not mobile.canMove then return end
+    if mobile.encumbrance.current > mobile.encumbrance.base then return end
+
+    local aiData = mobile.aiData
+    local package = aiData and aiData:getActivePackage()
+    if not package or package.type ~= 3 or package.targetActor ~= player.mobile then return end
+
+    -- The native script sets Speed to 40 nearby, and only forces running after
+    -- teleporting at 900 units. Matching attributes doesn't match creature/NPC
+    -- movement. Use the player's calculated movement speed as a Follow floor,
+    -- with the existing 1.5x catch-up factor beyond 300 units.
+    local speed = player.mobile.moveSpeed
+    if distanceSquared(ref.position, player.position) >= 300 * 300 then speed = speed * 1.5 end
+    e.speed = math.max(e.speed, speed)
+end
+
+
 -- Musk Atomizer
 
 local atomizerTimer
@@ -216,6 +238,7 @@ event.register("initialized", function()
         event.register("cellChanged", rebuildActors)
         event.register("combatStarted", function() checkGuard() end)
 		event.register("activate", collectMuskSample)
+		event.register("calcMoveSpeed", onCalcMoveSpeed, { filter = "mdfg_gizmo" })
 		event.register("mobileActivated", onRefCreated)
 		event.register("mobileDeactivated", onRefDeleted)
 		-- override scripts

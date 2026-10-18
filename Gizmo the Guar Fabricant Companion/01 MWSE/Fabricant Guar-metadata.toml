@@ -2,7 +2,7 @@
 name = "Gizmo"
 description = "Adds a Fabricant Guar companion named Gizmo."
 authors = [ "Melchior Darhk",]
-version = "1.2.0"
+version = "2.1.0"
 
 [dependencies.mwse]
 buildnumber = 3228

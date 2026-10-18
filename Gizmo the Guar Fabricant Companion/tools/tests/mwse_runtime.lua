@@ -9,7 +9,8 @@ function Vec:copy() return vec(self.x,self.y,self.z) end
 local refs={}
 local function actor(id,x,kind,object)
  local ref={object=object or {id=id,objectType=kind or 1},position=vec(x,0,0),orientation=vec(0,0,0),disabled=false,deleted=false,valid=true,data={}}
- ref.mobile={health={current=100},inCombat=false,package={type=0}}
+ ref.mobile={health={current=100},inCombat=false,package={type=0},canMove=true,
+  encumbrance={current=0,base=250},speed={base=40,current=40},moveSpeed=200}
  ref.mobile.aiData={getActivePackage=function() return ref.mobile.package end}
  function ref:isValid() return self.valid end
  refs[#refs+1]=ref; return ref
@@ -44,7 +45,7 @@ tes3={objectType={creature=1,npc=2},player=player,
  end,
  setAIFollow=function(p)
   followCalls=followCalls+1
-  local package={type=3,target=p.target}; p.reference.mobile.package=package
+  local package={type=3,target=p.target,targetActor=p.target.mobile}; p.reference.mobile.package=package
   if not insideFollow then
    insideFollow=true
    p.reference.mobile.package={type=1,target=p.target}
@@ -62,7 +63,13 @@ mwscript={hasItemEquipped=function() return false end,
  disable=function() end,enable=function() end,
 }
 mwse={overrideScript=function(name,fn) overrides[name]=fn end}
-event={register=function(name,fn) callbacks[name]=callbacks[name] or {}; table.insert(callbacks[name],fn) end}
+event={register=function(name,fn,options)
+ callbacks[name]=callbacks[name] or {}
+ table.insert(callbacks[name],function(e)
+  if not options or not options.filter or
+   (e.reference and e.reference.object.id:lower()==options.filter) then return fn(e) end
+ end)
+end}
 timer={simulate=1,active=1,expired=2}
 function timer.start(p)
  local t={callback=p.callback,duration=p.duration,next=simulation+p.duration,iterations=p.iterations or 1,state=1}
@@ -128,6 +135,58 @@ if CANDIDATE then
  emit('mobileDeactivated',{reference=nearest}); nearest.disabled=true
  hook('imperfectFight'); assert(LAST_TARGET==nextNearest,'deactivated actor retained')
  nearest.disabled=false; emit('cellChanged'); hook('imperfectFight'); assert(LAST_TARGET==nearest,'cell rebuild lost actor')
+
+ -- Native Follow writes Speed 40 nearby and Player Speed * 1.5 farther away.
+ -- Its attribute changes are not a guarantee of matching actual movement speed.
+ -- Exercise the real registered MWSE movement callback with engine speed inputs.
+ local function movement(ref, speed)
+  local e={reference=ref,mobile=ref.mobile,speed=speed,type=0}
+  emit('calcMoveSpeed',e)
+  assert(not e.claim,'movement event claimed from other mods')
+  return e.speed
+ end
+ local oldPosition=gizmo.position
+ gizmo.position=vec(player.position.x-200,0,0)
+ gizmo.mobile.package={type=3,targetActor=player.mobile}
+ globals.mdFG_global_following.value=1
+ assert(movement(gizmo,40)==200,'nearby Gizmo cannot keep up with player walking')
+ player.mobile.moveSpeed=400
+ assert(movement(gizmo,40)==400,'nearby Gizmo cannot keep up with player running')
+ gizmo.position=vec(player.position.x-600,0,0)
+ assert(movement(gizmo,75)==600,'trailing Gizmo cannot catch up before the native teleport')
+ assert(movement(gizmo,800)==800,'faster native or modded movement was reduced')
+ assert(movement(nearest,40)==40,'unrelated actor speed changed')
+ assert(movement(player,400)==400,'player speed changed')
+ assert(movement(imperfect,40)==40,'Imperfect speed changed')
+ assert(movement(gizmo,0)==0,'zero movement speed was overridden')
+ gizmo.mobile.inCombat=true
+ assert(movement(gizmo,40)==40,'combat speed changed')
+ gizmo.mobile.inCombat=false; gizmo.mobile.canMove=false
+ assert(movement(gizmo,40)==40,'immobilized Gizmo was accelerated')
+ gizmo.mobile.canMove=true; gizmo.mobile.encumbrance.current=251
+ assert(movement(gizmo,40)==40,'overencumbered Gizmo was accelerated')
+ gizmo.mobile.encumbrance.current=0; gizmo.disabled=true
+ assert(movement(gizmo,40)==40,'disabled Gizmo was accelerated')
+ gizmo.disabled=false; gizmo.mobile.health.current=0
+ assert(movement(gizmo,40)==40,'dead Gizmo was accelerated')
+ gizmo.mobile.health.current=100; globals.mdFG_global_following.value=0
+ assert(movement(gizmo,40)==40,'non-Follow command speed changed')
+ globals.mdFG_global_following.value=1; gizmo.mobile.package={type=0}
+ assert(movement(gizmo,40)==40,'Wander speed changed with a stale Follow global')
+ gizmo.mobile.package={type=3,targetActor=nearest.mobile}
+ assert(movement(gizmo,40)==40,'Follow targeting another actor was accelerated')
+ gizmo.mobile.package=nil
+ assert(movement(gizmo,40)==40,'missing AI package was not handled')
+ gizmo.mobile.package={type=3,targetActor=player.mobile}
+ player.mobile.moveSpeed=0
+ assert(movement(gizmo,75)==75,'immobile player slowed Gizmo')
+ player.mobile.moveSpeed=200; loaded()
+ assert(movement(gizmo,75)==300,'movement fix did not survive save/load')
+ assert(gizmo.mobile.speed.base==40 and gizmo.mobile.speed.current==40,
+  'movement correction modified the saved Speed attribute')
+ gizmo.position=oldPosition
+ hook('imperfectFight') -- Prune the invalid fixture actor after the reload before timing.
+ print('PASS MWSE following movement: pace, catch-up, exclusions, and reload')
 end
 local times,visits,lookups={},{},{}
 for trial=1,3 do

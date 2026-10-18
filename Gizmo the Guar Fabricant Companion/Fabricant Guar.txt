@@ -75,4 +75,4 @@ Morrowind Modding Community Discord - help with brainstorming
 1.2.0 - Added a "pet whistle" to call Gizmo from anywhere. Added sounds to some of Gizmo's greetings. Added "[Cancel]" options to several dialogue responses. Cleaned dialogue. Added mwse metadata.
 1.3.0 - Added HD textures. Added fomod. Added splash screen for Gizmo.
 2.0.0 - Added support for OpenMW. Fixed dialogue filtering issue. Added option to do nothing when activating matrix.
-2.1.0 - Improved performance.  
+2.1.0 - Improved performance in both engines. Fixed slow movement speed in MWSE.
