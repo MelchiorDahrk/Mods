@@ -28,7 +28,8 @@ local function isDustCell(cell)
 end
 
 local function reset()
-    shader:disable()
+    -- Keep the pass resident: changing the chain rebuilds OpenMW render state.
+    shader:setFloat('dustDensity', 0)
     lastCell = nil
     refresh = true
     active = false
@@ -40,15 +41,15 @@ local function updateShader()
     local percent = settings:get('density')
     if type(percent) ~= 'number' or percent ~= percent then percent = 32 end
     local density = math.max(0, math.min(100, percent)) / 100
-    shader:setFloat('dustDensity', density)
     active = density > 0 and isDustCell(cell)
+    shader:setFloat('dustDensity', active and density or 0)
     if active then
         shader:setFloat('dustTime', elapsed)
-        -- Dust belongs to the scene, before lens effects and tone mapping.
-        shader:enable(1)
-    else
-        shader:disable()
     end
+    -- OpenMW clears dynamic shaders on game load. Restore once, then only
+    -- change uniforms across cell/settings changes, including tomb -> tomb.
+    -- Dust belongs to the scene, before lens effects and tone mapping.
+    if not shader:isEnabled() then shader:enable(1) end
     lastCell = cell
     refresh = false
 end

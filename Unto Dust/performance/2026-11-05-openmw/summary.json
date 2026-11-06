@@ -1,0 +1,58 @@
+[
+  {
+    "run": "before-1",
+    "median_postload_peak_ms": 4.8965,
+    "postload_over_16_67ms": 0,
+    "median_whole_window_max_ms": 34.2505,
+    "median_load_interval_ms": 34.2505,
+    "median_settled_interval_ms": 3.278
+  },
+  {
+    "run": "after-1",
+    "median_postload_peak_ms": 4.7795,
+    "postload_over_16_67ms": 1,
+    "median_whole_window_max_ms": 37.215999999999994,
+    "median_load_interval_ms": 37.215999999999994,
+    "median_settled_interval_ms": 3.282
+  },
+  {
+    "run": "profile-before-1",
+    "median_postload_peak_ms": 19.479,
+    "postload_over_16_67ms": 34,
+    "median_whole_window_max_ms": 37.744,
+    "median_load_interval_ms": 37.744,
+    "median_settled_interval_ms": 3.917
+  },
+  {
+    "run": "profile-after-1",
+    "median_postload_peak_ms": 5.038,
+    "postload_over_16_67ms": 0,
+    "median_whole_window_max_ms": 35.126999999999995,
+    "median_load_interval_ms": 35.126999999999995,
+    "median_settled_interval_ms": 3.939
+  },
+  {
+    "run": "profile-before-2",
+    "median_postload_peak_ms": 17.856,
+    "postload_over_16_67ms": 31,
+    "median_whole_window_max_ms": 34.7905,
+    "median_load_interval_ms": 34.7905,
+    "median_settled_interval_ms": 3.753
+  },
+  {
+    "run": "profile-after-2",
+    "median_postload_peak_ms": 5.8065,
+    "postload_over_16_67ms": 1,
+    "median_whole_window_max_ms": 37.1335,
+    "median_load_interval_ms": 36.0005,
+    "median_settled_interval_ms": 3.784
+  },
+  {
+    "run": "profile-control",
+    "median_postload_peak_ms": 5.2785,
+    "postload_over_16_67ms": 0,
+    "median_whole_window_max_ms": 34.833,
+    "median_load_interval_ms": 34.833,
+    "median_settled_interval_ms": 3.718
+  }
+]

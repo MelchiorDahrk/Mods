@@ -2,6 +2,7 @@
 local callbacks, overrides, timers, globals, running = {}, {}, {}, {}, {}
 local simulation, searches, visited, handles = 0, 0, 0, 0
 local insideFollow, followCalls = false, 0
+local statisticWrites = 0
 local Vec={}; Vec.__index=Vec
 local function vec(x,y,z) return setmetatable({x=x,y=y,z=z},Vec) end
 function Vec:distance(b) local x,y,z=self.x-b.x,self.y-b.y,self.z-b.z; return math.sqrt(x*x+y*y+z*z) end
@@ -43,6 +44,12 @@ tes3={objectType={creature=1,npc=2},player=player,
  makeSafeObjectHandle=function(ref)
   return {getObject=function() handles=handles+1; if ref.valid then return ref end end}
  end,
+ setStatistic=function(p)
+  assert(p.reference==gizmo and p.statistic==gizmo.mobile.speed,'wrong actor/statistic written')
+  assert(p.limit==false,'Speed must be allowed above 100')
+  statisticWrites=statisticWrites+1
+  p.statistic.base=p.value; p.statistic.current=p.value
+ end,
  setAIFollow=function(p)
   followCalls=followCalls+1
   local package={type=3,target=p.target,targetActor=p.target.mobile}; p.reference.mobile.package=package
@@ -66,8 +73,10 @@ mwse={overrideScript=function(name,fn) overrides[name]=fn end}
 event={register=function(name,fn,options)
  callbacks[name]=callbacks[name] or {}
  table.insert(callbacks[name],function(e)
-  if not options or not options.filter or
-   (e.reference and e.reference.object.id:lower()==options.filter) then return fn(e) end
+  local filterObject=name=='scriptExecuted' and e.script or (e.reference and e.reference.object)
+  if not options or not options.filter or (filterObject and filterObject.id:lower()==options.filter) then
+   return fn(e)
+  end
  end)
 end}
 timer={simulate=1,active=1,expired=2}
@@ -136,57 +145,197 @@ if CANDIDATE then
  hook('imperfectFight'); assert(LAST_TARGET==nextNearest,'deactivated actor retained')
  nearest.disabled=false; emit('cellChanged'); hook('imperfectFight'); assert(LAST_TARGET==nearest,'cell rebuild lost actor')
 
- -- Native Follow writes Speed 40 nearby and Player Speed * 1.5 farther away.
- -- Its attribute changes are not a guarantee of matching actual movement speed.
- -- Exercise the real registered MWSE movement callback with engine speed inputs.
- local function movement(ref, speed)
-  local e={reference=ref,mobile=ref.mobile,speed=speed,type=0}
-  emit('calcMoveSpeed',e)
-  assert(not e.claim,'movement event claimed from other mods')
-  return e.speed
+ -- Exercise the native-script boundary as well as the initial Follow request.
+ -- A movement-event-only fix cannot pass these actual attribute assertions.
+ local function speedIs(value, message)
+  assert(gizmo.mobile.speed.base==value and gizmo.mobile.speed.current==value,message)
  end
- local oldPosition=gizmo.position
- gizmo.position=vec(player.position.x-200,0,0)
- gizmo.mobile.package={type=3,targetActor=player.mobile}
+ local function nativeTick(value, reference, scriptId)
+  local ref=reference or gizmo
+  if value then ref.mobile.speed.base=value; ref.mobile.speed.current=value end
+  local e={reference=ref,script={id=scriptId or 'mdFG_script_gizmo'}}
+  emit('scriptExecuted',e)
+  assert(not e.claim,'native script event claimed from other mods')
+ end
+ gizmo.mobile.speed={base=20,current=20}
+ gizmo.mobile.package=nil -- The native AI target may not be initialized at recruitment.
+ player.mobile.speed={base=40,current=40}
  globals.mdFG_global_following.value=1
- assert(movement(gizmo,40)==200,'nearby Gizmo cannot keep up with player walking')
- player.mobile.moveSpeed=400
- assert(movement(gizmo,40)==400,'nearby Gizmo cannot keep up with player running')
- gizmo.position=vec(player.position.x-600,0,0)
- assert(movement(gizmo,75)==600,'trailing Gizmo cannot catch up before the native teleport')
- assert(movement(gizmo,800)==800,'faster native or modded movement was reduced')
- assert(movement(nearest,40)==40,'unrelated actor speed changed')
- assert(movement(player,400)==400,'player speed changed')
- assert(movement(imperfect,40)==40,'Imperfect speed changed')
- assert(movement(gizmo,0)==0,'zero movement speed was overridden')
- gizmo.mobile.inCombat=true
- assert(movement(gizmo,40)==40,'combat speed changed')
- gizmo.mobile.inCombat=false; gizmo.mobile.canMove=false
- assert(movement(gizmo,40)==40,'immobilized Gizmo was accelerated')
- gizmo.mobile.canMove=true; gizmo.mobile.encumbrance.current=251
- assert(movement(gizmo,40)==40,'overencumbered Gizmo was accelerated')
- gizmo.mobile.encumbrance.current=0; gizmo.disabled=true
- assert(movement(gizmo,40)==40,'disabled Gizmo was accelerated')
- gizmo.disabled=false; gizmo.mobile.health.current=0
- assert(movement(gizmo,40)==40,'dead Gizmo was accelerated')
- gizmo.mobile.health.current=100; globals.mdFG_global_following.value=0
- assert(movement(gizmo,40)==40,'non-Follow command speed changed')
- globals.mdFG_global_following.value=1; gizmo.mobile.package={type=0}
- assert(movement(gizmo,40)==40,'Wander speed changed with a stale Follow global')
- gizmo.mobile.package={type=3,targetActor=nearest.mobile}
- assert(movement(gizmo,40)==40,'Follow targeting another actor was accelerated')
- gizmo.mobile.package=nil
- assert(movement(gizmo,40)==40,'missing AI package was not handled')
+ running.mdFG_script_AIFollow=true
+ hook('AIFollow'); speedIs(90,'initial Follow left Gizmo at Speed 20 instead of Player +50')
+ assert(not running.mdFG_script_AIFollow,'Follow hook was not stopped')
  gizmo.mobile.package={type=3,targetActor=player.mobile}
- player.mobile.moveSpeed=0
- assert(movement(gizmo,75)==75,'immobile player slowed Gizmo')
- player.mobile.moveSpeed=200; loaded()
- assert(movement(gizmo,75)==300,'movement fix did not survive save/load')
- assert(gizmo.mobile.speed.base==40 and gizmo.mobile.speed.current==40,
-  'movement correction modified the saved Speed attribute')
- gizmo.position=oldPosition
+ for _,distance in ipairs({100,299,300,600,899,900,1200}) do
+  gizmo.position=vec(player.position.x-distance,0,0)
+  nativeTick(distance<300 and 40 or 60)
+  speedIs(90,'native distance rule overwrote Player +50')
+ end
+ player.mobile.speed.current=80 -- Fortified player; use current, not base Speed.
+ nativeTick(); speedIs(130,'player Speed increase was not followed above 100')
+ player.mobile.speed.current=30
+ nativeTick(); speedIs(80,'player Speed decrease was not followed')
+ player.mobile.speed.current=0
+ nativeTick(); speedIs(50,'zero player Speed lost the +50 offset')
+ player.mobile.speed.current=250
+ nativeTick(100); speedIs(300,'high player Speed was capped or multiplied')
+ local writes=statisticWrites
+ nativeTick(); assert(statisticWrites==writes,'unchanged Speed caused redundant writes')
+ gizmo.mobile.inCombat=true
+ nativeTick(100); speedIs(300,'native combat cap broke the +50 rule during Follow')
+ gizmo.mobile.inCombat=false
+ nativeTick(20,nearest,'unrelated_script')
+ nativeTick(20,imperfect,'mdFG_script_imperfect')
+ assert(nearest.mobile.speed.current==20 and imperfect.mobile.speed.current==20,'unrelated actors changed')
+ assert(player.mobile.speed.current==250 and player.mobile.speed.base==40,'player Speed changed')
+ nativeTick(20,gizmo,'unrelated_script'); speedIs(20,'unrelated script triggered the update')
+ globals.mdFG_global_following.value=0
+ nativeTick(20); speedIs(20,'Guard/Patrol/Forage Speed was overwritten')
+ globals.mdFG_global_following.value=1; gizmo.disabled=true
+ nativeTick(20); speedIs(20,'disabled Gizmo was updated')
+ gizmo.disabled=false; gizmo.mobile.health.current=0
+ nativeTick(20); speedIs(20,'dead Gizmo was updated')
+ gizmo.mobile.health.current=100
+ local savedPlayer=tes3.player; tes3.player=nil
+ nativeTick(20); speedIs(20,'missing player was not handled')
+ tes3.player=savedPlayer
+ loaded(); speedIs(300,'loaded Follow save did not synchronize Speed')
+ globals.mdFG_global_following.value=0; running.mdFG_script_AIGuard=true
+ gizmo.mobile.speed={base=20,current=20}; gizmo.mobile.package={type=0}
+ player.mobile.inCombat=true
+ hook('AIGuard'); speedIs(300,'Guard entering Follow did not synchronize Speed')
+ player.mobile.inCombat=false
+ assert(not callbacks.calcMoveSpeed,'old movement-speed multiplier is still registered')
  hook('imperfectFight') -- Prune the invalid fixture actor after the reload before timing.
- print('PASS MWSE following movement: pace, catch-up, exclusions, and reload')
+ print('PASS MWSE Speed +50: recruitment, native overwrites, player changes, Guard, and reload')
+
+ -- Execute the actual MWSE callbacks around the native scale state machine.
+ -- Morrowind's scale setter formats to two decimals; a plain Lua number would
+ -- hide the lost per-frame increments that caused the reported stuck state.
+ local storedScale, scaleWrites, nativeScaleWrites = 1, 0, 0
+ setmetatable(gizmo, {
+  __index=function(_, key) if key=='scale' then return storedScale end end,
+  __newindex=function(ref, key, value)
+   if key=='scale' then
+    storedScale=tonumber(string.format('%.2f',value)); scaleWrites=scaleWrites+1
+   else rawset(ref,key,value) end
+  end,
+ })
+ gizmo.context={direction=0,tempscale=0,currscale=1,timer=0}
+ local scaleGlobal=tes3.findGlobal('mdFG_global_scale')
+ local function nativeScaleTick(dt)
+  local c=gizmo.context
+  if not c then return end
+  c.timer=c.timer+dt
+  if c.timer<0.1 then return end
+  c.timer=0
+  if scaleGlobal.value==101 then c.direction=1; scaleGlobal.value=102
+  elseif scaleGlobal.value==51 then c.direction=-1; scaleGlobal.value=52 end
+  if c.direction~=0 then
+   c.tempscale=0.3*dt*c.direction
+   gizmo.scale=gizmo.scale+c.tempscale; nativeScaleWrites=nativeScaleWrites+1
+   c.currscale=gizmo.scale
+   if c.direction==-1 and c.currscale<=0.5 then
+    c.direction=0; c.tempscale=0; scaleGlobal.value=50
+   elseif c.direction==1 and c.currscale>=1 then
+    c.direction=0; c.tempscale=0; scaleGlobal.value=100
+   end
+  end
+ end
+ local function frame(dt, paused, nativeOnly)
+  if paused then return end -- simulate and MWScript both pause in menus.
+  if not nativeOnly then emit('simulate',{delta=dt}) end
+  nativeScaleTick(dt)
+  if not nativeOnly then nativeTick() end
+ end
+ local function resetScale(value, state, direction)
+  storedScale=value; scaleGlobal.value=state
+  gizmo.context={direction=direction or 0,tempscale=0,currscale=value,timer=0}
+  loaded()
+ end
+ local function finishScale(fps, target)
+  local elapsed=0
+  while scaleGlobal.value~=target*100 and elapsed<2 do
+   frame(1/fps); elapsed=elapsed+1/fps
+   assert(gizmo.scale>=0.5 and gizmo.scale<=1,'scale overshot endpoint')
+  end
+  assert(scaleGlobal.value==target*100 and gizmo.scale==target,
+   'scale transformation did not finish at '..target..' ('..fps..' FPS)')
+  assert(gizmo.modified,'scale changes were not marked for saving')
+  assert(gizmo.context.direction==0 and gizmo.context.tempscale==0,'native scaling remained active')
+  local writes=scaleWrites
+  for _=1,10 do frame(1/fps) end
+  assert(scaleWrites==writes,'completed transformation kept writing scale')
+  return elapsed
+ end
+
+ -- Reproduce the old MWScript failure, then recover the same in-process save.
+ resetScale(1,51)
+ for _=1,1440 do frame(1/144,false,true) end
+ assert(gizmo.scale==1 and scaleGlobal.value==52 and gizmo.context.direction==-1,
+  'fixture did not reproduce native reduction stuck in process')
+ loaded(); nativeScaleWrites=0
+ finishScale(144,0.5)
+ assert(nativeScaleWrites==0,'MWScript competed with the MWSE transformation')
+ for _,fps in ipairs({10,30,60,144,360}) do
+  resetScale(1,51)
+  local elapsed=finishScale(fps,0.5)
+  assert(math.abs(elapsed-0.5/0.3)<=1/fps+0.00001,'shrink speed depends on frame rate')
+  scaleGlobal.value=101
+  elapsed=finishScale(fps,1)
+  assert(math.abs(elapsed-0.5/0.3)<=1/fps+0.00001,'growth speed depends on frame rate')
+ end
+ for _,case in ipairs({{0.82,52,-1,0.5},{0.64,102,1,1},{1,52,-1,0.5},{0.5,102,1,1}}) do
+  resetScale(case[1],case[2],case[3]); finishScale(144,case[4])
+ end
+ resetScale(1,51)
+ for _=1,60 do frame(1/144) end
+ local beforeReload=gizmo.scale
+ loaded()
+ assert(gizmo.scale==beforeReload,'reload restarted the scale animation')
+ finishScale(144,0.5)
+ resetScale(0.5,101)
+ for _=1,60 do frame(1/144) end
+ loaded(); finishScale(144,1)
+
+ resetScale(1,51)
+ for _=1,600 do frame(1/60,true) end
+ assert(gizmo.scale==1 and scaleGlobal.value==51,'dialogue pause consumed request')
+ frame(0.2)
+ local pausedScale=gizmo.scale
+ for _=1,600 do frame(1/60,true) end
+ assert(gizmo.scale==pausedScale and scaleGlobal.value==52,'menu advanced scaling')
+ finishScale(144,0.5)
+ resetScale(1,51); frame(0.3)
+ scaleGlobal.value=101; finishScale(144,1) -- A replacement request starts from current size.
+ resetScale(1,51); frame(3)
+ assert(gizmo.scale==0.5 and scaleGlobal.value==50,'long frame failed to clamp shrink')
+ scaleGlobal.value=101; frame(3)
+ assert(gizmo.scale==1 and scaleGlobal.value==100,'long frame failed to clamp growth')
+ resetScale(1,51)
+ for _,change in ipairs({'disabled','dead','mobile','context'}) do
+  local savedMobile,savedContext=gizmo.mobile,gizmo.context
+  if change=='disabled' then gizmo.disabled=true
+  elseif change=='dead' then gizmo.mobile.health.current=0
+  elseif change=='mobile' then gizmo.mobile=nil
+  else gizmo.context=nil end
+  frame(0.5)
+  assert(gizmo.scale==1 and (scaleGlobal.value==51 or scaleGlobal.value==52),'unavailable Gizmo scaled')
+  gizmo.disabled=false; gizmo.mobile=savedMobile; gizmo.mobile.health.current=100; gizmo.context=savedContext
+ end
+ finishScale(144,0.5)
+ -- No actor lookup or writes are needed for idle transformation states.
+ local getReference=tes3.getReference
+ tes3.getReference=function() error('idle scaling looked up a reference') end
+ emit('simulate',{delta=1/60})
+ tes3.getReference=getReference
+ resetScale(1,51)
+ tes3.getReference=function() return nil end
+ emit('simulate',{delta=1/60})
+ assert(scaleGlobal.value==51,'missing reference lost pending request')
+ tes3.getReference=getReference; finishScale(144,0.5)
+ assert(not overrides.mdFG_script_gizmo,'shared native controller was replaced')
+ hook('imperfectFight') -- Prune the invalid fixture actor rebuilt by reload checks.
+ print('PASS MWSE scale: native stall reproduced; shrink/grow at 10-360 FPS, saved requests, reload, pause, and endpoints')
 end
 local times,visits,lookups={},{},{}
 for trial=1,3 do

@@ -45,8 +45,11 @@ return {
                     count = count + 1
                 end
             end
-            assert(count == (shouldEnable and 1 or 0), 'UNTO DUST SMOKE FAILED: wrong dust shader state in ' .. name)
-            print('UNTO DUST SHADER: ' .. (shouldEnable and 'enabled in ' or 'disabled in ') .. name)
+            assert(count == 1, 'UNTO DUST SMOKE FAILED: resident dust pass missing/duplicated in ' .. name)
+            -- Visibility/density uniforms are verified by tests/openmw.lua; the engine API
+            -- exposes chain membership, but provides no uniform getter.
+            print('UNTO DUST RESIDENT PASS VERIFIED')
+            print('UNTO DUST EXPECTED VISIBILITY: ' .. (shouldEnable and 'enabled in ' or 'disabled in ') .. name)
             print('UNTO DUST DENSITY: ' .. density)
             print('UNTO DUST LISTS: ' .. (shouldEnable and 'enabled' or 'disabled') .. ' in ' .. name
                 .. ' | whitelisted=' .. tostring(lists.contains(settings:getCopy('whitelist'), name))

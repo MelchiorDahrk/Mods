@@ -236,6 +236,40 @@ def main():
         print('PASS GPU rendering: texture/mips, both densities, drift, depth occlusion, parallax, negative coordinates, axis rays, 3D tumble and edge-on silhouette')
         print(f'Nonzero pixels: Default={np.count_nonzero(default[:, :, 0])}, Denser={np.count_nonzero(denser[:, :, 0])}')
         print(f'Synthetic previews: {output}')
+
+        # Compile the actual OpenMW fragment with small stand-ins for engine
+        # inputs. Its zero-density path must copy the scene exactly; this also
+        # catches accidentally doing ray/depth work before the early return.
+        wrapper = (ROOT / '00 OpenMW/Shaders/UntoDust.omwfx').read_text()
+        body = wrapper.split('fragment dust {', 1)[1].split('\ntechnique {', 1)[0].rsplit('}', 1)[0]
+        body = body.replace('omw_In vec2 omw_TexCoord;', '#define omw_TexCoord uv')
+        prefix = '''#version 330 compatibility
+        in vec2 uv; out vec4 omw_FragColor;
+        uniform float dustDensity, dustTime;
+        uniform sampler2D dustTexture;
+        struct Engine { mat4 invProjectionMatrix; mat4 invViewMatrix;
+            mat4 projectionMatrix; vec4 eyePos; vec2 rcpResolution; };
+        uniform Engine omw;
+        vec4 omw_GetLastShader(vec2 coord) { return vec4(coord, 0.25, 1.0); }
+        float omw_GetLinearDepth(vec2 coord) { return 768.0; }
+        '''
+        bypass_program = create_program()
+        attach(bypass_program, shader(0x8B31, vertex))
+        attach(bypass_program, shader(0x8B30, prefix + body))
+        link(bypass_program)
+        program_info(bypass_program, 0x8B82, c.byref(status))
+        assert status.value, 'Failed to link actual OpenMW fragment'
+        use(bypass_program)
+        uniform1(location(bypass_program, b'dustDensity'), 0)
+        draw(0x0004, 0, 3)
+        copied = np.empty((height, width, 4), dtype=np.uint8)
+        read(0, 0, width, height, 0x1908, 0x1401, copied.ctypes.data)
+        expected_x = np.round((np.arange(width) + 0.5) / width * 255).astype(int)
+        expected_y = np.round((np.arange(height) + 0.5) / height * 255).astype(int)
+        assert np.abs(copied[:, :, 0].astype(int) - expected_x[None, :]).max() <= 1
+        assert np.abs(copied[:, :, 1].astype(int) - expected_y[:, None]).max() <= 1
+        assert (copied[:, :, 2] == 64).all()
+        print('PASS OpenMW zero-density fragment: scene copied unchanged with unset camera uniforms')
     finally:
         gl.wglMakeCurrent(None, None)
         gl.wglDeleteContext(context)

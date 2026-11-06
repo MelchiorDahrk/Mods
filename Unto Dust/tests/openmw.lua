@@ -42,6 +42,7 @@ function shader:enable(position)
     assert(position == 1, 'dust should precede lens effects')
     enabled, enables = true, enables + 1
 end
+function shader:isEnabled() return enabled end
 function shader:disable() enabled, disables = false, disables + 1 end
 function shader:setFloat(name, value)
     assert(name == 'dustDensity' or name == 'dustTime')
@@ -78,17 +79,19 @@ for _, key in ipairs({ 'whitelist', 'blacklist' }) do
     assert(type(values[key]) == 'table' and next(values[key]) == nil)
 end
 
+local function visible() return enabled and (uniforms.dustDensity or 0) > 0 end
+
 local function enter(name, interior, expected)
     player.cell = setmetatable({ name = name, isExterior = not interior }, {
         __index = function(_, key) error('Unsupported OpenMW Cell property: ' .. key) end,
     })
     handlers.onUpdate(1 / 60)
-    assert(enabled == expected, name)
+    assert(visible() == expected, name)
 end
 
 handlers.onLoad(nil)
 handlers.onUpdate(0)
-assert(not enabled)
+assert(not visible())
 enter('Andrano Ancestral Tomb', true, true)
 assert(uniforms.dustDensity == 0.32)
 local previousEnables, previousDisables = enables, disables
@@ -104,7 +107,7 @@ assert(uniforms.dustTime == time, 'animation advanced with zero simulation time'
 settings:set('density', 85)
 assert(enabled and uniforms.dustDensity == 0.85 and uniforms.dustTime == time)
 settings:set('density', 0)
-assert(not enabled and uniforms.dustDensity == 0)
+assert(not visible() and uniforms.dustDensity == 0)
 handlers.onUpdate(10)
 assert(uniforms.dustTime == time, 'disabled dust still animated')
 settings:set('density', 100)
@@ -121,34 +124,43 @@ enter('Tomb outside', false, false)
 enter("Uvirith's Grave", true, false)
 enter('Balmora, Guild of Mages', true, false)
 settings:set('density', 85)
-assert(not enabled and uniforms.dustDensity == 0.85, 'MCM enabled dust outside a burial cell')
+assert(not visible() and uniforms.dustDensity == 0, 'MCM enabled dust outside a burial cell')
 time = uniforms.dustTime
 handlers.onUpdate(10)
 assert(uniforms.dustTime == time, 'inactive dust still updates uniforms')
 
--- A missing cell disables dust immediately and recovers without actor VFX.
+-- A missing cell hides dust immediately and recovers without actor VFX.
 enter('Andrano Ancestral Tomb', true, true)
 player.cell = nil
 handlers.onUpdate(0)
-assert(not enabled)
+assert(not visible())
 enter('Andrano Ancestral Tomb', true, true)
 for _, reset in ipairs({ handlers.onLoad, handlers.onActive }) do
     local cell = player.cell
     reset()
-    assert(not enabled)
+    assert(not visible())
     player.cell = nil
     handlers.onUpdate(0)
-    assert(not enabled)
+    assert(not visible())
     player.cell = cell
     handlers.onUpdate(0)
     assert(enabled and uniforms.dustTime == 0)
 end
+assert(enables == previousEnables and disables == previousDisables,
+    'cell changes, settings edits and reactivation must not mutate the shader chain')
+-- The engine removes dynamic passes on loading a saved game.
+enabled = false
+handlers.onLoad(nil)
+handlers.onUpdate(0)
+assert(enabled and enables == previousEnables + 1, 'load must restore the resident pass')
 -- A new script context must retain the permanent setting instead of its default.
 assert(loadfile('tests/cell_filters.lua'))()(enter, function(key, value)
     settings:set(key, value)
 end, function(expected, message)
-    assert(enabled == expected, message)
+    assert(visible() == expected, message)
 end)
+assert(enables == previousEnables + 1 and disables == previousDisables,
+    'live list edits must not rebuild the chain')
 settings:set('density', 85)
 settings:set('whitelist', 'Balmora, Guild of Mages')
 settings:set('blacklist', 'Andrano Ancestral Tomb')
@@ -163,7 +175,7 @@ assert(values.whitelist == 'Balmora, Guild of Mages' and values.blacklist == 'An
 enter('Andrano Ancestral Tomb', true, false)
 enter('Balmora, Guild of Mages', true, true)
 settings:set('density', -10)
-assert(not enabled and uniforms.dustDensity == 0)
+assert(not visible() and uniforms.dustDensity == 0)
 settings:set('density', 110)
 assert(enabled and uniforms.dustDensity == 1)
 print('PASS OpenMW Lua: MCM registration, live density and cell lists while paused, exact matching, blacklist priority, persistence, shader lifecycle')

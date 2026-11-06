@@ -76,3 +76,5 @@ Morrowind Modding Community Discord - help with brainstorming
 1.3.0 - Added HD textures. Added fomod. Added splash screen for Gizmo.
 2.0.0 - Added support for OpenMW. Fixed dialogue filtering issue. Added option to do nothing when activating matrix.
 2.1.0 - Improved performance in both engines. Fixed slow movement speed in MWSE.
+2.2.0 - Actually fixed slow speed in MWSE. Fixed broken scaling transform in MWSE.
+2.2.1 - Fixed fomod.

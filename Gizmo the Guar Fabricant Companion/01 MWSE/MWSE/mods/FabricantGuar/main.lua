@@ -8,6 +8,7 @@ local mdFG_global_following
 local mdFG_global_Sample_Guar
 local mdFG_global_imperfect
 local mdFG_global_dead
+local mdFG_global_scale
 
 
 -- Active actor and guar detection; reference handles are never saved.
@@ -56,25 +57,68 @@ local function rebuildActors()
 end
 
 
--- Follow movement
+-- Follow Speed attribute
 
-local function onCalcMoveSpeed(e)
-    if mdFG_global_following.value ~= 1 or e.speed <= 0 then return end
-    local ref, mobile, player = e.reference, e.mobile, tes3.player
-    if not living(ref) or not living(player) or mobile.inCombat or not mobile.canMove then return end
-    if mobile.encumbrance.current > mobile.encumbrance.base then return end
+local function updateFollowSpeed(ref)
+    local player = tes3.player
+    if mdFG_global_following.value ~= 1 or not living(ref) or not living(player) then return end
 
-    local aiData = mobile.aiData
-    local package = aiData and aiData:getActivePackage()
-    if not package or package.type ~= 3 or package.targetActor ~= player.mobile then return end
+    -- The Follow command is authoritative, including before native AI has
+    -- initialized its target and while combat temporarily interrupts Follow.
+    local target = player.mobile.speed.current + 50
+    local speed = ref.mobile.speed
+    if speed.base ~= target or speed.current ~= target then
+        tes3.setStatistic{reference=ref, statistic=speed, value=target, limit=false}
+    end
+end
 
-    -- The native script sets Speed to 40 nearby, and only forces running after
-    -- teleporting at 900 units. Matching attributes doesn't match creature/NPC
-    -- movement. Use the player's calculated movement speed as a Follow floor,
-    -- with the existing 1.5x catch-up factor beyond 300 units.
-    local speed = player.mobile.moveSpeed
-    if distanceSquared(ref.position, player.position) >= 300 * 300 then speed = speed * 1.5 end
-    e.speed = math.max(e.speed, speed)
+local function onGizmoScriptExecuted(e)
+    -- Run after the native controller's Speed 40 / 1.5x / combat-cap writes.
+    -- Updating only a timer or calcMoveSpeed would leave those attribute writes intact.
+    updateFollowSpeed(e.reference)
+end
+
+
+-- Size transformation
+
+local scaleProgress, scaleTarget
+
+local function updateScale(e)
+    local state = mdFG_global_scale.value
+    local target
+    if state == 51 or state == 52 then target = 0.5
+    elseif state == 101 or state == 102 then target = 1 end
+    if not target then scaleProgress, scaleTarget = nil, nil; return end
+
+    local ref = tes3.getReference("mdFG_gizmo")
+    local context = ref and ref.context
+    if not context then scaleProgress, scaleTarget = nil, nil; return end
+
+    -- Consume the native request before MWScript runs this frame. Clearing its
+    -- direction also takes over transformations stuck in an existing save.
+    context.direction, context.tempscale = 0, 0
+    mdFG_global_scale.value = target * 100 + 2
+    if not living(ref) then scaleProgress, scaleTarget = nil, nil; return end
+
+    if scaleTarget ~= target or state == 51 or state == 101 then
+        scaleProgress, scaleTarget = ref.scale, target
+    end
+    -- Morrowind stores scale to two decimals. Accumulate full simulation time
+    -- separately so high-frame-rate deltas survive that rounding.
+    local step = 0.3 * e.delta
+    if scaleProgress > target then scaleProgress = math.max(target, scaleProgress - step)
+    else scaleProgress = math.min(target, scaleProgress + step) end
+    local rounded = math.floor(scaleProgress * 100 + 0.5) / 100
+    if math.abs(ref.scale - rounded) > 0.00001 then
+        ref.scale = rounded
+        ref.modified = true
+    end
+    context.currscale = ref.scale
+    if scaleProgress == target then
+        context.currscale = target
+        mdFG_global_scale.value = target * 100
+        scaleProgress, scaleTarget = nil, nil
+    end
 end
 
 
@@ -178,6 +222,7 @@ checkGuard = function()
         guardPending = false
         followPlayer(gizmo)
         mdFG_global_following.value = 1
+        updateFollowSpeed(gizmo)
         mwscript.stopScript{script="mdFG_script_AIGuard"}
     end
 end
@@ -189,10 +234,12 @@ local function mdFG_script_AIGuard()
 end
 
 local function startController()
+    scaleProgress, scaleTarget = nil, nil -- Resume from the saved reference scale.
     if controllerTimer then controllerTimer:cancel() end
     atomizerTimer = nil -- MWSE cancels simulation timers before loaded.
     guardPending = mwscript.scriptRunning{script="mdFG_script_AIGuard"}
     rebuildActors()
+    updateFollowSpeed(tes3.getReference("mdFG_gizmo"))
     muskAtomizerStart()
     local atomizerEnabled = mdFG_global_following.value == 1 and mdFG_global_MuskAtomizer.value == 1
     controllerTimer = timer.start{duration=0.1, iterations=-1, type=timer.simulate, callback=function()
@@ -211,6 +258,7 @@ local function mdFG_script_RepairModule()
 end
 
 local function mdFG_script_AIFollow()
+	updateFollowSpeed(tes3.getReference("mdFG_gizmo"))
 	muskAtomizerStart()
 	mwscript.stopScript{script="mdFG_script_AIFollow"}
 end
@@ -235,10 +283,11 @@ event.register("initialized", function()
 	if tes3.isModActive("Fabricant Guar.ESP") then
 		-- register events
 		event.register("loaded", startController)
+        event.register("simulate", updateScale)
         event.register("cellChanged", rebuildActors)
         event.register("combatStarted", function() checkGuard() end)
 		event.register("activate", collectMuskSample)
-		event.register("calcMoveSpeed", onCalcMoveSpeed, { filter = "mdfg_gizmo" })
+		event.register("scriptExecuted", onGizmoScriptExecuted, { filter = "mdfg_script_gizmo" })
 		event.register("mobileActivated", onRefCreated)
 		event.register("mobileDeactivated", onRefDeleted)
 		-- override scripts
@@ -253,5 +302,6 @@ event.register("initialized", function()
 		mdFG_global_following = tes3.findGlobal("mdFG_global_following")
 		mdFG_global_imperfect = tes3.findGlobal("mdFG_global_imperfect")
 		mdFG_global_dead = tes3.findGlobal("mdFG_global_dead")
+        mdFG_global_scale = tes3.findGlobal("mdFG_global_scale")
 	end
 end)

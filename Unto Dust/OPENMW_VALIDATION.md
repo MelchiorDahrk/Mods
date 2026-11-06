@@ -1,5 +1,8 @@
 # Shader validation
 
+Cell-transition performance measurements and the resident-pass fix are documented
+in [OPENMW_PERFORMANCE.md](OPENMW_PERFORMANCE.md).
+
 Unto Dust 2.0 replaces the particle meshes in both engines. The common source is
 `shaders/dust.glsl`; engine wrappers live beside it. Rebuild the installable GLSL
 and HLSL with `python tools/build_shaders.py` after changing these files.
@@ -68,10 +71,12 @@ shader test output, not game screenshots. `textured-closeup.png` and
 
 The engine smoke test enables post-processing and the packaged mod in isolated
 configuration and saves under `.validation-cache/MCM`. It checks that the
-actual shader compiled, that exactly one instance is enabled in matching cells,
+actual shader compiled, that exactly one resident instance remains in the chain,
 that the native Settings group is registered with permanent storage, that menu
-writes at 0/32/85 percent update the enabled state, and that transitions, both
-camera modes, and save/load retain the correct state and density. It also checks
+writes at 0/32/85 percent update storage, and that transitions, both
+camera modes, and save/load retain the resident pass and settings. The Lua suite
+checks the corresponding effective density/visibility; the GPU suite checks the
+zero-density scene-copy path. OpenMW exposes no shader uniform getter. It also checks
 custom picker registration and complete cell catalogue delivery, whitelist
 activation in an ordinary interior, blacklist exclusion of a burial cell and a
 whitelisted cell, clearing exclusions, and restoration of both lists and their

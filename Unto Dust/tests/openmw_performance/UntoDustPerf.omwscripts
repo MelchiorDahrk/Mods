@@ -1,0 +1,2 @@
+GLOBAL: scripts/UntoDustPerf/global.lua
+PLAYER: scripts/UntoDustPerf/player.lua
